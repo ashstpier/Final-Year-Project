@@ -34,7 +34,7 @@
 			// workaround for chrome bug: http://code.google.com/p/chromium/issues/detail?id=35980#c12
 			if ( window.innerWidth === 0 ) { window.innerWidth = parent.innerWidth; window.innerHeight = parent.innerHeight; }
 							
-			var camera, scene, renderer, controls;
+			var container, stats, camera, scene, renderer, projector, controls;
 			var group;
 			var depthMaterial, depthTarget, composer;
 			var clickobjects = [], hoverobjects = [], sprites = [];
@@ -46,24 +46,6 @@
 				
 				container = document.createElement( 'div' );
 				document.body.appendChild( container );
-	
-				renderer = new THREE.WebGLRenderer();
-				renderer.setSize( window.innerWidth, window.innerHeight );
-			
-				container.appendChild( renderer.domElement );
-				
-				projector = new THREE.Projector();
-
-				stats = new Stats();
-				stats.domElement.style.position = 'absolute';
-				stats.domElement.style.top = '0px';
-			
-				document.addEventListener( 'mouseup', onDocumentMouseUp, false );
-				document.addEventListener( 'mousemove', onDocumentMouseMove, false );
-			
-				//
-			
-				window.addEventListener( 'resize', onWindowResize, false );
 				
 				camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 10, 1000 );
 				camera.position.z = 500;
@@ -136,6 +118,29 @@
 				scene.add( sprite4 );
 				
 				sprites.push( sprite1, sprite2, sprite3, sprite4 );
+				
+				//////////////////////////////////
+				//////////// RENDERER ////////////
+				//////////////////////////////////
+				
+				projector = new THREE.Projector();
+
+				renderer = new THREE.WebGLRenderer();
+				renderer.setSize( window.innerWidth, window.innerHeight );
+			
+				container.appendChild( renderer.domElement );
+			
+				stats = new Stats();
+				stats.domElement.style.position = 'absolute';
+				stats.domElement.style.top = '0px';
+				container.appendChild( stats.domElement );
+			
+				document.addEventListener( 'mouseup', onDocumentMouseUp, false );
+				document.addEventListener( 'mousemove', onDocumentMouseMove, false );
+			
+				//
+			
+				window.addEventListener( 'resize', onWindowResize, false );
 	
 							
 				//////////////////////////////////
@@ -164,11 +169,6 @@
 				effect.uniforms[ 'cameraFar' ].value = camera.far;
 				effect.renderToScreen = true;
 				composer.addPass( effect );
-				
-				stats = new Stats();
-				stats.domElement.style.position = 'absolute';
-				stats.domElement.style.top = '0px';
-				container.appendChild( stats.domElement );
 				
 			}
 			
@@ -270,16 +270,14 @@
 			
 				if ( intersects.length > 0 ) {
 					
-					if ( intersects[0] ){
+					if ( intersects ){
 						
 						var time = 2000;
 						
-						if ( intersects[0].object.id == clickobjects[0].id ){
-							new TWEEN.Tween( camera.position ).to( {
+						new TWEEN.Tween( camera.position ).to( {
 							x: intersects[0].object.position.x,
 							z: intersects[0].object.position.z + 150 }, time )
 						.easing( TWEEN.Easing.Quadratic.InOut).start();
-						}
 						
 						new TWEEN.Tween( controls.center ).to( {
 							x: intersects[0].object.position.x,
@@ -329,7 +327,8 @@
 			}
 
 			function animate() {
-
+				
+				TWEEN.update();
 				requestAnimationFrame( animate );
 				controls.update();
 				stats.update();
