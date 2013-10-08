@@ -1,8 +1,6 @@
 var container, stats;
 var camera, scene, projector, renderer, controls;
-var clickobjects = [];
-var hoverobjects = [];
-var sprites = [];
+var clickobjects = [], hoverobjects = [], sprites = [];
 
 init();
 animate();
@@ -21,7 +19,7 @@ function init() {
 	
 	controls = new THREE.OrbitControls( camera );
 	controls.addEventListener( 'change', render );
-	controls.maxPolarAngle = Math.PI/4.5; 
+	controls.maxPolarAngle = Math.PI/4; 
 	controls.minDistance = 120;
 	controls.maxDistance = 300;
 
@@ -33,15 +31,12 @@ function init() {
 	//////////////////////////////////
 	
 	loader = new THREE.JSONLoader();
+	
+	var depthmaterial = new THREE.MeshDepthMaterial( { side: THREE.DoubleSide, overdraw: true } );
 
 	loader.load( "assets/models/citybuildings.js", function( geometry ) {
-	
-		buildings = new THREE.Mesh( geometry, new THREE.MeshPhongMaterial({
-				specular: '#ccc',
-				color: '#999',
-				emissive: '#000',
-				shininess: 100 
-			  }));
+
+		buildings = new THREE.Mesh( geometry, depthmaterial );
 		buildings.scale.set( 1.2, 1.2, 1.2 );
 		buildings.position.set( 0, -0.5, 0 );
 		scene.add( buildings );
@@ -116,8 +111,8 @@ function init() {
 	stats.domElement.style.top = '0px';
 	container.appendChild( stats.domElement );
 
-	//document.addEventListener( 'mouseup', onDocumentMouseUp, false );
-	//document.addEventListener( 'mousemove', onDocumentMouseMove, false );
+	document.addEventListener( 'mouseup', onDocumentMouseUp, false );
+	document.addEventListener( 'mousemove', onDocumentMouseMove, false );
 
 	//
 
