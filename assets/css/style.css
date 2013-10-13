@@ -1,0 +1,28 @@
+@charset "UTF-8";
+/* CSS Document */
+
+body {
+	margin: 0;
+	height: 100%;
+	width: 100%;
+	padding: 0;
+	overflow: hidden;
+	font-family: Arial;
+	font-size: 14px;
+	background: #000; /* Old browsers */
+}
+
+#slidepanel {
+	width: 200px;
+	height: 100%;
+	position: absolute;
+	left: 0;
+	top: 0;
+	z-index: 9999;
+	background: #222;
+	padding: 20px 30px;
+	display: none;
+}
+#slidepanel section {
+	color: #fff;
+}
