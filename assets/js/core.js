@@ -1,6 +1,6 @@
 var container, stats, camera, scene, renderer, projector, controls, group;
 var depthMaterial, depthTarget, composer;
-var clickobjects = [], hoverobjects = [], sprites = [];
+var clickobjects = [], hoverobjects = [], iconAcademic = [], iconLocation = [], iconMusic = [], iconAnnouncement = [];
 
 init();
 animate();
@@ -13,22 +13,20 @@ function init() {
 	camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 10, 1000 );
 	camera.position.z = 500;
 	
-	//////////////////////////////////
-	//////// ORBIT CONTROLS //////////
-	//////////////////////////////////
+	//////// ORBIT CONTROLS /////////
 
 	controls = new THREE.OrbitControls( camera );
 	controls.addEventListener( 'change', render );
 	controls.maxPolarAngle = Math.PI/4.5; 
 	controls.minDistance = 200;
 	controls.maxDistance = 300;
+	
+	///////// SCENE SETUP //////////
 
 	scene = new THREE.Scene();
 	scene.fog = new THREE.Fog( 0xeeeeee, 0.002 );
 
-	//////////////////////////////////
 	/////////// GEOMETRY /////////////
-	//////////////////////////////////
 		
 	group = new THREE.Object3D();
 	scene.add( group );
@@ -40,24 +38,35 @@ function init() {
 	loader.load( "assets/models/citybuildings.js", function( geometry ) {
 
 		buildings = new THREE.Mesh( geometry, material );
-		buildings.scale.set( 1.5, 1.5, 1.5 );
+		buildings.scale.set( 1, 1, 1 );
 		buildings.position.set( -100, -0.5, -100 );
 		group.add( buildings );
 		
 		buildings2 = new THREE.Mesh( geometry, material );
-		buildings2.scale.set( 1.5, 1.5, 1.5 );
+		buildings2.scale.set( 1, 1, 1 );
 		buildings2.position.set( 100, -0.5, 100 );
 		group.add( buildings2 );
 		
 		buildings3 = new THREE.Mesh( geometry, material );
-		buildings3.scale.set( 1.5, 1.5, 1.5 );
+		buildings3.scale.set( 1, 1, 1 );
 		buildings3.position.set( -100, -0.5, 100 );
 		group.add( buildings3 );
 		
 		buildings4 = new THREE.Mesh( geometry, material );
-		buildings4.scale.set( 1.5, 1.5, 1.5 );
+		buildings4.scale.set( 1, 1, 1 );
 		buildings4.position.set( 100, -0.5, -100 );
 		group.add( buildings4 );
+		
+		//////////// SPRITES ////////////
+		
+		iconAcademic.push( buildings );
+		makeIconAcademic( iconAcademic );
+		iconLocation.push( buildings2 );
+		makeIconLocation( iconLocation );
+		iconMusic.push( buildings3 );
+		makeIconMusic( iconMusic );
+		iconAnnouncement.push( buildings4 );
+		makeIconAnnouncement( iconAnnouncement );
 		
 		clickobjects.push( buildings, buildings2, buildings3, buildings4 );
 		hoverobjects.push( buildings, buildings2, buildings3, buildings4 );
@@ -71,35 +80,7 @@ function init() {
 	plane.rotation.x += 270 * Math.PI / 180;
 	scene.add( plane );
 	
-	//////////////////////////////////
-	//////////// SPRITES /////////////
-	//////////////////////////////////
-
-	sprite1 = makeTextSprite( " Section 1 ", 
-		{ fontsize: 12, fontface: "Arial", borderColor: {r:0, g:0, b:0, a:1.0} } );
-	sprite1.position.set(-90,50,90);
-	scene.add( sprite1 );
-	
-	sprite2 = makeTextSprite( " Section 2 ", 
-		{ fontsize: 12, fontface: "Arial", borderColor: {r:0, g:0, b:0, a:1.0} } );
-	sprite2.position.set(90,50,90);
-	scene.add( sprite2 );
-	
-	sprite3 = makeTextSprite( " Section 3 ", 
-		{ fontsize: 12, fontface: "Arial", borderColor: {r:0, g:0, b:0, a:1.0} } );
-	sprite3.position.set(90,50,-90);
-	scene.add( sprite3 );
-	
-	sprite4 = makeTextSprite( " Section 4 ", 
-		{ fontsize: 12, fontface: "Arial", borderColor: {r:0, g:0, b:0, a:1.0} } );
-	sprite4.position.set(-90,50,-90);
-	scene.add( sprite4 );
-	
-	sprites.push( sprite1, sprite2, sprite3, sprite4 );
-	
-	//////////////////////////////////
 	//////////// RENDERER ////////////
-	//////////////////////////////////
 	
 	projector = new THREE.Projector();
 
@@ -122,9 +103,7 @@ function init() {
 	window.addEventListener( 'resize', onWindowResize, false );
 
 	/*			
-	//////////////////////////////////
 	///////////// DEPTH //////////////
-	//////////////////////////////////
 	
 	var depthShader = THREE.ShaderLib[ "depthRGBA" ];
 	var depthUniforms = THREE.UniformsUtils.clone( depthShader.uniforms );
@@ -132,9 +111,7 @@ function init() {
 	depthMaterial = new THREE.ShaderMaterial( { fragmentShader: depthShader.fragmentShader, vertexShader: depthShader.vertexShader, uniforms: depthUniforms } );
 	depthMaterial.blending = THREE.NoBlending;
 
-	//////////////////////////////////
 	////////////// SSAO //////////////
-	//////////////////////////////////
 	
 	composer = new THREE.EffectComposer( renderer );
 	composer.addPass( new THREE.RenderPass( scene, camera ) );
@@ -152,90 +129,57 @@ function init() {
 	
 }
 
-//////////////////////////////////
-///////// SPRITE BUILDER /////////
-//////////////////////////////////
+////////// ICON FUNCTIONS ///////////
 
-function makeTextSprite( message, parameters )
-{
-	if ( parameters === undefined ) parameters = {};
-	
-	var fontface = parameters.hasOwnProperty("fontface") ? 
-		parameters["fontface"] : "Arial";
-	
-	var fontsize = parameters.hasOwnProperty("fontsize") ? 
-		parameters["fontsize"] : 18;
-	
-	var borderThickness = parameters.hasOwnProperty("borderThickness") ? 
-		parameters["borderThickness"] : 1;
-	
-	var borderColor = parameters.hasOwnProperty("borderColor") ?
-		parameters["borderColor"] : { r:0, g:0, b:0, a:1.0 };
-	
-	var backgroundColor = parameters.hasOwnProperty("backgroundColor") ?
-		parameters["backgroundColor"] : { r:255, g:255, b:255, a:1.0 };
-
-	var spriteAlignment = THREE.SpriteAlignment.topLeft;
-		
-	var canvas = document.createElement('canvas');
-	var context = canvas.getContext('2d');
-	context.font = fontsize + "px " + fontface;
-	
-	// get size data (height depends only on font size)
-	var metrics = context.measureText( message );
-	var textWidth = metrics.width;
-	
-	// background color
-	context.fillStyle   = "rgba(" + backgroundColor.r + "," + backgroundColor.g + ","
-								  + backgroundColor.b + "," + backgroundColor.a + ")";
-	// border color
-	context.strokeStyle = "rgba(" + borderColor.r + "," + borderColor.g + ","
-								  + borderColor.b + "," + borderColor.a + ")";
-
-	context.lineWidth = borderThickness;
-	roundRect(context, borderThickness/2, borderThickness/2, textWidth + borderThickness, fontsize * 1.4 + borderThickness, 6);
-	// 1.4 is extra height factor for text below baseline: g,j,p,q.
-	
-	// text color
-	context.fillStyle = "rgba(0, 0, 0, 1.0)";
-
-	context.fillText( message, borderThickness, fontsize + borderThickness);
-	
-	// canvas contents will be used for a texture
-	var texture = new THREE.Texture(canvas) 
-	texture.needsUpdate = true;
-
-	var spriteMaterial = new THREE.SpriteMaterial( 
-		{ map: texture, useScreenCoordinates: false, alignment: spriteAlignment } );
-	var sprite = new THREE.Sprite( spriteMaterial );
-	sprite.scale.set(100,50,1.0);
-	return sprite;
+function makeIconAcademic( iconArray ){
+	for (var i=0, tot=iconArray.length; i < tot; i++) {
+		var spriteMaterial = new THREE.SpriteMaterial( { map: THREE.ImageUtils.loadTexture( 'assets/images/icons/ico_academic.png' ), useScreenCoordinates: false } );
+		var sprite = new THREE.Sprite( spriteMaterial );
+		sprite.scale.set(8,8,1.0);
+		var x = iconArray[i].position.x;
+		var z = iconArray[i].position.z;
+		sprite.position.set( x, 70, z );
+		scene.add( sprite );
+	}
 }
 
-//////////////////////////////////
-//////// ROUND RECTANGLES ////////
-//////////////////////////////////
-
-function roundRect(ctx, x, y, w, h, r) 
-{
-	ctx.beginPath();
-	ctx.moveTo(x+r, y);
-	ctx.lineTo(x+w-r, y);
-	ctx.quadraticCurveTo(x+w, y, x+w, y+r);
-	ctx.lineTo(x+w, y+h-r);
-	ctx.quadraticCurveTo(x+w, y+h, x+w-r, y+h);
-	ctx.lineTo(x+r, y+h);
-	ctx.quadraticCurveTo(x, y+h, x, y+h-r);
-	ctx.lineTo(x, y+r);
-	ctx.quadraticCurveTo(x, y, x+r, y);
-	ctx.closePath();
-	ctx.fill();
-	ctx.stroke();   
+function makeIconLocation( iconArray ){
+	for (var i=0, tot=iconArray.length; i < tot; i++) {
+		var spriteMaterial = new THREE.SpriteMaterial( { map: THREE.ImageUtils.loadTexture( 'assets/images/icons/ico_location.png' ), useScreenCoordinates: false } );
+		var sprite = new THREE.Sprite( spriteMaterial );
+		sprite.scale.set(8,8,1.0);
+		var x = iconArray[i].position.x;
+		var z = iconArray[i].position.z;
+		sprite.position.set( x, 70, z );
+		scene.add( sprite );
+	}
 }
 
-//////////////////////////////////
+function makeIconMusic( iconArray ){
+	for (var i=0, tot=iconArray.length; i < tot; i++) {
+		var spriteMaterial = new THREE.SpriteMaterial( { map: THREE.ImageUtils.loadTexture( 'assets/images/icons/ico_music.png' ), useScreenCoordinates: false } );
+		var sprite = new THREE.Sprite( spriteMaterial );
+		sprite.scale.set(8,8,1.0);
+		var x = iconArray[i].position.x;
+		var z = iconArray[i].position.z;
+		sprite.position.set( x, 70, z );
+		scene.add( sprite );
+	}
+}
+
+function makeIconAnnouncement( iconArray ){
+	for (var i=0, tot=iconArray.length; i < tot; i++) {
+		var spriteMaterial = new THREE.SpriteMaterial( { map: THREE.ImageUtils.loadTexture( 'assets/images/icons/ico_announcement.png' ), useScreenCoordinates: false } );
+		var sprite = new THREE.Sprite( spriteMaterial );
+		sprite.scale.set(8,8,1.0);
+		var x = iconArray[i].position.x;
+		var z = iconArray[i].position.z;
+		sprite.position.set( x, 70, z );
+		scene.add( sprite );
+	}
+}
+	
 ////////// CLICK EVENT ///////////
-//////////////////////////////////
 
 function onDocumentMouseUp( event ) {
 	
@@ -302,9 +246,7 @@ function onDocumentMouseUp( event ) {
 	
 }
 
-//////////////////////////////////
 //////// MOUSEMOVE EVENT /////////
-//////////////////////////////////
 
 function onDocumentMouseMove( event ) {
 
