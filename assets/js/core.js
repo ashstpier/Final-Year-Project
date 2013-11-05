@@ -10,75 +10,80 @@ function init() {
 	container = document.createElement( 'div' );
 	document.body.appendChild( container );
 	
-	camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 10, 1000 );
+	camera = new THREE.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 10, 2000 );
 	camera.position.z = 500;
 	
 	//////// ORBIT CONTROLS /////////
 
 	controls = new THREE.OrbitControls( camera );
 	controls.addEventListener( 'change', render );
-	controls.maxPolarAngle = Math.PI/4.5; 
+	controls.maxPolarAngle = Math.PI/3; 
 	controls.minDistance = 200;
-	controls.maxDistance = 300;
+	controls.maxDistance = 400;
 	
 	///////// SCENE SETUP //////////
 
 	scene = new THREE.Scene();
-	scene.fog = new THREE.Fog( 0xeeeeee, 0.002 );
+	//scene.fog = new THREE.Fog( 0xffffff, 0.00002 );
+	
+	/////////// LIGHTS ////////////
+	
+	var directionalLight = new THREE.DirectionalLight( 0xffffff, 0.5 );
+	directionalLight.position.set( 0, 1, 0 );
+	scene.add( directionalLight );
+	
+	var ambientLight = new THREE.AmbientLight( 0xcccccc );
+	scene.add( ambientLight );
 
 	/////////// GEOMETRY /////////////
 		
 	group = new THREE.Object3D();
 	scene.add( group );
 	
-	var material = new THREE.MeshDepthMaterial( { side: THREE.DoubleSide, overdraw: true } );
+	var material = new THREE.MeshLambertMaterial({ color: 0xcccccc });
 	
-	loader = new THREE.JSONLoader();
-
-	loader.load( "assets/models/citybuildings.js", function( geometry ) {
-
-		buildings = new THREE.Mesh( geometry, material );
-		buildings.scale.set( 1, 1, 1 );
-		buildings.position.set( -100, -0.5, -100 );
-		group.add( buildings );
-		
-		buildings2 = new THREE.Mesh( geometry, material );
-		buildings2.scale.set( 1, 1, 1 );
-		buildings2.position.set( 100, -0.5, 100 );
-		group.add( buildings2 );
-		
-		buildings3 = new THREE.Mesh( geometry, material );
-		buildings3.scale.set( 1, 1, 1 );
-		buildings3.position.set( -100, -0.5, 100 );
-		group.add( buildings3 );
-		
-		buildings4 = new THREE.Mesh( geometry, material );
-		buildings4.scale.set( 1, 1, 1 );
-		buildings4.position.set( 100, -0.5, -100 );
-		group.add( buildings4 );
-		
-		//////////// SPRITES ////////////
-		
-		iconAcademic.push( buildings );
-		makeIconAcademic( iconAcademic );
-		iconLocation.push( buildings2 );
-		makeIconLocation( iconLocation );
-		iconMusic.push( buildings3 );
-		makeIconMusic( iconMusic );
-		iconAnnouncement.push( buildings4 );
-		makeIconAnnouncement( iconAnnouncement );
-		
-		clickobjects.push( buildings, buildings2, buildings3, buildings4 );
-		hoverobjects.push( buildings, buildings2, buildings3, buildings4 );
-	} );
+	var jsonFileNames = [
+		'assets/models/Keynes_College.js',
+		'assets/models/Templeman_Library.js'
+	];
 	
-	texture = THREE.ImageUtils.loadTexture('assets/images/gmap.png', {}, function() {
+	var meshes = new Object();
+	
+	for(var i = 0; i < jsonFileNames.length; i++){
+		var loader = new THREE.JSONLoader();
+		var meshName = jsonFileNames[i].split("/")[2].split(".")[0];
+		loader.load(jsonFileNames[i], makeHandler(meshName));
+	}
+	
+	function makeHandler(meshName) {
+		return function(geometry, materials) {
+			mesh =  new THREE.Mesh( geometry, material );
+			mesh.scale.set( 1, 1, 1 );
+			group.add( mesh );
+			clickobjects.push( mesh );
+			hoverobjects.push( mesh);
+			meshes[meshName] = mesh;
+			alert(meshes['Keynes_College']); // Needs fixing
+				
+			spriteName = meshName.split("_")[0] + " " + meshName.split("_")[1];
+			var sprite = makeTextSprite( spriteName, mesh );
+			scene.add( sprite );
+		};
+	}
+	
+	/*iconMusic.push( meshes['Keynes_College'] );
+	makeIcon( iconMusic, 'music' );*/
+	
+	group.position.set( -36, 0, -9 );
+	
+	texture = THREE.ImageUtils.loadTexture('assets/images/map.jpg', {}, function() {
 		renderer.render(scene);
 	})
 	mapmaterial = new THREE.MeshBasicMaterial({map: texture})
-	plane = new THREE.Mesh( new THREE.PlaneGeometry( 1000, 1000, 8, 8 ), mapmaterial );
+	plane = new THREE.Mesh( new THREE.PlaneGeometry( 1200, 628, 8, 8 ), mapmaterial );
 	plane.rotation.x += 270 * Math.PI / 180;
 	scene.add( plane );
+	
 	
 	//////////// RENDERER ////////////
 	
@@ -129,52 +134,95 @@ function init() {
 	
 }
 
-////////// ICON FUNCTIONS ///////////
+function makeTextSprite( message, name )
+{
+	
+	var fontface = "Arial";
+	
+	var fontsize = 12;
+	
+	var borderColor = { r:255, g:255, b:255, a:1.0 };
+	
+	var backgroundColor = { r:255, g:255, b:255, a:1.0 };
 
-function makeIconAcademic( iconArray ){
-	for (var i=0, tot=iconArray.length; i < tot; i++) {
-		var spriteMaterial = new THREE.SpriteMaterial( { map: THREE.ImageUtils.loadTexture( 'assets/images/icons/ico_academic.png' ), useScreenCoordinates: false } );
-		var sprite = new THREE.Sprite( spriteMaterial );
-		sprite.scale.set(8,8,1.0);
-		var x = iconArray[i].position.x;
-		var z = iconArray[i].position.z;
-		sprite.position.set( x, 70, z );
-		scene.add( sprite );
-	}
+	var spriteAlignment = THREE.SpriteAlignment.topCenter;
+		
+	var canvas = document.createElement('canvas');
+	var context = canvas.getContext('2d');
+	context.font = "Normal " + fontsize + "px " + fontface;
+    
+	// get size data (height depends only on font size)
+	var metrics = context.measureText( message );
+	var textWidth = metrics.width;
+	
+	// background color
+	context.fillStyle   = "rgba(" + backgroundColor.r + "," + backgroundColor.g + ","
+								  + backgroundColor.b + "," + backgroundColor.a + ")";
+	// border color
+	context.strokeStyle = "rgba(" + borderColor.r + "," + borderColor.g + ","
+								  + borderColor.b + "," + borderColor.a + ")";
+
+	context.lineWidth = 5;
+	roundRect(context, 5/2, 5/2, textWidth + 5, fontsize * 1.4 + 5, 6);
+	context.fillStyle = "rgba(0, 0, 0, 1.0)";
+
+	context.fillText( message, 5, fontsize + 5);
+	var texture = new THREE.Texture(canvas) 
+	texture.needsUpdate = true;
+
+	var spriteMaterial = new THREE.SpriteMaterial( 
+		{ map: texture, useScreenCoordinates: false, alignment: spriteAlignment } );
+	var sprite = new THREE.Sprite( spriteMaterial );
+	
+	name.geometry.computeBoundingBox();
+	var boundingBox = name.geometry.boundingBox;
+	var position = new THREE.Vector3();
+	position.subVectors( boundingBox.max, boundingBox.min );
+	position.multiplyScalar( 0.5 );
+	position.add( boundingBox.min );
+
+	position.applyMatrix4( name.matrixWorld );
+	
+	sprite.position.set( position.x - 40, 40, position.z - 10 );
+	sprite.scale.set(80,40,1.0);
+	return sprite;	
 }
 
-function makeIconLocation( iconArray ){
-	for (var i=0, tot=iconArray.length; i < tot; i++) {
-		var spriteMaterial = new THREE.SpriteMaterial( { map: THREE.ImageUtils.loadTexture( 'assets/images/icons/ico_location.png' ), useScreenCoordinates: false } );
-		var sprite = new THREE.Sprite( spriteMaterial );
-		sprite.scale.set(8,8,1.0);
-		var x = iconArray[i].position.x;
-		var z = iconArray[i].position.z;
-		sprite.position.set( x, 70, z );
-		scene.add( sprite );
-	}
+// function for drawing rounded rectangles
+function roundRect(ctx, x, y, w, h, r) 
+{
+    ctx.beginPath();
+    ctx.moveTo(x+r, y);
+    ctx.lineTo(x+w-r, y);
+    ctx.quadraticCurveTo(x+w, y, x+w, y+r);
+    ctx.lineTo(x+w, y+h-r);
+    ctx.quadraticCurveTo(x+w, y+h, x+w-r, y+h);
+    ctx.lineTo(x+r, y+h);
+    ctx.quadraticCurveTo(x, y+h, x, y+h-r);
+    ctx.lineTo(x, y+r);
+    ctx.quadraticCurveTo(x, y, x+r, y);
+    ctx.closePath();
+    ctx.fill();
+	ctx.stroke();   
 }
 
-function makeIconMusic( iconArray ){
-	for (var i=0, tot=iconArray.length; i < tot; i++) {
-		var spriteMaterial = new THREE.SpriteMaterial( { map: THREE.ImageUtils.loadTexture( 'assets/images/icons/ico_music.png' ), useScreenCoordinates: false } );
-		var sprite = new THREE.Sprite( spriteMaterial );
-		sprite.scale.set(8,8,1.0);
-		var x = iconArray[i].position.x;
-		var z = iconArray[i].position.z;
-		sprite.position.set( x, 70, z );
-		scene.add( sprite );
-	}
-}
+////////// ICON FUNCTION ///////////
 
-function makeIconAnnouncement( iconArray ){
+function makeIcon( iconArray, iconType ){
 	for (var i=0, tot=iconArray.length; i < tot; i++) {
-		var spriteMaterial = new THREE.SpriteMaterial( { map: THREE.ImageUtils.loadTexture( 'assets/images/icons/ico_announcement.png' ), useScreenCoordinates: false } );
+		var spriteMaterial = new THREE.SpriteMaterial( { map: THREE.ImageUtils.loadTexture( 'assets/images/icons/ico_'+iconType+'.png' ), useScreenCoordinates: false } );
 		var sprite = new THREE.Sprite( spriteMaterial );
-		sprite.scale.set(8,8,1.0);
-		var x = iconArray[i].position.x;
-		var z = iconArray[i].position.z;
-		sprite.position.set( x, 70, z );
+		sprite.scale.set(12,12,1.0);
+		iconArray[i].geometry.computeBoundingBox();
+		var boundingBox = iconArray[i].geometry.boundingBox;
+		var position = new THREE.Vector3();
+		position.subVectors( boundingBox.max, boundingBox.min );
+		position.multiplyScalar( 0.5 );
+		position.add( boundingBox.min );
+
+		position.applyMatrix4( iconArray[i].matrixWorld );
+		
+		sprite.position.set( position.x - 36, 50, position.z - 9 );
 		scene.add( sprite );
 	}
 }
@@ -190,7 +238,7 @@ function onDocumentMouseUp( event ) {
 
 	var raycaster = new THREE.Raycaster( camera.position, vector.sub( camera.position ).normalize() );
 
-	var intersects = raycaster.intersectObjects( clickobjects );
+	var intersects = raycaster.intersectObjects( clickobjects, true );
 	
 	/////////// AJAX call from XML ///////////
 	
@@ -215,7 +263,7 @@ function onDocumentMouseUp( event ) {
 
 	if ( intersects.length > 0 ) {
 		
-		var time = 1000;
+		var time = 2000;
 		
 		if ( intersects[0].object.id == clickobjects[0].id ){
 			slide = 1;
@@ -230,18 +278,28 @@ function onDocumentMouseUp( event ) {
 			slide = 4;
 		}
 		
+		intersects[0].object.geometry.computeBoundingBox();
+		var boundingBox = intersects[0].object.geometry.boundingBox;
+		var position = new THREE.Vector3();
+		position.subVectors( boundingBox.max, boundingBox.min );
+		position.multiplyScalar( 0.5 );
+		position.add( boundingBox.min );
+
+		position.applyMatrix4( intersects[0].object.matrixWorld );
+		
 		$("#slidepanel").toggle("slide", {direction:'left'});
 			
-			new TWEEN.Tween( camera.position ).to( {
-				x: intersects[0].object.position.x,
-				z: intersects[0].object.position.z + 150 }, time )
-			.easing( TWEEN.Easing.Quadratic.InOut).start();
-			
-			new TWEEN.Tween( controls.center ).to( {
-				x: intersects[0].object.position.x,
-				y: 0,
-				z: intersects[0].object.position.z }, time )
-			.easing( TWEEN.Easing.Quadratic.InOut).start();
+		new TWEEN.Tween( camera.position ).to( {
+			x: position.x,
+			y: 130,
+			z: position.z + 150 }, time )
+		.easing( TWEEN.Easing.Quadratic.InOut).start();
+		
+		new TWEEN.Tween( controls.center ).to( {
+			x: position.x,
+			y: 0,
+			z: position.z }, time )
+		.easing( TWEEN.Easing.Quadratic.InOut).start();
 	}
 	
 }
