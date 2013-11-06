@@ -24,3 +24,14 @@ body {
 	display: none;
 	color: #fff;
 }
+button {
+	position: absolute;
+	left: 0;
+	z-index: 99999;
+}
+button#2d {
+	top: 0;
+}
+button#tilt {
+	top: 20px;
+}

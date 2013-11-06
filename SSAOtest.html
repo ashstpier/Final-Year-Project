@@ -8,8 +8,8 @@
 		<script src="http://mrdoob.github.com/three.js/build/three.min.js"></script>
         
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-		<script src="assets/js/three.min.js"></script> 
-        <script src="assets/js/controls/OrbitControls.js"></script> 
+		<script src="assets/js/three_r57.min.js"></script> 
+        <script src="assets/js/controls/OrbitControls_r57.js"></script> 
         
         <script src="assets/js/utils/Detector.js"></script> 
         <script src="assets/js/utils/stats.min.js"></script> 
@@ -32,6 +32,11 @@
 			var group;
 			var depthMaterial, depthTarget, composer;
 			var clickobjects = [], hoverobjects = [], sprites = [];
+			
+			var objects = [], plane;
+			var mouse = new THREE.Vector2(),
+			offset = new THREE.Vector3(),
+			INTERSECTED, SELECTED;
 
 			init();
 			animate();
@@ -48,11 +53,12 @@
 				//////// ORBIT CONTROLS //////////
 				//////////////////////////////////
 	
-				controls = new THREE.OrbitControls( camera );
+				controls = new THREE.OrbitControls( camera, container );
 				controls.addEventListener( 'change', render );
 				controls.maxPolarAngle = Math.PI/4.5; 
 				controls.minDistance = 200;
 				controls.maxDistance = 300;
+				controls.enabled = false;
 
 				scene = new THREE.Scene();
 				scene.fog = new THREE.FogExp2( 0xeeeeee, 0.002 );
@@ -77,15 +83,23 @@
 					
 					clickobjects.push( buildings );
 					hoverobjects.push( buildings );
+					
 				} );
 				
 				texture = THREE.ImageUtils.loadTexture('assets/images/gmap.png', {}, function() {
 					renderer.render(scene);
 				})
 				mapmaterial = new THREE.MeshBasicMaterial({map: texture})
-				plane = new THREE.Mesh( new THREE.PlaneGeometry( 1000, 1000, 8, 8 ), mapmaterial );
-				plane.rotation.x += 270 * Math.PI / 180;
+				ground = new THREE.Mesh( new THREE.PlaneGeometry( 1000, 1000, 8, 8 ), mapmaterial );
+				ground.rotation.x += 270 * Math.PI / 180;
+				scene.add( ground );
+				
+				objects.push( ground );
+				
+				plane = new THREE.Mesh( new THREE.PlaneGeometry( 2000, 2000, 8, 8 ), new THREE.MeshBasicMaterial( { color: 0x000000, opacity: 0.25, transparent: true } ) );
+				plane.visible = false;
 				scene.add( plane );
+				plane.rotation.x += 270 * Math.PI / 180;
 				
 				//////////////////////////////////
 				//////////// SPRITES /////////////
@@ -129,8 +143,9 @@
 				stats.domElement.style.top = '0px';
 				container.appendChild( stats.domElement );
 			
-				document.addEventListener( 'mouseup', onDocumentMouseUp, false );
-				document.addEventListener( 'mousemove', onDocumentMouseMove, false );
+				renderer.domElement.addEventListener( 'mousemove', onDocumentMouseMove, false );
+				renderer.domElement.addEventListener( 'mousedown', onDocumentMouseDown, false );
+				renderer.domElement.addEventListener( 'mouseup', onDocumentMouseUp, false );
 			
 				//
 			
@@ -141,7 +156,7 @@
 				///////////// DEPTH //////////////
 				//////////////////////////////////
 				
-				var depthShader = THREE.ShaderLib[ "depthRGBA" ];
+				/*var depthShader = THREE.ShaderLib[ "depthRGBA" ];
 				var depthUniforms = THREE.UniformsUtils.clone( depthShader.uniforms );
 
 				depthMaterial = new THREE.ShaderMaterial( { fragmentShader: depthShader.fragmentShader, vertexShader: depthShader.vertexShader, uniforms: depthUniforms } );
@@ -163,7 +178,7 @@
 				effect.uniforms[ 'cameraFar' ].value = camera.far;
 				effect.renderToScreen = true;
 				composer.addPass( effect );
-				
+			*/	
 			}
 			
 			//////////////////////////////////
@@ -251,65 +266,104 @@
 			////////// CLICK EVENT ///////////
 			//////////////////////////////////
 			
-			function onDocumentMouseUp( event ) {
-				
-				event.preventDefault();
-			
-				var vector = new THREE.Vector3( ( event.clientX / window.innerWidth ) * 2 - 1, - ( event.clientY / window.innerHeight ) * 2 + 1, 0.5 );
-				projector.unprojectVector( vector, camera );
-			
-				var raycaster = new THREE.Raycaster( camera.position, vector.sub( camera.position ).normalize() );
-			
-				var intersects = raycaster.intersectObjects( clickobjects );
-			
-				if ( intersects.length > 0 ) {
-					
-					if ( intersects ){
-						
-						var time = 2000;
-						
-						new TWEEN.Tween( camera.position ).to( {
-							x: intersects[0].object.position.x,
-							z: intersects[0].object.position.z + 150 }, time )
-						.easing( TWEEN.Easing.Quadratic.InOut).start();
-						
-						new TWEEN.Tween( controls.center ).to( {
-							x: intersects[0].object.position.x,
-							y: 0,
-							z: intersects[0].object.position.z }, time )
-						.easing( TWEEN.Easing.Quadratic.InOut).start();
-						
-					}
-				}
-			}
-			
-			//////////////////////////////////
-			//////// MOUSEMOVE EVENT /////////
-			//////////////////////////////////
-			
 			function onDocumentMouseMove( event ) {
-			
+
 				event.preventDefault();
-			
-				var vector = new THREE.Vector3( ( event.clientX / window.innerWidth ) * 2 - 1, - ( event.clientY / window.innerHeight ) * 2 + 1, 0.5 );
+
+				mouse.x = ( event.clientX / window.innerWidth ) * 2 - 1;
+				mouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
+
+				//
+
+				var vector = new THREE.Vector3( mouse.x, mouse.y, 0.5 );
 				projector.unprojectVector( vector, camera );
-			
+
 				var raycaster = new THREE.Raycaster( camera.position, vector.sub( camera.position ).normalize() );
-			
-				var intersects = raycaster.intersectObjects( hoverobjects );
-			
-				if (intersects[ 0 ]) {
-					//intersects[ 0 ].object.material.color.setHex( 0xcc0000 );
-					$('canvas').css('cursor','pointer')
-					
-				}else{
-					$('canvas').css('cursor','auto')
-					//for (var i=0;i<hoverobjects.length;i++){ 
-						//hoverobjects[ i ].material.color.setHex( 0xffffff );}
+
+
+				if ( SELECTED ) {
+
+					var intersects = raycaster.intersectObject( plane );
+					SELECTED.position.copy( intersects[ 0 ].point.sub( offset ) );
+					return;
+
 				}
-				
+
+
+				var intersects = raycaster.intersectObjects( objects );
+
+				if ( intersects.length > 0 ) {
+
+					if ( INTERSECTED != intersects[ 0 ].object ) {
+
+						if ( INTERSECTED ) INTERSECTED.material.color.setHex( INTERSECTED.currentHex );
+
+						INTERSECTED = intersects[ 0 ].object;
+						INTERSECTED.currentHex = INTERSECTED.material.color.getHex();
+
+						plane.position.copy( INTERSECTED.position );
+					
+
+					}
+
+					container.style.cursor = 'pointer';
+
+				} else {
+
+					if ( INTERSECTED ) INTERSECTED.material.color.setHex( INTERSECTED.currentHex );
+
+					INTERSECTED = null;
+
+					container.style.cursor = 'auto';
+
+				}
+
 			}
 
+			function onDocumentMouseDown( event ) {
+
+				event.preventDefault();
+
+				var vector = new THREE.Vector3( mouse.x, mouse.y, 1 );
+				projector.unprojectVector( vector, camera );
+
+				var raycaster = new THREE.Raycaster( camera.position, vector.sub( camera.position ).normalize() );
+
+				var intersects = raycaster.intersectObjects( objects );
+
+				if ( intersects.length > 0 ) {
+
+					
+
+					SELECTED = intersects[ 0 ].object;
+
+					var intersects = raycaster.intersectObject( plane );
+					offset.copy( intersects[ 0 ].point ).sub( plane.position );
+					controls.enabled = false;
+
+					container.style.cursor = 'move';
+
+				}
+
+			}
+
+			function onDocumentMouseUp( event ) {
+
+				event.preventDefault();
+
+		
+
+				if ( INTERSECTED ) {
+
+					plane.position.copy( INTERSECTED.position );
+
+					SELECTED = null;
+
+				}
+
+				container.style.cursor = 'auto';
+
+			}
 			
 			function onWindowResize() {
 			
@@ -327,17 +381,17 @@
 				controls.update();
 				stats.update();
 				
-				scene.overrideMaterial = depthMaterial;
+				//scene.overrideMaterial = depthMaterial;
 				render();
 
-				scene.overrideMaterial = null;
-				composer.render();
+				//scene.overrideMaterial = null;
+				//composer.render();
 
 				
 			}
 			function render() {
 	
-				renderer.render( scene, camera, depthTarget );
+				renderer.render( scene, camera/*, depthTarget*/ );
 			
 			}
 			
