@@ -56,12 +56,19 @@
 				controls = new THREE.OrbitControls( camera, container );
 				controls.addEventListener( 'change', render );
 				controls.maxPolarAngle = Math.PI/4.5; 
-				controls.minDistance = 200;
+				controls.minDistance = 50;
 				controls.maxDistance = 300;
 				controls.enabled = false;
 
 				scene = new THREE.Scene();
 				scene.fog = new THREE.FogExp2( 0xeeeeee, 0.002 );
+				
+				var directionalLight = new THREE.DirectionalLight( 0xffffff, 0.5 );
+				directionalLight.position.set( 0, 1, 0 );
+				scene.add( directionalLight );
+				
+				var ambientLight = new THREE.AmbientLight( 0xcccccc );
+				scene.add( ambientLight );
 
 				//////////////////////////////////
 				/////////// GEOMETRY /////////////
@@ -74,11 +81,12 @@
 				
 				loader = new THREE.JSONLoader();
 			
-				loader.load( "assets/models/citybuildings.js", function( geometry ) {
+				loader.load( "assets/models/test.js", function( geometry, materials ) {
 			
-					buildings = new THREE.Mesh( geometry, material );
+					buildings = new THREE.Mesh( geometry, new THREE.MeshFaceMaterial( materials ) );
+					materials[0].wrapS = materials[0].wrapT = THREE.RepeatWrapping;
 					buildings.scale.set( 1.5, 1.5, 1.5 );
-					buildings.position.set( 0, -0.5, 0 );
+					buildings.position.set( -500, -0.5, 0 );
 					group.add( buildings );
 					
 					clickobjects.push( buildings );
@@ -86,7 +94,7 @@
 					
 				} );
 				
-				texture = THREE.ImageUtils.loadTexture('assets/images/gmap.png', {}, function() {
+				texture = THREE.ImageUtils.loadTexture('assets/images/map.jpg', {}, function() {
 					renderer.render(scene);
 				})
 				mapmaterial = new THREE.MeshBasicMaterial({map: texture})

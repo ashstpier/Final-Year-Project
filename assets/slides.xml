@@ -1,11 +1,171 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
- <slides>
-   <Keynes_College>
-     <title>Slide 1</title>
-       <content><![CDATA[this is the brief description.]]></content>
-   </Keynes_College>
-   <Templeman_Library>
-     <title>Slide 2</title>
-       <content><![CDATA[this is the brief description.]]></content>
-   </Templeman_Library>
- </slides>
+<slides>
+    <Aphra_Theatre>
+        <content>
+            <![CDATA[ <h2>Aphra Theatre</h2>
+                <p>this is the brief description.</p> ]]>
+        </content>
+    </Aphra_Theatre>
+    <Becket_Court>
+        <content>
+            <![CDATA[ <h2>Becket Court</h2>
+                <p>this is the brief description.</p> ]]>
+        </content>
+    </Becket_Court>
+    <Bishopden_Court>
+        <content>
+            <![CDATA[ <h2>Bishopden Court</h2>
+                <p>this is the brief description.</p> ]]>
+        </content>
+    </Bishopden_Court>
+    <Boiler_House>
+        <content>
+            <![CDATA[ <h2>Boiler House</h2>
+                <p>this is the brief description.</p> ]]>
+        </content>
+    </Boiler_House>
+    <Bossenden_Court>
+        <content>
+            <![CDATA[ <h2>Bossenden Court</h2>
+                <p>this is the brief description.</p> ]]>
+        </content>
+    </Bossenden_Court>
+    <Campus_Watch>
+        <content>
+            <![CDATA[ <h2>Campus Watch</h2>
+                <p>this is the brief description.</p> ]]>
+        </content>
+    </Campus_Watch>
+    <Careers_Employability_Service>
+        <content>
+            <![CDATA[ <h2>Careers Employability Service</h2>
+                <p>this is the brief description.</p> ]]>
+        </content>
+    </Careers_Employability_Service>
+    <Clowes_Court>
+        <content>
+            <![CDATA[ <h2>Clowes Court</h2>
+                <p>this is the brief description.</p> ]]>
+        </content>
+    </Clowes_Court>
+    <Colyer_Fergusson>
+        <content>
+            <![CDATA[ <h2>Colyer Fergusson</h2>
+                <p>this is the brief description.</p> ]]>
+        </content>
+    </Colyer_Fergusson>
+    <Cornwallis_George_Allen_Wing>
+    <content>
+        <![CDATA[ <h2>Cornwallis George Allen Wing</h2>
+            <p>this is the brief description.</p> ]]>
+    </content>
+	</Cornwallis_George_Allen_Wing>
+    <Cornwallis_Mathematics_Institute>
+	<content>
+        <![CDATA[ <h2>Cornwallis Mathematics Institute</h2>
+            <p>this is the brief description.</p> ]]>
+    </content>
+	</Cornwallis_Mathematics_Institute>
+    <Cornwallis_North_East>
+	<content>
+        <![CDATA[ <h2>Cornwallis North East</h2>
+            <p>this is the brief description.</p> ]]>
+    </content>
+	</Cornwallis_North_East>
+    <Cornwallis_North_West>
+	<content>
+        <![CDATA[ <h2>Cornwallis North West</h2>
+            <p>this is the brief description.</p> ]]>
+    </content>
+	</Cornwallis_North_West>
+    <Cornwallis_South_East>
+	<content>
+        <![CDATA[ <h2>Cornwallis South East</h2>
+            <p>this is the brief description.</p> ]]>
+    </content>
+	</Cornwallis_South_East>
+    <Cornwallis_South_West>
+	<content>
+        <![CDATA[ <h2>Cornwallis South West</h2>
+            <p>this is the brief description.</p> ]]>
+    </content>
+	</Cornwallis_South_West>
+    Cornwallis_South
+    Cornwallis_West
+    Darwin_College
+    Darwin_Houses
+    Denstead_Court
+    Eliot_College
+    Eliot_Extension
+    Ellenden_Court
+    Estates_Department
+    Farthings_Court
+    Giles_Lane_Teaching_Complex
+    Grimmond
+    Grimshill_Court
+    Ground_Maintenance
+    Gulbenkian
+    Homestall_Court
+    Hothe_Court
+    Ingram
+    Jarman
+    Jennison
+    Kemsdale_Court
+    Kent_Business_School
+    Kent_Enterprise_Hub
+    Kent_Law_School
+    Keynes_Block_P
+    Keynes_Block_S
+    Keynes_Block_T
+    Keynes_College
+    Locke
+    Lypeatt_Court
+    Mandela_Building
+    Marley_Court
+    Marlowe
+    Missing_Link
+    NatWest
+    Nickle_Court
+    Oaks_Day_Nursery
+    Olive_Cottages
+    Parkwood_Administration
+    Parkwood_Shop
+    Purchas_Court
+    Registry
+    Research_and_Development_Centre
+    Rothford
+    Rutherford_Annexe
+    Rutherford_College
+    Rutherford_Extension
+    Rutherford_Ground_Extension
+    Santander
+    Senate
+    Sports_Centre
+    Sports_Pavillion
+    Stacey
+    Stock_Court
+    Tanglewood
+    Telephone_Exchange
+    Templeman_Library
+    Thornden_Court
+    Tudor_Court
+    Tyler_Court_A
+    Tyler_Court_B
+    Tyler_Court_C
+    UELT
+    University_Medical_Centre
+    Venue
+    Willows_Court
+    Woodlands
+    Woodys
+    Woolf_Block_A
+    Woolf_Block_B
+    Woolf_Block_C
+    Woolf_Block_D
+    Woolf_Block_E
+    Woolf_Block_F
+    Woolf_Block_G
+    Woolf_Block_H
+    Woolf_Main
+    Woolf_Pavillion
+    Woolf_Residential </slides>

@@ -52,8 +52,8 @@ function makeTextSprite( message, name )
 	position.add( boundingBox.min );
 	position.applyMatrix4( name.matrixWorld );
 	
-	sprite.position.set( position.x - 46, 40, position.z - 9 );
-	sprite.scale.set(80,40,1.0);
+	sprite.position.set( position.x - 36, boundingBox.max.y + 10, position.z - 9 );
+	sprite.scale.set(60,30,1.0);
 	return sprite;	
 }
 
@@ -77,7 +77,7 @@ function roundRect(ctx, x, y, w, h, r)
 
 ////////// ICON FUNCTION ///////////
 
-function makeIcon( iconArray, iconType ){
+function makeIcon( mesh, iconType ){
 	for (var i=0, tot=iconArray.length; i < tot; i++) {
 		var spriteMaterial = new THREE.SpriteMaterial( { map: THREE.ImageUtils.loadTexture( 'assets/images/icons/ico_'+iconType+'.png' ), useScreenCoordinates: false } );
 		var sprite = new THREE.Sprite( spriteMaterial );

@@ -5,12 +5,42 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 		<link href="assets/css/style.css" rel="stylesheet" type="text/css">
+        <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
 </head>
 <body>
-
-<div id="slidepanel"></div>
-<button id="2d" type="button" onclick="view2D()">2D</button>
-<button id="tilt" type="button" onclick="tilt()">Tilt</button>
+<div id="preloader">
+    <div id="status">&nbsp;</div>
+</div>
+<div id="wrapper">
+	<div id="leftnav">
+    	<button id="labelbutton" class="slide" type="button"><i class="fa fa-map-marker fa-lg"></i></button>
+        <button id="eventbutton" class="slide" type="button"><i class="fa fa-align-left"></i></button>
+        <div id="leftnav-footer">
+        	<button type="button"><i class="fa fa-facebook"></i></button>
+            <button type="button"><i class="fa fa-twitter"></i></button>
+            <button type="button"><i class="fa fa-dribbble"></i></button>
+        </div>
+    </div>
+    <div id="labelpanel">
+    	<h2>Labels</h2>
+        <button id="labeltoggle" class="unchecked" type="button">Show labels</button>
+        <button id="subjecttoggle" class="unchecked" type="button">Show subject areas</button>
+        <button id="accommodationtoggle" class="unchecked" type="button">Show accommodation</button>
+        <button id="parkingtoggle" class="unchecked" type="button">Show parking</button>
+        <button id="bustoggle" class="unchecked" type="button">Show bus routes</button>
+    </div>
+    <div id="eventpanel">
+    	<h2>Events</h2>
+    </div>
+    <div id="slidepanel"><!-- XML --></div>
+    <div id="controls">
+		<button id="rotateleft" type="button" onclick="rotateLeft()"><i class="fa fa-chevron-left"></i></button>
+        <button id="rotateright" type="button" onclick="rotateRight()"><i class="fa fa-chevron-right"></i></button>
+        <button id="twod" type="button" onclick="view2D()"><i class="fa fa-compass fa-lg"></i></button>
+        <button id="tilt" type="button" onclick="tilt()"><i class="fa fa-long-arrow-down"></i></button>
+        <button id="refresh" type="button" onclick="refreshView()"><i class="fa fa-refresh"></i></button>
+    </div>
+</div>
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
@@ -33,6 +63,16 @@
 <script src="assets/js/functions.js"></script> 
 <script src="assets/js/mouse_events.js"></script>
 <script src="assets/js/core.js"></script>
+
+<script type="text/javascript">
+    //<![CDATA[
+        $(window).load(function() { // makes sure the whole site is loaded
+            $('#status').fadeOut(1000); // will first fade out the loading animation
+            $('#preloader').delay(350).fadeOut(1000); // will fade out the white DIV that covers the website.
+            $('body').delay(350).css({'overflow':'visible'});
+        })
+    //]]>
+</script>
  
 
 </body>

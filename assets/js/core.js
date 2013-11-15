@@ -1,9 +1,198 @@
-var container, stats, camera, scene, renderer, projector, controls, group = new THREE.Object3D();
+var container, stats, camera, scene, renderer, projector, controls, group = new THREE.Object3D(), xml;
 var depthMaterial, depthTarget, composer;
 var clickobjects = [], iconAcademic = [], iconLocation = [], iconMusic = [], iconAnnouncement = [], sprites = [];
 var jsonFileNames = [
+	'assets/models/Aphra_Theatre.js',
+	'assets/models/Becket_Court.js',
+	'assets/models/Bishopden_Court.js',
+	'assets/models/Boiler_House.js',
+	'assets/models/Bossenden_Court.js',
+	'assets/models/Campus_Watch.js',
+	'assets/models/Careers_Employability_Service.js',
+	'assets/models/Clowes_Court.js',
+	'assets/models/Colyer_Fergusson.js',
+	'assets/models/Cornwallis_George_Allen_Wing.js',
+	'assets/models/Cornwallis_Mathematics_Institute.js',
+	'assets/models/Cornwallis_North_East.js',
+	'assets/models/Cornwallis_North_West.js',
+	'assets/models/Cornwallis_South_East.js',
+	'assets/models/Cornwallis_South_West.js',
+	'assets/models/Cornwallis_South.js',
+	'assets/models/Cornwallis_West.js',
+	'assets/models/Darwin_College.js',
+	'assets/models/Darwin_Houses.js',
+	'assets/models/Denstead_Court.js',
+	'assets/models/Eliot_College.js',
+	'assets/models/Eliot_Extension.js',
+	'assets/models/Ellenden_Court.js',
+	'assets/models/Estates_Department.js',
+	'assets/models/Farthings_Court.js',
+	'assets/models/Giles_Lane_Teaching_Complex.js',
+	'assets/models/Grimmond.js',
+	'assets/models/Grimshill_Court.js',
+	'assets/models/Ground_Maintenance.js',
+	'assets/models/Gulbenkian.js',
+	'assets/models/Homestall_Court.js',
+	'assets/models/Hothe_Court.js',
+	'assets/models/Ingram.js',
+	'assets/models/Jarman.js',
+	'assets/models/Jennison.js',
+	'assets/models/Kemsdale_Court.js',
+	'assets/models/Kent_Business_School.js',
+	'assets/models/Kent_Enterprise_Hub.js',
+	'assets/models/Kent_Law_School.js',
+	'assets/models/Keynes_Block_P.js',
+	'assets/models/Keynes_Block_S.js',
+	'assets/models/Keynes_Block_T.js',
 	'assets/models/Keynes_College.js',
-	'assets/models/Templeman_Library.js'
+	'assets/models/Locke.js',
+	'assets/models/Lypeatt_Court.js',
+	'assets/models/Mandela_Building.js',
+	'assets/models/Marley_Court.js',
+	'assets/models/Marlowe.js',
+	'assets/models/Missing_Link.js',
+	'assets/models/NatWest.js',
+	'assets/models/Nickle_Court.js',
+	'assets/models/Oaks_Day_Nursery.js',
+	'assets/models/Olive_Cottages.js',
+	'assets/models/Parkwood_Administration.js',
+	'assets/models/Parkwood_Shop.js',
+	'assets/models/Purchas_Court.js',
+	'assets/models/Registry.js',
+	'assets/models/Research_and_Development_Centre.js',
+	'assets/models/Rothford.js',
+	'assets/models/Rutherford_Annexe.js',
+	'assets/models/Rutherford_College.js',
+	'assets/models/Rutherford_Extension.js',
+	'assets/models/Rutherford_Ground_Extension.js',
+	'assets/models/Santander.js',
+	'assets/models/Senate.js',
+	'assets/models/Sports_Centre.js',
+	'assets/models/Sports_Pavillion.js',
+	'assets/models/Stacey.js',
+	'assets/models/Stock_Court.js',
+	'assets/models/Tanglewood.js',
+	'assets/models/Telephone_Exchange.js',
+	'assets/models/Templeman_Library.js',
+	'assets/models/Thornden_Court.js',
+	'assets/models/Tudor_Court.js',
+	'assets/models/Tyler_Court_A.js',
+	'assets/models/Tyler_Court_B.js',
+	'assets/models/Tyler_Court_C.js',
+	'assets/models/UELT.js',
+	'assets/models/University_Medical_Centre.js',
+	'assets/models/Venue.js',
+	'assets/models/Willows_Court.js',
+	'assets/models/Woodlands.js',
+	'assets/models/Woodys.js',
+	'assets/models/Woolf_Block_A.js',
+	'assets/models/Woolf_Block_B.js',
+	'assets/models/Woolf_Block_C.js',
+	'assets/models/Woolf_Block_D.js',
+	'assets/models/Woolf_Block_E.js',
+	'assets/models/Woolf_Block_F.js',
+	'assets/models/Woolf_Block_G.js',
+	'assets/models/Woolf_Block_H.js',
+	'assets/models/Woolf_Main.js',
+	'assets/models/Woolf_Pavillion.js',
+	'assets/models/Woolf_Residential.js'
+];
+
+var buildingNames = [
+	'Aphra Theatre',
+	'Becket Court',
+	'Bishopden Court',
+	'Boiler House',
+	'Bossenden Court',
+	'Campus Watch',
+	'Careers Employability Service',
+	'Clowes Court',
+	'Colyer Fergusson',
+	'Cornwallis George Allen Wing',
+	'Cornwallis Mathematics Institute',
+	'Cornwallis North East',
+	'Cornwallis North West',
+	'Cornwallis South East',
+	'Cornwallis South West',
+	'Cornwallis South',
+	'Cornwallis West',
+	'Darwin College',
+	'Darwin Houses',
+	'Denstead Court',
+	'Eliot College',
+	'Eliot Extension',
+	'Ellenden Court',
+	'Estates Department',
+	'Farthings Court',
+	'Giles Lane Teaching Complex',
+	'Grimmond',
+	'Grimshill Court',
+	'Ground Maintenance',
+	'Gulbenkian',
+	'Homestall Court',
+	'Hothe Court',
+	'Ingram',
+	'Jarman',
+	'Jennison',
+	'Kemsdale Court',
+	'Kent Business School',
+	'Kent Enterprise Hub',
+	'Kent Law School',
+	'Keynes Block P',
+	'Keynes Block S',
+	'Keynes Block T',
+	'Keynes College',
+	'Locke',
+	'Lypeatt Court',
+	'Mandela Building',
+	'Marley Court',
+	'Marlowe',
+	'Missing Link',
+	'NatWest',
+	'Nickle Court',
+	'Oaks Day Nursery',
+	'Olive Cottages',
+	'Parkwood Administration',
+	'Parkwood Shop',
+	'Purchas Court',
+	'Registry',
+	'Research and Development Centre',
+	'Rothford',
+	'Rutherford Annexe',
+	'Rutherford College',
+	'Rutherford Extension',
+	'Rutherford Ground Extension',
+	'Santander',
+	'Senate',
+	'Sports Centre',
+	'Sports Pavillion',
+	'Stacey',
+	'Stock Court',
+	'Tanglewood',
+	'Telephone Exchange',
+	'Templeman Library',
+	'Thornden Court',
+	'Tudor Court',
+	'Tyler Court A',
+	'Tyler Court B',
+	'Tyler Court C',
+	'UELT',
+	'University Medical Centre',
+	'Venue',
+	'Willows Court',
+	'Woodlands',
+	'Woodys',
+	'Woolf Block A',
+	'Woolf Block B',
+	'Woolf Block C',
+	'Woolf Block D',
+	'Woolf Block E',
+	'Woolf Block F',
+	'Woolf Block G',
+	'Woolf Block H',
+	'Woolf Main',
+	'Woolf Pavillion',
+	'Woolf Residential'
 ];
 
 var objects = [], plane;
@@ -17,10 +206,11 @@ animate();
 function init() {
 	
 	container = document.createElement( 'div' );
-	document.body.appendChild( container );
+	container.id = 'app';
+	document.getElementById("wrapper").appendChild( container );
 	
 	camera = new THREE.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 10, 2000 );
-	camera.position.z = 500;
+	camera.position.z = 400;
 	camera.position.y = 400;
 	
 	//////// ORBIT CONTROLS /////////
@@ -28,7 +218,7 @@ function init() {
 	controls = new THREE.OrbitControls( camera );
 	controls.addEventListener( 'change', render );
 	controls.maxPolarAngle = Math.PI/2.25; 
-	controls.minDistance = 200;
+	controls.minDistance = 150;
 	controls.maxDistance = 500;
 	controls.enabled = true;
 	
@@ -56,7 +246,7 @@ function init() {
 	ground.rotation.x += 270 * Math.PI / 180;
 	scene.add( ground );
 	
-	plane = new THREE.Mesh( new THREE.PlaneGeometry( 2000, 2000, 8, 8 ), new THREE.MeshBasicMaterial( { transparent: true, wireframe: true } ) );
+	plane = new THREE.Mesh( new THREE.PlaneGeometry( 1200, 628, 8, 8 ), new THREE.MeshBasicMaterial( { transparent: true, wireframe: true } ) );
 	plane.visible = false;
 	scene.add( plane );
 	plane.rotation.x += 270 * Math.PI / 180;
@@ -68,26 +258,30 @@ function init() {
 	var loader = new THREE.JSONLoader();
 	
 	for(var i = 0; i < jsonFileNames.length; i++){
+		var spriteName = buildingNames[i];
 		var meshName = jsonFileNames[i].split("/")[2].split(".")[0];
-		loader.load(jsonFileNames[i], makeHandler(meshName));
+		loader.load(jsonFileNames[i], makeHandler(meshName, spriteName));
 	}
 	
 	var meshes = new Object();
 	
-	function makeHandler(meshName) {
+	function makeHandler(meshName, spriteName) {
 		return function(geometry, materials) {
 			mesh =  new THREE.Mesh( geometry, material );
 			mesh.scale.set( 1, 1, 1 );
 			mesh.position.set( -36, 0, -9 );
 			clickobjects.push( mesh );
 			group.add( mesh );
+			mesh.name = meshName;
 				
-			spriteName = meshName.split("_")[0] + " " + meshName.split("_")[1];
 			var sprite = makeTextSprite( spriteName, mesh );
 			scene.add( sprite );
 			sprites.push( sprite );
 			group.add( sprite );
 			
+			for (var i=0, tot=sprites.length; i < tot; i++) {
+				sprites[i].visible = false;
+			}
 		};
 	}
 	
@@ -106,10 +300,17 @@ function init() {
 
 	stats = new Stats();
 	stats.domElement.style.position = 'absolute';
-	stats.domElement.style.top = '0px';
+	stats.domElement.style.bottom = '0px';
 	stats.domElement.style.right = '0px';
 	container.appendChild( stats.domElement );
 	container.style.cursor = 'move';
+	
+	$.ajax({
+		type: "GET",
+		url: "assets/slides.xml",
+		dataType: "xml",
+		success: function(data) { xml = data;}
+	});
 
 	renderer.domElement.addEventListener( 'mousemove', onDocumentMouseMove, false );
 	renderer.domElement.addEventListener( 'mousedown', onDocumentMouseDown, false );

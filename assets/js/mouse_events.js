@@ -25,39 +25,17 @@ function onDocumentMouseUp( event ) {
 	var intersects = raycaster.intersectObjects( clickobjects, true );
 	
 	/////////// AJAX call from XML ///////////
-	
-	var slide = 0;
-	var time = 2000;
-	
-	$("#slidepanel").empty();
-	
-	$.ajax({
-		type: "GET",
-		url: "assets/slides.xml",
-		dataType: "xml",
-		success: function(xml) {
-			$(xml).find(jsonFileNames[slide].split("/")[2].split(".")[0]).each(function(){
-				var title = $(this).find('title').text();
-				$('<section id="info"></section>').html('<h2>'+title+'</h2>').appendTo('#slidepanel');
-				var content = $(this).find('content');
-				$(content).appendTo('#info');
-			});
-		}
-	});
 
 	if ( intersects.length > 0 ) {
-		if ( intersects[0].object.id == clickobjects[0].id ){
-			slide = 0;
-		}
-		else if ( intersects[0].object.id == clickobjects[1].id ){
-			slide = 1;
-		}
-		else if ( intersects[0].object.id == clickobjects[2].id ){
-			slide = 2;
-		}
-		else if ( intersects[0].object.id == clickobjects[3].id ){
-			slide = 3;
-		}
+		
+		$('#slidepanel').empty();
+		var time = 1500;
+		var node = intersects[0].object.name;
+		
+		$(xml).find(node).each(function(){
+			var content = $(this).find('content').text();
+			$(content).appendTo('#slidepanel');
+		});
 		
 		intersects[0].object.geometry.computeBoundingBox();
 		var boundingBox = intersects[0].object.geometry.boundingBox;
@@ -66,42 +44,34 @@ function onDocumentMouseUp( event ) {
 		position.multiplyScalar( 0.5 );
 		position.add( boundingBox.min );
 		position.applyMatrix4( intersects[0].object.matrixWorld );
-		
-		$("#slidepanel").toggle("slide", {direction:'left'});
 			
 		if (camera.position.z >= position.z && controls.center.z <= camera.position.z){
-			new TWEEN.Tween( camera.position ).to( {
-				x: position.x,
-				y: 130,
-				z: position.z + 150 }, time )
-			.easing( TWEEN.Easing.Quadratic.InOut).start();
+			new TWEEN.Tween( camera.position ).to( { x: 0, y: 110, z: 100 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).start();
 		}else if (camera.position.z >= position.z && controls.center.z >= camera.position.z) {
-			new TWEEN.Tween( camera.position ).to( {
-				x: position.x,
-				y: 130,
-				z: position.z - 150 }, time )
-			.easing( TWEEN.Easing.Quadratic.InOut).start();
+			new TWEEN.Tween( camera.position ).to( { x: 0, y: 110, z: - 100 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).start();
 		}
 		else if (camera.position.z <= position.z && controls.center.z <= camera.position.z) {
-			new TWEEN.Tween( camera.position ).to( {
-				x: position.x,
-				y: 130,
-				z: position.z + 150 }, time )
-			.easing( TWEEN.Easing.Quadratic.InOut).start();
+			new TWEEN.Tween( camera.position ).to( { x: 0, y: 110, z: 100 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).start();
 		}
 		else {
-			new TWEEN.Tween( camera.position ).to( {
-				x: position.x,
-				y: 130,
-				z: position.z - 150 }, time )
-			.easing( TWEEN.Easing.Quadratic.InOut).start();
+			new TWEEN.Tween( camera.position ).to( { x: 0, y: 110, z: - 100 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).start();
 		}
-		new TWEEN.Tween( controls.center ).to( {
-			x: position.x,
-			y: 0,
-			z: position.z }, time )
-		.easing( TWEEN.Easing.Quadratic.InOut).start();
-	}
+		new TWEEN.Tween( group.position ).to( { x: group.position.x - position.x, y: 0, z: group.position.z - position.z }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).start();
+		
+		if($("#eventpanel").is(":visible")){
+			$("#eventpanel").toggle("slide", {direction:'left'}, function(){
+				$("#eventbutton").toggleClass( "active" );
+				$("#slidepanel").toggle("slide", {direction:'left'});
+			});
+		}else if($("#labelpanel").is(":visible")){
+			$("#labelpanel").toggle("slide", {direction:'left'}, function(){
+				$("#labelbutton").toggleClass( "active" );
+				$("#slidepanel").toggle("slide", {direction:'left'});
+			});
+		}else{
+			$("#slidepanel").toggle("slide", {direction:'left'});
+		}
+		}
 	
 	if ( INTERSECTED ) {
 		plane.position.copy( INTERSECTED.position );
@@ -144,23 +114,127 @@ function onDocumentMouseMove( event ) {
 	}
 }
 
+///////// CONTROLS //////////
+
 function view2D() {
 	if (camera.position.z >= controls.center.z){
-		new TWEEN.Tween( camera.position ).to( {
-			x: controls.center.x,
-			y: 500,
-			z: controls.center.z + 1 }, 2000 )
-		.easing( TWEEN.Easing.Quadratic.Out).start();
+		new TWEEN.Tween( camera.position ).to( { x: controls.center.x, y: 500, z: controls.center.z + 1 }, 1000 ).easing( TWEEN.Easing.Quadratic.Out).start();
 	}else{
-		new TWEEN.Tween( camera.position ).to( {
-			x: controls.center.x,
-			y: 500,
-			z: controls.center.z - 1 }, 2000 )
-		.easing( TWEEN.Easing.Quadratic.Out).start();
+		new TWEEN.Tween( camera.position ).to( { x: controls.center.x, y: 500, z: controls.center.z - 1 }, 1000 ).easing( TWEEN.Easing.Quadratic.Out).start();
 	}
 }
 function tilt() {
-	new TWEEN.Tween( camera.position ).to( {
-			y: 100 }, 1000 )
-		.easing( TWEEN.Easing.Quadratic.InOut).start();
+	new TWEEN.Tween( camera.position ).to( { y: 80 }, 1000 ).easing( TWEEN.Easing.Quadratic.InOut).start();
 }
+function refreshView() {
+	new TWEEN.Tween( camera.position ).to( { x: 0, y: 400, z: 400 }, 1000 ).easing( TWEEN.Easing.Quadratic.InOut).start();
+	new TWEEN.Tween( group.position ).to( { x: 0, y: 0, z: 0 }, 1000 ).easing( TWEEN.Easing.Quadratic.InOut).start();
+	new TWEEN.Tween( controls.center ).to( { x: 0, y: 0, z: 0 }, 1000 ).easing( TWEEN.Easing.Quadratic.InOut).start();
+}
+
+function rotateRight() {
+	var x = camera.position.x, z = camera.position.z, rotSpeed = 1;
+	new TWEEN.Tween( camera.position ).to( { x: x * Math.cos(rotSpeed) + z * Math.sin(rotSpeed),  z: z * Math.cos(rotSpeed) - x * Math.sin(rotSpeed) }, 500 ).easing( TWEEN.Easing.Quadratic.InOut).start();
+}
+
+function rotateLeft() {
+	var x = camera.position.x, z = camera.position.z, rotSpeed = 1;
+	new TWEEN.Tween( camera.position ).to( { x: x * Math.cos(rotSpeed) - z * Math.sin(rotSpeed),  z: z * Math.cos(rotSpeed) + x * Math.sin(rotSpeed) }, 500 ) .easing( TWEEN.Easing.Quadratic.InOut).start();
+}
+
+/////////// TOGGLES /////////////
+
+$( "#labeltoggle" ).click(function() {
+	if ($(this).hasClass( "unchecked" )) {
+		$(this).toggleClass("unchecked checked");
+		for (var i=0, tot=sprites.length; i < tot; i++) {
+			sprites[i].visible = true;
+		}
+		$(this).toggleClass( "active" );
+	} else {
+		$(this).toggleClass("checked unchecked");
+		for (var i=0, tot=sprites.length; i < tot; i++) {
+			sprites[i].visible = false;
+		}
+		$(this).toggleClass( "active" );
+	}
+});
+$( "#subjecttoggle" ).click(function() {
+	if ($(this).hasClass( "unchecked" )) {
+		$(this).toggleClass("unchecked checked");
+		// toggle code
+		$(this).toggleClass( "active" );
+	} else {
+		$(this).toggleClass("checked unchecked");
+		// toggle code
+		$(this).toggleClass( "active" );
+	}
+});
+$( "#accommodationtoggle" ).click(function() {
+	if ($(this).hasClass( "unchecked" )) {
+		$(this).toggleClass("unchecked checked");
+		// toggle code
+		$(this).toggleClass( "active" );
+	} else {
+		$(this).toggleClass("checked unchecked");
+		// toggle code
+		$(this).toggleClass( "active" );
+	}
+});
+$( "#parkingtoggle" ).click(function() {
+	if ($(this).hasClass( "unchecked" )) {
+		$(this).toggleClass("unchecked checked");
+		// toggle code
+		$(this).toggleClass( "active" );
+	} else {
+		$(this).toggleClass("checked unchecked");
+		// toggle code
+		$(this).toggleClass( "active" );
+	}
+});
+$( "#bustoggle" ).click(function() {
+	if ($(this).hasClass( "unchecked" )) {
+		$(this).toggleClass("unchecked checked");
+		// toggle code
+		$(this).toggleClass( "active" );
+	} else {
+		$(this).toggleClass("checked unchecked");
+		// toggle code
+		$(this).toggleClass( "active" );
+	}
+});
+
+
+///////////// SLIDES /////////////
+
+$( ".slide" ).click(function() {
+	$(this).toggleClass( "active" );
+});
+$( "#labelbutton" ).click(function() {
+	if($("#eventpanel").is(":visible")){
+		$("#eventpanel").toggle("slide", {direction:'left'}, function(){
+			$("#eventbutton").toggleClass( "active" );
+			$("#labelpanel").toggle("slide", {direction:'left'});
+		});
+	}else if($("#slidepanel").is(":visible")){
+		$("#slidepanel").toggle("slide", {direction:'left'}, function(){
+			$("#labelpanel").toggle("slide", {direction:'left'});
+		});
+	}else{
+		$("#labelpanel").toggle("slide", {direction:'left'});
+	}
+});
+$( "#eventbutton" ).click(function() {
+	if($("#labelpanel").is(":visible")){
+		$("#labelpanel").toggle("slide", {direction:'left'}, function(){
+			$("#labelbutton").toggleClass( "active" );
+			$("#eventpanel").toggle("slide", {direction:'left'});
+		});
+	}else if($("#slidepanel").is(":visible")){
+		$("#slidepanel").toggle("slide", {direction:'left'}, function(){
+			$("#eventpanel").toggle("slide", {direction:'left'});
+		});
+	}else{
+		$("#eventpanel").toggle("slide", {direction:'left'});
+	}
+});
