@@ -137,13 +137,15 @@ $( "#labeltoggle" ).click(function() {
 	if ($(this).hasClass( "unchecked" )) {
 		$(this).toggleClass("unchecked checked");
 		for (var i=0, tot=sprites.length; i < tot; i++) {
-			sprites[i].visible = true;
+			sprites[i].material.opacity = 1;
+			new TWEEN.Tween( sprites[i].position ).to( { y: sprites[i].position.y - 20 }, 500 ).easing( TWEEN.Easing.Bounce.Out).start();
 		}
 		$(this).toggleClass( "active" );
 	} else {
 		$(this).toggleClass("checked unchecked");
 		for (var i=0, tot=sprites.length; i < tot; i++) {
-			sprites[i].visible = false;
+			sprites[i].material.opacity = 0;
+			sprites[i].position.y += 20;
 		}
 		$(this).toggleClass( "active" );
 	}
@@ -163,14 +165,16 @@ $( "#accommodationtoggle" ).click(function() {
 	if ($(this).hasClass( "unchecked" )) {
 		$(this).toggleClass("unchecked checked");
 		$(this).toggleClass( "active" );
-		for (var i=0, tot=sprites.length; i < tot; i++) {
-			locationIcons[i].visible = true;
+		for (var i=0, tot=locationIcons.length; i < tot; i++) {
+			locationIcons[i].material.opacity = 1;
+			new TWEEN.Tween( locationIcons[i].position ).to( { y: locationIcons[i].position.y - 20 }, 500 ).easing( TWEEN.Easing.Bounce.Out).start();
 		}
 	} else {
 		$(this).toggleClass("checked unchecked");
 		$(this).toggleClass( "active" );
-		for (var i=0, tot=sprites.length; i < tot; i++) {
-			locationIcons[i].visible = false;
+		for (var i=0, tot=locationIcons.length; i < tot; i++) {
+			locationIcons[i].material.opacity = 0;
+			locationIcons[i].position.y += 20;
 		}
 	}
 });

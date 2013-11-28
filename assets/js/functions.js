@@ -41,7 +41,7 @@ function makeTextSprite( message, name )
 	texture.needsUpdate = true;
 
 	var spriteMaterial = new THREE.SpriteMaterial( 
-		{ map: texture, useScreenCoordinates: false, alignment: spriteAlignment } );
+		{ map: texture, useScreenCoordinates: false, alignment: spriteAlignment, transparent: true } );
 	var sprite = new THREE.Sprite( spriteMaterial );
 	
 	name.geometry.computeBoundingBox();
@@ -52,7 +52,7 @@ function makeTextSprite( message, name )
 	position.add( boundingBox.min );
 	position.applyMatrix4( name.matrixWorld );
 	
-	sprite.position.set( position.x - 36, boundingBox.max.y + 10, position.z - 9 );
+	sprite.position.set( position.x - 36, boundingBox.max.y + 30, position.z - 9 );
 	sprite.scale.set(60,30,1.0);
 	return sprite;	
 }
@@ -91,7 +91,7 @@ function makeIcon(mesh) {
 	mesh.name == "Rutherford_College" ||
 	mesh.name == "Woolf_Flats"  
 	){
-		var spriteMaterial = new THREE.SpriteMaterial( { map: THREE.ImageUtils.loadTexture( 'assets/images/icons/ico_location.png' ), useScreenCoordinates: false, alignment: THREE.SpriteAlignment.topCenter } );
+		var spriteMaterial = new THREE.SpriteMaterial( { map: THREE.ImageUtils.loadTexture( 'assets/images/icons/ico_location.png' ), useScreenCoordinates: false, alignment: THREE.SpriteAlignment.topCenter, transparent: true } );
 		var icon = new THREE.Sprite( spriteMaterial );
 		icon.scale.set(10,10,1.0);
 		mesh.geometry.computeBoundingBox();
@@ -106,6 +106,7 @@ function makeIcon(mesh) {
 		scene.add( icon );
 		group.add( icon);
 		locationIcons.push( icon );
+		icon.material.opacity = 0;
 	}
 }
 

@@ -262,10 +262,7 @@ function init() {
 			sprites.push( sprite );
 			group.add( sprite );
 			
-			for (var i=0, tot=sprites.length; i < tot; i++) {
-				sprites[i].visible = false;
-			}
-			
+			sprite.material.opacity = 0;
 			makeIcon(mesh);
 		};
 	}
@@ -364,12 +361,15 @@ function positionTrackingOverlay()
 		// scale these values to our viewport size
 		left = percX * WIDTH;
 		top = percY * HEIGHT;
-
+		
+		var widthPercentage = (left - $("#modalpanel").width() / 2) / WIDTH * 100;
+		var heightPercentage = (top - $("#modalpanel").height()) / HEIGHT * 100;
+		
 		// position the overlay so that it's center is on top of
 		// the sphere we're tracking
 		$("#modalpanel")
-				.css('left', (left - $("#modalpanel").width() / 2) + 'px')
-				.css('top', (top - $("#modalpanel").height()) + 'px');
+				.css('left', widthPercentage + '%')
+				.css('top', heightPercentage + '%');
 	}
 }
 
