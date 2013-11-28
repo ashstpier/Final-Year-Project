@@ -29,12 +29,12 @@ function makeTextSprite( message, name )
 	context.font = "Normal " + fontsize + "px " + fontface;
 	var metrics = context.measureText( message );
 	var textWidth = metrics.width;
-	context.fillStyle   = "rgba(" + backgroundColor.r + "," + backgroundColor.g + "," + backgroundColor.b + "," + backgroundColor.a + ")";
-	context.strokeStyle = "rgba(" + borderColor.r + "," + borderColor.g + "," + borderColor.b + "," + borderColor.a + ")";
+	context.fillStyle   = "rgba(50,57,69,1)";
+	context.strokeStyle = "rgba(50,57,69,1";
 
 	context.lineWidth = 5;
-	roundRect(context, 5/2, 5/2, textWidth + 5, fontsize * 1.4 + 5, 6);
-	context.fillStyle = "rgba(0, 0, 0, 1.0)";
+	roundRect(context, 5/2, 5/2, textWidth + 5, fontsize * 1.4 + 5, 1);
+	context.fillStyle = "rgba(255, 255, 255, 1.0)";
 
 	context.fillText( message, 5, fontsize + 5);
 	var texture = new THREE.Texture(canvas) 
@@ -77,39 +77,57 @@ function roundRect(ctx, x, y, w, h, r)
 
 ////////// ICON FUNCTION ///////////
 
-function makeIcon( mesh, iconType ){
-	for (var i=0, tot=iconArray.length; i < tot; i++) {
-		var spriteMaterial = new THREE.SpriteMaterial( { map: THREE.ImageUtils.loadTexture( 'assets/images/icons/ico_'+iconType+'.png' ), useScreenCoordinates: false } );
-		var sprite = new THREE.Sprite( spriteMaterial );
-		sprite.scale.set(12,12,1.0);
-		iconArray[i].geometry.computeBoundingBox();
-		var boundingBox = iconArray[i].geometry.boundingBox;
+function makeIcon(mesh) {
+	if (
+	mesh.name == "Becket_Court" ||
+	mesh.name == "Tyler_Court_A" || 
+	mesh.name == "Tyler_Court_B" || 
+	mesh.name == "Tyler_Court_C" || 
+	mesh.name == "Purchas_Court" || 
+	mesh.name == "Lypeatt_Court" || 
+	mesh.name == "Darwin_Houses" ||
+	mesh.name == "Keynes_Flats" ||
+	mesh.name == "Eliot_College" ||
+	mesh.name == "Rutherford_College" ||
+	mesh.name == "Woolf_Flats"  
+	){
+		var spriteMaterial = new THREE.SpriteMaterial( { map: THREE.ImageUtils.loadTexture( 'assets/images/icons/ico_location.png' ), useScreenCoordinates: false, alignment: THREE.SpriteAlignment.topCenter } );
+		var icon = new THREE.Sprite( spriteMaterial );
+		icon.scale.set(10,10,1.0);
+		mesh.geometry.computeBoundingBox();
+		var boundingBox = mesh.geometry.boundingBox;
 		var position = new THREE.Vector3();
 		position.subVectors( boundingBox.max, boundingBox.min );
 		position.multiplyScalar( 0.5 );
 		position.add( boundingBox.min );
-		position.applyMatrix4( iconArray[i].matrixWorld );
+		position.applyMatrix4( mesh.matrixWorld );
 		
-		sprite.position.set( position.x - 36, 60, position.z - 9 );
-		scene.add( sprite );
+		icon.position.set( position.x - 36, boundingBox.max.y + 30, position.z - 9 );
+		scene.add( icon );
+		group.add( icon);
+		locationIcons.push( icon );
 	}
 }
+
+
 
 function onWindowResize() {
 	camera.aspect = window.innerWidth / window.innerHeight;
 	camera.updateProjectionMatrix();
 	renderer.setSize( window.innerWidth, window.innerHeight );
+	positionTrackingOverlay();
 }
 
 function animate() {
 	TWEEN.update();
-	requestAnimationFrame( animate );
 	controls.update();
 	stats.update();
 	//scene.overrideMaterial = depthMaterial;
 	render();
+	positionTrackingOverlay();
 	//scene.overrideMaterial = null;
 	//composer.render();
+	requestAnimationFrame( animate );
 }
 function render() {
 	renderer.render( scene, camera/*, depthTarget*/ );

@@ -567,16 +567,16 @@ THREE.OrbitControls = function ( object, domElement ) {
 		state = STATE.NONE;
 	}
 
-	this.domElement.addEventListener( 'contextmenu', function ( event ) { event.preventDefault(); }, false );
-	this.domElement.addEventListener( 'mousedown', onMouseDown, false );
-	this.domElement.addEventListener( 'mousewheel', onMouseWheel, false );
-	this.domElement.addEventListener( 'DOMMouseScroll', onMouseWheel, false ); // firefox
+	document.getElementById("app").addEventListener( 'contextmenu', function ( event ) { event.preventDefault(); }, false );
+	document.getElementById("app").addEventListener( 'mousedown', onMouseDown, false );
+	document.getElementById("app").addEventListener( 'mousewheel', onMouseWheel, false );
+	document.getElementById("app").addEventListener( 'DOMMouseScroll', onMouseWheel, false ); // firefox
 
-	this.domElement.addEventListener( 'keydown', onKeyDown, false );
+	document.getElementById("app").addEventListener( 'keydown', onKeyDown, false );
 
-	this.domElement.addEventListener( 'touchstart', touchstart, false );
-	this.domElement.addEventListener( 'touchend', touchend, false );
-	this.domElement.addEventListener( 'touchmove', touchmove, false );
+	document.getElementById("app").addEventListener( 'touchstart', touchstart, false );
+	document.getElementById("app").addEventListener( 'touchend', touchend, false );
+	document.getElementById("app").addEventListener( 'touchmove', touchmove, false );
 
 };
 

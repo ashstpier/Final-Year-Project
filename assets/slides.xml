@@ -2,93 +2,154 @@
 <slides>
     <Aphra_Theatre>
         <content>
-            <![CDATA[ <h2>Aphra Theatre</h2>
-                <p>this is the brief description.</p> ]]>
+            <![CDATA[
+				<section>
+					<h2>Aphra Theatre</h2>
+                	<p>this is the brief description.</p>
+				</section>
+			]]>
         </content>
     </Aphra_Theatre>
     <Becket_Court>
         <content>
-            <![CDATA[ <h2>Becket Court</h2>
-                <p>this is the brief description.</p> ]]>
+            <![CDATA[ 
+				<img src="assets/images/buildings/becket_court.jpg" alt="Becket Court" />
+				<section>
+					<h2>Becket Court</h2>
+                	<p>Named after Thomas Becket and located adjacent to Eliot College, Becket Court offers en suite rooms on a bed and bistro basis.</p>
+				</section>
+			]]>
         </content>
     </Becket_Court>
     <Bishopden_Court>
         <content>
-            <![CDATA[ <h2>Bishopden Court</h2>
-                <p>this is the brief description.</p> ]]>
+            <![CDATA[ 
+				<section>
+					<h2>Bishopden Court</h2>
+					<p>this is the brief description.</p>
+				</section>
+			]]>
         </content>
     </Bishopden_Court>
     <Boiler_House>
         <content>
-            <![CDATA[ <h2>Boiler House</h2>
-                <p>this is the brief description.</p> ]]>
+            <![CDATA[
+				<section>
+					<h2>Boiler House</h2>
+					<p>this is the brief description.</p>
+				</section>
+			]]>
         </content>
     </Boiler_House>
     <Bossenden_Court>
         <content>
-            <![CDATA[ <h2>Bossenden Court</h2>
-                <p>this is the brief description.</p> ]]>
+            <![CDATA[
+				<section>
+					<h2>Bossenden Court</h2>
+                	<p>this is the brief description.</p>
+				</section>
+			]]>
         </content>
     </Bossenden_Court>
     <Campus_Watch>
         <content>
-            <![CDATA[ <h2>Campus Watch</h2>
-                <p>this is the brief description.</p> ]]>
+            <![CDATA[
+				<section>
+					<h2>Campus Watch</h2>
+                	<p>this is the brief description.</p>
+				</section>
+			]]>
         </content>
     </Campus_Watch>
     <Careers_Employability_Service>
         <content>
-            <![CDATA[ <h2>Careers Employability Service</h2>
-                <p>this is the brief description.</p> ]]>
+            <![CDATA[
+				<section>
+					<h2>Careers Employability Service</h2>
+                	<p>this is the brief description.</p>
+				</section>
+			]]>
         </content>
     </Careers_Employability_Service>
     <Clowes_Court>
         <content>
-            <![CDATA[ <h2>Clowes Court</h2>
-                <p>this is the brief description.</p> ]]>
+            <![CDATA[
+				<section>
+					<h2>Clowes Court</h2>
+                	<p>this is the brief description.</p>
+				</section>
+			]]>
         </content>
     </Clowes_Court>
     <Colyer_Fergusson>
         <content>
-            <![CDATA[ <h2>Colyer Fergusson</h2>
-                <p>this is the brief description.</p> ]]>
+            <![CDATA[
+				<section>
+					<h2>Colyer Fergusson</h2>
+                	<p>this is the brief description.</p>
+				<section>
+			]]>
         </content>
     </Colyer_Fergusson>
     <Cornwallis_George_Allen_Wing>
-    <content>
-        <![CDATA[ <h2>Cornwallis George Allen Wing</h2>
-            <p>this is the brief description.</p> ]]>
-    </content>
+		<content>
+			<![CDATA[
+				<section>
+					<h2>Cornwallis George Allen Wing</h2>
+					<p>this is the brief description.</p>
+				</section>
+			]]>
+		</content>
 	</Cornwallis_George_Allen_Wing>
     <Cornwallis_Mathematics_Institute>
-	<content>
-        <![CDATA[ <h2>Cornwallis Mathematics Institute</h2>
-            <p>this is the brief description.</p> ]]>
-    </content>
+		<content>
+			<![CDATA[
+				<section>
+					<h2>Cornwallis Mathematics Institute</h2>
+					<p>this is the brief description.</p>
+				</section>
+			]]>
+		</content>
 	</Cornwallis_Mathematics_Institute>
     <Cornwallis_North_East>
-	<content>
-        <![CDATA[ <h2>Cornwallis North East</h2>
-            <p>this is the brief description.</p> ]]>
-    </content>
+		<content>
+			<![CDATA[
+				<section>
+					<h2>Cornwallis North East</h2>
+					<p>this is the brief description.</p>
+				</section>
+			]]>
+		</content>
 	</Cornwallis_North_East>
     <Cornwallis_North_West>
-	<content>
-        <![CDATA[ <h2>Cornwallis North West</h2>
-            <p>this is the brief description.</p> ]]>
-    </content>
+		<content>
+			<![CDATA[
+				<section>
+					<h2>Cornwallis North West</h2>
+					<p>this is the brief description.</p>
+				</section>
+			]]>
+		</content>
 	</Cornwallis_North_West>
     <Cornwallis_South_East>
-	<content>
-        <![CDATA[ <h2>Cornwallis South East</h2>
-            <p>this is the brief description.</p> ]]>
-    </content>
+		<content>
+			<![CDATA[
+				<section>
+					<h2>Cornwallis South East</h2>
+					<p>this is the brief description.</p>
+				</section>
+			]]>
+		</content>
 	</Cornwallis_South_East>
     <Cornwallis_South_West>
-	<content>
-        <![CDATA[ <h2>Cornwallis South West</h2>
-            <p>this is the brief description.</p> ]]>
-    </content>
+		<content>
+			<![CDATA[
+				<section>
+					<h2>Cornwallis South West</h2>
+					<p>this is the brief description.</p>
+				</section>
+			]]>
+		</content>
 	</Cornwallis_South_West>
     Cornwallis_South
     Cornwallis_West

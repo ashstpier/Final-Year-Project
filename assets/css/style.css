@@ -1,6 +1,10 @@
 @charset "UTF-8";
 /* CSS Document */
-
+*, *:before, *:after {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
 html, body {
 	margin: 0;
 	height: 100%;
@@ -9,7 +13,8 @@ html, body {
 	overflow: hidden;
 }
 body {
-	font-family: Arial;
+	font-family: 'Open Sans', sans-serif;
+	font-weight: 300;
 	font-size: 14px;
 	background-image: -ms-radial-gradient(center, ellipse farthest-corner, #5986A8 0%, #0C2133 100%);
 	background-image: -moz-radial-gradient(center, ellipse farthest-corner, #5986A8 0%, #0C2133 100%);
@@ -44,6 +49,7 @@ h1,h2,h3,h4 {
 #wrapper {
 	width: 100%;
 	height: 100%;
+	position: relative;
 }
 #leftnav {
 	height: 100%;
@@ -58,24 +64,53 @@ h1,h2,h3,h4 {
 	position: absolute;
 	bottom: 0;
 }
-#slidepanel, #labelpanel, #eventpanel {
-	width: 220px;
+#labelpanel, #eventpanel {
+	-webkit-box-sizing: content-box;
+	-moz-box-sizing: content-box;
+	box-sizing: content-box;
+	width: 240px;
 	height: 100%;
 	position: absolute;
 	left: 0;
 	top: 0;
 	z-index: 999;
 	background: #21262e;
-	padding: 65px 20px 20px 70px;
-	display: none;
+	padding: 65px 20px 20px 20px;
+	margin-left: 50px;
 	color: #fff;
+	display: none;
 }
+#modalpanel {
+	position: absolute;
+	z-index: 99;
+	width: 500px;
+	background: #fff;
+	box-shadow: 2px 2px 5px;
+	-webkit-box-shadow: 0px 2px 30px #666;
+	opacity:0;
+}
+.opaque {
+	opacity: 1!important;
+}
+#modalpanel img {
+	border: none;
+	width: 200px;
+	height: 162px; /* Temp */
+	float: left;
+}
+#modalpanel section {
+	width: 300px;
+	padding: 20px;
+	float: left;
+}
+#modalpanel section p:last-child { margin-bottom: 0; }
 #controls {
 	position: absolute;
 	right: 0;
 	z-index: 9999;
 }
 button {
+	outline: 0;
 	background: #fff;
 	cursor: pointer;
 	border: none;
@@ -90,7 +125,7 @@ button {
 	color: #333;
 	float: left;
 }
-button:hover, #controls button:focus, button.active {
+button:hover, button.active {
 	background: #21262e;
 	color: #fff;
 }
@@ -106,6 +141,7 @@ button:hover, #controls button:focus, button.active {
 	float: left;
 	padding: 10px 15px;
 	border-bottom: solid 2px #1c2129;
+	border-radius: 3px;
 }
 #labelpanel button:hover, #labelpanel button:focus {
 	background: #2c323d;
@@ -124,4 +160,51 @@ button:hover, #controls button:focus, button.active {
 	font-family: FontAwesome;
 	content: "\f10c";
 	padding: 0 20px 0 0;
+}
+.ui-tooltip {
+	padding: 8px;
+	position: absolute;
+	z-index: 9999;
+	max-width: 300px;
+	background: #21262e;
+	color: #fff;
+	border: none;
+	border-radius: 0;
+	font-size: 0.8em;
+}
+.fold {
+	opacity: 0;
+	-webkit-transform-origin: top center;
+	-moz-transform-origin: top center;
+	-ms-transform-origin: top center;
+	-o-transform-origin: top center;
+	transform-origin: top center;
+	-webkit-transform: rotateX(-90deg);
+	-moz-transform: rotateX(-90deg);
+	-ms-transform: rotateX(-90deg);
+	-o-transform: rotateX(-90deg);
+	transform: rotateX(-90deg);
+	-webkit-transition: -webkit-transform .3s linear;
+	-moz-transition: -moz-transform .3s linear;
+	-ms-transition: -ms-transform .3s linear;
+	-o-transition: -o-transform .3s linear;
+	transition: transform .3s linear;
+}
+.fold.open {
+	opacity: 1;
+	-webkit-transform: perspective( 600px ) rotateX(0);
+	-moz-transform: perspective( 600px ) rotateX(0);
+	-ms-transform: perspective( 600px ) rotateX(0);
+	-o-transform: perspective( 600px ) rotateX(0);
+	transform: perspective( 600px ) rotateX(0);
+	transition-delay: 1s;
+	-webkit-transition-delay: 1s;
+}
+.fold.close {
+	opacity: 1;
+	-webkit-transform: perspective( 600px ) rotateX(-90deg);
+	-moz-transform: perspective( 600px ) rotateX(-90deg);
+	-ms-transform: perspective( 600px ) rotateX(-90deg);
+	-o-transform: perspective( 600px ) rotateX(-90deg);
+	transform: perspective( 600px ) rotateX(-90deg);
 }

@@ -1,6 +1,6 @@
-var container, stats, camera, scene, renderer, projector, controls, group = new THREE.Object3D(), xml;
+var container, stats, camera, scene, renderer, projector, controls, ground, group = new THREE.Object3D(), xml;
 var depthMaterial, depthTarget, composer;
-var clickobjects = [], iconAcademic = [], iconLocation = [], iconMusic = [], iconAnnouncement = [], sprites = [];
+var clickobjects = [], iconAcademic = [], iconLocation = [], iconMusic = [], iconAnnouncement = [], sprites = [], locationIcons = [];
 var jsonFileNames = [
 	'assets/models/Aphra_Theatre.js',
 	'assets/models/Becket_Court.js',
@@ -41,10 +41,8 @@ var jsonFileNames = [
 	'assets/models/Kent_Business_School.js',
 	'assets/models/Kent_Enterprise_Hub.js',
 	'assets/models/Kent_Law_School.js',
-	'assets/models/Keynes_Block_P.js',
-	'assets/models/Keynes_Block_S.js',
-	'assets/models/Keynes_Block_T.js',
 	'assets/models/Keynes_College.js',
+	'assets/models/Keynes_Flats.js',
 	'assets/models/Locke.js',
 	'assets/models/Lypeatt_Court.js',
 	'assets/models/Mandela_Building.js',
@@ -85,14 +83,7 @@ var jsonFileNames = [
 	'assets/models/Willows_Court.js',
 	'assets/models/Woodlands.js',
 	'assets/models/Woodys.js',
-	'assets/models/Woolf_Block_A.js',
-	'assets/models/Woolf_Block_B.js',
-	'assets/models/Woolf_Block_C.js',
-	'assets/models/Woolf_Block_D.js',
-	'assets/models/Woolf_Block_E.js',
-	'assets/models/Woolf_Block_F.js',
-	'assets/models/Woolf_Block_G.js',
-	'assets/models/Woolf_Block_H.js',
+	'assets/models/Woolf_Flats.js',
 	'assets/models/Woolf_Main.js',
 	'assets/models/Woolf_Pavillion.js',
 	'assets/models/Woolf_Residential.js'
@@ -138,10 +129,8 @@ var buildingNames = [
 	'Kent Business School',
 	'Kent Enterprise Hub',
 	'Kent Law School',
-	'Keynes Block P',
-	'Keynes Block S',
-	'Keynes Block T',
 	'Keynes College',
+	'Keynes Flats',
 	'Locke',
 	'Lypeatt Court',
 	'Mandela Building',
@@ -182,14 +171,7 @@ var buildingNames = [
 	'Willows Court',
 	'Woodlands',
 	'Woodys',
-	'Woolf Block A',
-	'Woolf Block B',
-	'Woolf Block C',
-	'Woolf Block D',
-	'Woolf Block E',
-	'Woolf Block F',
-	'Woolf Block G',
-	'Woolf Block H',
+	'Woolf Flats',
 	'Woolf Main',
 	'Woolf Pavillion',
 	'Woolf Residential'
@@ -199,6 +181,9 @@ var objects = [], plane;
 var mouse = new THREE.Vector2(),
 offset = new THREE.Vector3(),
 INTERSECTED, SELECTED;
+
+var WIDTH = $(window).width();
+var HEIGHT = $(window).height();
 	
 init();
 animate();
@@ -210,8 +195,8 @@ function init() {
 	document.getElementById("wrapper").appendChild( container );
 	
 	camera = new THREE.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 10, 2000 );
-	camera.position.z = 400;
-	camera.position.y = 400;
+	camera.position.z = 500;
+	camera.position.y = 200;
 	
 	//////// ORBIT CONTROLS /////////
 
@@ -263,8 +248,6 @@ function init() {
 		loader.load(jsonFileNames[i], makeHandler(meshName, spriteName));
 	}
 	
-	var meshes = new Object();
-	
 	function makeHandler(meshName, spriteName) {
 		return function(geometry, materials) {
 			mesh =  new THREE.Mesh( geometry, material );
@@ -282,6 +265,8 @@ function init() {
 			for (var i=0, tot=sprites.length; i < tot; i++) {
 				sprites[i].visible = false;
 			}
+			
+			makeIcon(mesh);
 		};
 	}
 	
@@ -312,9 +297,9 @@ function init() {
 		success: function(data) { xml = data;}
 	});
 
-	renderer.domElement.addEventListener( 'mousemove', onDocumentMouseMove, false );
-	renderer.domElement.addEventListener( 'mousedown', onDocumentMouseDown, false );
-	renderer.domElement.addEventListener( 'mouseup', onDocumentMouseUp, false );
+	document.getElementById("app").addEventListener( 'mousemove', onDocumentMouseMove, false );
+	document.getElementById("app").addEventListener( 'mousedown', onDocumentMouseDown, false );
+	document.getElementById("app").addEventListener( 'mouseup', onDocumentMouseUp, false );
 
 	//
 
@@ -345,6 +330,47 @@ function init() {
 	composer.addPass( effect );
 	*/
 	
+}
+
+var modal;
+
+function positionTrackingOverlay()
+{
+	if(modal != null){
+		var visibleWidth, visibleHeight, p, v, percX, percY, left, top;
+
+		// this will give us position relative to the world
+		
+		modal.geometry.computeBoundingBox();
+		var boundingBox = modal.geometry.boundingBox;
+		var position = new THREE.Vector3();
+		position.subVectors( boundingBox.max, boundingBox.min );
+		position.multiplyScalar( 0.5 );
+		position.add( boundingBox.min );
+		position.applyMatrix4( modal.matrixWorld );
+		
+		p = position.clone();
+
+		// projectVector will translate position to 2d
+		v = projector.projectVector(p, camera);
+
+		// translate our vector so that percX=0 represents
+		// the left edge, percX=1 is the right edge,
+		// percY=0 is the top edge, and percY=1 is the bottom edge.
+		percX = (v.x + 1) / 2;
+		percY = (-v.y + 1) / 2;
+
+
+		// scale these values to our viewport size
+		left = percX * WIDTH;
+		top = percY * HEIGHT;
+
+		// position the overlay so that it's center is on top of
+		// the sphere we're tracking
+		$("#modalpanel")
+				.css('left', (left - $("#modalpanel").width() / 2) + 'px')
+				.css('top', (top - $("#modalpanel").height()) + 'px');
+	}
 }
 
 //var test = scene.getObjectByName( 'sprite', true );

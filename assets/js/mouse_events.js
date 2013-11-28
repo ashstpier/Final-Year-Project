@@ -28,14 +28,17 @@ function onDocumentMouseUp( event ) {
 
 	if ( intersects.length > 0 ) {
 		
-		$('#slidepanel').empty();
-		var time = 1500;
+		$('#modalpanel').empty();
+		$("#modalpanel").removeClass('bounceInDown opaque');
+		var time = 1000;
 		var node = intersects[0].object.name;
 		
 		$(xml).find(node).each(function(){
 			var content = $(this).find('content').text();
-			$(content).appendTo('#slidepanel');
+			$(content).appendTo('#modalpanel');
 		});
+		
+		modal = intersects[0].object;
 		
 		intersects[0].object.geometry.computeBoundingBox();
 		var boundingBox = intersects[0].object.geometry.boundingBox;
@@ -46,33 +49,19 @@ function onDocumentMouseUp( event ) {
 		position.applyMatrix4( intersects[0].object.matrixWorld );
 			
 		if (camera.position.z >= position.z && controls.center.z <= camera.position.z){
-			new TWEEN.Tween( camera.position ).to( { x: 0, y: 110, z: 100 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).start();
+			new TWEEN.Tween( camera.position ).to( { x: 0, y: 110, z: 100 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {$("#modalpanel").addClass('bounceInDown opaque');}).start();
 		}else if (camera.position.z >= position.z && controls.center.z >= camera.position.z) {
-			new TWEEN.Tween( camera.position ).to( { x: 0, y: 110, z: - 100 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).start();
+			new TWEEN.Tween( camera.position ).to( { x: 0, y: 110, z: - 100 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {$("#modalpanel").addClass('bounceInDown opaque');}).start();
 		}
 		else if (camera.position.z <= position.z && controls.center.z <= camera.position.z) {
-			new TWEEN.Tween( camera.position ).to( { x: 0, y: 110, z: 100 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).start();
+			new TWEEN.Tween( camera.position ).to( { x: 0, y: 110, z: 100 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {$("#modalpanel").addClass('bounceInDown opaque');}).start();
 		}
 		else {
-			new TWEEN.Tween( camera.position ).to( { x: 0, y: 110, z: - 100 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).start();
+			new TWEEN.Tween( camera.position ).to( { x: 0, y: 110, z: - 100 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {$("#modalpanel").addClass('bounceInDown opaque');}).start();
 		}
 		new TWEEN.Tween( group.position ).to( { x: group.position.x - position.x, y: 0, z: group.position.z - position.z }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).start();
 		
-		if($("#eventpanel").is(":visible")){
-			$("#eventpanel").toggle("slide", {direction:'left'}, function(){
-				$("#eventbutton").toggleClass( "active" );
-				$("#slidepanel").toggle("slide", {direction:'left'});
-			});
-		}else if($("#labelpanel").is(":visible")){
-			$("#labelpanel").toggle("slide", {direction:'left'}, function(){
-				$("#labelbutton").toggleClass( "active" );
-				$("#slidepanel").toggle("slide", {direction:'left'});
-			});
-		}else{
-			$("#slidepanel").toggle("slide", {direction:'left'});
-		}
-		}
-	
+	}
 	if ( INTERSECTED ) {
 		plane.position.copy( INTERSECTED.position );
 		SELECTED = null;
@@ -127,18 +116,18 @@ function tilt() {
 	new TWEEN.Tween( camera.position ).to( { y: 80 }, 1000 ).easing( TWEEN.Easing.Quadratic.InOut).start();
 }
 function refreshView() {
-	new TWEEN.Tween( camera.position ).to( { x: 0, y: 400, z: 400 }, 1000 ).easing( TWEEN.Easing.Quadratic.InOut).start();
+	new TWEEN.Tween( camera.position ).to( { x: 0, y: 200, z: 500 }, 1000 ).easing( TWEEN.Easing.Quadratic.InOut).start();
 	new TWEEN.Tween( group.position ).to( { x: 0, y: 0, z: 0 }, 1000 ).easing( TWEEN.Easing.Quadratic.InOut).start();
 	new TWEEN.Tween( controls.center ).to( { x: 0, y: 0, z: 0 }, 1000 ).easing( TWEEN.Easing.Quadratic.InOut).start();
 }
 
 function rotateRight() {
-	var x = camera.position.x, z = camera.position.z, rotSpeed = 1;
+	var x = camera.position.x, z = camera.position.z, rotSpeed = 0.5;
 	new TWEEN.Tween( camera.position ).to( { x: x * Math.cos(rotSpeed) + z * Math.sin(rotSpeed),  z: z * Math.cos(rotSpeed) - x * Math.sin(rotSpeed) }, 500 ).easing( TWEEN.Easing.Quadratic.InOut).start();
 }
 
 function rotateLeft() {
-	var x = camera.position.x, z = camera.position.z, rotSpeed = 1;
+	var x = camera.position.x, z = camera.position.z, rotSpeed = 0.5;
 	new TWEEN.Tween( camera.position ).to( { x: x * Math.cos(rotSpeed) - z * Math.sin(rotSpeed),  z: z * Math.cos(rotSpeed) + x * Math.sin(rotSpeed) }, 500 ) .easing( TWEEN.Easing.Quadratic.InOut).start();
 }
 
@@ -173,12 +162,16 @@ $( "#subjecttoggle" ).click(function() {
 $( "#accommodationtoggle" ).click(function() {
 	if ($(this).hasClass( "unchecked" )) {
 		$(this).toggleClass("unchecked checked");
-		// toggle code
 		$(this).toggleClass( "active" );
+		for (var i=0, tot=sprites.length; i < tot; i++) {
+			locationIcons[i].visible = true;
+		}
 	} else {
 		$(this).toggleClass("checked unchecked");
-		// toggle code
 		$(this).toggleClass( "active" );
+		for (var i=0, tot=sprites.length; i < tot; i++) {
+			locationIcons[i].visible = false;
+		}
 	}
 });
 $( "#parkingtoggle" ).click(function() {
@@ -216,10 +209,6 @@ $( "#labelbutton" ).click(function() {
 			$("#eventbutton").toggleClass( "active" );
 			$("#labelpanel").toggle("slide", {direction:'left'});
 		});
-	}else if($("#slidepanel").is(":visible")){
-		$("#slidepanel").toggle("slide", {direction:'left'}, function(){
-			$("#labelpanel").toggle("slide", {direction:'left'});
-		});
 	}else{
 		$("#labelpanel").toggle("slide", {direction:'left'});
 	}
@@ -228,10 +217,6 @@ $( "#eventbutton" ).click(function() {
 	if($("#labelpanel").is(":visible")){
 		$("#labelpanel").toggle("slide", {direction:'left'}, function(){
 			$("#labelbutton").toggleClass( "active" );
-			$("#eventpanel").toggle("slide", {direction:'left'});
-		});
-	}else if($("#slidepanel").is(":visible")){
-		$("#slidepanel").toggle("slide", {direction:'left'}, function(){
 			$("#eventpanel").toggle("slide", {direction:'left'});
 		});
 	}else{
