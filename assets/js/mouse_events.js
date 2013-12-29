@@ -29,7 +29,8 @@ function onDocumentMouseUp( event ) {
 	if ( intersects.length > 0 ) {
 		
 		$('#modalpanel').empty();
-		$("#modalpanel").removeClass('bounceInDown opaque');
+		$("#modalpanel").removeClass('fadeInDown opaque');
+		$("#tweetpanel").removeClass('fadeInDown opaque');
 		var time = 1000;
 		var node = intersects[0].object.name;
 		
@@ -40,28 +41,62 @@ function onDocumentMouseUp( event ) {
 		
 		modal = intersects[0].object;
 		
-		intersects[0].object.geometry.computeBoundingBox();
-		var boundingBox = intersects[0].object.geometry.boundingBox;
+		modal.geometry.computeBoundingBox();
+		var boundingBox = modal.geometry.boundingBox;
 		var position = new THREE.Vector3();
 		position.subVectors( boundingBox.max, boundingBox.min );
 		position.multiplyScalar( 0.5 );
 		position.add( boundingBox.min );
-		position.applyMatrix4( intersects[0].object.matrixWorld );
+		position.applyMatrix4( modal.matrixWorld );
 			
 		if (camera.position.z >= position.z && controls.center.z <= camera.position.z){
-			new TWEEN.Tween( camera.position ).to( { x: 0, y: 110, z: 100 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {$("#modalpanel").addClass('bounceInDown opaque');}).start();
+			new TWEEN.Tween( camera.position ).to( { x: 0, y: 110, z: 100 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {$("#modalpanel").addClass('fadeInDown opaque');}).start();
 		}else if (camera.position.z >= position.z && controls.center.z >= camera.position.z) {
-			new TWEEN.Tween( camera.position ).to( { x: 0, y: 110, z: - 100 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {$("#modalpanel").addClass('bounceInDown opaque');}).start();
+			new TWEEN.Tween( camera.position ).to( { x: 0, y: 110, z: - 100 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {$("#modalpanel").addClass('fadeInDown opaque');}).start();
 		}
 		else if (camera.position.z <= position.z && controls.center.z <= camera.position.z) {
-			new TWEEN.Tween( camera.position ).to( { x: 0, y: 110, z: 100 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {$("#modalpanel").addClass('bounceInDown opaque');}).start();
+			new TWEEN.Tween( camera.position ).to( { x: 0, y: 110, z: 100 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {$("#modalpanel").addClass('fadeInDown opaque');}).start();
 		}
 		else {
-			new TWEEN.Tween( camera.position ).to( { x: 0, y: 110, z: - 100 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {$("#modalpanel").addClass('bounceInDown opaque');}).start();
+			new TWEEN.Tween( camera.position ).to( { x: 0, y: 110, z: - 100 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {$("#modalpanel").addClass('fadeInDown opaque');}).start();
 		}
 		new TWEEN.Tween( group.position ).to( { x: group.position.x - position.x, y: 0, z: group.position.z - position.z }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).start();
 		
 	}
+	
+	var intersects = raycaster.intersectObjects( tweetobjects, true );
+	
+	if ( intersects.length > 0 ) {
+		
+		$("#modalpanel").removeClass('fadeInDown opaque');
+		$("#tweetpanel").removeClass('fadeInDown opaque');
+		var time = 1000;
+				
+		tweetmodal = intersects[0].object;
+		
+		tweetmodal.geometry.computeBoundingBox();
+		var boundingBox = tweetmodal.geometry.boundingBox;
+		var position = new THREE.Vector3();
+		position.subVectors( boundingBox.max, boundingBox.min );
+		position.multiplyScalar( 0.5 );
+		position.add( boundingBox.min );
+		position.applyMatrix4( tweetmodal.matrixWorld );
+			
+		if (camera.position.z >= position.z && controls.center.z <= camera.position.z){
+			new TWEEN.Tween( camera.position ).to( { x: 0, y: 110, z: 150 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {$("#tweetpanel").addClass('fadeInDown opaque');}).start();
+		}else if (camera.position.z >= position.z && controls.center.z >= camera.position.z) {
+			new TWEEN.Tween( camera.position ).to( { x: 0, y: 110, z: - 150 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {$("#tweetpanel").addClass('fadeInDown opaque');}).start();
+		}
+		else if (camera.position.z <= position.z && controls.center.z <= camera.position.z) {
+			new TWEEN.Tween( camera.position ).to( { x: 0, y: 110, z: 150 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {$("#tweetpanel").addClass('fadeInDown opaque');}).start();
+		}
+		else {
+			new TWEEN.Tween( camera.position ).to( { x: 0, y: 110, z: - 150 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {$("#tweetpanel").addClass('fadeInDown opaque');}).start();
+		}
+		new TWEEN.Tween( group.position ).to( { x: group.position.x - position.x, y: 0, z: group.position.z - position.z }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).start();
+		
+	}
+	
 	if ( INTERSECTED ) {
 		plane.position.copy( INTERSECTED.position );
 		SELECTED = null;
@@ -101,6 +136,12 @@ function onDocumentMouseMove( event ) {
 	if (intersects.length > 0 ) {
 		container.style.cursor = 'pointer';	
 	}
+	
+	var intersects = raycaster.intersectObjects( tweetobjects, true );
+
+	if (intersects.length > 0 ) {
+		container.style.cursor = 'pointer';	
+	}
 }
 
 ///////// CONTROLS //////////
@@ -122,13 +163,13 @@ function refreshView() {
 }
 
 function rotateRight() {
-	var x = camera.position.x, z = camera.position.z, rotSpeed = 0.5;
-	new TWEEN.Tween( camera.position ).to( { x: x * Math.cos(rotSpeed) + z * Math.sin(rotSpeed),  z: z * Math.cos(rotSpeed) - x * Math.sin(rotSpeed) }, 500 ).easing( TWEEN.Easing.Quadratic.InOut).start();
+	var x = camera.position.x, z = camera.position.z, rotSpeed = 1;
+	new TWEEN.Tween( camera.position ).to( { x: x * Math.cos(rotSpeed) + z * Math.sin(rotSpeed),  z: z * Math.cos(rotSpeed) - x * Math.sin(rotSpeed) }, 1000 ).easing( TWEEN.Easing.Quadratic.InOut).start();
 }
 
 function rotateLeft() {
-	var x = camera.position.x, z = camera.position.z, rotSpeed = 0.5;
-	new TWEEN.Tween( camera.position ).to( { x: x * Math.cos(rotSpeed) - z * Math.sin(rotSpeed),  z: z * Math.cos(rotSpeed) + x * Math.sin(rotSpeed) }, 500 ) .easing( TWEEN.Easing.Quadratic.InOut).start();
+	var x = camera.position.x, z = camera.position.z, rotSpeed = 1;
+	new TWEEN.Tween( camera.position ).to( { x: x * Math.cos(rotSpeed) - z * Math.sin(rotSpeed),  z: z * Math.cos(rotSpeed) + x * Math.sin(rotSpeed) }, 1000 ) .easing( TWEEN.Easing.Quadratic.InOut).start();
 }
 
 /////////// TOGGLES /////////////
@@ -138,14 +179,14 @@ $( "#labeltoggle" ).click(function() {
 		$(this).toggleClass("unchecked checked");
 		for (var i=0, tot=sprites.length; i < tot; i++) {
 			sprites[i].material.opacity = 1;
-			new TWEEN.Tween( sprites[i].position ).to( { y: sprites[i].position.y - 20 }, 500 ).easing( TWEEN.Easing.Bounce.Out).start();
+			new TWEEN.Tween( sprites[i].position ).to( { y: sprites[i].position.y - 50 }, 1000 ).easing( TWEEN.Easing.Bounce.Out).start();
 		}
 		$(this).toggleClass( "active" );
 	} else {
 		$(this).toggleClass("checked unchecked");
 		for (var i=0, tot=sprites.length; i < tot; i++) {
 			sprites[i].material.opacity = 0;
-			sprites[i].position.y += 20;
+			sprites[i].position.y += 50;
 		}
 		$(this).toggleClass( "active" );
 	}
@@ -167,14 +208,14 @@ $( "#accommodationtoggle" ).click(function() {
 		$(this).toggleClass( "active" );
 		for (var i=0, tot=locationIcons.length; i < tot; i++) {
 			locationIcons[i].material.opacity = 1;
-			new TWEEN.Tween( locationIcons[i].position ).to( { y: locationIcons[i].position.y - 20 }, 500 ).easing( TWEEN.Easing.Bounce.Out).start();
+			new TWEEN.Tween( locationIcons[i].position ).to( { y: locationIcons[i].position.y - 40 }, 1000 ).easing( TWEEN.Easing.Bounce.Out).start();
 		}
 	} else {
 		$(this).toggleClass("checked unchecked");
 		$(this).toggleClass( "active" );
 		for (var i=0, tot=locationIcons.length; i < tot; i++) {
 			locationIcons[i].material.opacity = 0;
-			locationIcons[i].position.y += 20;
+			locationIcons[i].position.y += 40;
 		}
 	}
 });
@@ -192,7 +233,7 @@ $( "#parkingtoggle" ).click(function() {
 $( "#bustoggle" ).click(function() {
 	if ($(this).hasClass( "unchecked" )) {
 		$(this).toggleClass("unchecked checked");
-		// toggle code
+	
 		$(this).toggleClass( "active" );
 	} else {
 		$(this).toggleClass("checked unchecked");

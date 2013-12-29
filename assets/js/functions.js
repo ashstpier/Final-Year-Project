@@ -1,22 +1,3 @@
-/*
-
-////////// SPRITE TOGGLE ///////////
-
-function toggleSprites( boolean )
-{
-	if ( boolean == true ){
-		for (var i=0, tot=sprites.length; i < tot; i++) {
-			sprites[i].visible = boolean;
-		}
-	} else {
-		for (var i=0, tot=sprites.length; i < tot; i++) {
-			sprites[i].visible = boolean;
-		}
-	}
-}
-
-toggleSprites( true );*/
-	
 function makeTextSprite( message, name )
 {
 	var fontface = "Arial";
@@ -52,7 +33,7 @@ function makeTextSprite( message, name )
 	position.add( boundingBox.min );
 	position.applyMatrix4( name.matrixWorld );
 	
-	sprite.position.set( position.x - 36, boundingBox.max.y + 30, position.z - 9 );
+	sprite.position.set( position.x - 36, boundingBox.max.y + 60, position.z - 9 );
 	sprite.scale.set(60,30,1.0);
 	return sprite;	
 }
@@ -102,7 +83,7 @@ function makeIcon(mesh) {
 		position.add( boundingBox.min );
 		position.applyMatrix4( mesh.matrixWorld );
 		
-		icon.position.set( position.x - 36, boundingBox.max.y + 30, position.z - 9 );
+		icon.position.set( position.x - 36, boundingBox.max.y + 60, position.z - 9 );
 		scene.add( icon );
 		group.add( icon);
 		locationIcons.push( icon );
@@ -110,26 +91,45 @@ function makeIcon(mesh) {
 	}
 }
 
-
+function tweetIcon(mesh) {
+	if (
+	mesh.name == "Jennison" ||
+	mesh.name == "Locke" || 
+	mesh.name == "Careers_Employability_Service" || 
+	mesh.name == "Templeman_Library"
+	){
+		texture = THREE.ImageUtils.loadTexture('assets/images/icons/ico_twitter.png', {}, function() {
+			renderer.render(scene);
+		})
+		material = new THREE.MeshLambertMaterial({map: texture, transparent: true })
+		var icon = new THREE.Mesh( new THREE.CubeGeometry( 8, 8, 8 ), material );
+		mesh.geometry.computeBoundingBox();
+		var boundingBox = mesh.geometry.boundingBox;
+		var position = new THREE.Vector3();
+		position.subVectors( boundingBox.max, boundingBox.min );
+		position.multiplyScalar( 0.5 );
+		position.add( boundingBox.min );
+		position.applyMatrix4( mesh.matrixWorld );
+		
+		icon.position.set( position.x - 36, boundingBox.max.y + 20, position.z - 9 );
+		scene.add( icon );
+		group.add( icon);
+		tweetobjects.push( icon );
+		icon.material.opacity = 1;
+		
+		var tweenOne = new TWEEN.Tween( icon.position ).to( { y: boundingBox.max.y + 25 }, 1000 ).easing( TWEEN.Easing.Sinusoidal.InOut);
+		var tweenTwo = new TWEEN.Tween( icon.position ).to( { y: boundingBox.max.y + 20 }, 1000 ).easing( TWEEN.Easing.Sinusoidal.InOut);
+		
+		tweenOne.chain(tweenTwo);
+		tweenTwo.chain(tweenOne);
+		
+		tweenOne.start();
+	}
+}
 
 function onWindowResize() {
 	camera.aspect = window.innerWidth / window.innerHeight;
 	camera.updateProjectionMatrix();
 	renderer.setSize( window.innerWidth, window.innerHeight );
 	positionTrackingOverlay();
-}
-
-function animate() {
-	TWEEN.update();
-	controls.update();
-	stats.update();
-	//scene.overrideMaterial = depthMaterial;
-	render();
-	positionTrackingOverlay();
-	//scene.overrideMaterial = null;
-	//composer.render();
-	requestAnimationFrame( animate );
-}
-function render() {
-	renderer.render( scene, camera/*, depthTarget*/ );
 }

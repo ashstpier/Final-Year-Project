@@ -5,32 +5,52 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 		<link href="assets/css/style.css" rel="stylesheet" type="text/css">
+        <link href="assets/css/typography.css" rel="stylesheet" type="text/css">
+        <link href="assets/css/buttons.css" rel="stylesheet" type="text/css">
+        <link href="assets/css/preloader.css" rel="stylesheet" type="text/css">
+        <link href="assets/css/social.css" rel="stylesheet" type="text/css">
         <link rel="stylesheet" href="assets/css/animate.css">
         <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
-        <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,400,300' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700,400,300' rel='stylesheet' type='text/css'>
 </head>
 <body>
 <div id="preloader">
-    <div id="status">&nbsp;</div>
-</div>
-<div id="wrapper">
-	<div id="leftnav">
-    	<button id="labelbutton" class="slide" title="Map markers" type="button"><i class="fa fa-map-marker fa-lg"></i></button>
-        <button id="eventbutton" class="slide" title="Events" type="button"><i class="fa fa-align-left"></i></button>
-        <div id="leftnav-footer">
-        	<form action="http://facebook.com" target="_blank">
-        		<button type="submit"><i class="fa fa-facebook"></i></button>
-            </form>
-            <form action="http://twitter.com" target="_blank">
-            	<button type="submit"><i class="fa fa-twitter"></i></button>
-            </form>
-            <form action="http://dribbble.com" target="_blank">
-            	<button type="submit"><i class="fa fa-dribbble"></i></button>
-            </form>
+    <div class="loading">
+    <!-- We make this div spin -->
+        <div class="spinner">
+            <!-- Mask of the quarter of circle -->
+            <div class="mask">
+                <!-- Inner masked circle -->
+                <div class="maskedCircle"></div>
+            </div>
         </div>
     </div>
+</div>
+<div id="navbar">
+    <ul id="nav">
+    	<li><a href="facts.html">10 Facts</a></li>
+    	<li><a href="index.php" class="active">Explore</a></li>
+        <li><a href="social.php">Social</a></li>
+    </ul>
+</div>
+<div id="leftnav">
+    <button id="labelbutton" class="slide" type="button"><i class="fa fa-map-marker fa-lg"></i></button>
+    <button id="eventbutton" class="slide" type="button"><i class="fa fa-calendar"></i></button>
+    <div id="leftnav-footer">
+        <form action="http://facebook.com" target="_blank">
+            <button type="submit"><i class="fa fa-facebook"></i></button>
+        </form>
+        <form action="http://twitter.com" target="_blank">
+            <button type="submit"><i class="fa fa-twitter"></i></button>
+        </form>
+        <form action="http://dribbble.com" target="_blank">
+            <button type="submit"><i class="fa fa-dribbble"></i></button>
+        </form>
+    </div>
+</div>
+<div id="mapwrapper">
     <div id="labelpanel">
-    	<h2>Markers</h2>
+        <h2>Markers</h2>
         <button id="labeltoggle" class="unchecked" type="button">Show building names</button>
         <button id="subjecttoggle" class="unchecked" type="button">Show subject areas</button>
         <button id="accommodationtoggle" class="unchecked" type="button">Show accommodation</button>
@@ -38,16 +58,30 @@
         <button id="bustoggle" class="unchecked" type="button">Show bus routes</button>
     </div>
     <div id="eventpanel">
-    	<h2>Events</h2>
+        <h2>Events</h2>
     </div>
-    <div id="modalpanel" class="animated"><!-- XML --></div>
+    <div id="modalpanel" class="animated"></div>
+    <div id="tweetpanel" class="animated">
+		<?php include_once 'twitter/display-tweet.php';
+        	display_tweet('kentunion','time_since', 1, 30);
+    	?>
+    </div>
     <div id="controls">
-		<button id="rotateleft" type="button" title="Rotate Left" onclick="rotateLeft()"><i class="fa fa-chevron-left"></i></button>
+        <button id="rotateleft" type="button" title="Rotate Left" onclick="rotateLeft()"><i class="fa fa-chevron-left"></i></button>
         <button id="rotateright" type="button" title="Rotate Right" onclick="rotateRight()"><i class="fa fa-chevron-right"></i></button>
         <button id="twod" type="button" title="2D View" onclick="view2D()"><i class="fa fa-compass fa-lg"></i></button>
         <button id="tilt" type="button" title="Tilt Down" onclick="tilt()"><i class="fa fa-long-arrow-down"></i></button>
         <button id="refresh" type="button" title="Refresh View" onclick="refreshView()"><i class="fa fa-refresh"></i></button>
     </div>
+</div>
+<div id="footer">
+    <ul>
+        <li><a href="pages/about.php">About</a></li>
+        <li><a href="pages/casestudies.php">Case Studies</a></li>
+        <li><a href="http://www.kent.ac.uk/">UKC Website</a></li>
+        <li><a href="pages/disclaimer.php">Disclaimer</a></li>
+        <li><a href="pages/credits.php">Credits</a></li>
+    </ul>
 </div>
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
@@ -73,16 +107,8 @@
 <script src="assets/js/core.js"></script>
 <script>
 $(function() {
-    $( ".slide" ).tooltip({
-      show: {delay: 500},
-      position: {
-        my: "left center",
-        at: "right+10 center"
-      }
-      
-    });
 	$( "#controls button" ).tooltip({
-      show: {delay: 1000},
+      show: {delay: 200},
       position: {
         my: "center top",
         at: "center bottom+10"

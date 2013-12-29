@@ -1,6 +1,6 @@
 var container, stats, camera, scene, renderer, projector, controls, ground, group = new THREE.Object3D(), xml;
 var depthMaterial, depthTarget, composer;
-var clickobjects = [], iconAcademic = [], iconLocation = [], iconMusic = [], iconAnnouncement = [], sprites = [], locationIcons = [];
+var clickobjects = [], tweetobjects = [], iconAcademic = [], iconLocation = [], iconMusic = [], iconAnnouncement = [], sprites = [], locationIcons = [], tweetIcons = [];
 var jsonFileNames = [
 	'assets/models/Aphra_Theatre.js',
 	'assets/models/Becket_Court.js',
@@ -192,7 +192,7 @@ function init() {
 	
 	container = document.createElement( 'div' );
 	container.id = 'app';
-	document.getElementById("wrapper").appendChild( container );
+	document.getElementById("mapwrapper").appendChild( container );
 	
 	camera = new THREE.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 10, 2000 );
 	camera.position.z = 500;
@@ -215,7 +215,7 @@ function init() {
 	/////////// LIGHTS ////////////
 	
 	var directionalLight = new THREE.DirectionalLight( 0xffffff, 0.5 );
-	directionalLight.position.set( 0, 1, 0 );
+	directionalLight.position.set( 1, 5, 1 );
 	scene.add( directionalLight );
 	
 	var ambientLight = new THREE.AmbientLight( 0xcccccc );
@@ -264,6 +264,7 @@ function init() {
 			
 			sprite.material.opacity = 0;
 			makeIcon(mesh);
+			tweetIcon(mesh);
 		};
 	}
 	
@@ -329,12 +330,13 @@ function init() {
 	
 }
 
-var modal;
+var modal, tweetmodal;
 
 function positionTrackingOverlay()
 {
+	var visibleWidth, visibleHeight, p, v, percX, percY, left, top, widthPercentage, heightPercentage;
+	
 	if(modal != null){
-		var visibleWidth, visibleHeight, p, v, percX, percY, left, top;
 
 		// this will give us position relative to the world
 		
@@ -362,15 +364,63 @@ function positionTrackingOverlay()
 		left = percX * WIDTH;
 		top = percY * HEIGHT;
 		
-		var widthPercentage = (left - $("#modalpanel").width() / 2) / WIDTH * 100;
-		var heightPercentage = (top - $("#modalpanel").height()) / HEIGHT * 100;
+		widthPercentage = (left - $("#modalpanel").width() / 2) / WIDTH * 100;
+		heightPercentage = (top - $("#modalpanel").height()) / HEIGHT * 100;
 		
 		// position the overlay so that it's center is on top of
 		// the sphere we're tracking
 		$("#modalpanel")
 				.css('left', widthPercentage + '%')
 				.css('top', heightPercentage + '%');
+				
+	}if(tweetmodal != null){
+		
+		var visibleWidth, visibleHeight, p, v, percX, percY, left, top;
+		
+		tweetmodal.geometry.computeBoundingBox();
+		var boundingBox = tweetmodal.geometry.boundingBox;
+		var position = new THREE.Vector3();
+		position.subVectors( boundingBox.max, boundingBox.min );
+		position.multiplyScalar( 0.5 );
+		position.add( boundingBox.min );
+		position.applyMatrix4( tweetmodal.matrixWorld );
+		
+		p = position.clone();
+
+		// projectVector will translate position to 2d
+		v = projector.projectVector(p, camera);
+
+		// translate our vector so that percX=0 represents
+		// the left edge, percX=1 is the right edge,
+		// percY=0 is the top edge, and percY=1 is the bottom edge.
+		percX = (v.x + 1) / 2;
+		percY = (-v.y + 1) / 2;
+
+
+		// scale these values to our viewport size
+		left = percX * WIDTH;
+		top = percY * HEIGHT;
+				
+		widthPercentage = (left - $("#tweetpanel").width() / 2) / WIDTH * 100;
+		heightPercentage = (top - $("#tweetpanel").height()) / HEIGHT * 100;
+		
+		$("#tweetpanel")
+				.css('left', widthPercentage + '%')
+				.css('top', heightPercentage + '%');	
 	}
 }
 
-//var test = scene.getObjectByName( 'sprite', true );
+function animate() {
+	TWEEN.update();
+	controls.update();
+	stats.update();
+	//scene.overrideMaterial = depthMaterial;
+	render();
+	positionTrackingOverlay();
+	//scene.overrideMaterial = null;
+	//composer.render();
+	requestAnimationFrame( animate );
+}
+function render() {
+	renderer.render( scene, camera/*, depthTarget*/ );
+}

@@ -1,0 +1,54 @@
+button {
+	outline: 0;
+	background: #353535;
+	cursor: pointer;
+	border: none;
+	margin: 0;
+	height: 50px;
+	width: 50px;
+	-moz-transition:background-color 0.2s ease;
+    -webkit-transition:background-color 0.2s ease;
+    -o-transition:background-color 0.2s ease;
+    transition:background-color 0.2s ease;
+	font-size: 1em;
+	color: #aaa;
+	float: left;
+}
+button:hover, button.active {
+	background: #353535;
+	color: #fff;
+}
+a {
+	color: #666;
+	text-decoration:none;
+}
+a.grid-toggle, a.list-toggle {
+	color: #666;
+	text-decoration:none;
+	display: inline-block;
+	padding-bottom: 15px;
+	margin-right: 10px;
+}
+#labelpanel button {
+	background: #71BAB8;
+	cursor: pointer;
+	border: none;
+	width: 100%;
+	text-align: left;
+	margin: 0;
+	font-size: 1em;
+	color: #fff;
+	float: left;
+	padding: 10px 15px;
+	border-bottom: solid 2px #68b0ae;
+	border-radius: 3px;
+	margin-bottom: 10px;
+}
+#labelpanel button:hover, #labelpanel button:focus {
+	background: #68b0ae;
+	color: #fff;
+}
+#labelpanel button.active {
+	background: #68b0ae;
+	color: #fff;
+}

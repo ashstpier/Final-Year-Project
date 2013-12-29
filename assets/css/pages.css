@@ -1,0 +1,116 @@
+@charset "UTF-8";
+/* CSS Document */
+*, *:before, *:after {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+html, body {
+	margin: 0;
+	height: 100%;
+	width: 100%;
+	padding: 0;
+}
+body {
+	font-family: 'Open Sans', sans-serif;
+	font-weight: 300;
+	font-size: 14px;
+}
+p, .p, ul, ol, hr, table, form, pre,
+h1, .alpha, h2, .beta {
+	margin-bottom: 15px;
+	margin-top: 0;
+}
+
+h1, .alpha {
+	font-size: 100px;
+	font-weight: 700;
+}
+
+h2, .beta {
+	font-size: 18px;
+	font-weight: 400;
+}
+
+h3, .gamma {
+	font-size: 16px;
+	font-weight: 700;
+}
+
+a {
+	-moz-transition:color 0.2s ease;
+    -webkit-transition:color 0.2s ease;
+    -o-transition:color 0.2s ease;
+    transition:color 0.2s ease;
+}
+#navbar {
+	width: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index:99999;
+	background: #f3f3f3;
+	height: 70px;
+}
+#navbar ul#nav {
+	list-style:none;
+	margin: 0;
+	padding: 0;
+	text-align: right;
+}
+#navbar ul#nav li {
+	display:inline-block;
+	float: right;
+}
+#navbar ul#nav li:first-child {
+	float: left;
+}
+#navbar ul#nav li:first-child a {
+	padding-left: 0;
+}
+#navbar ul#nav li a {
+	display:block;
+	padding: 25px 30px;
+	letter-spacing: 0.1em;
+	height: 70px;
+	text-decoration: none;
+	font-size: 0.9em;
+	color: #999;
+	font-weight: bold;
+	text-transform: uppercase;
+	-moz-transition:all 0.2s ease;
+    -webkit-transition:all 0.2s ease;
+    -o-transition:all 0.2s ease;
+    transition:all 0.2s ease;
+}
+#navbar ul#nav li a:hover, ul#nav li a:focus {
+	color: #666;
+}
+#navbar ul#nav li a.active {
+	background: #1d2229;
+	color: #fff;
+	border-bottom: 5px solid #86CF94;
+}
+.divider { height: 70px; }
+
+#footer {
+	width: 100%;
+	padding: 5px 20px;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	z-index:99999;
+	background: #21262e;
+	height: 30px;
+}
+#footer ul {
+	width: 100%;
+	list-style:none;
+	margin: 0;
+	padding: 0;
+	text-align: center;
+}
+#footer ul li {
+	display:inline-block;
+	margin: 0 1em;
+}

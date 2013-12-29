@@ -1,0 +1,38 @@
+p, .p, ul, ol, hr, table, form, pre,
+h1, .alpha, h2, .beta {
+	margin-bottom: 15px;
+	margin-top: 0;
+}
+
+h1, .alpha {
+	font-size: 100px;
+	font-weight: 700;
+}
+
+h2, .beta {
+	font-size: 18px;
+	font-weight: 400;
+}
+
+h3, .gamma {
+	font-size: 16px;
+	font-weight: 700;
+}
+
+a {
+	-moz-transition:color 0.2s ease;
+    -webkit-transition:color 0.2s ease;
+    -o-transition:color 0.2s ease;
+    transition:color 0.2s ease;
+}
+#footer a {
+	color: #999;
+	font-size: 0.7em;
+	text-transform:uppercase;
+	font-weight: bold;
+	letter-spacing: 0.1em;
+	text-decoration: none;
+}
+#footer a:hover, #footer a:focus {
+	color: #666;
+}
