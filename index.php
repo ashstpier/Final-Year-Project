@@ -61,9 +61,34 @@
         <h2>Events</h2>
     </div>
     <div id="modalpanel" class="animated"></div>
-    <div id="tweetpanel" class="animated">
+    <div id="tweet_kentunion" class="tweetpanel animated">
 		<?php include_once 'twitter/display-tweet.php';
         	display_tweet('kentunion','time_since', 1, 30);
+    	?>
+    </div>
+    <div id="tweet_unikent" class="tweetpanel animated">
+		<?php include_once 'twitter/display-tweet.php';
+        	display_tweet('unikent','time_since', 1, 30);
+    	?>
+    </div>
+    <div id="tweet_unikentemploy" class="tweetpanel animated">
+		<?php include_once 'twitter/display-tweet.php';
+        	display_tweet('unikentemploy','time_since', 1, 30);
+    	?>
+    </div>
+    <div id="tweet_unikent_music" class="tweetpanel animated">
+		<?php include_once 'twitter/display-tweet.php';
+        	display_tweet('unikent_music','time_since', 1, 30);
+    	?>
+    </div>
+    <div id="tweet_edakent" class="tweetpanel animated">
+		<?php include_once 'twitter/display-tweet.php';
+        	display_tweet('edakent','time_since', 1, 30);
+    	?>
+    </div>
+    <div id="tweet_parkwoodsc" class="tweetpanel animated">
+		<?php include_once 'twitter/display-tweet.php';
+        	display_tweet('parkwoodsc','time_since', 1, 30);
     	?>
     </div>
     <div id="controls">

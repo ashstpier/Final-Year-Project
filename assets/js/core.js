@@ -23,7 +23,6 @@ var jsonFileNames = [
 	'assets/models/Darwin_Houses.js',
 	'assets/models/Denstead_Court.js',
 	'assets/models/Eliot_College.js',
-	'assets/models/Eliot_Extension.js',
 	'assets/models/Ellenden_Court.js',
 	'assets/models/Estates_Department.js',
 	'assets/models/Farthings_Court.js',
@@ -35,6 +34,7 @@ var jsonFileNames = [
 	'assets/models/Homestall_Court.js',
 	'assets/models/Hothe_Court.js',
 	'assets/models/Ingram.js',
+	'assets/models/Innovation_Center.js',
 	'assets/models/Jarman.js',
 	'assets/models/Jennison.js',
 	'assets/models/Kemsdale_Court.js',
@@ -49,7 +49,6 @@ var jsonFileNames = [
 	'assets/models/Marley_Court.js',
 	'assets/models/Marlowe.js',
 	'assets/models/Missing_Link.js',
-	'assets/models/NatWest.js',
 	'assets/models/Nickle_Court.js',
 	'assets/models/Oaks_Day_Nursery.js',
 	'assets/models/Olive_Cottages.js',
@@ -59,18 +58,13 @@ var jsonFileNames = [
 	'assets/models/Registry.js',
 	'assets/models/Research_and_Development_Centre.js',
 	'assets/models/Rothford.js',
-	'assets/models/Rutherford_Annexe.js',
 	'assets/models/Rutherford_College.js',
-	'assets/models/Rutherford_Extension.js',
-	'assets/models/Rutherford_Ground_Extension.js',
-	'assets/models/Santander.js',
 	'assets/models/Senate.js',
 	'assets/models/Sports_Centre.js',
 	'assets/models/Sports_Pavillion.js',
 	'assets/models/Stacey.js',
 	'assets/models/Stock_Court.js',
 	'assets/models/Tanglewood.js',
-	'assets/models/Telephone_Exchange.js',
 	'assets/models/Templeman_Library.js',
 	'assets/models/Thornden_Court.js',
 	'assets/models/Tudor_Court.js',
@@ -83,7 +77,7 @@ var jsonFileNames = [
 	'assets/models/Willows_Court.js',
 	'assets/models/Woodlands.js',
 	'assets/models/Woodys.js',
-	'assets/models/Woolf_Flats.js',
+	'assets/models/Woolf_Blocks.js',
 	'assets/models/Woolf_Main.js',
 	'assets/models/Woolf_Pavillion.js',
 	'assets/models/Woolf_Residential.js'
@@ -111,7 +105,6 @@ var buildingNames = [
 	'Darwin Houses',
 	'Denstead Court',
 	'Eliot College',
-	'Eliot Extension',
 	'Ellenden Court',
 	'Estates Department',
 	'Farthings Court',
@@ -123,6 +116,7 @@ var buildingNames = [
 	'Homestall Court',
 	'Hothe Court',
 	'Ingram',
+	'Innovation Center',
 	'Jarman',
 	'Jennison',
 	'Kemsdale Court',
@@ -137,7 +131,6 @@ var buildingNames = [
 	'Marley Court',
 	'Marlowe',
 	'Missing Link',
-	'NatWest',
 	'Nickle Court',
 	'Oaks Day Nursery',
 	'Olive Cottages',
@@ -147,18 +140,13 @@ var buildingNames = [
 	'Registry',
 	'Research and Development Centre',
 	'Rothford',
-	'Rutherford Annexe',
 	'Rutherford College',
-	'Rutherford Extension',
-	'Rutherford Ground Extension',
-	'Santander',
 	'Senate',
 	'Sports Centre',
 	'Sports Pavillion',
 	'Stacey',
 	'Stock Court',
 	'Tanglewood',
-	'Telephone Exchange',
 	'Templeman Library',
 	'Thornden Court',
 	'Tudor Court',
@@ -196,7 +184,7 @@ function init() {
 	
 	camera = new THREE.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 10, 2000 );
 	camera.position.z = 500;
-	camera.position.y = 200;
+	camera.position.y = 300;
 	
 	//////// ORBIT CONTROLS /////////
 
@@ -227,20 +215,32 @@ function init() {
 		renderer.render(scene);
 	})
 	mapmaterial = new THREE.MeshBasicMaterial({map: texture})
-	ground = new THREE.Mesh( new THREE.PlaneGeometry( 1200, 628, 8, 8 ), mapmaterial );
+	ground = new THREE.Mesh( new THREE.PlaneGeometry( 1200, 960, 8, 8 ), mapmaterial );
 	ground.rotation.x += 270 * Math.PI / 180;
 	scene.add( ground );
+	group.add( ground )
 	
-	plane = new THREE.Mesh( new THREE.PlaneGeometry( 1200, 628, 8, 8 ), new THREE.MeshBasicMaterial( { transparent: true, wireframe: true } ) );
+	plane = new THREE.Mesh( new THREE.PlaneGeometry( 1200, 960, 8, 8 ), new THREE.MeshBasicMaterial( { transparent: true, wireframe: true } ) );
 	plane.visible = false;
 	scene.add( plane );
 	plane.rotation.x += 270 * Math.PI / 180;
-		
-	group.add( ground )
 	
 	var material = new THREE.MeshLambertMaterial({ color: 0xcccccc });
 	
 	var loader = new THREE.JSONLoader();
+	
+	loader.load( "assets/models/trees.js", function( geometry, materials ) {
+        mesh = new THREE.Mesh( geometry, new THREE.MeshFaceMaterial(materials) );
+        mesh.scale.set( 1, 1, 1 );
+		group.add( mesh );
+    } );
+	
+	/*loader.load( "assets/models/cloud.js", function( geometry, materials ) {
+        mesh = new THREE.Mesh( geometry, new THREE.MeshLambertMaterial({ color: 0xcccccc, transparent: true, opacity: 0.8 }) );
+        mesh.scale.set( 1, 1, 1 );
+		mesh.position.set( 0, 0, 0);
+		group.add( mesh );
+    } );*/
 	
 	for(var i = 0; i < jsonFileNames.length; i++){
 		var spriteName = buildingNames[i];
@@ -252,7 +252,7 @@ function init() {
 		return function(geometry, materials) {
 			mesh =  new THREE.Mesh( geometry, material );
 			mesh.scale.set( 1, 1, 1 );
-			mesh.position.set( -36, 0, -9 );
+			mesh.position.set( 0, 0, 0 );
 			clickobjects.push( mesh );
 			group.add( mesh );
 			mesh.name = meshName;
@@ -401,10 +401,10 @@ function positionTrackingOverlay()
 		left = percX * WIDTH;
 		top = percY * HEIGHT;
 				
-		widthPercentage = (left - $("#tweetpanel").width() / 2) / WIDTH * 100;
-		heightPercentage = (top - $("#tweetpanel").height()) / HEIGHT * 100;
+		widthPercentage = (left - $(".tweetpanel").width() / 2) / WIDTH * 100;
+		heightPercentage = (top - $(".tweetpanel").height()) / HEIGHT * 100;
 		
-		$("#tweetpanel")
+		$(".tweetpanel")
 				.css('left', widthPercentage + '%')
 				.css('top', heightPercentage + '%');	
 	}

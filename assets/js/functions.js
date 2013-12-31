@@ -33,7 +33,7 @@ function makeTextSprite( message, name )
 	position.add( boundingBox.min );
 	position.applyMatrix4( name.matrixWorld );
 	
-	sprite.position.set( position.x - 36, boundingBox.max.y + 60, position.z - 9 );
+	sprite.position.set( position.x, boundingBox.max.y + 60, position.z );
 	sprite.scale.set(60,30,1.0);
 	return sprite;	
 }
@@ -83,7 +83,7 @@ function makeIcon(mesh) {
 		position.add( boundingBox.min );
 		position.applyMatrix4( mesh.matrixWorld );
 		
-		icon.position.set( position.x - 36, boundingBox.max.y + 60, position.z - 9 );
+		icon.position.set( position.x, boundingBox.max.y + 60, position.z );
 		scene.add( icon );
 		group.add( icon);
 		locationIcons.push( icon );
@@ -96,7 +96,9 @@ function tweetIcon(mesh) {
 	mesh.name == "Jennison" ||
 	mesh.name == "Locke" || 
 	mesh.name == "Careers_Employability_Service" || 
-	mesh.name == "Templeman_Library"
+	mesh.name == "Templeman_Library" ||
+	mesh.name == "Colyer_Fergusson" ||
+	mesh.name == "Parkwood_Administration"
 	){
 		texture = THREE.ImageUtils.loadTexture('assets/images/icons/ico_twitter.png', {}, function() {
 			renderer.render(scene);
@@ -111,10 +113,11 @@ function tweetIcon(mesh) {
 		position.add( boundingBox.min );
 		position.applyMatrix4( mesh.matrixWorld );
 		
-		icon.position.set( position.x - 36, boundingBox.max.y + 20, position.z - 9 );
+		icon.name = mesh.name;
+		icon.position.set( position.x, boundingBox.max.y + 20, position.z );
 		scene.add( icon );
 		group.add( icon);
-		tweetobjects.push( icon );
+		clickobjects.push( icon );
 		icon.material.opacity = 1;
 		
 		var tweenOne = new TWEEN.Tween( icon.position ).to( { y: boundingBox.max.y + 25 }, 1000 ).easing( TWEEN.Easing.Sinusoidal.InOut);

@@ -1,6 +1,6 @@
 button {
 	outline: 0;
-	background: #353535;
+	background: #242B31;
 	cursor: pointer;
 	border: none;
 	margin: 0;
@@ -15,10 +15,14 @@ button {
 	float: left;
 }
 button:hover, button.active {
-	background: #353535;
+	background: #2f363d;
 	color: #fff;
 }
 a {
+	-moz-transition:all 0.2s ease;
+    -webkit-transition:all 0.2s ease;
+    -o-transition:all 0.2s ease;
+    transition:all 0.2s ease;
 	color: #666;
 	text-decoration:none;
 }

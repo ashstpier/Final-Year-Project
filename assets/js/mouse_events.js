@@ -28,72 +28,66 @@ function onDocumentMouseUp( event ) {
 
 	if ( intersects.length > 0 ) {
 		
-		$('#modalpanel').empty();
-		$("#modalpanel").removeClass('fadeInDown opaque');
-		$("#tweetpanel").removeClass('fadeInDown opaque');
-		var time = 1000;
-		var node = intersects[0].object.name;
-		
-		$(xml).find(node).each(function(){
-			var content = $(this).find('content').text();
-			$(content).appendTo('#modalpanel');
-		});
-		
-		modal = intersects[0].object;
-		
-		modal.geometry.computeBoundingBox();
-		var boundingBox = modal.geometry.boundingBox;
-		var position = new THREE.Vector3();
-		position.subVectors( boundingBox.max, boundingBox.min );
-		position.multiplyScalar( 0.5 );
-		position.add( boundingBox.min );
-		position.applyMatrix4( modal.matrixWorld );
-			
-		if (camera.position.z >= position.z && controls.center.z <= camera.position.z){
-			new TWEEN.Tween( camera.position ).to( { x: 0, y: 110, z: 100 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {$("#modalpanel").addClass('fadeInDown opaque');}).start();
-		}else if (camera.position.z >= position.z && controls.center.z >= camera.position.z) {
-			new TWEEN.Tween( camera.position ).to( { x: 0, y: 110, z: - 100 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {$("#modalpanel").addClass('fadeInDown opaque');}).start();
+		if ( intersects[0].object.name == "Jennison" ) {
+			var tweetcontainer = "#tweet_edakent";
+			twitterMap(intersects, tweetcontainer);
+		} 
+		else if ( intersects[0].object.name == "Locke" ) {
+			var tweetcontainer = "#tweet_kentunion";
+			twitterMap(intersects, tweetcontainer);
+		} 
+		else if ( intersects[0].object.name == "Templeman_Library" ) {
+			var tweetcontainer = "#tweet_unikent";
+			twitterMap(intersects, tweetcontainer);
+		} 
+		else if ( intersects[0].object.name == "Careers_Employability_Service" ) {
+			var tweetcontainer = "#tweet_unikentemploy";
+			twitterMap(intersects, tweetcontainer);
+		} 
+		else if ( intersects[0].object.name == "Colyer_Fergusson" ) {
+			var tweetcontainer = "#tweet_unikent_music";
+			twitterMap(intersects, tweetcontainer);
 		}
-		else if (camera.position.z <= position.z && controls.center.z <= camera.position.z) {
-			new TWEEN.Tween( camera.position ).to( { x: 0, y: 110, z: 100 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {$("#modalpanel").addClass('fadeInDown opaque');}).start();
-		}
+		else if ( intersects[0].object.name == "Parkwood_Administration" ) {
+			var tweetcontainer = "#tweet_parkwoodsc";
+			twitterMap(intersects, tweetcontainer);
+		} 
 		else {
-			new TWEEN.Tween( camera.position ).to( { x: 0, y: 110, z: - 100 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {$("#modalpanel").addClass('fadeInDown opaque');}).start();
-		}
-		new TWEEN.Tween( group.position ).to( { x: group.position.x - position.x, y: 0, z: group.position.z - position.z }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).start();
 		
-	}
-	
-	var intersects = raycaster.intersectObjects( tweetobjects, true );
-	
-	if ( intersects.length > 0 ) {
-		
-		$("#modalpanel").removeClass('fadeInDown opaque');
-		$("#tweetpanel").removeClass('fadeInDown opaque');
-		var time = 1000;
+			$('#modalpanel').empty();
+			$("#modalpanel").removeClass('fadeInDown opaque');
+			$(".tweetpanel").removeClass('fadeInDown opaque');
+			var time = 1000;
+			var node = intersects[0].object.name;
+			
+			$(xml).find(node).each(function(){
+				var content = $(this).find('content').text();
+				$(content).appendTo('#modalpanel');
+			});
+			
+			modal = intersects[0].object;
+			
+			modal.geometry.computeBoundingBox();
+			var boundingBox = modal.geometry.boundingBox;
+			var position = new THREE.Vector3();
+			position.subVectors( boundingBox.max, boundingBox.min );
+			position.multiplyScalar( 0.5 );
+			position.add( boundingBox.min );
+			position.applyMatrix4( modal.matrixWorld );
 				
-		tweetmodal = intersects[0].object;
-		
-		tweetmodal.geometry.computeBoundingBox();
-		var boundingBox = tweetmodal.geometry.boundingBox;
-		var position = new THREE.Vector3();
-		position.subVectors( boundingBox.max, boundingBox.min );
-		position.multiplyScalar( 0.5 );
-		position.add( boundingBox.min );
-		position.applyMatrix4( tweetmodal.matrixWorld );
-			
-		if (camera.position.z >= position.z && controls.center.z <= camera.position.z){
-			new TWEEN.Tween( camera.position ).to( { x: 0, y: 110, z: 150 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {$("#tweetpanel").addClass('fadeInDown opaque');}).start();
-		}else if (camera.position.z >= position.z && controls.center.z >= camera.position.z) {
-			new TWEEN.Tween( camera.position ).to( { x: 0, y: 110, z: - 150 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {$("#tweetpanel").addClass('fadeInDown opaque');}).start();
+			if (camera.position.z >= position.z && controls.center.z <= camera.position.z){
+				new TWEEN.Tween( camera.position ).to( { x: 0, y: 110, z: 150 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {$("#modalpanel").addClass('fadeInDown opaque');}).start();
+			}else if (camera.position.z >= position.z && controls.center.z >= camera.position.z) {
+				new TWEEN.Tween( camera.position ).to( { x: 0, y: 110, z: - 150 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {$("#modalpanel").addClass('fadeInDown opaque');}).start();
+			}
+			else if (camera.position.z <= position.z && controls.center.z <= camera.position.z) {
+				new TWEEN.Tween( camera.position ).to( { x: 0, y: 110, z: 150 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {$("#modalpanel").addClass('fadeInDown opaque');}).start();
+			}
+			else {
+				new TWEEN.Tween( camera.position ).to( { x: 0, y: 110, z: - 150 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {$("#modalpanel").addClass('fadeInDown opaque');}).start();
+			}
+			new TWEEN.Tween( group.position ).to( { x: group.position.x - position.x, y: -30, z: group.position.z - position.z }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).start();
 		}
-		else if (camera.position.z <= position.z && controls.center.z <= camera.position.z) {
-			new TWEEN.Tween( camera.position ).to( { x: 0, y: 110, z: 150 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {$("#tweetpanel").addClass('fadeInDown opaque');}).start();
-		}
-		else {
-			new TWEEN.Tween( camera.position ).to( { x: 0, y: 110, z: - 150 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {$("#tweetpanel").addClass('fadeInDown opaque');}).start();
-		}
-		new TWEEN.Tween( group.position ).to( { x: group.position.x - position.x, y: 0, z: group.position.z - position.z }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).start();
 		
 	}
 	
@@ -103,6 +97,35 @@ function onDocumentMouseUp( event ) {
 	}
 	container.style.cursor = 'move';
 	controls.enabled = true;
+}
+
+function twitterMap(intersects, tweetcontainer){
+	$("#modalpanel").removeClass('fadeInDown opaque');
+	$(".tweetpanel").removeClass('fadeInDown opaque');
+	var time = 1000;
+			
+	tweetmodal = intersects[0].object;
+	
+	tweetmodal.geometry.computeBoundingBox();
+	var boundingBox = tweetmodal.geometry.boundingBox;
+	var position = new THREE.Vector3();
+	position.subVectors( boundingBox.max, boundingBox.min );
+	position.multiplyScalar( 0.5 );
+	position.add( boundingBox.min );
+	position.applyMatrix4( tweetmodal.matrixWorld );
+		
+	if (camera.position.z >= position.z && controls.center.z <= camera.position.z){
+		new TWEEN.Tween( camera.position ).to( { x: 0, y: 110, z: 150 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {$(tweetcontainer).addClass('fadeInDown opaque');}).start();
+	}else if (camera.position.z >= position.z && controls.center.z >= camera.position.z) {
+		new TWEEN.Tween( camera.position ).to( { x: 0, y: 110, z: - 150 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {$(tweetcontainer).addClass('fadeInDown opaque');}).start();
+	}
+	else if (camera.position.z <= position.z && controls.center.z <= camera.position.z) {
+		new TWEEN.Tween( camera.position ).to( { x: 0, y: 110, z: 150 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {$(tweetcontainer).addClass('fadeInDown opaque');}).start();
+	}
+	else {
+		new TWEEN.Tween( camera.position ).to( { x: 0, y: 110, z: - 150 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {$(tweetcontainer).addClass('fadeInDown opaque');}).start();
+	}
+	new TWEEN.Tween( group.position ).to( { x: group.position.x - position.x, y: -30, z: group.position.z - position.z }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {$(tweetcontainer).addClass('fadeInDown opaque');}).start();
 }
 
 //////// MOUSEMOVE EVENT /////////

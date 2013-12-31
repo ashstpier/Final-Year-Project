@@ -55,6 +55,18 @@ function cache_json($usr_1,$max_tweets,$time) {
     case "kentunion":
         $cache = 'cache/kentunion_tweet.json';
         break;
+	case "edakent":
+        $cache = 'cache/edakent_tweet.json';
+        break;
+	case "unikentemploy":
+        $cache = 'cache/unikentemploy_tweet.json';
+        break;
+	case "unikent_music":
+        $cache = 'cache/unikent_music_tweet.json';
+        break;
+	case "parkwoodsc":
+        $cache = 'cache/parkwoodsc_tweet.json';
+        break;
 	}
 	
 	if (!file_exists($cache)) {//if cache file doesnt exist

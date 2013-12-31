@@ -22,17 +22,26 @@
     </ul>
 </div>
 <div id="leftdrawer">
-    <ul id="filters">
+	<h2>Filter</h2>
+	<ul id="filters">
       <li><a href="#" data-filter="*"><i class="fa fa-th-large"></i>&nbsp; Show all</a></li>
+    </ul>
+    <h2>Twitter</h2>
+    <ul id="filters">
       <li><a href="#" data-filter=".UniKent"><i class="fa fa-twitter"></i>&nbsp; University of Kent</a></li>
       <li><a href="#" data-filter=".KentUnion"><i class="fa fa-twitter"></i>&nbsp; Kent Union</a></li>
+      <li><a href="#" data-filter=".UniKentNews"><i class="fa fa-twitter"></i>&nbsp; Uni Kent News</a></li>
+      <li><a href="#" data-filter=".UniKentEmploy"><i class="fa fa-twitter"></i>&nbsp; Uni Kent Employ</a></li>
+      <li><a href="#" data-filter=".UniKent_Music"><i class="fa fa-twitter"></i>&nbsp; Uni Kent Music</a></li>
+      <li><a href="#" data-filter=".edakent"><i class="fa fa-twitter"></i>&nbsp; EDA Kent</a></li>
     </ul>
+    <h2>Youtube</h2>
 </div>
 <div id="wrapper">
 	<a href="#" class="grid-toggle"><i class="fa fa-th-large"></i>&nbsp; Grid</a>
     <a href="#" class="list-toggle"><i class="fa fa-th-list"></i>&nbsp; List</a>
 	<?php include_once 'twitter/display-tweets.php';
-        display_tweets('unikent', 'kentunion','time_since', 10, 30);
+        display_tweets('unikent', 'kentunion','unikentemploy','unikent_music','unikentnews','edakent','time_since', 10, 30);
     ?>
     <ul>
         <li><a href="pages/about.php">About</a></li>

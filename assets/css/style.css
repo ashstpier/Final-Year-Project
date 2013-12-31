@@ -82,7 +82,7 @@ body {
 }
 #leftnav {
 	height: 100%;
-	background: #353535;
+	background: #242B31;
 	width: 50px;
 	position: fixed;
 	padding-top: 70px;
@@ -96,30 +96,38 @@ body {
 }
 #leftdrawer {
 	height: 100%;
-	background: #353535;
+	background: #242B31;
 	color: #fff;
 	width: 240px;
 	position: fixed;
-	padding: 80px 20px 20px 20px;
+	padding: 80px 0 0 0;
 	z-index: 9999;
 	border-right: #e6e6e6 solid 1px;
 	top: 0;
 	left: 0;
 }
+#leftdrawer h2 {
+	color: #4c575e;
+	padding: 0 25px;
+	font-weight: bold;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	font-size: 95%;
+	margin: 20px 0 10px;
+}
 #leftdrawer ul {
 	margin: 0;
 	list-style: none;
 }
-#leftdrawer ul li {
-	padding: 10px 0;
-	border-bottom:1px solid #353535;
-}
 #leftdrawer ul li a {
-	color: #aaa;
+	color: #ccc;
 	text-decoration: none;
+	display: block;
+	padding: 10px 20px 10px 40px;
 }
 #leftdrawer ul li a:hover {
 	color: #fff;
+	background: #2f363d;
 }
 #labelpanel, #eventpanel {
 	-webkit-box-sizing: content-box;
@@ -131,11 +139,19 @@ body {
 	left: 0;
 	top: 0;
 	z-index: 9999;
-	background: #353535;
+	background: #2f363d;
 	padding: 85px 20px 20px 20px;
 	margin-left: 50px;
 	color: #ccc;
 	display: none;
+}
+#labelpanel h2, #eventpanel h2 {
+	color: #4c575e;
+	font-weight: bold;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	font-size: 95%;
+	margin: 5px 0 15px;
 }
 #modalpanel {
 	position: absolute;
@@ -147,7 +163,7 @@ body {
 	border: 1px solid #e6e6e6;
 	border-radius: 5px;
 }
-#tweetpanel {
+.tweetpanel {
 	position: absolute;
 	z-index: 99;
 	display: none;
