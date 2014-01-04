@@ -160,7 +160,7 @@ var buildingNames = [
 	'Woodlands',
 	'Woodys',
 	'Woolf Flats',
-	'Woolf Main',
+	'Woolf College',
 	'Woolf Pavillion',
 	'Woolf Residential'
 ];
@@ -184,7 +184,7 @@ function init() {
 	
 	camera = new THREE.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 10, 2000 );
 	camera.position.z = 500;
-	camera.position.y = 300;
+	camera.position.y = 350;
 	
 	//////// ORBIT CONTROLS /////////
 
@@ -295,7 +295,7 @@ function init() {
 		success: function(data) { xml = data;}
 	});
 
-	document.getElementById("app").addEventListener( 'mousemove', onDocumentMouseMove, false );
+	document.getElementById("mapwrapper").addEventListener( 'mousemove', onDocumentMouseMove, false );
 	document.getElementById("app").addEventListener( 'mousedown', onDocumentMouseDown, false );
 	document.getElementById("app").addEventListener( 'mouseup', onDocumentMouseUp, false );
 

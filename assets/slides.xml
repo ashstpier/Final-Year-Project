@@ -1,232 +1,398 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
 <slides>
     <Aphra_Theatre>
-        <content>
-            <![CDATA[
-				<section>
-					<h2>Aphra Theatre</h2>
-                	<p>this is the brief description.</p>
-				</section>
-			]]>
-        </content>
+        <header>Aphra Theatre</header>
+		<description>this is the brief description.</description>
+		<area><![CDATA[<i class="fa fa-film"></i>Theatre]]></area>
     </Aphra_Theatre>
     <Becket_Court>
-        <content>
-            <![CDATA[ 
-				<img src="assets/images/buildings/becket_court.jpg" alt="Becket Court" />
-				<section>
-					<h2>Becket Court</h2>
-                	<p>Named after Thomas Becket and located adjacent to Eliot College, Becket Court offers en suite rooms on a bed and bistro basis.</p>
-				</section>
-			]]>
-        </content>
+		<header>Becket Court</header>
+		<description>Named after Thomas Becket and located adjacent to Eliot College, Becket Court offers en suite rooms on a bed and bistro basis.</description>
+		<area><![CDATA[<i class="fa fa-home"></i>Accomodation]]></area>
     </Becket_Court>
     <Bishopden_Court>
-        <content>
-            <![CDATA[ 
-				<section>
-					<h2>Bishopden Court</h2>
-					<p>this is the brief description.</p>
-				</section>
-			]]>
-        </content>
+        <header>Bishopden Court</header>
+		<description>this is the brief description.</description>
+		<area><![CDATA[<i class="fa fa-home"></i>Accomodation]]></area>
     </Bishopden_Court>
     <Boiler_House>
-        <content>
-            <![CDATA[
-				<section>
-					<h2>Boiler House</h2>
-					<p>this is the brief description.</p>
-				</section>
-			]]>
-        </content>
+        <header>Boiler House</header>
+		<description>this is the brief description.</description>
+		<area><![CDATA[<i class="fa fa-leaf"></i>Maintenance]]></area>
     </Boiler_House>
     <Bossenden_Court>
-        <content>
-            <![CDATA[
-				<section>
-					<h2>Bossenden Court</h2>
-                	<p>this is the brief description.</p>
-				</section>
-			]]>
-        </content>
+        <header>Bossenden Court</header>
+		<description>this is the brief description.</description>
+		<area><![CDATA[<i class="fa fa-home"></i>Accomodation]]></area>
     </Bossenden_Court>
     <Campus_Watch>
-        <content>
-            <![CDATA[
-				<section>
-					<h2>Campus Watch</h2>
-                	<p>this is the brief description.</p>
-				</section>
-			]]>
-        </content>
+        <header>Campus Watch</header>
+		<description>this is the brief description.</description>
+		<area><![CDATA[<i class="fa fa-leaf"></i>Maintenance]]></area>
     </Campus_Watch>
     <Careers_Employability_Service>
-        <content>
-            <![CDATA[
-				<section>
-					<h2>Careers Employability Service</h2>
-                	<p>this is the brief description.</p>
-				</section>
-			]]>
-        </content>
+        <header>Careers Employability Service</header>
+		<description>this is the brief description.</description>
+		<area><![CDATA[<i class="fa fa-info"></i>Admin]]></area>
     </Careers_Employability_Service>
     <Clowes_Court>
-        <content>
-            <![CDATA[
-				<section>
-					<h2>Clowes Court</h2>
-                	<p>this is the brief description.</p>
-				</section>
-			]]>
-        </content>
+        <header>Clowes Court</header>
+		<description>this is the brief description.</description>
+		<area><![CDATA[<i class="fa fa-home"></i>Accomodation]]></area>
     </Clowes_Court>
     <Colyer_Fergusson>
-        <content>
-            <![CDATA[
-				<section>
-					<h2>Colyer Fergusson</h2>
-                	<p>this is the brief description.</p>
-				<section>
-			]]>
-        </content>
+        <header>Colyer Fergusson</header>
+		<description>this is the brief description.</description>
+		<area><![CDATA[<i class="fa fa-music"></i>Music]]></area>
     </Colyer_Fergusson>
     <Cornwallis_George_Allen_Wing>
-		<content>
-			<![CDATA[
-				<section>
-					<h2>Cornwallis George Allen Wing</h2>
-					<p>this is the brief description.</p>
-				</section>
-			]]>
-		</content>
+		<header>Cornwallis George Allen Wing</header>
+		<description>this is the brief description.</description>
+		<area><![CDATA[<i class="fa fa-users"></i>Sociology]]></area>
 	</Cornwallis_George_Allen_Wing>
     <Cornwallis_Mathematics_Institute>
-		<content>
-			<![CDATA[
-				<section>
-					<h2>Cornwallis Mathematics Institute</h2>
-					<p>this is the brief description.</p>
-				</section>
-			]]>
-		</content>
+		<header>Cornwallis Mathematics Institute</header>
+		<description>this is the brief description.</description>
+		<area><![CDATA[<i class="fa fa-bar-chart-o"></i>Maths]]></area>
 	</Cornwallis_Mathematics_Institute>
     <Cornwallis_North_East>
-		<content>
-			<![CDATA[
-				<section>
-					<h2>Cornwallis North East</h2>
-					<p>this is the brief description.</p>
-				</section>
-			]]>
-		</content>
+		<header>Cornwallis North East</header>
+		<description>this is the brief description.</description>
+		<area><![CDATA[<i class="fa fa-users"></i>Sociology]]></area>
 	</Cornwallis_North_East>
     <Cornwallis_North_West>
-		<content>
-			<![CDATA[
-				<section>
-					<h2>Cornwallis North West</h2>
-					<p>this is the brief description.</p>
-				</section>
-			]]>
-		</content>
+		<header>Cornwallis North West</header>
+		<description>this is the brief description.</description>
+		<area><![CDATA[<i class="fa fa-globe"></i>Languages]]></area>
 	</Cornwallis_North_West>
     <Cornwallis_South_East>
-		<content>
-			<![CDATA[
-				<section>
-					<h2>Cornwallis South East</h2>
-					<p>this is the brief description.</p>
-				</section>
-			]]>
-		</content>
+		<header>Cornwallis South East</header>
+		<description>this is the brief description.</description>
+		<area><![CDATA[<i class="fa fa-bar-chart-o"></i>Maths]]></area>
 	</Cornwallis_South_East>
     <Cornwallis_South_West>
-		<content>
-			<![CDATA[
-				<section>
-					<h2>Cornwallis South West</h2>
-					<p>this is the brief description.</p>
-				</section>
-			]]>
-		</content>
+		<header>Cornwallis South West</header>
+		<description>this is the brief description.</description>
+		<area><![CDATA[<i class="fa fa-desktop"></i>Computing]]></area>
 	</Cornwallis_South_West>
-    Cornwallis_South
-    Cornwallis_West
-    Darwin_College
-    Darwin_Houses
-    Denstead_Court
-    Eliot_College
-    Eliot_Extension
-    Ellenden_Court
-    Estates_Department
-    Farthings_Court
-    Giles_Lane_Teaching_Complex
-    Grimmond
-    Grimshill_Court
-    Ground_Maintenance
-    Gulbenkian
-    Homestall_Court
-    Hothe_Court
-    Ingram
-    Jarman
-    Jennison
-    Kemsdale_Court
-    Kent_Business_School
-    Kent_Enterprise_Hub
-    Kent_Law_School
-    Keynes_Block_P
-    Keynes_Block_S
-    Keynes_Block_T
-    Keynes_College
-    Locke
-    Lypeatt_Court
-    Mandela_Building
-    Marley_Court
-    Marlowe
-    Missing_Link
-    NatWest
-    Nickle_Court
-    Oaks_Day_Nursery
-    Olive_Cottages
-    Parkwood_Administration
-    Parkwood_Shop
-    Purchas_Court
-    Registry
-    Research_and_Development_Centre
-    Rothford
-    Rutherford_Annexe
-    Rutherford_College
-    Rutherford_Extension
-    Rutherford_Ground_Extension
-    Santander
-    Senate
-    Sports_Centre
-    Sports_Pavillion
-    Stacey
-    Stock_Court
-    Tanglewood
-    Telephone_Exchange
-    Templeman_Library
-    Thornden_Court
-    Tudor_Court
-    Tyler_Court_A
-    Tyler_Court_B
-    Tyler_Court_C
-    UELT
-    University_Medical_Centre
-    Venue
-    Willows_Court
-    Woodlands
-    Woodys
-    Woolf_Block_A
-    Woolf_Block_B
-    Woolf_Block_C
-    Woolf_Block_D
-    Woolf_Block_E
-    Woolf_Block_F
-    Woolf_Block_G
-    Woolf_Block_H
-    Woolf_Main
-    Woolf_Pavillion
-    Woolf_Residential </slides>
+	<Cornwallis_South>
+		<header>Cornwallis South</header>
+		<description>this is the brief description.</description>
+		<area><![CDATA[<i class="fa fa-desktop"></i>Computing]]></area>
+	</Cornwallis_South>
+    <Cornwallis_West>
+		<header>Cornwallis West</header>
+		<description>this is the brief description.</description>
+		<area><![CDATA[<i class="fa fa-globe"></i>Languages]]></area>
+	</Cornwallis_West>
+    <Darwin_College>
+		<header>Darwin College</header>
+		<description>this is the brief description.</description>
+		<area><![CDATA[<i class="fa fa-book"></i>College]]></area>
+	</Darwin_College>
+    <Darwin_Houses>
+		<header>Darwin Houses</header>
+		<description>this is the brief description.</description>
+		<area><![CDATA[<i class="fa fa-home"></i>Accomodation]]></area>
+	</Darwin_Houses>
+	<Denstead_Court>
+		<header>Denstead Court</header>
+		<description>this is the brief description.</description>
+		<area><![CDATA[<i class="fa fa-home"></i>Accomodation]]></area>
+	</Denstead_Court>
+	<Eliot_College>
+		<header>Eliot College</header>
+		<description>this is the brief description.</description>
+		<area><![CDATA[<i class="fa fa-book"></i>College]]></area>
+	</Eliot_College>
+	<Ellenden_Court>
+		<header>Ellenden Court</header>
+		<description>this is the brief description.</description>
+		<area><![CDATA[<i class="fa fa-home"></i>Accomodation]]></area>
+	</Ellenden_Court>
+    <Estates_Department>
+		<header>Estates Department</header>
+		<description>this is the brief description.</description>
+		<area><![CDATA[<i class="fa fa-leaf"></i>Maintenance]]></area>
+	</Estates_Department>
+    <Farthings_Court>
+		<header>Farthings Court</header>
+		<description>this is the brief description.</description>
+		<area><![CDATA[<i class="fa fa-home"></i>Accomodation]]></area>
+	</Farthings_Court>
+	<Giles_Lane_Teaching_Complex>
+		<header>Giles Lane Teaching Complex</header>
+		<description>this is the brief description.</description>
+		<area><![CDATA[<i class="fa fa-book"></i>Teaching]]></area>
+	</Giles_Lane_Teaching_Complex>
+    <Grimmond>
+		<header>Grimmond</header>
+		<description>this is the brief description.</description>
+		<area><![CDATA[<i class="fa fa-laptop"></i>Computing]]></area>
+	</Grimmond>
+    <Grimshill_Court>
+		<header>Grimshill Court</header>
+		<description>this is the brief description.</description>
+		<area><![CDATA[<i class="fa fa-home"></i>Accomodation]]></area>
+	</Grimshill_Court>
+	<Ground_Maintenance>
+		<header>Ground Maintenance</header>
+		<description>this is the brief description.</description>
+		<area><![CDATA[<i class="fa fa-leaf"></i>Maintenance]]></area>
+	</Ground_Maintenance>
+    <Gulbenkian>
+		<header>Gulbenkian</header>
+		<description>this is the brief description.</description>
+		<area><![CDATA[<i class="fa fa-film"></i>Theatre]]></area>
+	</Gulbenkian>
+	<Homestall_Court>
+		<header>Homestall Court</header>
+		<description>this is the brief description.</description>
+		<area><![CDATA[<i class="fa fa-home"></i>Accomodation]]></area>
+	</Homestall_Court>
+	<Hothe_Court>
+		<header>Hothe Court</header>
+		<description>this is the brief description.</description>
+		<area><![CDATA[<i class="fa fa-home"></i>Accomodation]]></area>
+	</Hothe_Court>
+    <Ingram>
+		<header>Ingram</header>
+		<description>this is the brief description.</description>
+		<area><![CDATA[<i class="fa fa-flask"></i>Science]]></area>
+	</Ingram>
+	<Innovation_Center>
+		<header>Innovation Center</header>
+		<description>this is the brief description.</description>
+		<area><![CDATA[<i class="fa fa-info"></i>Admin]]></area>
+	</Innovation_Center>
+	<Jarman>
+		<header>Jarman</header>
+		<description>this is the brief description.</description>
+		<area><![CDATA[<i class="fa fa-picture-o"></i>Art]]></area>
+	</Jarman>
+	<Jennison>
+		<header>Jennison</header>
+		<description>this is the brief description.</description>
+		<area><![CDATA[<i class="fa fa-laptop"></i>Digital Arts]]></area>
+	</Jennison>
+    <Kemsdale_Court>
+		<header>Kemsdale Court</header>
+		<description>this is the brief description.</description>
+		<area><![CDATA[<i class="fa fa-home"></i>Accomodation]]></area>
+	</Kemsdale_Court>
+	<Kent_Business_School>
+		<header>Kent Business School</header>
+		<description>this is the brief description.</description>
+		<area><![CDATA[<i class="fa fa-gbp"></i>Business]]></area>
+	</Kent_Business_School>
+    <Kent_Enterprise_Hub>
+		<header>Kent Enterprise Hub</header>
+		<description>this is the brief description.</description>
+		<area><![CDATA[<i class="fa fa-info"></i>Admin]]></area>
+	</Kent_Enterprise_Hub>
+    <Kent_Law_School>
+		<header>Kent Law School</header>
+		<description>this is the brief description.</description>
+		<area><![CDATA[<i class="fa fa-gavel"></i>Law]]></area>
+	</Kent_Law_School>
+    <Keynes_College>
+		<header>Keynes College</header>
+		<description>this is the brief description.</description>
+		<area><![CDATA[<i class="fa fa-book"></i>College]]></area>
+	</Keynes_College>
+    <Keynes_Flats>
+		<header>Keynes Flats</header>
+		<description>this is the brief description.</description>
+		<area><![CDATA[<i class="fa fa-home"></i>Accomodation]]></area>
+	</Keynes_Flats>
+    <Locke>
+		<header>Locke</header>
+		<description>this is the brief description.</description>
+		<area><![CDATA[<i class="fa fa-shopping-cart"></i>Shops]]></area>
+	</Locke>
+    <Lypeatt_Court>
+		<header>Lypeatt Court</header>
+		<description>this is the brief description.</description>
+		<area><![CDATA[<i class="fa fa-home"></i>Accomodation]]></area>
+	</Lypeatt_Court>
+    <Mandela_Building>
+		<header>Mandela Building</header>
+		<description>this is the brief description.</description>
+		<area><![CDATA[<i class="fa fa-info"></i>Student Union]]></area>
+	</Mandela_Building>
+    <Marley_Court>
+		<header>Marley Court</header>
+		<description>this is the brief description.</description>
+		<area><![CDATA[<i class="fa fa-home"></i>Accomodation]]></area>
+	</Marley_Court>
+	<Marlowe>
+		<header>Marlowe</header>
+		<description>this is the brief description.</description>
+		<area><![CDATA[<i class="fa fa-building-o"></i>Architecture]]></area>
+	</Marlowe>
+	<Missing_Link>
+		<header>Missing Link</header>
+		<description>this is the brief description.</description>
+		<area><![CDATA[<i class="fa fa-book"></i>College]]></area>
+	</Missing_Link>
+    <Nickle_Court>
+		<header>Nickle Court</header>
+		<description>this is the brief description.</description>
+		<area><![CDATA[<i class="fa fa-home"></i>Accomodation]]></area>
+	</Nickle_Court>
+	<Oaks_Day_Nursery>
+		<header>Oaks Day Nursery</header>
+		<description>this is the brief description.</description>
+		<area><![CDATA[<i class="fa fa-smile-o"></i>Nursery]]></area>
+	</Oaks_Day_Nursery>
+	<Olive_Cottages>
+		<header>Olive Cottages</header>
+		<description>this is the brief description.</description>
+		<area><![CDATA[<i class="fa fa-users"></i>Psychology]]></area>
+	</Olive_Cottages>
+    <Parkwood_Administration>
+		<header>Parkwood Administration</header>
+		<description>this is the brief description.</description>
+		<area><![CDATA[<i class="fa fa-info"></i>Admin]]></area>
+	</Parkwood_Administration>
+    <Parkwood_Shop>
+		<header>Parkwood Shop</header>
+		<description>this is the brief description.</description>
+		<area><![CDATA[<i class="fa fa-shopping-cart"></i>Shops]]></area>
+	</Parkwood_Shop>
+    <Purchas_Court>
+		<header>Purchas Court</header>
+		<description>this is the brief description.</description>
+		<area><![CDATA[<i class="fa fa-home"></i>Accomodation]]></area>
+	</Purchas_Court>
+    <Registry>
+		<header>Registry</header>
+		<description>this is the brief description.</description>
+		<area><![CDATA[<i class="fa fa-info"></i>Admin]]></area>
+	</Registry>
+    <Research_and_Development_Centre>
+		<header>Research and Development Centre</header>
+		<description>this is the brief description.</description>
+		<area><![CDATA[<i class="fa fa-info"></i>Admin]]></area>
+	</Research_and_Development_Centre>
+    <Rothford>
+		<header>Rothford</header>
+		<description>this is the brief description.</description>
+		<area><![CDATA[<i class="fa fa-gbp"></i>Business]]></area>
+	</Rothford>
+    <Rutherford_College>
+		<header>Rutherford College</header>
+		<description>this is the brief description.</description>
+		<area><![CDATA[<i class="fa fa-book"></i>College]]></area>
+	</Rutherford_College>
+    <Senate>
+		<header>Senate</header>
+		<description>this is the brief description.</description>
+		<area><![CDATA[<i class="fa fa-info"></i>Admin]]></area>
+	</Senate>
+    <Sports_Centre>
+		<header>Sports Centre</header>
+		<description>this is the brief description.</description>
+		<area><![CDATA[<i class="fa fa-trophy"></i>Sport]]></area>
+	</Sports_Centre>
+    <Sports_Pavillion>
+		<header>Sports Pavillion</header>
+		<description>this is the brief description.</description>
+		<area><![CDATA[<i class="fa fa-trophy"></i>Sport]]></area>
+	</Sports_Pavillion>
+    <Stacey>
+		<header>Stacey</header>
+		<description>this is the brief description.</description>
+		<area><![CDATA[<i class="fa fa-flask"></i>Bioscience]]></area>
+	</Stacey>
+    <Stock_Court>
+		<header>Stock Court</header>
+		<description>this is the brief description.</description>
+		<area><![CDATA[<i class="fa fa-home"></i>Accomodation]]></area>
+	</Stock_Court>
+    <Tanglewood>
+		<header>Tanglewood</header>
+		<description>this is the brief description.</description>
+		<area><![CDATA[<i class="fa fa-home"></i>Hospitality]]></area>
+	</Tanglewood>
+    <Templeman_Library>
+		<header>Templeman Library</header>
+		<description>this is the brief description.</description>
+		<area><![CDATA[<i class="fa fa-book"></i>Library]]></area>
+	</Templeman_Library>
+    <Thornden_Court>
+		<header>Thornden Court</header>
+		<description>this is the brief description.</description>
+		<area><![CDATA[<i class="fa fa-home"></i>Accomodation]]></area>
+	</Thornden_Court>
+    <Tudor_Court>
+		<header>Tudor Court</header>
+		<description>this is the brief description.</description>
+		<area><![CDATA[<i class="fa fa-home"></i>Accomodation]]></area>
+	</Tudor_Court>
+	<Tyler_Court_A>
+		<header>Tyler Court A</header>
+		<description>this is the brief description.</description>
+		<area><![CDATA[<i class="fa fa-home"></i>Accomodation]]></area>
+	</Tyler_Court_A>
+	<Tyler_Court_B>
+		<header>Tyler Court B</header>
+		<description>this is the brief description.</description>
+		<area><![CDATA[<i class="fa fa-home"></i>Accomodation]]></area>
+	</Tyler_Court_B>
+	<Tyler_Court_C>
+		<header>Tyler Court C</header>
+		<description>this is the brief description.</description>
+		<area><![CDATA[<i class="fa fa-home"></i>Accomodation]]></area>
+	</Tyler_Court_C>
+	<UELT>
+		<header>Unit for the Enhancement of Learning and Teaching</header>
+		<description>this is the brief description.</description>
+		<area><![CDATA[<i class="fa fa-info"></i>Admin]]></area>
+	</UELT>
+	<University_Medical_Centre>
+		<header>University Medical Centre</header>
+		<description>this is the brief description.</description>
+		<area><![CDATA[<i class="fa fa-medkit"></i>Medical]]></area>
+	</University_Medical_Centre>
+    <Venue>
+		<header>Venue</header>
+		<description>this is the brief description.</description>
+		<area><![CDATA[<i class="fa fa-music"></i>Music]]></area>
+	</Venue>
+    <Willows_Court>
+		<header>Willows Court</header>
+		<description>this is the brief description.</description>
+		<area><![CDATA[<i class="fa fa-home"></i>Accomodation]]></area>
+	</Willows_Court>
+    <Woodlands>
+		<header>Woodlands</header>
+		<description>this is the brief description.</description>
+		<area><![CDATA[<i class="fa fa-users"></i>Sociology]]></area>
+	</Woodlands>
+    <Woodys>
+		<header>Woodys</header>
+		<description>this is the brief description.</description>
+		<area><![CDATA[<i class="fa fa-cutlery"></i>Food and Drink]]></area>
+	</Woodys>
+    <Woolf_Blocks>
+		<header>Woolf Flats</header>
+		<description>this is the brief description.</description>
+		<area><![CDATA[<i class="fa fa-home"></i>Accomodation]]></area>
+	</Woolf_Blocks>
+    <Woolf_Main>
+		<header>Woolf College</header>
+		<description>this is the brief description.</description>
+		<area><![CDATA[<i class="fa fa-book"></i>College]]></area>
+	</Woolf_Main>
+	<Woolf_Pavillion>
+		<header>Woolf Pavillion</header>
+		<description>this is the brief description.</description>
+		<area><![CDATA[<i class="fa fa-home"></i>Accomodation]]></area>
+	</Woolf_Pavillion>
+    <Woolf_Residential>
+		<header>Woolf Residential</header>
+		<description>this is the brief description.</description>
+		<area><![CDATA[<i class="fa fa-home"></i>Accomodation]]></area>
+	</Woolf_Residential>
+</slides>

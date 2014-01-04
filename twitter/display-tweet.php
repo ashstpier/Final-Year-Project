@@ -189,12 +189,12 @@ function display_tweet($usr_1, $style ='', $max_tweets = 1, $time = 60 ) {
 			$tweet = preg_replace("/@([0-9a-zA-Z_-]+)/", "<a target='blank' title='$1' href=\"http://twitter.com/$1\">@$1</a>", $tweet);
 
 
-			$twitter .= "<article class='tweet " . $username . "'><a href='https://twitter.com/" . $username . "'><img src='" . $profile_image . "' alt='" . $username . "' /></a><div class='tweet-content'>" . $tweet;
+			$twitter .= "<div class='tweet-modal " . $username . "'><header><h2><i class='fa fa-twitter'></i>" . $username . "</h2></header><section><a href='https://twitter.com/" . $username . "'><img class='tweet_img' src='" . $profile_image . "' alt='" . $username . "' /></a><div class='tweet-content'>" . $tweet;
 
 			if (isset($style)) {
 				if (!empty($style)) {
-					$when  = ($style == 'time_since' ? 'about' : 'On');
-					$twitter.="<div class='tweet-footer'> By <a href='https://twitter.com/" . $username . "'>" . $username . "</a> <span>" . $when . "&nbsp;";
+					$when  = ($style == 'time_since' ? '' : 'On');
+					$twitter.="</div></section><div class='tweet-footer'><span>" . $when . "&nbsp;";
 
 					switch ($style) {
 					case 'eng_suff': {
@@ -221,7 +221,7 @@ function display_tweet($usr_1, $style ='', $max_tweets = 1, $time = 60 ) {
 							$twitter .= $default;
 						}
 					} //end switch statement
-					$twitter .= "</span></div></div></article>"; //end of List
+					$twitter .= "</span><a href='#' onclick='closeTweet()'><i class='fa fa-times'></i></a></div><div class='arrow-down'></div></div>"; //end of List
 				}
 			}
 

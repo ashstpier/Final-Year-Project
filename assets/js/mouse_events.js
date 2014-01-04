@@ -28,41 +28,46 @@ function onDocumentMouseUp( event ) {
 
 	if ( intersects.length > 0 ) {
 		
-		if ( intersects[0].object.name == "Jennison" ) {
+		if ( intersects[0].object.name == "tweet-Jennison" ) {
 			var tweetcontainer = "#tweet_edakent";
 			twitterMap(intersects, tweetcontainer);
 		} 
-		else if ( intersects[0].object.name == "Locke" ) {
+		else if ( intersects[0].object.name == "tweet-Locke" ) {
 			var tweetcontainer = "#tweet_kentunion";
 			twitterMap(intersects, tweetcontainer);
 		} 
-		else if ( intersects[0].object.name == "Templeman_Library" ) {
+		else if ( intersects[0].object.name == "tweet-Templeman_Library" ) {
 			var tweetcontainer = "#tweet_unikent";
 			twitterMap(intersects, tweetcontainer);
 		} 
-		else if ( intersects[0].object.name == "Careers_Employability_Service" ) {
+		else if ( intersects[0].object.name == "tweet-Careers_Employability_Service" ) {
 			var tweetcontainer = "#tweet_unikentemploy";
 			twitterMap(intersects, tweetcontainer);
 		} 
-		else if ( intersects[0].object.name == "Colyer_Fergusson" ) {
+		else if ( intersects[0].object.name == "tweet-Colyer_Fergusson" ) {
 			var tweetcontainer = "#tweet_unikent_music";
 			twitterMap(intersects, tweetcontainer);
 		}
-		else if ( intersects[0].object.name == "Parkwood_Administration" ) {
+		else if ( intersects[0].object.name == "tweet-Parkwood_Administration" ) {
 			var tweetcontainer = "#tweet_parkwoodsc";
 			twitterMap(intersects, tweetcontainer);
 		} 
 		else {
 		
 			$('#modalpanel').empty();
-			$("#modalpanel").removeClass('fadeInDown opaque');
-			$(".tweetpanel").removeClass('fadeInDown opaque');
+			$("#modalpanel").removeClass('fadeOutUp fadeInDown opaque');
+			closeTweet();
 			var time = 1000;
 			var node = intersects[0].object.name;
 			
 			$(xml).find(node).each(function(){
-				var content = $(this).find('content').text();
-				$(content).appendTo('#modalpanel');
+				var header = $(this).find('header').text();
+				var description = $(this).find('description').text();
+				var area = $(this).find('area').text();
+				$('<header></header>').html('<h2><i class="fa fa-map-marker"></i>'+header+'</h2>').appendTo('#modalpanel');
+				$('<section></section>').html('<p>'+description+'</p>').appendTo('#modalpanel');
+				$('<footer></footer>').html('<span>'+area+'</span><a href="#" onclick="closeModal()"><i class="fa fa-times"></i></a>').appendTo('#modalpanel');
+				$('<div class="arrow-down"></div>').appendTo('#modalpanel');
 			});
 			
 			modal = intersects[0].object;
@@ -100,11 +105,15 @@ function onDocumentMouseUp( event ) {
 }
 
 function twitterMap(intersects, tweetcontainer){
-	$("#modalpanel").removeClass('fadeInDown opaque');
-	$(".tweetpanel").removeClass('fadeInDown opaque');
+	closeModal();
+	$(".tweetpanel").removeClass('fadeOutUp fadeInDown opaque');
 	var time = 1000;
 			
-	tweetmodal = intersects[0].object;
+	var string = intersects[0].object.name;
+	var splitstring = string.split("-");
+	var name = splitstring[1];
+	
+	tweetmodal = scene.getObjectByName( name, true );
 	
 	tweetmodal.geometry.computeBoundingBox();
 	var boundingBox = tweetmodal.geometry.boundingBox;
@@ -194,6 +203,20 @@ function rotateLeft() {
 	var x = camera.position.x, z = camera.position.z, rotSpeed = 1;
 	new TWEEN.Tween( camera.position ).to( { x: x * Math.cos(rotSpeed) - z * Math.sin(rotSpeed),  z: z * Math.cos(rotSpeed) + x * Math.sin(rotSpeed) }, 1000 ) .easing( TWEEN.Easing.Quadratic.InOut).start();
 }
+function closeModal() {
+	$("#modalpanel").addClass('fadeOutUp');
+	$("#modalpanel").removeClass('fadeInDown');
+	setTimeout(function() {
+        $("#modalpanel").removeClass('opaque'); // alternative to menu.style.display = 'none';
+    }, 500)
+}
+function closeTweet() {
+	$(".tweetpanel").addClass('fadeOutUp');
+	$(".tweetpanel").removeClass('fadeInDown');
+	setTimeout(function() {
+        $(".tweetpanel").removeClass('opaque'); // alternative to menu.style.display = 'none';
+    }, 500)
+}
 
 /////////// TOGGLES /////////////
 
@@ -204,38 +227,32 @@ $( "#labeltoggle" ).click(function() {
 			sprites[i].material.opacity = 1;
 			new TWEEN.Tween( sprites[i].position ).to( { y: sprites[i].position.y - 50 }, 1000 ).easing( TWEEN.Easing.Bounce.Out).start();
 		}
-		$(this).toggleClass( "active" );
 	} else {
 		$(this).toggleClass("checked unchecked");
 		for (var i=0, tot=sprites.length; i < tot; i++) {
 			sprites[i].material.opacity = 0;
 			sprites[i].position.y += 50;
 		}
-		$(this).toggleClass( "active" );
 	}
 });
 $( "#subjecttoggle" ).click(function() {
 	if ($(this).hasClass( "unchecked" )) {
 		$(this).toggleClass("unchecked checked");
 		// toggle code
-		$(this).toggleClass( "active" );
 	} else {
 		$(this).toggleClass("checked unchecked");
 		// toggle code
-		$(this).toggleClass( "active" );
 	}
 });
 $( "#accommodationtoggle" ).click(function() {
 	if ($(this).hasClass( "unchecked" )) {
 		$(this).toggleClass("unchecked checked");
-		$(this).toggleClass( "active" );
 		for (var i=0, tot=locationIcons.length; i < tot; i++) {
 			locationIcons[i].material.opacity = 1;
 			new TWEEN.Tween( locationIcons[i].position ).to( { y: locationIcons[i].position.y - 40 }, 1000 ).easing( TWEEN.Easing.Bounce.Out).start();
 		}
 	} else {
 		$(this).toggleClass("checked unchecked");
-		$(this).toggleClass( "active" );
 		for (var i=0, tot=locationIcons.length; i < tot; i++) {
 			locationIcons[i].material.opacity = 0;
 			locationIcons[i].position.y += 40;
@@ -246,48 +263,32 @@ $( "#parkingtoggle" ).click(function() {
 	if ($(this).hasClass( "unchecked" )) {
 		$(this).toggleClass("unchecked checked");
 		// toggle code
-		$(this).toggleClass( "active" );
 	} else {
 		$(this).toggleClass("checked unchecked");
 		// toggle code
-		$(this).toggleClass( "active" );
 	}
 });
 $( "#bustoggle" ).click(function() {
 	if ($(this).hasClass( "unchecked" )) {
 		$(this).toggleClass("unchecked checked");
 	
-		$(this).toggleClass( "active" );
 	} else {
 		$(this).toggleClass("checked unchecked");
 		// toggle code
-		$(this).toggleClass( "active" );
+	}
+});
+$( "#foodtoggle" ).click(function() {
+	if ($(this).hasClass( "unchecked" )) {
+		$(this).toggleClass("unchecked checked");
+	
+	} else {
+		$(this).toggleClass("checked unchecked");
+		// toggle code
 	}
 });
 
-
-///////////// SLIDES /////////////
-
-$( ".slide" ).click(function() {
+$( "#drawer-toggle" ).click(function() {
 	$(this).toggleClass( "active" );
-});
-$( "#labelbutton" ).click(function() {
-	if($("#eventpanel").is(":visible")){
-		$("#eventpanel").toggle("slide", {direction:'left'}, function(){
-			$("#eventbutton").toggleClass( "active" );
-			$("#labelpanel").toggle("slide", {direction:'left'});
-		});
-	}else{
-		$("#labelpanel").toggle("slide", {direction:'left'});
-	}
-});
-$( "#eventbutton" ).click(function() {
-	if($("#labelpanel").is(":visible")){
-		$("#labelpanel").toggle("slide", {direction:'left'}, function(){
-			$("#labelbutton").toggleClass( "active" );
-			$("#eventpanel").toggle("slide", {direction:'left'});
-		});
-	}else{
-		$("#eventpanel").toggle("slide", {direction:'left'});
-	}
+	$("#leftdrawer").toggle("slide", {direction:'left', duration: 200, easing: "linear"});
+	$("#wrapper").toggleClass( "slide-margin" );
 });

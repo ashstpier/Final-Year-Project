@@ -227,7 +227,6 @@ function display_tweets($usr_1, $usr_2, $usr_3, $usr_4, $usr_5, $usr_6, $style =
 	
 	$tweets = cache_json($usr_1,$usr_2,$usr_3,$usr_4,$usr_5,$usr_6,$max_tweets,$time);
 
-	$twitter .= '<section id="stream">';
 	if (!empty($tweets)) {
 		foreach ($tweets as $tweet) {
 			$name			= $tweet['user'];
@@ -246,12 +245,14 @@ function display_tweets($usr_1, $usr_2, $usr_3, $usr_4, $usr_5, $usr_6, $style =
 
 
 			#pre-defined tags
-			$default   = $full_month . $date . $year;
+			$default   =  $date . $full_month . $year;
 			$full_date = $day . $date . $month . $year;
 			$ddmmyy    = $date . $month . $year;
 			$mmyy      = $month . $year;
 			$mmddyy    = $month . $date . $year;
 			$ddmm      = $date . $month;
+			
+			$sort_date = strtotime($default);
 
 			#Time difference
 			$timeDiff = dateDiff($today, $pubDate, 1);
@@ -266,12 +267,12 @@ function display_tweets($usr_1, $usr_2, $usr_3, $usr_4, $usr_5, $usr_6, $style =
 			$tweet = preg_replace("/@([0-9a-zA-Z_-]+)/", "<a target='blank' title='$1' href=\"http://twitter.com/$1\">@$1</a>", $tweet);
 
 
-			$twitter .= "<article class='tweet " . $username . "'><a href='https://twitter.com/" . $username . "'><img src='" . $profile_image . "' alt='" . $username . "' /></a><div class='tweet-content'>" . $tweet;
+			$twitter .= "<article class='item twitter " . $username . "'><a href='https://twitter.com/" . $username . "'><img class='tweet_img' src='" . $profile_image . "' alt='" . $username . "' /></a><div class='tweet-content'>" . $tweet;
 
 			if (isset($style)) {
 				if (!empty($style)) {
-					$when  = ($style == 'time_since' ? 'about' : 'On');
-					$twitter.="<div class='tweet-footer'> By <a href='https://twitter.com/" . $username . "'>" . $username . "</a> <span>" . $when . "&nbsp;";
+					$when  = ($style == 'time_since' ? 'about' : 'on');
+					$twitter.="<div class='tweet-footer'><i class='fa fa-twitter'></i>&nbsp; by <a href='https://twitter.com/" . $username . "'>" . $username . "</a> <span>" . $when;
 
 					switch ($style) {
 					case 'eng_suff': {
@@ -298,7 +299,7 @@ function display_tweets($usr_1, $usr_2, $usr_3, $usr_4, $usr_5, $usr_6, $style =
 							$twitter .= $default;
 						}
 					} //end switch statement
-					$twitter .= "</span></div></div></article>"; //end of List
+					$twitter .= "</span><span class='hidden_date'>" . $sort_date . "</span></div></div></article>"; //end of List
 				}
 			}
 
@@ -306,7 +307,7 @@ function display_tweets($usr_1, $usr_2, $usr_3, $usr_4, $usr_5, $usr_6, $style =
 	} else {
 		$twitter .= '<article>No tweets</article>';
 	} //end if statement
-	$twitter .= '</section>'; //end of Unordered list (Notice it's after the foreach loop!)
+ //end of Unordered list (Notice it's after the foreach loop!)
 	echo $twitter;
 }
 ?>

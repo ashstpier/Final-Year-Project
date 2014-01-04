@@ -27,13 +27,14 @@
     </div>
 </div>
 <div id="navbar">
+	<a href="#" id="drawer-toggle"><i class="fa fa-align-left fa-lg"></i> Menu</a>
     <ul id="nav">
     	<li><a href="facts.html">10 Facts</a></li>
     	<li><a href="index.php" class="active">Explore</a></li>
         <li><a href="social.php">Social</a></li>
     </ul>
 </div>
-<div id="leftnav">
+<!--<div id="leftnav">
     <button id="labelbutton" class="slide" type="button"><i class="fa fa-map-marker fa-lg"></i></button>
     <button id="eventbutton" class="slide" type="button"><i class="fa fa-calendar"></i></button>
     <div id="leftnav-footer">
@@ -47,6 +48,17 @@
             <button type="submit"><i class="fa fa-dribbble"></i></button>
         </form>
     </div>
+</div>-->
+<div id="leftdrawer">
+	<h2>Markers</h2>
+    <ul>
+    	<li><a href="#" class="unchecked" id="labeltoggle"><i class="fa fa-map-marker"></i>Locations</a></li>
+        <li><a href="#" class="unchecked" id="subjecttoggle"><i class="fa fa-book"></i>Subject Areas</a></li>
+        <li><a href="#" class="unchecked" id="accommodationtoggle"><i class="fa fa-building-o"></i>Accomodation</a></li>
+        <li><a href="#" class="unchecked" id="foodtoggle"><i class="fa fa-cutlery"></i>Food &amp; Drink</a></li>
+        <li><a href="#" class="unchecked" id="parkingtoggle"><i class="fa fa-road"></i>Parking</a></li>
+        <li><a href="#" class="unchecked" id="bustoggle"><i class="fa fa-ticket"></i>Bus routes</a></li>
+    </ul>
 </div>
 <div id="mapwrapper">
     <div id="labelpanel">
@@ -127,6 +139,7 @@
 <script src="http://mrdoob.github.com/three.js/examples/js/postprocessing/MaskPass.js"></script>
 <script src="http://mrdoob.github.com/three.js/examples/js/postprocessing/ShaderPass.js"></script>
       
+<script src="assets/js/universal.js"></script>
 <script src="assets/js/functions.js"></script> 
 <script src="assets/js/mouse_events.js"></script>
 <script src="assets/js/core.js"></script>

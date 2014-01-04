@@ -113,7 +113,7 @@ function tweetIcon(mesh) {
 		position.add( boundingBox.min );
 		position.applyMatrix4( mesh.matrixWorld );
 		
-		icon.name = mesh.name;
+		icon.name = "tweet-" + mesh.name;
 		icon.position.set( position.x, boundingBox.max.y + 20, position.z );
 		scene.add( icon );
 		group.add( icon);

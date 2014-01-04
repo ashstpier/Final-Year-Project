@@ -1,10 +1,10 @@
 #preloader {
     position:fixed;
-    top:0;
+    top:70px;
     left:0;
     right:0;
     bottom:0;
-    background-color:#80D5B0; /* change if the mask should have another color then white */
+    background-color:#f3f3f3; /* change if the mask should have another color then white */
     z-index:99999999; /* makes sure it stays on top */
 }
 @keyframes spin {
@@ -32,7 +32,7 @@ to { transform: rotate(360deg); }
     width: 50px;
     height: 50px;
     border-radius: 24px;
-    border: 3px solid white;
+    border: 5px solid #999;
 }
  
 /* Spinning circle mask */
