@@ -189,7 +189,7 @@ function tilt() {
 	new TWEEN.Tween( camera.position ).to( { y: 80 }, 1000 ).easing( TWEEN.Easing.Quadratic.InOut).start();
 }
 function refreshView() {
-	new TWEEN.Tween( camera.position ).to( { x: 0, y: 200, z: 500 }, 1000 ).easing( TWEEN.Easing.Quadratic.InOut).start();
+	new TWEEN.Tween( camera.position ).to( { x: 0, y: 350, z: 500 }, 1000 ).easing( TWEEN.Easing.Quadratic.InOut).start();
 	new TWEEN.Tween( group.position ).to( { x: 0, y: 0, z: 0 }, 1000 ).easing( TWEEN.Easing.Quadratic.InOut).start();
 	new TWEEN.Tween( controls.center ).to( { x: 0, y: 0, z: 0 }, 1000 ).easing( TWEEN.Easing.Quadratic.InOut).start();
 }
@@ -221,14 +221,12 @@ function closeTweet() {
 /////////// TOGGLES /////////////
 
 $( "#labeltoggle" ).click(function() {
-	if ($(this).hasClass( "unchecked" )) {
-		$(this).toggleClass("unchecked checked");
+	if ($(this).hasClass( "toggle" )) {
 		for (var i=0, tot=sprites.length; i < tot; i++) {
 			sprites[i].material.opacity = 1;
 			new TWEEN.Tween( sprites[i].position ).to( { y: sprites[i].position.y - 50 }, 1000 ).easing( TWEEN.Easing.Bounce.Out).start();
 		}
 	} else {
-		$(this).toggleClass("checked unchecked");
 		for (var i=0, tot=sprites.length; i < tot; i++) {
 			sprites[i].material.opacity = 0;
 			sprites[i].position.y += 50;
@@ -236,53 +234,43 @@ $( "#labeltoggle" ).click(function() {
 	}
 });
 $( "#subjecttoggle" ).click(function() {
-	if ($(this).hasClass( "unchecked" )) {
-		$(this).toggleClass("unchecked checked");
+	if ($(this).hasClass( "toggle" )) {
 		// toggle code
 	} else {
-		$(this).toggleClass("checked unchecked");
 		// toggle code
 	}
 });
 $( "#accommodationtoggle" ).click(function() {
-	if ($(this).hasClass( "unchecked" )) {
-		$(this).toggleClass("unchecked checked");
+	if ($(this).hasClass( "toggle" )) {
 		for (var i=0, tot=locationIcons.length; i < tot; i++) {
 			locationIcons[i].material.opacity = 1;
 			new TWEEN.Tween( locationIcons[i].position ).to( { y: locationIcons[i].position.y - 40 }, 1000 ).easing( TWEEN.Easing.Bounce.Out).start();
 		}
 	} else {
-		$(this).toggleClass("checked unchecked");
 		for (var i=0, tot=locationIcons.length; i < tot; i++) {
 			locationIcons[i].material.opacity = 0;
 			locationIcons[i].position.y += 40;
 		}
 	}
 });
-$( "#parkingtoggle" ).click(function() {
-	if ($(this).hasClass( "unchecked" )) {
-		$(this).toggleClass("unchecked checked");
+$( "#shoptoggle" ).click(function() {
+	if ($(this).hasClass( "toggle" )) {
 		// toggle code
 	} else {
-		$(this).toggleClass("checked unchecked");
 		// toggle code
 	}
 });
 $( "#bustoggle" ).click(function() {
-	if ($(this).hasClass( "unchecked" )) {
-		$(this).toggleClass("unchecked checked");
+	if ($(this).hasClass( "toggle" )) {
 	
 	} else {
-		$(this).toggleClass("checked unchecked");
 		// toggle code
 	}
 });
 $( "#foodtoggle" ).click(function() {
-	if ($(this).hasClass( "unchecked" )) {
-		$(this).toggleClass("unchecked checked");
+	if ($(this).hasClass( "toggle" )) {
 	
 	} else {
-		$(this).toggleClass("checked unchecked");
 		// toggle code
 	}
 });
@@ -291,4 +279,7 @@ $( "#drawer-toggle" ).click(function() {
 	$(this).toggleClass( "active" );
 	$("#leftdrawer").toggle("slide", {direction:'left', duration: 200, easing: "linear"});
 	$("#wrapper").toggleClass( "slide-margin" );
+});
+$( ".slide-drawer .toggle" ).click(function() {
+	$(this).toggleClass( "toggle toggled" );
 });

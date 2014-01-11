@@ -1,5 +1,5 @@
 <?php
-function get_auth($usr_1,$usr_2,$usr_3,$usr_4,$usr_5,$usr_6,$max_tweets) {
+function get_auth($usr_1,$usr_2,$usr_3,$usr_4,$usr_5,$max_tweets) {
 	require 'includes/keys.php';
 	require_once 'includes/tmhOAuth.php';
 
@@ -86,23 +86,6 @@ function get_auth($usr_1,$usr_2,$usr_3,$usr_4,$usr_5,$usr_6,$max_tweets) {
 			'include_rts' => $include_rts,
 			'exclude_replies' => $exclude_replies
 		));
-		
-	/*Secondary Feed - User 6*/
-	$tmhOAuth5 = new tmhOAuth(array(
-
-			'consumer_key' => $consumer_key_2,
-			'consumer_secret' => $consumer_secret_2,
-			'user_token' => $user_token_2,
-			'user_secret' => $user_secret_2
-		));
-
-
-	$code5 = $tmhOAuth5->request('GET', $tmhOAuth5->url('1.1/statuses/user_timeline'), array(
-			'screen_name' => $usr_6,
-			'count' => $max_tweets,
-			'include_rts' => $include_rts,
-			'exclude_replies' => $exclude_replies
-		));
 
 
 	$res_code = array(
@@ -116,9 +99,8 @@ function get_auth($usr_1,$usr_2,$usr_3,$usr_4,$usr_5,$usr_6,$max_tweets) {
 		$data2  = $tmhOAuth2->response['response'];
 		$data3  = $tmhOAuth3->response['response'];
 		$data4  = $tmhOAuth4->response['response'];
-		$data5  = $tmhOAuth5->response['response'];
 		
-		$response = array($data,$data1,$data2,$data3,$data4,$data5);
+		$response = array($data,$data1,$data2,$data3,$data4);
 		return $response;
 	}
 	else
@@ -137,7 +119,7 @@ function dateSort($val1, $val2)
     return (strtotime($val1['created_at']) > strtotime($val2['created_at'])) ? -1 : 1;
 	}
 	
-function cache_json($usr_1,$usr_2,$usr_3,$usr_4,$usr_5,$usr_6,$max_tweets,$time) {
+function cache_json($usr_1,$usr_2,$usr_3,$usr_4,$usr_5,$max_tweets,$time) {
 
 $cache = 'cache/all_tweets.json';
 	
@@ -158,7 +140,7 @@ $cache = 'cache/all_tweets.json';
 
 	
 	if (isset($cache_data)) {
-		$data = get_auth($usr_1, $usr_2, $usr_3, $usr_4, $usr_5, $usr_6, $max_tweets);
+		$data = get_auth($usr_1, $usr_2, $usr_3, $usr_4, $usr_5, $max_tweets);
 		
 		if ($data != '500')
 		{
@@ -167,8 +149,7 @@ $cache = 'cache/all_tweets.json';
 			$json_3 = json_decode($data[2],true);
 			$json_4 = json_decode($data[3],true);
 			$json_5 = json_decode($data[4],true);
-			$json_6 = json_decode($data[5],true);
-			$my_data = array_merge($json_1,$json_2,$json_3,$json_4,$json_5,$json_6);
+			$my_data = array_merge($json_1,$json_2,$json_3,$json_4,$json_5);
 			usort($my_data, 'dateSort');	
 			$cached = file_put_contents($cache, serialize($my_data));
 		}
@@ -223,9 +204,9 @@ function dateDiff($time1, $time2, $precision = 6) {
 		}
 		return implode(", ", $times);
 	}
-function display_tweets($usr_1, $usr_2, $usr_3, $usr_4, $usr_5, $usr_6, $style ='', $max_tweets = 10, $time = 60 ) {
+function display_tweets($usr_1, $usr_2, $usr_3, $usr_4, $usr_5, $style ='', $max_tweets = 10, $time = 60 ) {
 	
-	$tweets = cache_json($usr_1,$usr_2,$usr_3,$usr_4,$usr_5,$usr_6,$max_tweets,$time);
+	$tweets = cache_json($usr_1,$usr_2,$usr_3,$usr_4,$usr_5,$max_tweets,$time);
 
 	if (!empty($tweets)) {
 		foreach ($tweets as $tweet) {

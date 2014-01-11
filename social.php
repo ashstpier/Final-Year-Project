@@ -27,14 +27,54 @@
     </div>
 </div>
 <div id="navbar">
-	<a href="#" id="drawer-toggle"><i class="fa fa-align-left fa-lg"></i> Menu</a>
+	<a href="#" id="drawer-toggle"><img src="assets/images/logo.png" alt="University of Kent logo" /></a>
     <ul id="nav">
     	<li><a href="facts.html">10 Facts</a></li>
     	<li><a href="index.php">Explore</a></li>
         <li><a href="social.php" class="active">Social</a></li>
     </ul>
 </div>
-<div id="leftdrawer">
+<div id="leftnav">
+    <button id="twitter-button" class="slide" type="button"><i class="fa fa-bars"></i></button>
+    <button id="social-button" class="slide" type="button"><i class="fa fa-sort-amount-desc"></i></button>
+</div>
+<div class="slide-drawer">
+    <div id="twitter-panel">
+        <h2>Filters</h2>
+        <ul id="filters">
+        	<li><a href="#" data-filter="*"><i class="fa fa-th-large"></i>Show all</a></li>
+      		<li><a href="#" data-filter=".twitter"><i class="fa fa-twitter"></i>Twitter</a></li>
+      		<li><a href="#" data-filter=".instagram"><i class="fa fa-instagram"></i>Instagram</a></li>
+        </ul>
+        <h3>Twitter feed</h3>
+        <ul id="filters">
+          <li><a href="#" data-filter=".UniKent">University of Kent</a></li>
+          <li><a href="#" data-filter=".KentUnion">Kent Union</a></li>
+          <li><a href="#" data-filter=".UniKentNews">Uni Kent News</a></li>
+          <li><a href="#" data-filter=".UniKentEmploy">Uni Kent Employ</a></li>
+          <li><a href="#" data-filter=".UniKent_Music">Uni Kent Music</a></li>
+        </ul>
+        <h3>Instagram feed</h3>
+        <ul id="filters">
+          <li><a href="#" data-filter=".kentuni">#KentUni</a></li>
+          <li><a href="#" data-filter=".kentunion">#KentUnion</a></li>
+        </ul>
+    </div>
+    <div id="social-panel">
+        <h2>Options</h2>
+        <h3>Display</h3>
+        <ul>
+            <li><a href="#" id="grid-toggle" class="sort checked"><i class="fa fa-th"></i>Grid</a></li>
+            <li><a href="#" id="list-toggle" class="sort"><i class="fa fa-align-left"></i>List</a></li>
+        </ul>
+        <h3>Sort</h3>
+        <ul>
+            <li><a href="#" id="date-new" class="sort checked"><i class="fa fa-sort-amount-desc"></i>Newest</a></li>
+            <li><a href="#" id="date-old" class="sort"><i class="fa fa-sort-amount-asc"></i>Oldest</a></li>
+        </ul>
+    </div>
+</div>
+<!--<div id="leftdrawer">
 	<h2>Filters</h2>
 	<ul id="filters">
       <li><a href="#" data-filter="*"><i class="fa fa-th-large"></i>Show all</a></li>
@@ -55,17 +95,11 @@
       <li><a href="#" data-filter=".kentuni"><i class="fa fa-instagram"></i>#KentUni</a></li>
       <li><a href="#" data-filter=".kentunion"><i class="fa fa-instagram"></i>#KentUnion</a></li>
     </ul>
-</div>
+</div>-->
 <div id="wrapper">
-	<ul class="sort-menu">
-    	<li><a href="#" id="grid-toggle" class="sort active"><i class="fa fa-th-large"></i>&nbsp; Grid</a></li>
-        <li><a href="#" id="list-toggle" class="sort"><i class="fa fa-th-list"></i>&nbsp; List</a></li>
-        <li><a href="#" id="date-new" class="sort active"><i class="fa fa-sort-amount-desc"></i>&nbsp; Newest</a></li>
-        <li><a href="#" id="date-old" class="sort"><i class="fa fa-sort-amount-asc"></i>&nbsp; Oldest</a></li>
-    </ul>
     <section id="stream">
 	<?php include_once 'twitter/display-tweets.php';
-        display_tweets('unikent', 'kentunion','unikentemploy','unikent_music','unikentnews','edakent','default', 10, 30);
+        display_tweets('unikent', 'kentunion','unikentemploy','unikent_music','unikentnews','default', 10, 30);
     ?>
     <?php include_once 'assets/php/instagram.php';
        
@@ -168,18 +202,57 @@ $(window).load(function(){
 	
 	$(window).resize(function(){ $container.isotope('reLayout'); });
 	
-	$( "#drawer-toggle" ).click(function() {
-		$(this).toggleClass( "active" );
-		$("#leftdrawer").toggle("slide", {direction:'left', duration: 200, easing: "linear"}, function(){
-			$container.isotope('reLayout');
-		});
-		$("#wrapper").toggleClass( "slide-margin" );
+	$( "#social-button" ).click(function() {
+		if($("#social-panel").is(":visible")){
+			$(".slide-drawer").toggle("slide", {direction:'left', duration: 200, easing: "linear"}, function(){
+				$(".slide-drawer div").hide();
+				$container.isotope('reLayout');
+			});
+			$("#leftnav button").removeClass( "active" );
+			$("#wrapper").toggleClass( "slide-margin" );
+		}else if($("#twitter-panel").is(":visible")){
+			$(".slide-drawer div").hide();
+			$("#social-panel").fadeIn();
+			$("#leftnav button").removeClass( "active" );
+			$("#social-button").addClass( "active" );
+		}else{
+			$("#social-panel").fadeIn();
+			$(".slide-drawer").toggle("slide", {direction:'left', duration: 200, easing: "linear"}, function(){
+				$container.isotope('reLayout');
+			});
+			$("#social-button").addClass( "active" );
+			$("#wrapper").toggleClass( "slide-margin" );
+		}
+	});
+	$( "#twitter-button" ).click(function() {
+		if($("#twitter-panel").is(":visible")){
+			$(".slide-drawer").toggle("slide", {direction:'left', duration: 200, easing: "linear"}, function(){
+				$(".slide-drawer div").hide();
+				$container.isotope('reLayout');
+			});
+			$("#leftnav button").removeClass( "active" );
+			$("#wrapper").toggleClass( "slide-margin" );
+		}else if($("#social-panel").is(":visible")){
+			$(".slide-drawer div").hide();
+			$("#twitter-panel").fadeIn();
+			$("#leftnav button").removeClass( "active" );
+			$("#twitter-button").addClass( "active" );
+		}else{
+			$("#twitter-panel").fadeIn();
+			$(".slide-drawer").toggle("slide", {direction:'left', duration: 200, easing: "linear"}, function(){
+				$container.isotope('reLayout');
+			});
+			$("#twitter-button").addClass( "active" );
+			$("#wrapper").toggleClass( "slide-margin" );
+		}
 	});
 	
 	$('#filters a, .instagram a').click(function(){
 	  var selector = $(this).attr('data-filter');
 	  $container.isotope({ filter: selector });
 	  $("html, body").animate({ scrollTop: 0 }, "slow");
+	  $("#filters a").removeClass("checked");
+	  $(this).addClass("checked");
 	  return false;
 	});
 	
@@ -187,16 +260,16 @@ $(window).load(function(){
 	  event.preventDefault();
 	  $('.item').css("width","100%");
 	  $('.item.instagram').css("max-width","500px");
-	  $(this).addClass("active");
-	  $("a#grid-toggle").removeClass("active");
+	  $(this).addClass("checked");
+	  $("a#grid-toggle").removeClass("checked");
 	  $container.isotope( 'reLayout' );
 	  return false;
 	});
 	$('a#grid-toggle').click(function(){
 	  event.preventDefault();
 	  $('.item').css("width","340px");
-	  $(this).addClass("active");
-	  $("a#list-toggle").removeClass("active");
+	  $(this).addClass("checked");
+	  $("a#list-toggle").removeClass("checked");
 	  $container.isotope( 'reLayout' );
 	  return false;
 	});
@@ -207,8 +280,8 @@ $(window).load(function(){
 		sortAscending : false
 	  });
 	  $container.isotope( 'reLayout' );
-	  $(this).addClass("active");
-	  $("a#date-old").removeClass("active");
+	  $(this).addClass("checked");
+	  $("a#date-old").removeClass("checked");
 	  return false;
 	});
 	$('a#date-old').click(function(){
@@ -218,8 +291,8 @@ $(window).load(function(){
 		sortAscending : true
 	  });
 	  $container.isotope( 'reLayout' );
-	  $(this).addClass("active");
-	  $("a#date-new").removeClass("active");
+	  $(this).addClass("checked");
+	  $("a#date-new").removeClass("checked");
 	  return false;
 	});
 	

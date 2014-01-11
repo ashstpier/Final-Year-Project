@@ -217,6 +217,7 @@ function init() {
 	mapmaterial = new THREE.MeshBasicMaterial({map: texture})
 	ground = new THREE.Mesh( new THREE.PlaneGeometry( 1200, 960, 8, 8 ), mapmaterial );
 	ground.rotation.x += 270 * Math.PI / 180;
+	ground.material.needsUpdate = true;
 	scene.add( ground );
 	group.add( ground )
 	
