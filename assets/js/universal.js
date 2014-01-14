@@ -1,85 +1,86 @@
+function primaryOpen(button, panel){
+	if($(panel).is(":visible")){
+		$(".slide-drawer.primary").toggle("slide", {direction:'left'}, function(){
+			$(".slide-drawer.primary div").hide();
+		});
+		$("#leftnav button").removeClass( "active" );
+		$(".slide-drawer.secondary").hide();
+		$(".slide-drawer a").removeClass( "checked" );
+	}else if($($('.primary div').not(panel)).is(":visible")){
+		$(".slide-drawer.primary div").hide();
+		$(panel).fadeIn();
+		$("#leftnav button").removeClass( "active" );
+		$(button).addClass( "active" );
+		$(".slide-drawer.secondary").hide();
+		$(".slide-drawer.primary a").removeClass( "checked" );
+	}else{
+		$(panel).fadeIn();
+		$(".slide-drawer.primary").toggle("slide", {direction:'left'});
+		$(button).addClass( "active" );
+	}
+}
+
 $( "#label-button" ).click(function() {
-	if($("#label-panel").is(":visible")){
-		$(".slide-drawer").toggle("slide", {direction:'left'}, function(){
-			$(".slide-drawer div").hide();
-		});
-		$("#leftnav button").removeClass( "active" );
-	}else if($("#subject-panel, #investment-panel, #event-panel, #info-panel").is(":visible")){
-		$(".slide-drawer div").hide();
-		$("#label-panel").fadeIn();
-		$("#leftnav button").removeClass( "active" );
-		$("#label-button").addClass( "active" );
-	}else{
-		$("#label-panel").fadeIn();
-		$(".slide-drawer").toggle("slide", {direction:'left'});
-		$("#label-button").addClass( "active" );
-	}
-});
-$( "#subject-button" ).click(function() {
-	if($("#subject-panel").is(":visible")){
-		$(".slide-drawer").toggle("slide", {direction:'left'}, function(){
-			$(".slide-drawer div").hide();
-		});
-		$("#leftnav button").removeClass( "active" );
-	}else if($("#label-panel, #investment-panel, #event-panel, #info-panel").is(":visible")){
-		$(".slide-drawer div").hide();
-		$("#subject-panel").fadeIn();
-		$("#leftnav button").removeClass( "active" );
-		$("#subject-button").addClass( "active" );
-	}else{
-		$("#subject-panel").fadeIn();
-		$(".slide-drawer").toggle("slide", {direction:'left'});
-		$("#subject-button").addClass( "active" );
-	}
+	primaryOpen(this, "#label-panel");
 });
 $( "#investment-button" ).click(function() {
-	if($("#investment-panel").is(":visible")){
-		$(".slide-drawer").toggle("slide", {direction:'left'}, function(){
-			$(".slide-drawer div").hide();
-		});
-		$("#leftnav button").removeClass( "active" );
-	}else if($("#label-panel, #subject-panel, #event-panel, #info-panel").is(":visible")){
-		$(".slide-drawer div").hide();
-		$("#investment-panel").fadeIn();
-		$("#leftnav button").removeClass( "active" );
-		$("#investment-button").addClass( "active" );
-	}else{
-		$("#investment-panel").fadeIn();
-		$(".slide-drawer").toggle("slide", {direction:'left'});
-		$("#investment-button").addClass( "active" );
-	}
+	primaryOpen(this, "#investment-panel");
 });
 $( "#event-button" ).click(function() {
-	if($("#event-panel").is(":visible")){
-		$(".slide-drawer").toggle("slide", {direction:'left'}, function(){
-			$(".slide-drawer div").hide();
-		});
-		$("#leftnav button").removeClass( "active" );
-	}else if($("#label-panel, #subject-panel, #investment-panel, #info-panel").is(":visible")){
-		$(".slide-drawer div").hide();
-		$("#event-panel").fadeIn();
-		$("#leftnav button").removeClass( "active" );
-		$("#event-button").addClass( "active" );
-	}else{
-		$("#event-panel").fadeIn();
-		$(".slide-drawer").toggle("slide", {direction:'left'});
-		$("#event-button").addClass( "active" );
-	}
+	primaryOpen(this, "#event-panel");
+});
+$( "#search-button" ).click(function() {
+	primaryOpen(this, "#search-panel");
 });
 $( "#info-button" ).click(function() {
-	if($("#info-panel").is(":visible")){
-		$(".slide-drawer").toggle("slide", {direction:'left'}, function(){
-			$(".slide-drawer div").hide();
+	primaryOpen(this, "#info-panel");
+});
+
+///// SECONDARY //////
+
+function secondaryOpen(button, panel) {
+	if($(panel).is(":visible")){
+		$(".slide-drawer.secondary").toggle("slide", {direction:'left'}, function(){
+			$(".slide-drawer.secondary div").hide();
 		});
-		$("#leftnav button").removeClass( "active" );
-	}else if($("#label-panel, #subject-panel, #investment-panel, #event-panel").is(":visible")){
-		$(".slide-drawer div").hide();
-		$("#info-panel").fadeIn();
-		$("#leftnav button").removeClass( "active" );
-		$("#info-button").addClass( "active" );
+		$(button).removeClass('checked');
+	}else if($($('.secondary div').not(panel)).is(":visible")){
+		$(".slide-drawer.secondary div").hide();
+		$(panel).fadeIn();
+		$("#search-panel a").removeClass('checked');
+		$(button).addClass('checked');
 	}else{
-		$("#info-panel").fadeIn();
-		$(".slide-drawer").toggle("slide", {direction:'left'});
-		$("#info-button").addClass( "active" );
+		$(panel).fadeIn();
+		$(".slide-drawer.secondary").toggle("slide", {direction:'left'});
+		$(button).addClass('checked');
 	}
+}
+$( "#a-z" ).click(function() {
+	secondaryOpen(this, "#a-z-panel");
+});
+$( "#subjects" ).click(function() {
+	secondaryOpen(this, "#subject-panel");
+});
+$( "#community" ).click(function() {
+	secondaryOpen(this, "#community-panel");
+});
+$( "#admin" ).click(function() {
+	secondaryOpen(this, "#admin-panel");
+});
+$( "#accommodation" ).click(function() {
+	secondaryOpen(this, "#accommodation-panel");
+});
+
+//////// SEARCH ///////
+
+$( ".secondary a" ).click(function() {
+	$('#modalpanel').empty();
+	$("#modalpanel").removeClass('fadeOutUp fadeInDown opaque');
+	closeTweet();
+	modal = scene.getObjectByName( $(this).attr("data-building"), true );
+	placeMarker(modal);
+	$(".slide-drawer.secondary").toggle("slide", {direction:'left'}, function(){
+		$(".slide-drawer.secondary div").hide();
+	});
+	$("#search-panel a").removeClass('checked');
 });

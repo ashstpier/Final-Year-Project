@@ -4,9 +4,8 @@
 		<title>Final Year Project</title>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
-		<link href="assets/css/style.css" rel="stylesheet" type="text/css">
+		<link href="assets/css/style_light.css" rel="stylesheet" type="text/css">
         <link href="assets/css/typography.css" rel="stylesheet" type="text/css">
-        <link href="assets/css/buttons.css" rel="stylesheet" type="text/css">
         <link href="assets/css/preloader.css" rel="stylesheet" type="text/css">
         <link href="assets/css/social.css" rel="stylesheet" type="text/css">
         <link rel="stylesheet" href="assets/css/animate.css">
@@ -36,10 +35,12 @@
 </div>
 <div id="leftnav">
     <button id="label-button" class="slide" type="button"><i class="fa fa-map-marker"></i></button>
-    <button id="subject-button" class="slide" type="button"><i class="fa fa-book"></i></button>
-    <button id="investment-button" class="slide" type="button"><i class="fa fa-bar-chart-o"></i></button>
     <button id="event-button" class="slide" type="button"><i class="fa fa-calendar"></i></button>
-    <button id="info-button" class="slide" type="button"><i class="fa fa-cogs"></i></button>
+    <button id="investment-button" class="slide" type="button"><i class="fa fa-bar-chart-o"></i></button>
+    <button id="search-button" class="slide" type="button"><i class="fa fa-search"></i></button>
+    <div id="leftnav-footer">
+    	<button id="info-button" class="slide" type="button"><i class="fa fa-cogs"></i></button>
+    </div>
 </div>
 <!--<div id="leftdrawer">
 	<h2>Markers</h2>
@@ -52,16 +53,17 @@
         <li><a href="#" class="unchecked" id="bustoggle"><i class="fa fa-ticket"></i>Bus routes</a></li>
     </ul>
 </div>-->
-<div class="slide-drawer">
+<div class="slide-drawer primary">
 	<div id="label-panel">
         <h2>Places</h2>
         <h3>Markers</h3>
         <ul>
             <li><a href="#" class="toggle" id="labelall">Show all</a></li>
             <li><a href="#" class="toggle" id="labeltoggle">Building names</a></li>
-            <li><a href="#" class="toggle" id="accommodationtoggle">Accomodation</a></li>
-            <li><a href="#" class="toggle" id="foodtoggle">Food &amp; Drink</a></li>
-            <li><a href="#" class="toggle" id="shoptoggle">Shops</a></li>
+            <li><a href="#" class="toggle orange" id="accommodationtoggle">Accomodation</a></li>
+            <li><a href="#" class="toggle green" id="foodtoggle">Food &amp; Drink</a></li>
+            <li><a href="#" class="toggle red" id="shoptoggle">Shops</a></li>
+            <li><a href="#" class="toggled blue" id="tweettoggle">Tweets</a></li>
         </ul>
         <h3>Transport</h3>
         <ul>
@@ -72,9 +74,16 @@
             <li><a href="#" class="toggle">Bike racks</a></li>
         </ul>
     </div>
-    <div id="subject-panel">
-        <h2>Subjects</h2>
+    <div id="search-panel">
+        <h2>Search</h2>
         <ul>
+        	<li><a href="#" id="a-z"><i class="fa fa-chevron-right"></i>Buildings A - Z</a></li>
+            <li><a href="#" id="subjects"><i class="fa fa-chevron-right"></i>Buildings by subject</a></li>
+            <li><a href="#" id="community"><i class="fa fa-chevron-right"></i>Community buildings</a></li>
+            <li><a href="#" id="admin"><i class="fa fa-chevron-right"></i>Admin buildings</a></li>
+            <li><a href="#" id="accommodation"><i class="fa fa-chevron-right"></i>Accommodation buildings</a></li>
+        </ul>
+        <!--<ul>
             <li><a href="#" class="toggle">Architecture</a></li>
             <li><a href="#" class="toggle">Arts</a></li>
             <li><a href="#" class="toggle">Biosciences</a></li>
@@ -92,7 +101,7 @@
             <li><a href="#" class="toggle">Physical Sciences</a></li>
             <li><a href="#" class="toggle">Social Sciences</a></li>
             <li><a href="#" class="toggle">Sports</a></li>
-        </ul>
+        </ul>-->
     </div>
     <div id="investment-panel">
         <h2>Investment</h2>
@@ -137,7 +146,6 @@
     </div>
     <div id="info-panel">
         <h2>Info</h2>
-        
         <ul>
          	<li><a href="#">Help</a></li>
             <li><a href="#">About</a></li>
@@ -145,6 +153,207 @@
             <li><a href="#">Disclaimer</a></li>
             <li><a href="#">Credits</a></li>
             <li><a href="#">UKC website</a></li>
+        </ul>
+    </div>
+</div>
+<div class="slide-drawer secondary">
+	<div id="a-z-panel">
+    	<h3>A</h3>
+        <ul>
+            <li><a href="#" data-building="Aphra_Theatre">Aphra Theatre</a></li>
+        </ul>
+        <h3>B</h3>
+        <ul>
+            <li><a href="#" data-building="Becket_Court">Becket Court</a></li>
+            <li><a href="#" data-building="Bishopden_Court">Bishopden Court</a></li>
+            <li><a href="#" data-building="Boiler_House">Boiler House</a></li>
+            <li><a href="#" data-building="Bossenden_Court">Bossenden Court</a></li>
+        </ul>
+        <h3>C</h3>
+        <ul>
+            <li><a href="#" data-building="Campus_Watch"> Campus Watch</a></li>
+            <li><a href="#" data-building="Careers_Employability_Service">Careers Employability Service</a></li>
+            <li><a href="#" data-building="Clowes_Court">Clowes Court</a></li>
+            <li><a href="#" data-building="Colyer_Fergusson">Colyer Fergusson</a></li>
+            <li><a href="#" data-building="Cornwallis_George_Allen_Wing">Cornwallis George Allen Wing</a></li>
+            <li><a href="#" data-building="Cornwallis_Mathematics_Institute">Cornwallis Mathematics Institute</a></li>
+            <li><a href="#" data-building="Cornwallis_North_East">Cornwallis North East</a></li>
+            <li><a href="#" data-building="Cornwallis_North_West">Cornwallis North West</a></li>
+            <li><a href="#" data-building="Cornwallis_South_East">Cornwallis South East</a></li>
+            <li><a href="#" data-building="Cornwallis_South_West">Cornwallis South West</a></li>
+            <li><a href="#" data-building="Cornwallis_South">Cornwallis South</a></li>
+            <li><a href="#" data-building="Cornwallis_West">Cornwallis West</a></li>
+        </ul>
+        <h3>D</h3>
+        <ul>
+            <li><a href="#" data-building="Darwin_College">Darwin College</a></li>
+            <li><a href="#" data-building="Darwin_Houses">Darwin Houses</a></li>
+            <li><a href="#" data-building="Denstead_Court">Denstead Court</a></li>
+        </ul>
+        <h3>E</h3>
+        <ul>
+            <li><a href="#" data-building="Eliot_College">Eliot College</a></li>
+            <li><a href="#" data-building="Ellenden_Court">Ellenden Court</a></li>
+            <li><a href="#" data-building="Estates_Department">Estates Department</a></li>
+        </ul>
+        <h3>F</h3>
+        <ul>
+            <li><a href="#" data-building="Farthings_Court">Farthings Court</a></li>
+        </ul>
+		<h3>G</h3>
+        <ul>
+            <li><a href="#" data-building="Giles_Lane_Teaching_Complex">Giles Lane Teaching Complex</a></li>
+            <li><a href="#" data-building="Grimmond">Grimmond</a></li>
+            <li><a href="#" data-building="Grimshill_Court">Grimshill Court</a></li>
+            <li><a href="#" data-building="Ground_Maintenance">Ground Maintenance</a></li>
+            <li><a href="#" data-building="Gulbenkian">Gulbenkian</a></li>
+        </ul>
+        <h3>H</h3>
+        <ul>
+            <li><a href="#" data-building="Homestall_Court">Homestall Court</a></li>
+            <li><a href="#" data-building="Hothe_Court">Hothe Court</a></li>
+        </ul>
+        <h3>I</h3>
+        <ul>
+            <li><a href="#" data-building="Ingram">Ingram</a></li>
+            <li><a href="#" data-building="Innovation_Center">Innovation Center</a></li>
+        </ul>
+        <h3>J</h3>
+        <ul>
+            <li><a href="#" data-building="Jarman">Jarman</a></li>
+            <li><a href="#" data-building="Jennison">Jennison</a></li>
+        </ul>
+        <h3>K</h3>
+        <ul>
+            <li><a href="#" data-building="Kemsdale_Court">Kemsdale Court</a></li>
+            <li><a href="#" data-building="Kent_Business_School">Kent Business School</a></li>
+            <li><a href="#" data-building="Kent_Enterprise_Hub">Kent Enterprise Hub</a></li>
+            <li><a href="#" data-building="Kent_Law_School">Kent Law School</a></li>
+            <li><a href="#" data-building="Keynes_College">Keynes College</a></li>
+            <li><a href="#" data-building="Keynes_Flats">Keynes Flats</a></li>
+        </ul>
+        <h3>L</h3>
+        <ul>
+            <li><a href="#" data-building="Locke">Locke</a></li>
+            <li><a href="#" data-building="Lypeatt_Court">Lypeatt Court</a></li>
+        </ul>
+		<h3>M</h3>
+        <ul>
+            <li><a href="#" data-building="Mandela_Building">Mandela Building</a></li>
+            <li><a href="#" data-building="Marley_Court">Marley Court</a></li>
+            <li><a href="#" data-building="Marlowe">Marlowe</a></li>
+            <li><a href="#" data-building="Missing_Link">Missing Link</a></li>
+        </ul>
+        <h3>N</h3>
+        <ul>
+            <li><a href="#" data-building="Nickle_Court">Nickle Court</a></li>
+        </ul>
+        <h3>O</h3>
+        <ul>
+            <li><a href="#" data-building="Oaks_Day_Nursery">Oaks Day Nursery</a></li>
+            <li><a href="#" data-building="Olive_Cottages">Olive Cottages</a></li>
+        </ul>
+        <h3>P</h3>
+        <ul>
+            <li><a href="#" data-building="Parkwood_Administration">Parkwood Administration</a></li>
+            <li><a href="#" data-building="Parkwood_Shop">Parkwood Shop</a></li>
+            <li><a href="#" data-building="Purchas_Court">Purchas Court</a></li>
+        </ul>
+        <h3>R</h3>
+        <ul>
+            <li><a href="#" data-building="Registry">Registry</a></li>
+            <li><a href="#" data-building="Research_and_Development_Centre">Research and Development Centre</a></li>
+            <li><a href="#" data-building="Rothford">Rothford</a></li>
+            <li><a href="#" data-building="Rutherford_College">Rutherford College</a></li>
+        </ul>
+        <h3>S</h3>
+        <ul>
+            <li><a href="#" data-building="Senate">Senate</a></li>
+            <li><a href="#" data-building="Sports_Centre">Sports Centre</a></li>
+            <li><a href="#" data-building="Sports_Pavillion">Sports Pavillion</a></li>
+            <li><a href="#" data-building="Stacey">Stacey</a></li>
+            <li><a href="#" data-building="Stock_Court">Stock Court</a></li>
+        </ul>
+        <h3>T</h3>
+        <ul>
+            <li><a href="#" data-building="Tanglewood">Tanglewood</a></li>
+            <li><a href="#" data-building="Templeman_Library">Templeman Library</a></li>
+            <li><a href="#" data-building="Thornden_Court">Thornden Court</a></li>
+            <li><a href="#" data-building="Tudor_Court">Tudor Court</a></li>
+            <li><a href="#" data-building="Tyler_Court_A">Tyler Court A</a></li>
+            <li><a href="#" data-building="Tyler_Court_B">Tyler Court B</a></li>
+            <li><a href="#" data-building="Tyler_Court_C">Tyler Court C</a></li>
+        </ul>
+        <h3>U</h3>
+        <ul>
+            <li><a href="#" data-building="UELT">UELT</a></li>
+            <li><a href="#" data-building="University_Medical_Centre">University Medical Centre</a></li>
+        </ul>
+        <h3>V</h3>
+        <ul>
+            <li><a href="#" data-building="Venue">Venue</a></li>
+        </ul>
+        <h3>W</h3>
+        <ul>
+            <li><a href="#" data-building="Willows_Court">Willows Court</a></li>
+            <li><a href="#" data-building="Woodlands">Woodlands</a></li>
+            <li><a href="#" data-building="Woodys">Woodys</a></li>
+            <li><a href="#" data-building="Woolf_Flats">Woolf Flats</a></li>
+            <li><a href="#" data-building="Woolf_College">Woolf College</a></li>
+            <li><a href="#" data-building="Woolf_Pavillion">Woolf Pavillion</a></li>
+            <li><a href="#" data-building="Woolf_Residential">Woolf Residential</a></li>
+        </ul>
+    </div>
+	<div id="subject-panel">
+        <ul>
+            <li><a href="#" class="toggle">Architecture</a></li>
+            <li><a href="#" class="toggle">Arts</a></li>
+            <li><a href="#" class="toggle">Biosciences</a></li>
+            <li><a href="#" class="toggle">Computing</a></li>
+            <li><a href="#" class="toggle">Digital Arts</a></li>
+            <li><a href="#" class="toggle">Drama</a></li>
+            <li><a href="#" class="toggle">Economics</a></li>
+            <li><a href="#" class="toggle">Engineering</a></li>
+            <li><a href="#" class="toggle">English</a></li>
+            <li><a href="#" class="toggle">Humanities</a></li>
+            <li><a href="#" class="toggle">Languages</a></li>
+            <li><a href="#" class="toggle">Law</a></li>
+            <li><a href="#" class="toggle">Mathematics</a></li>
+            <li><a href="#" class="toggle">Music</a></li>
+            <li><a href="#" class="toggle">Physical Sciences</a></li>
+            <li><a href="#" class="toggle">Social Sciences</a></li>
+            <li><a href="#" class="toggle">Sports</a></li>
+        </ul>
+    </div>
+    <div id="community-panel">
+        <ul>
+            <li><a href="#" class="toggle">Architecture</a></li>
+            <li><a href="#" class="toggle">Arts</a></li>
+            <li><a href="#" class="toggle">Biosciences</a></li>
+            <li><a href="#" class="toggle">Computing</a></li>
+            <li><a href="#" class="toggle">Digital Arts</a></li>
+            <li><a href="#" class="toggle">Drama</a></li>
+            <li><a href="#" class="toggle">Economics</a></li>
+        </ul>
+    </div>
+    <div id="admin-panel">
+        <ul>
+            <li><a href="#" class="toggle">Architecture</a></li>
+            <li><a href="#" class="toggle">Arts</a></li>
+            <li><a href="#" class="toggle">Biosciences</a></li>
+            <li><a href="#" class="toggle">Computing</a></li>
+            <li><a href="#" class="toggle">Digital Arts</a></li>
+            <li><a href="#" class="toggle">Drama</a></li>
+            <li><a href="#" class="toggle">Economics</a></li>
+        </ul>
+    </div>
+    <div id="accommodation-panel">
+        <ul>
+            <li><a href="#" class="toggle">Architecture</a></li>
+            <li><a href="#" class="toggle">Arts</a></li>
+            <li><a href="#" class="toggle">Biosciences</a></li>
+            <li><a href="#" class="toggle">Computing</a></li>
+            <li><a href="#" class="toggle">Digital Arts</a></li>
         </ul>
     </div>
 </div>
@@ -181,11 +390,13 @@
     	?>
     </div>
     <div id="controls">
-        <button id="rotateleft" type="button" title="Rotate Left" onclick="rotateLeft()"><i class="fa fa-chevron-left"></i></button>
-        <button id="rotateright" type="button" title="Rotate Right" onclick="rotateRight()"><i class="fa fa-chevron-right"></i></button>
-        <button id="twod" type="button" title="2D View" onclick="view2D()"><i class="fa fa-compass fa-lg"></i></button>
-        <button id="tilt" type="button" title="Tilt Down" onclick="tilt()"><i class="fa fa-long-arrow-down"></i></button>
-        <button id="refresh" type="button" title="Refresh View" onclick="refreshView()"><i class="fa fa-refresh"></i></button>
+        <button id="rotateleft" type="button" onclick="rotateLeft()"><i class="fa fa-chevron-left"></i></button>
+        <div id="controlhover">
+        	<button id="refresh" type="button" onclick="refreshView()"><i class="fa fa-chevron-up"></i></button>
+            <button id="twod" type="button" onclick="view2D()">2D</button>
+        	<button id="tilt" type="button" onclick="tilt()"><i class="fa fa-chevron-down"></i></button>
+        </div>
+        <button id="rotateright" type="button" onclick="rotateRight()"><i class="fa fa-chevron-right"></i></button>
     </div>
 </div>
 <!--<div id="footer">
@@ -215,23 +426,12 @@
 <script src="http://mrdoob.github.com/three.js/examples/js/postprocessing/RenderPass.js"></script>
 <script src="http://mrdoob.github.com/three.js/examples/js/postprocessing/MaskPass.js"></script>
 <script src="http://mrdoob.github.com/three.js/examples/js/postprocessing/ShaderPass.js"></script>
-      
-<script src="assets/js/universal.js"></script>
+     
 <script src="assets/js/functions.js"></script> 
 <script src="assets/js/mouse_events.js"></script>
+<script src="assets/js/helvetiker_regular.typeface.js"></script>
 <script src="assets/js/core.js"></script>
-<script>
-$(function() {
-	$( "#controls button" ).tooltip({
-      show: {delay: 200},
-      position: {
-        my: "center top",
-        at: "center bottom+10"
-      }
-      
-    });
-});
-</script>
+<script src="assets/js/universal.js"></script>
 <script type="text/javascript">
     //<![CDATA[
         $(window).load(function() { // makes sure the whole site is loaded
@@ -239,6 +439,7 @@ $(function() {
 				$('#status').fadeOut(1000); // will first fade out the loading animation
 				$('#preloader').delay(350).fadeOut(1000); // will fade out the white DIV that covers the website.
 				$('body').delay(350).css({'overflow':'visible'});
+				new TWEEN.Tween( camera.position ).to( { x: 0, y: 300, z: 350 }, 3000 ).easing( TWEEN.Easing.Quadratic.InOut).start();
 			 }, 750);
         })
     //]]>

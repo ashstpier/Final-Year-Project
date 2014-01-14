@@ -4,9 +4,8 @@
 		<title>Final Year Project</title>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
-		<link href="assets/css/style.css" rel="stylesheet" type="text/css">
+		<link href="assets/css/style_light.css" rel="stylesheet" type="text/css">
         <link href="assets/css/typography.css" rel="stylesheet" type="text/css">
-        <link href="assets/css/buttons.css" rel="stylesheet" type="text/css">
         <link href="assets/css/social.css" rel="stylesheet" type="text/css">
         <link href="assets/css/preloader.css" rel="stylesheet" type="text/css">
         <link rel="stylesheet" href="assets/css/animate.css">
@@ -37,22 +36,25 @@
 <div id="leftnav">
     <button id="twitter-button" class="slide" type="button"><i class="fa fa-bars"></i></button>
     <button id="social-button" class="slide" type="button"><i class="fa fa-sort-amount-desc"></i></button>
+    <div id="leftnav-footer">
+    	<button id="info-button" class="slide" type="button"><i class="fa fa-cogs"></i></button>
+    </div>
 </div>
 <div class="slide-drawer">
     <div id="twitter-panel">
         <h2>Filters</h2>
         <ul id="filters">
-        	<li><a href="#" data-filter="*"><i class="fa fa-th-large"></i>Show all</a></li>
+        	<li><a href="#" data-filter="*" class="checked"><i class="fa fa-th-large"></i>Show all</a></li>
       		<li><a href="#" data-filter=".twitter"><i class="fa fa-twitter"></i>Twitter</a></li>
       		<li><a href="#" data-filter=".instagram"><i class="fa fa-instagram"></i>Instagram</a></li>
         </ul>
         <h3>Twitter feed</h3>
         <ul id="filters">
-          <li><a href="#" data-filter=".UniKent">University of Kent</a></li>
-          <li><a href="#" data-filter=".KentUnion">Kent Union</a></li>
-          <li><a href="#" data-filter=".UniKentNews">Uni Kent News</a></li>
-          <li><a href="#" data-filter=".UniKentEmploy">Uni Kent Employ</a></li>
-          <li><a href="#" data-filter=".UniKent_Music">Uni Kent Music</a></li>
+          <li><a href="#" data-filter=".UniKent">@UniKent</a></li>
+          <li><a href="#" data-filter=".KentUnion">@KentUnion</a></li>
+          <li><a href="#" data-filter=".UniKentNews">@UniKentNews</a></li>
+          <li><a href="#" data-filter=".UniKentEmploy">@UniKentEmploy</a></li>
+          <li><a href="#" data-filter=".UniKent_Music">@UniKent_Music</a></li>
         </ul>
         <h3>Instagram feed</h3>
         <ul id="filters">
@@ -71,6 +73,18 @@
         <ul>
             <li><a href="#" id="date-new" class="sort checked"><i class="fa fa-sort-amount-desc"></i>Newest</a></li>
             <li><a href="#" id="date-old" class="sort"><i class="fa fa-sort-amount-asc"></i>Oldest</a></li>
+        </ul>
+    </div>
+    <div id="info-panel">
+        <h2>Info</h2>
+        
+        <ul>
+         	<li><a href="#">Help</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Case studies</a></li>
+            <li><a href="#">Disclaimer</a></li>
+            <li><a href="#">Credits</a></li>
+            <li><a href="#">UKC website</a></li>
         </ul>
     </div>
 </div>
@@ -99,7 +113,7 @@
 <div id="wrapper">
     <section id="stream">
 	<?php include_once 'twitter/display-tweets.php';
-        display_tweets('unikent', 'kentunion','unikentemploy','unikent_music','unikentnews','default', 10, 30);
+        display_tweets('unikent', 'kentunion','unikentemploy','unikent_music','unikentnews','default', 20, 30);
     ?>
     <?php include_once 'assets/php/instagram.php';
        
@@ -204,20 +218,20 @@ $(window).load(function(){
 	
 	$( "#social-button" ).click(function() {
 		if($("#social-panel").is(":visible")){
-			$(".slide-drawer").toggle("slide", {direction:'left', duration: 200, easing: "linear"}, function(){
+			$(".slide-drawer").toggle("slide", {direction:'left', duration: 300, easing: "linear"}, function(){
 				$(".slide-drawer div").hide();
 				$container.isotope('reLayout');
 			});
 			$("#leftnav button").removeClass( "active" );
 			$("#wrapper").toggleClass( "slide-margin" );
-		}else if($("#twitter-panel").is(":visible")){
+		}else if($("#twitter-panel, #info-panel").is(":visible")){
 			$(".slide-drawer div").hide();
 			$("#social-panel").fadeIn();
 			$("#leftnav button").removeClass( "active" );
 			$("#social-button").addClass( "active" );
 		}else{
 			$("#social-panel").fadeIn();
-			$(".slide-drawer").toggle("slide", {direction:'left', duration: 200, easing: "linear"}, function(){
+			$(".slide-drawer").toggle("slide", {direction:'left', duration: 300, easing: "linear"}, function(){
 				$container.isotope('reLayout');
 			});
 			$("#social-button").addClass( "active" );
@@ -226,23 +240,45 @@ $(window).load(function(){
 	});
 	$( "#twitter-button" ).click(function() {
 		if($("#twitter-panel").is(":visible")){
-			$(".slide-drawer").toggle("slide", {direction:'left', duration: 200, easing: "linear"}, function(){
+			$(".slide-drawer").toggle("slide", {direction:'left', duration: 300, easing: "linear"}, function(){
 				$(".slide-drawer div").hide();
 				$container.isotope('reLayout');
 			});
 			$("#leftnav button").removeClass( "active" );
 			$("#wrapper").toggleClass( "slide-margin" );
-		}else if($("#social-panel").is(":visible")){
+		}else if($("#social-panel, #info-panel").is(":visible")){
 			$(".slide-drawer div").hide();
 			$("#twitter-panel").fadeIn();
 			$("#leftnav button").removeClass( "active" );
 			$("#twitter-button").addClass( "active" );
 		}else{
 			$("#twitter-panel").fadeIn();
-			$(".slide-drawer").toggle("slide", {direction:'left', duration: 200, easing: "linear"}, function(){
+			$(".slide-drawer").toggle("slide", {direction:'left', duration: 300, easing: "linear"}, function(){
 				$container.isotope('reLayout');
 			});
 			$("#twitter-button").addClass( "active" );
+			$("#wrapper").toggleClass( "slide-margin" );
+		}
+	});
+	$( "#info-button" ).click(function() {
+		if($("#info-panel").is(":visible")){
+			$(".slide-drawer").toggle("slide", {direction:'left', duration: 300, easing: "linear"}, function(){
+				$(".slide-drawer div").hide();
+				$container.isotope('reLayout');
+			});
+			$("#leftnav button").removeClass( "active" );
+			$("#wrapper").toggleClass( "slide-margin" );
+		}else if($("#social-panel, #twitter-panel").is(":visible")){
+			$(".slide-drawer div").hide();
+			$("#info-panel").fadeIn();
+			$("#leftnav button").removeClass( "active" );
+			$("#info-button").addClass( "active" );
+		}else{
+			$("#info-panel").fadeIn();
+			$(".slide-drawer").toggle("slide", {direction:'left', duration: 300, easing: "linear"}, function(){
+				$container.isotope('reLayout');
+			});
+			$("#info-button").addClass( "active" );
 			$("#wrapper").toggleClass( "slide-margin" );
 		}
 	});
@@ -298,7 +334,6 @@ $(window).load(function(){
 	
 });
 </script>
-<script src="assets/js/universal.js"></script>
 
 <script type="text/javascript">
     //<![CDATA[

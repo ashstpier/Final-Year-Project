@@ -57,41 +57,9 @@ function onDocumentMouseUp( event ) {
 			$('#modalpanel').empty();
 			$("#modalpanel").removeClass('fadeOutUp fadeInDown opaque');
 			closeTweet();
-			var time = 1000;
-			var node = intersects[0].object.name;
-			
-			$(xml).find(node).each(function(){
-				var header = $(this).find('header').text();
-				var description = $(this).find('description').text();
-				var area = $(this).find('area').text();
-				$('<header></header>').html('<h2><i class="fa fa-map-marker"></i>'+header+'</h2>').appendTo('#modalpanel');
-				$('<section></section>').html('<p>'+description+'</p>').appendTo('#modalpanel');
-				$('<footer></footer>').html('<span>'+area+'</span><a href="#" onclick="closeModal()"><i class="fa fa-times"></i></a>').appendTo('#modalpanel');
-				$('<div class="arrow-down"></div>').appendTo('#modalpanel');
-			});
 			
 			modal = intersects[0].object;
-			
-			modal.geometry.computeBoundingBox();
-			var boundingBox = modal.geometry.boundingBox;
-			var position = new THREE.Vector3();
-			position.subVectors( boundingBox.max, boundingBox.min );
-			position.multiplyScalar( 0.5 );
-			position.add( boundingBox.min );
-			position.applyMatrix4( modal.matrixWorld );
-				
-			if (camera.position.z >= position.z && controls.center.z <= camera.position.z){
-				new TWEEN.Tween( camera.position ).to( { x: 0, y: 110, z: 150 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {$("#modalpanel").addClass('fadeInDown opaque');}).start();
-			}else if (camera.position.z >= position.z && controls.center.z >= camera.position.z) {
-				new TWEEN.Tween( camera.position ).to( { x: 0, y: 110, z: - 150 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {$("#modalpanel").addClass('fadeInDown opaque');}).start();
-			}
-			else if (camera.position.z <= position.z && controls.center.z <= camera.position.z) {
-				new TWEEN.Tween( camera.position ).to( { x: 0, y: 110, z: 150 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {$("#modalpanel").addClass('fadeInDown opaque');}).start();
-			}
-			else {
-				new TWEEN.Tween( camera.position ).to( { x: 0, y: 110, z: - 150 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {$("#modalpanel").addClass('fadeInDown opaque');}).start();
-			}
-			new TWEEN.Tween( group.position ).to( { x: group.position.x - position.x, y: -30, z: group.position.z - position.z }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).start();
+			placeMarker(modal);
 		}
 		
 	}
@@ -102,6 +70,42 @@ function onDocumentMouseUp( event ) {
 	}
 	container.style.cursor = 'move';
 	controls.enabled = true;
+}
+
+function placeMarker(modal){
+	var node = modal.name;
+			
+	$(xml).find(node).each(function(){
+		var header = $(this).find('header').text();
+		var description = $(this).find('description').text();
+		var area = $(this).find('area').text();
+		$('<header></header>').html('<h2><i class="fa fa-map-marker"></i>'+header+'</h2>').appendTo('#modalpanel');
+		$('<section></section>').html('<p>'+description+'</p>').appendTo('#modalpanel');
+		$('<footer></footer>').html('<span>'+area+'</span><a href="#" onclick="closeModal()"><i class="fa fa-times"></i></a>').appendTo('#modalpanel');
+		$('<div class="arrow-down"></div>').appendTo('#modalpanel');
+	});
+
+	var time = 1000;
+	modal.geometry.computeBoundingBox();
+	var boundingBox = modal.geometry.boundingBox;
+	var position = new THREE.Vector3();
+	position.subVectors( boundingBox.max, boundingBox.min );
+	position.multiplyScalar( 0.5 );
+	position.add( boundingBox.min );
+	position.applyMatrix4( modal.matrixWorld );
+		
+	if (camera.position.z >= position.z && controls.center.z <= camera.position.z){
+		new TWEEN.Tween( camera.position ).to( { x: 0, y: 80, z: 100 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {$("#modalpanel").addClass('fadeInDown opaque');}).start();
+	}else if (camera.position.z >= position.z && controls.center.z >= camera.position.z) {
+		new TWEEN.Tween( camera.position ).to( { x: 0, y: 80, z: - 100 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {$("#modalpanel").addClass('fadeInDown opaque');}).start();
+	}
+	else if (camera.position.z <= position.z && controls.center.z <= camera.position.z) {
+		new TWEEN.Tween( camera.position ).to( { x: 0, y: 80, z: 100 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {$("#modalpanel").addClass('fadeInDown opaque');}).start();
+	}
+	else {
+		new TWEEN.Tween( camera.position ).to( { x: 0, y: 80, z: - 100 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {$("#modalpanel").addClass('fadeInDown opaque');}).start();
+	}
+	new TWEEN.Tween( group.position ).to( { x: group.position.x - position.x, y: -30, z: group.position.z - position.z }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).start();
 }
 
 function twitterMap(intersects, tweetcontainer){
@@ -124,15 +128,15 @@ function twitterMap(intersects, tweetcontainer){
 	position.applyMatrix4( tweetmodal.matrixWorld );
 		
 	if (camera.position.z >= position.z && controls.center.z <= camera.position.z){
-		new TWEEN.Tween( camera.position ).to( { x: 0, y: 110, z: 150 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {$(tweetcontainer).addClass('fadeInDown opaque');}).start();
+		new TWEEN.Tween( camera.position ).to( { x: 0, y: 80, z: 100 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {$(tweetcontainer).addClass('fadeInDown opaque');}).start();
 	}else if (camera.position.z >= position.z && controls.center.z >= camera.position.z) {
-		new TWEEN.Tween( camera.position ).to( { x: 0, y: 110, z: - 150 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {$(tweetcontainer).addClass('fadeInDown opaque');}).start();
+		new TWEEN.Tween( camera.position ).to( { x: 0, y: 80, z: - 100 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {$(tweetcontainer).addClass('fadeInDown opaque');}).start();
 	}
 	else if (camera.position.z <= position.z && controls.center.z <= camera.position.z) {
-		new TWEEN.Tween( camera.position ).to( { x: 0, y: 110, z: 150 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {$(tweetcontainer).addClass('fadeInDown opaque');}).start();
+		new TWEEN.Tween( camera.position ).to( { x: 0, y: 80, z: 100 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {$(tweetcontainer).addClass('fadeInDown opaque');}).start();
 	}
 	else {
-		new TWEEN.Tween( camera.position ).to( { x: 0, y: 110, z: - 150 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {$(tweetcontainer).addClass('fadeInDown opaque');}).start();
+		new TWEEN.Tween( camera.position ).to( { x: 0, y: 80, z: - 100 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {$(tweetcontainer).addClass('fadeInDown opaque');}).start();
 	}
 	new TWEEN.Tween( group.position ).to( { x: group.position.x - position.x, y: -30, z: group.position.z - position.z }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {$(tweetcontainer).addClass('fadeInDown opaque');}).start();
 }
@@ -186,12 +190,18 @@ function view2D() {
 	}
 }
 function tilt() {
-	new TWEEN.Tween( camera.position ).to( { y: 80 }, 1000 ).easing( TWEEN.Easing.Quadratic.InOut).start();
+	if (camera.position.z >= controls.center.z){
+		new TWEEN.Tween( camera.position ).to( { y: -20, z: controls.center.z + 300 }, 1000 ).easing( TWEEN.Easing.Sinusoidal.InOut).start();
+	}else {
+		new TWEEN.Tween( camera.position ).to( { y: -20, z: controls.center.z - 300 }, 1000 ).easing( TWEEN.Easing.Sinusoidal.InOut).start();
+	}
 }
 function refreshView() {
-	new TWEEN.Tween( camera.position ).to( { x: 0, y: 350, z: 500 }, 1000 ).easing( TWEEN.Easing.Quadratic.InOut).start();
-	new TWEEN.Tween( group.position ).to( { x: 0, y: 0, z: 0 }, 1000 ).easing( TWEEN.Easing.Quadratic.InOut).start();
-	new TWEEN.Tween( controls.center ).to( { x: 0, y: 0, z: 0 }, 1000 ).easing( TWEEN.Easing.Quadratic.InOut).start();
+	if (camera.position.z >= controls.center.z){
+		new TWEEN.Tween( camera.position ).to( { y: 300, z: controls.center.z + 350 }, 1000 ).easing( TWEEN.Easing.Sinusoidal.InOut).start();
+	}else {
+		new TWEEN.Tween( camera.position ).to( { y: 300, z: controls.center.z - 350 }, 1000 ).easing( TWEEN.Easing.Sinusoidal.InOut).start();
+	}
 }
 
 function rotateRight() {
@@ -218,62 +228,117 @@ function closeTweet() {
     }, 500)
 }
 
-/////////// TOGGLES /////////////
+/////////// MARKERS /////////////
 
+$( "#labelall" ).click(function() {
+	if ($(this).hasClass( "toggle" )) {
+		for (var i=0, tot=sprites.length; i < tot; i++) {
+			new TWEEN.Tween( sprites[i].material ).to( { opacity: 1 }, 500 ).easing( TWEEN.Easing.Quadratic.InOut).start();
+		}
+		for (var i=0, tot=locationIcons.length; i < tot; i++) {
+			new TWEEN.Tween( locationIcons[i].material ).to( { opacity: 1 }, 500 ).easing( TWEEN.Easing.Quadratic.InOut).start();
+		}
+		for (var i=0, tot=foodIcons.length; i < tot; i++) {
+			new TWEEN.Tween( foodIcons[i].material ).to( { opacity: 1 }, 500 ).easing( TWEEN.Easing.Quadratic.InOut).start();
+		}
+		for (var i=0, tot=shopIcons.length; i < tot; i++) {
+			new TWEEN.Tween( shopIcons[i].material ).to( { opacity: 1 }, 500 ).easing( TWEEN.Easing.Quadratic.InOut).start();
+		}
+		for (var i=0, tot=tweetIcons.length; i < tot; i++) {
+			tweetIcons[i].visible = true;
+		}
+		$("#labeltoggle, #accommodationtoggle, #foodtoggle, #shoptoggle, #tweettoggle").removeClass( "toggle" );
+		$("#labeltoggle, #accommodationtoggle, #foodtoggle, #shoptoggle, #tweettoggle").addClass( "toggled" );
+	} else {
+		for (var i=0, tot=sprites.length; i < tot; i++) {
+			new TWEEN.Tween( sprites[i].material ).to( { opacity: 0 }, 500 ).easing( TWEEN.Easing.Quadratic.InOut).start();
+		}
+		for (var i=0, tot=locationIcons.length; i < tot; i++) {
+			new TWEEN.Tween( locationIcons[i].material ).to( { opacity: 0 }, 500 ).easing( TWEEN.Easing.Quadratic.InOut).start();
+		}
+		for (var i=0, tot=foodIcons.length; i < tot; i++) {
+			new TWEEN.Tween( foodIcons[i].material ).to( { opacity: 0 }, 500 ).easing( TWEEN.Easing.Quadratic.InOut).start();
+		}
+		for (var i=0, tot=shopIcons.length; i < tot; i++) {
+			new TWEEN.Tween( shopIcons[i].material ).to( { opacity: 0 }, 500 ).easing( TWEEN.Easing.Quadratic.InOut).start();
+		}
+		for (var i=0, tot=tweetIcons.length; i < tot; i++) {
+			tweetIcons[i].visible = false;
+		}
+		$("#labeltoggle, #accommodationtoggle, #foodtoggle, #shoptoggle, #tweettoggle").removeClass( "toggled" );
+		$("#labeltoggle, #accommodationtoggle, #foodtoggle, #shoptoggle, #tweettoggle").addClass( "toggle" );
+	}
+});
 $( "#labeltoggle" ).click(function() {
 	if ($(this).hasClass( "toggle" )) {
 		for (var i=0, tot=sprites.length; i < tot; i++) {
-			sprites[i].material.opacity = 1;
-			new TWEEN.Tween( sprites[i].position ).to( { y: sprites[i].position.y - 50 }, 1000 ).easing( TWEEN.Easing.Bounce.Out).start();
+			new TWEEN.Tween( sprites[i].material ).to( { opacity: 1 }, 500 ).easing( TWEEN.Easing.Quadratic.InOut).start();
 		}
 	} else {
 		for (var i=0, tot=sprites.length; i < tot; i++) {
-			sprites[i].material.opacity = 0;
-			sprites[i].position.y += 50;
+			new TWEEN.Tween( sprites[i].material ).to( { opacity: 0 }, 500 ).easing( TWEEN.Easing.Quadratic.InOut).start();
 		}
-	}
-});
-$( "#subjecttoggle" ).click(function() {
-	if ($(this).hasClass( "toggle" )) {
-		// toggle code
-	} else {
-		// toggle code
+		$("#labelall").removeClass( "toggled" );
+		$("#labelall").addClass( "toggle" );
 	}
 });
 $( "#accommodationtoggle" ).click(function() {
 	if ($(this).hasClass( "toggle" )) {
 		for (var i=0, tot=locationIcons.length; i < tot; i++) {
-			locationIcons[i].material.opacity = 1;
-			new TWEEN.Tween( locationIcons[i].position ).to( { y: locationIcons[i].position.y - 40 }, 1000 ).easing( TWEEN.Easing.Bounce.Out).start();
+			new TWEEN.Tween( locationIcons[i].material ).to( { opacity: 1 }, 500 ).easing( TWEEN.Easing.Quadratic.InOut).start();
 		}
 	} else {
 		for (var i=0, tot=locationIcons.length; i < tot; i++) {
-			locationIcons[i].material.opacity = 0;
-			locationIcons[i].position.y += 40;
+			new TWEEN.Tween( locationIcons[i].material ).to( { opacity: 0 }, 500 ).easing( TWEEN.Easing.Quadratic.InOut).start();
 		}
-	}
-});
-$( "#shoptoggle" ).click(function() {
-	if ($(this).hasClass( "toggle" )) {
-		// toggle code
-	} else {
-		// toggle code
-	}
-});
-$( "#bustoggle" ).click(function() {
-	if ($(this).hasClass( "toggle" )) {
-	
-	} else {
-		// toggle code
+		$("#labelall").removeClass( "toggled" );
+		$("#labelall").addClass( "toggle" );
 	}
 });
 $( "#foodtoggle" ).click(function() {
 	if ($(this).hasClass( "toggle" )) {
-	
+		for (var i=0, tot=foodIcons.length; i < tot; i++) {
+			new TWEEN.Tween( foodIcons[i].material ).to( { opacity: 1 }, 500 ).easing( TWEEN.Easing.Quadratic.InOut).start();
+		}
 	} else {
-		// toggle code
+		for (var i=0, tot=foodIcons.length; i < tot; i++) {
+			new TWEEN.Tween( foodIcons[i].material ).to( { opacity: 0 }, 500 ).easing( TWEEN.Easing.Quadratic.InOut).start();
+		}
+		$("#labelall").removeClass( "toggled" );
+		$("#labelall").addClass( "toggle" );
 	}
 });
+
+$( "#shoptoggle" ).click(function() {
+	if ($(this).hasClass( "toggle" )) {
+		for (var i=0, tot=shopIcons.length; i < tot; i++) {
+			new TWEEN.Tween( shopIcons[i].material ).to( { opacity: 1 }, 500 ).easing( TWEEN.Easing.Quadratic.InOut).start();
+		}
+	} else {
+		for (var i=0, tot=shopIcons.length; i < tot; i++) {
+			new TWEEN.Tween( shopIcons[i].material ).to( { opacity: 0 }, 500 ).easing( TWEEN.Easing.Quadratic.InOut).start();
+		}
+		$("#labelall").removeClass( "toggled" );
+		$("#labelall").addClass( "toggle" );
+	}
+});
+$( "#tweettoggle" ).click(function() {
+	if ($(this).hasClass( "toggled" )) {
+		for (var i=0, tot=tweetIcons.length; i < tot; i++) {
+			tweetIcons[i].visible = false;
+		}
+		$(this).toggleClass( "toggle toggled" );
+		$("#labelall").removeClass( "toggled" );
+		$("#labelall").addClass( "toggle" );
+	} else {
+		for (var i=0, tot=tweetIcons.length; i < tot; i++) {
+			tweetIcons[i].visible = true;
+		}
+		$(this).toggleClass( "toggle toggled" );
+	}
+});
+
+/////////// DRAWER TOGGLE /////////////
 
 $( "#drawer-toggle" ).click(function() {
 	$(this).toggleClass( "active" );
@@ -282,4 +347,12 @@ $( "#drawer-toggle" ).click(function() {
 });
 $( ".slide-drawer .toggle" ).click(function() {
 	$(this).toggleClass( "toggle toggled" );
+});
+
+/////////// CONTROLS HOVER /////////////
+
+$( "#controlhover" ).hover(function() {
+	$("#tilt, #refresh").stop().fadeIn();
+}, function() {
+    $("#tilt, #refresh").stop().fadeOut();
 });

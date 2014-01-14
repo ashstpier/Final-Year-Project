@@ -3,13 +3,22 @@
 	margin: 0 auto;
 }
 .item {
-	background: #fff;
+	background: #f8f8f8;
 	padding: 20px;
 	margin: 3px;
 	border: 1px #e6e6e6 solid;
 	width: 360px;
 	float: left;
 	overflow: hidden;
+}
+.item.instagram {
+	padding: 0;
+}
+.item.instagram p {
+	padding: 10px 20px 0;
+}
+.item.instagram .tweet-footer {
+	margin: 0 20px 20px;
 }
 .item .tweet-content {
 	margin-left: 60px;
@@ -22,7 +31,7 @@
 	color: #999;
 }
 .item a {
-	color: #71BAB8;
+	color: #279CCD;
 	text-decoration:none;
 }
 .item a:hover {

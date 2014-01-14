@@ -1,6 +1,6 @@
 var container, stats, camera, scene, renderer, projector, controls, ground, group = new THREE.Object3D(), xml;
 var depthMaterial, depthTarget, composer;
-var clickobjects = [], tweetobjects = [], iconAcademic = [], iconLocation = [], iconMusic = [], iconAnnouncement = [], sprites = [], locationIcons = [], tweetIcons = [];
+var clickobjects = [], tweetobjects = [], sprites = [], locationIcons = [], foodIcons = [], shopIcons = [], tweetIcons = [];
 var jsonFileNames = [
 	'assets/models/Aphra_Theatre.js',
 	'assets/models/Becket_Court.js',
@@ -183,17 +183,18 @@ function init() {
 	document.getElementById("mapwrapper").appendChild( container );
 	
 	camera = new THREE.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 10, 2000 );
-	camera.position.z = 500;
-	camera.position.y = 350;
+	camera.position.z = 0;
+	camera.position.y = 700;
 	
 	//////// ORBIT CONTROLS /////////
 
 	controls = new THREE.OrbitControls( camera );
 	controls.addEventListener( 'change', render );
 	controls.maxPolarAngle = Math.PI/2.25; 
-	controls.minDistance = 150;
-	controls.maxDistance = 500;
+	controls.minDistance = 100;
+	controls.maxDistance = 300;
 	controls.enabled = true;
+	controls.center.set(0,-10,0);
 	
 	///////// SCENE SETUP //////////
 
@@ -219,7 +220,11 @@ function init() {
 	ground.rotation.x += 270 * Math.PI / 180;
 	ground.material.needsUpdate = true;
 	scene.add( ground );
-	group.add( ground )
+	group.add( ground );
+	
+	var text = makeTextOverlay('P');
+	scene.add( text );
+	group.add( text );
 	
 	plane = new THREE.Mesh( new THREE.PlaneGeometry( 1200, 960, 8, 8 ), new THREE.MeshBasicMaterial( { transparent: true, wireframe: true } ) );
 	plane.visible = false;
@@ -257,7 +262,7 @@ function init() {
 			clickobjects.push( mesh );
 			group.add( mesh );
 			mesh.name = meshName;
-				
+			
 			var sprite = makeTextSprite( spriteName, mesh );
 			scene.add( sprite );
 			sprites.push( sprite );
@@ -338,8 +343,6 @@ function positionTrackingOverlay()
 	var visibleWidth, visibleHeight, p, v, percX, percY, left, top, widthPercentage, heightPercentage;
 	
 	if(modal != null){
-
-		// this will give us position relative to the world
 		
 		modal.geometry.computeBoundingBox();
 		var boundingBox = modal.geometry.boundingBox;
@@ -351,25 +354,17 @@ function positionTrackingOverlay()
 		
 		p = position.clone();
 
-		// projectVector will translate position to 2d
 		v = projector.projectVector(p, camera);
 
-		// translate our vector so that percX=0 represents
-		// the left edge, percX=1 is the right edge,
-		// percY=0 is the top edge, and percY=1 is the bottom edge.
 		percX = (v.x + 1) / 2;
 		percY = (-v.y + 1) / 2;
 
-
-		// scale these values to our viewport size
 		left = percX * WIDTH;
 		top = percY * HEIGHT;
 		
 		widthPercentage = (left - $("#modalpanel").width() / 2) / WIDTH * 100;
 		heightPercentage = (top - $("#modalpanel").height()) / HEIGHT * 100;
 		
-		// position the overlay so that it's center is on top of
-		// the sphere we're tracking
 		$("#modalpanel")
 				.css('left', widthPercentage + '%')
 				.css('top', heightPercentage + '%');
