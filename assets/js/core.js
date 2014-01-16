@@ -1,6 +1,6 @@
-var container, stats, camera, scene, renderer, projector, controls, ground, group = new THREE.Object3D(), xml;
+var container, stats, camera, scene, renderer, projector, controls, ground, group = new THREE.Object3D(), group = new THREE.Object3D(), xml;
 var depthMaterial, depthTarget, composer;
-var clickobjects = [], tweetobjects = [], sprites = [], locationIcons = [], foodIcons = [], shopIcons = [], tweetIcons = [];
+var clickobjects = [], tweetobjects = [], sprites = [], locationIcons = [], foodIcons = [], shopIcons = [], tweetIcons = [], visitorParking = [], permitParking = [], rotate = [], investmentArray = [], developmentArray = [];
 var jsonFileNames = [
 	'assets/models/Aphra_Theatre.js',
 	'assets/models/Becket_Court.js',
@@ -192,7 +192,7 @@ function init() {
 	controls.addEventListener( 'change', render );
 	controls.maxPolarAngle = Math.PI/2.25; 
 	controls.minDistance = 100;
-	controls.maxDistance = 300;
+	controls.maxDistance = 350;
 	controls.enabled = true;
 	controls.center.set(0,-10,0);
 	
@@ -222,9 +222,31 @@ function init() {
 	scene.add( ground );
 	group.add( ground );
 	
-	var text = makeTextOverlay('P');
-	scene.add( text );
-	group.add( text );
+	var parking1 = parkingIcon(visitorParking, "assets/images/icons/ico_parking.png");
+	parking1.position.set(78,0,-25);
+	var parking2 = parkingIcon(visitorParking, "assets/images/icons/ico_parking.png");
+	parking2.position.set(275,0,-205);
+	var parking3 = parkingIcon(visitorParking, "assets/images/icons/ico_parking.png");
+	parking3.position.set(39,0,344);
+	var parking4 = parkingIcon(visitorParking, "assets/images/icons/ico_parking.png");
+	parking4.position.set(-333,0,-248);
+	
+	var parking5 = parkingIcon(permitParking, "assets/images/icons/ico_parking2.png");
+	parking5.position.set(90,0,30);
+	var parking6 = parkingIcon(permitParking, "assets/images/icons/ico_parking2.png");
+	parking6.position.set(230,0,3);
+	var parking7 = parkingIcon(permitParking, "assets/images/icons/ico_parking2.png");
+	parking7.position.set(50,0,-200);
+	var parking8 = parkingIcon(permitParking, "assets/images/icons/ico_parking2.png");
+	parking8.position.set(230,0,-290);
+	var parking9 = parkingIcon(permitParking, "assets/images/icons/ico_parking2.png");
+	parking9.position.set(442,0,-153);
+	var parking10 = parkingIcon(permitParking, "assets/images/icons/ico_parking2.png");
+	parking10.position.set(-30,0,55);
+	var parking11 = parkingIcon(permitParking, "assets/images/icons/ico_parking2.png");
+	parking11.position.set(-115,0,-220);
+		
+	makeInvestmentOverlay();
 	
 	plane = new THREE.Mesh( new THREE.PlaneGeometry( 1200, 960, 8, 8 ), new THREE.MeshBasicMaterial( { transparent: true, wireframe: true } ) );
 	plane.visible = false;
@@ -413,6 +435,7 @@ function animate() {
 	//scene.overrideMaterial = depthMaterial;
 	render();
 	positionTrackingOverlay();
+	parkingRotate();
 	//scene.overrideMaterial = null;
 	//composer.render();
 	requestAnimationFrame( animate );

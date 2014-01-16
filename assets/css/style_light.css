@@ -41,12 +41,12 @@ body {
 	height: 100%;
 	position: relative;
 	overflow: hidden;
-	background-image: -ms-radial-gradient(center, ellipse farthest-corner, #5986A8 0%, #0C2133 100%);
-	background-image: -moz-radial-gradient(center, ellipse farthest-corner, #5986A8 0%, #0C2133 100%);
-	background-image: -o-radial-gradient(center, ellipse farthest-corner, #5986A8 0%, #0C2133 100%);
-	background-image: -webkit-gradient(radial, center center, 0, center center, 497, color-stop(0, #5986A8), color-stop(1, #0C2133));
-	background-image: -webkit-radial-gradient(center, ellipse farthest-corner, #5986A8 0%, #0C2133 100%);
-	background-image: radial-gradient(ellipse farthest-corner at center, #5986A8 0%, #0C2133 100%);
+	background-image: -ms-radial-gradient(center, ellipse farthest-corner, #0099cc 0%, #0f5e78 100%);
+	background-image: -moz-radial-gradient(center, ellipse farthest-corner, #0099cc 0%, #0f5e78 100%);
+	background-image: -o-radial-gradient(center, ellipse farthest-corner, #0099cc 0%, #0f5e78 100%);
+	background-image: -webkit-gradient(radial, center center, 0, center center, 497, color-stop(0, #0099cc), color-stop(1, #0f5e78));
+	background-image: -webkit-radial-gradient(center, ellipse farthest-corner, #0099cc 0%, #0f5e78 100%);
+	background-image: radial-gradient(ellipse farthest-corner at center, #0099cc 0%, #0f5e78 100%);
 }
 #navbar {
 	position: fixed;
@@ -186,6 +186,7 @@ body {
 }
 .slide-drawer.secondary {
 	left: 340px;
+	padding-top: 10px;
 }
 .slide-drawer.secondary ul {
 	margin-bottom: 10px;
@@ -207,7 +208,7 @@ body {
 	color: #999;
 	font-weight: bold;
 	text-transform: uppercase;
-	letter-spacing: 1px;
+	letter-spacing: normal;
 	font-size: 95%;
 	padding: 10px 0;
 	margin: 0 30px 10px;
@@ -256,6 +257,9 @@ body {
 }
 .blue.toggled:before {
 	color: #55acee;
+}
+.purple.toggled:before {
+	color: #ca70e3;
 }
 .slide-drawer i {
 	float: right;

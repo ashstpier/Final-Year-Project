@@ -60,35 +60,34 @@ function roundRect(ctx, x, y, w, h, r)
 
 function makeIcon(mesh) {
 	if (
-	mesh.name == "Becket_Court" ||
-	mesh.name == "Tyler_Court_A" || 
-	mesh.name == "Tyler_Court_B" || 
-	mesh.name == "Tyler_Court_C" || 
-	mesh.name == "Purchas_Court" || 
-	mesh.name == "Lypeatt_Court" || 
-	mesh.name == "Darwin_Houses" ||
-	mesh.name == "Keynes_Flats" ||
-	mesh.name == "Eliot_College" ||
-	mesh.name == "Rutherford_College" ||
+	mesh.name == "Becket_Court" ||  
 	mesh.name == "Bishopden_Court" ||
 	mesh.name == "Bossenden_Court" ||
 	mesh.name == "Clowes_Court" ||
+	mesh.name == "Darwin_Houses" ||
 	mesh.name == "Denstead_Court" ||
+	mesh.name == "Eliot_College" ||
 	mesh.name == "Ellenden_Court" ||
 	mesh.name == "Farthings_Court" ||
 	mesh.name == "Grimshill_Court" ||
 	mesh.name == "Homestall_Court" ||
 	mesh.name == "Hothe_Court" ||
 	mesh.name == "Kemsdale_Court" ||
+	mesh.name == "Keynes_Flats" ||
 	mesh.name == "Lypeatt_Court" ||
 	mesh.name == "Marley_Court" ||
 	mesh.name == "Nickle_Court" ||
 	mesh.name == "Purchas_Court" ||
+	mesh.name == "Rutherford_College" ||
 	mesh.name == "Stock_Court" ||
 	mesh.name == "Thornden_Court" ||
 	mesh.name == "Tudor_Court" ||
+	mesh.name == "Tyler_Court_A" || 
+	mesh.name == "Tyler_Court_B" || 
+	mesh.name == "Tyler_Court_C" ||
 	mesh.name == "Willows_Court" ||
-	mesh.name == "Woolf_Flats"  
+	mesh.name == "Woolf_Blocks" ||
+	mesh.name == "Woolf_Residential"  
 	){
 		buildIcon(locationIcons, "assets/images/icons/ico_location.png");
 	}
@@ -113,7 +112,7 @@ function makeIcon(mesh) {
 function buildIcon(iconArray, iconPicture) {
 	var spriteMaterial = new THREE.SpriteMaterial( { map: THREE.ImageUtils.loadTexture( iconPicture ), useScreenCoordinates: false, alignment: THREE.SpriteAlignment.topCenter, transparent: true } );
 	var icon = new THREE.Sprite( spriteMaterial );
-	icon.scale.set(10,10,1.0);
+	icon.scale.set(14,14,1.0);
 	mesh.geometry.computeBoundingBox();
 	var boundingBox = mesh.geometry.boundingBox;
 	var position = new THREE.Vector3();
@@ -128,8 +127,8 @@ function buildIcon(iconArray, iconPicture) {
 	iconArray.push( icon );
 	icon.material.opacity = 0;
 	
-	var tweenOne = new TWEEN.Tween( icon.position ).to( { y: boundingBox.max.y + 21 }, 1500 ).easing( TWEEN.Easing.Sinusoidal.InOut);
-	var tweenTwo = new TWEEN.Tween( icon.position ).to( { y: boundingBox.max.y + 20 }, 1500 ).easing( TWEEN.Easing.Sinusoidal.InOut);
+	var tweenOne = new TWEEN.Tween( icon.position ).to( { y: boundingBox.max.y + 11 }, 1500 ).easing( TWEEN.Easing.Sinusoidal.InOut);
+	var tweenTwo = new TWEEN.Tween( icon.position ).to( { y: boundingBox.max.y + 10 }, 1500 ).easing( TWEEN.Easing.Sinusoidal.InOut);
 	
 	tweenOne.chain(tweenTwo);
 	tweenTwo.chain(tweenOne);
@@ -149,7 +148,7 @@ function tweetIcon(mesh) {
 			renderer.render(scene);
 		})
 		material = new THREE.MeshLambertMaterial({map: texture, transparent: true })
-		var icon = new THREE.Mesh( new THREE.CubeGeometry( 8, 8, 8 ), material );
+		var icon = new THREE.Mesh( new THREE.CubeGeometry( 6, 6, 6 ), material );
 		mesh.geometry.computeBoundingBox();
 		var boundingBox = mesh.geometry.boundingBox;
 		var position = new THREE.Vector3();
@@ -164,7 +163,6 @@ function tweetIcon(mesh) {
 		group.add( icon);
 		clickobjects.push( icon );
 		tweetIcons.push( icon );
-		icon.material.opacity = 1;
 		
 		var tweenOne = new TWEEN.Tween( icon.position ).to( { y: boundingBox.max.y + 35 }, 1000 ).easing( TWEEN.Easing.Sinusoidal.InOut);
 		var tweenTwo = new TWEEN.Tween( icon.position ).to( { y: boundingBox.max.y + 30 }, 1000 ).easing( TWEEN.Easing.Sinusoidal.InOut);
@@ -175,21 +173,110 @@ function tweetIcon(mesh) {
 		tweenOne.start();
 	}
 }
+function parkingIcon(iconArray, iconPicture){
+	var spriteMaterial = new THREE.SpriteMaterial( { map: THREE.ImageUtils.loadTexture( iconPicture ), useScreenCoordinates: false, alignment: THREE.SpriteAlignment.topCenter, transparent: true } );
+	var icon = new THREE.Sprite( spriteMaterial );
+	icon.scale.set(12,12,1.0);
+	scene.add( icon );
+	group.add( icon);
+	iconArray.push( icon );
+	icon.material.opacity = 0;
+	
+	var tweenOne = new TWEEN.Tween( icon.position ).to( { y: 11 }, 1500 ).easing( TWEEN.Easing.Sinusoidal.InOut);
+	var tweenTwo = new TWEEN.Tween( icon.position ).to( { y: 10 }, 1500 ).easing( TWEEN.Easing.Sinusoidal.InOut);
+	
+	tweenOne.chain(tweenTwo);
+	tweenTwo.chain(tweenOne);
+	tweenOne.start();
+	
+	return icon;
+}
 
-function makeTextOverlay( message )
+function make3DText(message, color, size)
 {
-	var theText = message;
-	var text3d = new THREE.TextGeometry( theText, {
-		size: 20,
-		height: 3,
+	var text3d = new THREE.TextGeometry( message, {
+		size: size,
+		height: 1,
 		curveSegments: 2,
 		font: "helvetiker"
 	});		
-	var textMaterial = new THREE.MeshBasicMaterial( { color: 0x279CCD, overdraw: true } );
+	THREE.GeometryUtils.center( text3d );
+	var textMaterial = new THREE.MeshBasicMaterial( { color: color, overdraw: true, transparent: true, opacity: 0.8 } );
 	var text = new THREE.Mesh( text3d, textMaterial );
 	scene.add( text );
 	group.add( text );
+	text.visible = false;
 	return text;	
+}
+function makeCylinder(color, height)
+{
+	var cylinder = new THREE.Mesh( new THREE.CylinderGeometry(3, 3, height, 50, 50, false), new THREE.MeshBasicMaterial({color: color, transparent: true, opacity: 0.8}) );
+	scene.add(cylinder);
+	group.add(cylinder);
+	cylinder.visible = false;
+	return cylinder;	
+}
+function makeInvestmentOverlay(){
+	var cylinder1 = makeCylinder(0x279CCD, 50);
+	cylinder1.position.set(40, 0, -90);
+	var data1 = make3DText("£4.8m sports facilities", 0x279CCD, 7);
+	data1.position.set(40, 35, -90);
+	
+	var cylinder2 = makeCylinder(0x279CCD, 80);
+	cylinder2.position.set(-355, 0, -45);
+	var data2a = make3DText("£120m on new", 0x279CCD, 7);
+	data2a.position.set(-355, 70, -45);
+	var data2b = make3DText("student residences", 0x279CCD, 7);
+	data2b.position.set(-355, 55, -45);
+	
+	var cylinder3 = makeCylinder(0x279CCD, 60);
+	cylinder3.position.set(19, 0, -186);
+	var data3a = make3DText("£0.9m refurbishment", 0x279CCD, 7);
+	data3a.position.set(19, 55, -186);
+	var data3b = make3DText("of Jennison building ", 0x279CCD, 7);
+	data3b.position.set(19, 40, -186);
+	
+	var cylinder4 = makeCylinder(0x279CCD, 60);
+	cylinder4.position.set(225, 0, -40);
+	var data4a = make3DText("£12.6m new", 0x279CCD, 7);
+	data4a.position.set(225, 55, -40);
+	var data4b = make3DText("teaching spaces", 0x279CCD, 7);
+	data4b.position.set(225, 40, -40);
+	
+	var cylinder5 = makeCylinder(0xd47356, 50);
+	cylinder5.position.set(294, 0, -220);
+	var data5a = make3DText("£8m Colyer-Fergusson", 0xd47356, 7);
+	data5a.position.set(294, 50, -220);
+	var data5b = make3DText("Music Building", 0xd47356, 7);
+	data5b.position.set(294, 35, -220);
+	
+	var cylinder6 = makeCylinder(0xd47356, 70);
+	cylinder6.position.set(-30, 0, 112);
+	var data6a = make3DText("Keynes", 0xd47356, 7);
+	data6a.position.set(-30, 60, 112);
+	var data6b = make3DText("College Extension", 0xd47356, 7);
+	data6b.position.set(-30, 45, 112);
+	
+	investmentArray.push(cylinder1,cylinder2,cylinder3,cylinder4,data1,data2a,data2b,data3a,data3b,data4a,data4b);
+	developmentArray.push(cylinder5,cylinder6,data5a,data5b,data6a,data6b);
+}
+
+function parkingRotate(){
+	if (camera.position.z < 0){
+		for (var i=0, tot=visitorParking.length; i < tot; i++) {
+			visitorParking[i].rotation.y = 270 * Math.PI / 280;
+		}
+		for (var i=0, tot=permitParking.length; i < tot; i++) {
+			permitParking[i].rotation.y = 270 * Math.PI / 280;
+		}
+	}else{
+		for (var i=0, tot=visitorParking.length; i < tot; i++) {
+			visitorParking[i].rotation.y = 0;
+		}
+		for (var i=0, tot=permitParking.length; i < tot; i++) {
+			permitParking[i].rotation.y = 0;
+		}
+	}	
 }
 
 function onWindowResize() {

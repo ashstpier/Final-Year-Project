@@ -70,6 +70,9 @@ $( "#admin" ).click(function() {
 $( "#accommodation" ).click(function() {
 	secondaryOpen(this, "#accommodation-panel");
 });
+$( "#maintenance" ).click(function() {
+	secondaryOpen(this, "#maintenance-panel");
+});
 
 //////// SEARCH ///////
 

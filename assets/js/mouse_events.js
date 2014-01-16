@@ -184,23 +184,23 @@ function onDocumentMouseMove( event ) {
 
 function view2D() {
 	if (camera.position.z >= controls.center.z){
-		new TWEEN.Tween( camera.position ).to( { x: controls.center.x, y: 500, z: controls.center.z + 1 }, 1000 ).easing( TWEEN.Easing.Quadratic.Out).start();
+		new TWEEN.Tween( camera.position ).to( { x: controls.center.x, y: 500, z: controls.center.z + 1 }, 1000 ).easing( TWEEN.Easing.Sinusoidal.InOut).start();
 	}else{
-		new TWEEN.Tween( camera.position ).to( { x: controls.center.x, y: 500, z: controls.center.z - 1 }, 1000 ).easing( TWEEN.Easing.Quadratic.Out).start();
+		new TWEEN.Tween( camera.position ).to( { x: controls.center.x, y: 500, z: controls.center.z - 1 }, 1000 ).easing( TWEEN.Easing.Sinusoidal.InOut).start();
 	}
 }
 function tilt() {
 	if (camera.position.z >= controls.center.z){
-		new TWEEN.Tween( camera.position ).to( { y: -20, z: controls.center.z + 300 }, 1000 ).easing( TWEEN.Easing.Sinusoidal.InOut).start();
+		new TWEEN.Tween( camera.position ).to( { y: 35, z: controls.center.z + 100 }, 1000 ).easing( TWEEN.Easing.Sinusoidal.InOut).start();
 	}else {
-		new TWEEN.Tween( camera.position ).to( { y: -20, z: controls.center.z - 300 }, 1000 ).easing( TWEEN.Easing.Sinusoidal.InOut).start();
+		new TWEEN.Tween( camera.position ).to( { y: 35, z: controls.center.z - 100 }, 1000 ).easing( TWEEN.Easing.Sinusoidal.InOut).start();
 	}
 }
 function refreshView() {
 	if (camera.position.z >= controls.center.z){
-		new TWEEN.Tween( camera.position ).to( { y: 300, z: controls.center.z + 350 }, 1000 ).easing( TWEEN.Easing.Sinusoidal.InOut).start();
+		new TWEEN.Tween( camera.position ).to( { y: 250, z: controls.center.z + 300 }, 1000 ).easing( TWEEN.Easing.Sinusoidal.InOut).start();
 	}else {
-		new TWEEN.Tween( camera.position ).to( { y: 300, z: controls.center.z - 350 }, 1000 ).easing( TWEEN.Easing.Sinusoidal.InOut).start();
+		new TWEEN.Tween( camera.position ).to( { y: 250, z: controls.center.z - 300 }, 1000 ).easing( TWEEN.Easing.Sinusoidal.InOut).start();
 	}
 }
 
@@ -230,6 +230,20 @@ function closeTweet() {
 
 /////////// MARKERS /////////////
 
+$( "#label-panel a" ).click(function() {
+	if ($(this).hasClass( "toggle" )) {
+		for (var i=0, tot=investmentArray.length; i < tot; i++) {
+			investmentArray[i].visible = false;
+		}
+		for (var i=0, tot=developmentArray.length; i < tot; i++) {
+			developmentArray[i].visible = false;
+		}
+		$("#investment-panel a").removeClass( "toggled" );
+		$("#investment-panel a").addClass( "toggle" );
+	} else {
+	
+	}
+});
 $( "#labelall" ).click(function() {
 	if ($(this).hasClass( "toggle" )) {
 		for (var i=0, tot=sprites.length; i < tot; i++) {
@@ -244,11 +258,17 @@ $( "#labelall" ).click(function() {
 		for (var i=0, tot=shopIcons.length; i < tot; i++) {
 			new TWEEN.Tween( shopIcons[i].material ).to( { opacity: 1 }, 500 ).easing( TWEEN.Easing.Quadratic.InOut).start();
 		}
+		for (var i=0, tot=visitorParking.length; i < tot; i++) {
+			new TWEEN.Tween( visitorParking[i].material ).to( { opacity: 1 }, 500 ).easing( TWEEN.Easing.Quadratic.InOut).start();
+		}
+		for (var i=0, tot=permitParking.length; i < tot; i++) {
+			new TWEEN.Tween( permitParking[i].material ).to( { opacity: 1 }, 500 ).easing( TWEEN.Easing.Quadratic.InOut).start();
+		}
 		for (var i=0, tot=tweetIcons.length; i < tot; i++) {
 			tweetIcons[i].visible = true;
 		}
-		$("#labeltoggle, #accommodationtoggle, #foodtoggle, #shoptoggle, #tweettoggle").removeClass( "toggle" );
-		$("#labeltoggle, #accommodationtoggle, #foodtoggle, #shoptoggle, #tweettoggle").addClass( "toggled" );
+		$("#labeltoggle, #accommodationtoggle, #foodtoggle, #shoptoggle, #tweettoggle, #visitorparking, #permitparking").removeClass( "toggle" );
+		$("#labeltoggle, #accommodationtoggle, #foodtoggle, #shoptoggle, #tweettoggle, #visitorparking, #permitparking").addClass( "toggled" );
 	} else {
 		for (var i=0, tot=sprites.length; i < tot; i++) {
 			new TWEEN.Tween( sprites[i].material ).to( { opacity: 0 }, 500 ).easing( TWEEN.Easing.Quadratic.InOut).start();
@@ -262,11 +282,17 @@ $( "#labelall" ).click(function() {
 		for (var i=0, tot=shopIcons.length; i < tot; i++) {
 			new TWEEN.Tween( shopIcons[i].material ).to( { opacity: 0 }, 500 ).easing( TWEEN.Easing.Quadratic.InOut).start();
 		}
+		for (var i=0, tot=visitorParking.length; i < tot; i++) {
+			new TWEEN.Tween( visitorParking[i].material ).to( { opacity: 0 }, 500 ).easing( TWEEN.Easing.Quadratic.InOut).start();
+		}
+		for (var i=0, tot=permitParking.length; i < tot; i++) {
+			new TWEEN.Tween( permitParking[i].material ).to( { opacity: 0 }, 500 ).easing( TWEEN.Easing.Quadratic.InOut).start();
+		}
 		for (var i=0, tot=tweetIcons.length; i < tot; i++) {
 			tweetIcons[i].visible = false;
 		}
-		$("#labeltoggle, #accommodationtoggle, #foodtoggle, #shoptoggle, #tweettoggle").removeClass( "toggled" );
-		$("#labeltoggle, #accommodationtoggle, #foodtoggle, #shoptoggle, #tweettoggle").addClass( "toggle" );
+		$("#labeltoggle, #accommodationtoggle, #foodtoggle, #shoptoggle, #tweettoggle, #visitorparking, #permitparking").removeClass( "toggled" );
+		$("#labeltoggle, #accommodationtoggle, #foodtoggle, #shoptoggle, #tweettoggle, #visitorparking, #permitparking").addClass( "toggle" );
 	}
 });
 $( "#labeltoggle" ).click(function() {
@@ -337,6 +363,85 @@ $( "#tweettoggle" ).click(function() {
 		$(this).toggleClass( "toggle toggled" );
 	}
 });
+$( "#visitorparking" ).click(function() {
+	if ($(this).hasClass( "toggle" )) {
+		for (var i=0, tot=visitorParking.length; i < tot; i++) {
+			new TWEEN.Tween( visitorParking[i].material ).to( { opacity: 1 }, 500 ).easing( TWEEN.Easing.Quadratic.InOut).start();
+		}
+	} else {
+		for (var i=0, tot=visitorParking.length; i < tot; i++) {
+			new TWEEN.Tween( visitorParking[i].material ).to( { opacity: 0 }, 500 ).easing( TWEEN.Easing.Quadratic.InOut).start();
+		}
+		$("#labelall").removeClass( "toggled" );
+		$("#labelall").addClass( "toggle" );
+	}
+});
+$( "#permitparking" ).click(function() {
+	if ($(this).hasClass( "toggle" )) {
+		for (var i=0, tot=permitParking.length; i < tot; i++) {
+			new TWEEN.Tween( permitParking[i].material ).to( { opacity: 1 }, 500 ).easing( TWEEN.Easing.Quadratic.InOut).start();
+		}
+	} else {
+		for (var i=0, tot=permitParking.length; i < tot; i++) {
+			new TWEEN.Tween( permitParking[i].material ).to( { opacity: 0 }, 500 ).easing( TWEEN.Easing.Quadratic.InOut).start();
+		}
+		$("#labelall").removeClass( "toggled" );
+		$("#labelall").addClass( "toggle" );
+	}
+});
+
+$( "#investment-panel a" ).click(function() {
+	if ($(this).hasClass( "toggle" )) {
+		for (var i=0, tot=sprites.length; i < tot; i++) {
+			new TWEEN.Tween( sprites[i].material ).to( { opacity: 0 }, 500 ).easing( TWEEN.Easing.Quadratic.InOut).start();
+		}
+		for (var i=0, tot=locationIcons.length; i < tot; i++) {
+			new TWEEN.Tween( locationIcons[i].material ).to( { opacity: 0 }, 500 ).easing( TWEEN.Easing.Quadratic.InOut).start();
+		}
+		for (var i=0, tot=foodIcons.length; i < tot; i++) {
+			new TWEEN.Tween( foodIcons[i].material ).to( { opacity: 0 }, 500 ).easing( TWEEN.Easing.Quadratic.InOut).start();
+		}
+		for (var i=0, tot=shopIcons.length; i < tot; i++) {
+			new TWEEN.Tween( shopIcons[i].material ).to( { opacity: 0 }, 500 ).easing( TWEEN.Easing.Quadratic.InOut).start();
+		}
+		for (var i=0, tot=visitorParking.length; i < tot; i++) {
+			new TWEEN.Tween( visitorParking[i].material ).to( { opacity: 0 }, 500 ).easing( TWEEN.Easing.Quadratic.InOut).start();
+		}
+		for (var i=0, tot=permitParking.length; i < tot; i++) {
+			new TWEEN.Tween( permitParking[i].material ).to( { opacity: 0 }, 500 ).easing( TWEEN.Easing.Quadratic.InOut).start();
+		}
+		for (var i=0, tot=tweetIcons.length; i < tot; i++) {
+			tweetIcons[i].visible = false;
+		}
+		$("#label-panel a").removeClass( "toggled" );
+		$("#label-panel a").addClass( "toggle" );
+	} else {
+		
+	}
+});
+$( "#investmenttoggle" ).click(function() {
+	if ($(this).hasClass( "toggle" )) {
+		for (var i=0, tot=investmentArray.length; i < tot; i++) {
+			investmentArray[i].visible = true;
+		}
+	} else {
+		for (var i=0, tot=investmentArray.length; i < tot; i++) {
+			investmentArray[i].visible = false;
+		}
+	}
+});
+$( "#developmenttoggle" ).click(function() {
+	if ($(this).hasClass( "toggle" )) {
+		for (var i=0, tot=developmentArray.length; i < tot; i++) {
+			developmentArray[i].visible = true;
+		}
+	} else {
+		for (var i=0, tot=developmentArray.length; i < tot; i++) {
+			developmentArray[i].visible = false;
+		}
+	}
+});
+
 
 /////////// DRAWER TOGGLE /////////////
 

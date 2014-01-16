@@ -63,11 +63,12 @@
             <li><a href="#" class="toggle orange" id="accommodationtoggle">Accomodation</a></li>
             <li><a href="#" class="toggle green" id="foodtoggle">Food &amp; Drink</a></li>
             <li><a href="#" class="toggle red" id="shoptoggle">Shops</a></li>
-            <li><a href="#" class="toggled blue" id="tweettoggle">Tweets</a></li>
+            <li><a href="#" class="toggle blue" id="visitorparking">Visitor parking</a></li>
+            <li><a href="#" class="toggle purple" id="permitparking">Permit holder parking</a></li>
+            <!--<li><a href="#" class="toggled blue" id="tweettoggle">Tweets</a></li>-->
         </ul>
         <h3>Transport</h3>
         <ul>
-            <li><a href="#" class="toggle">Parking</a></li>
             <li><a href="#" class="toggle">Bus routes</a></li>
             <li><a href="#" class="toggle">Bus stops</a></li>
             <li><a href="#" class="toggle">Cycle routes</a></li>
@@ -82,36 +83,38 @@
             <li><a href="#" id="community"><i class="fa fa-chevron-right"></i>Community buildings</a></li>
             <li><a href="#" id="admin"><i class="fa fa-chevron-right"></i>Admin buildings</a></li>
             <li><a href="#" id="accommodation"><i class="fa fa-chevron-right"></i>Accommodation buildings</a></li>
+            <li><a href="#" id="maintenance"><i class="fa fa-chevron-right"></i>Maintenance buildings</a></li>
         </ul>
-        <!--<ul>
-            <li><a href="#" class="toggle">Architecture</a></li>
-            <li><a href="#" class="toggle">Arts</a></li>
-            <li><a href="#" class="toggle">Biosciences</a></li>
-            <li><a href="#" class="toggle">Computing</a></li>
-            <li><a href="#" class="toggle">Digital Arts</a></li>
-            <li><a href="#" class="toggle">Drama</a></li>
-            <li><a href="#" class="toggle">Economics</a></li>
-            <li><a href="#" class="toggle">Engineering</a></li>
-            <li><a href="#" class="toggle">English</a></li>
-            <li><a href="#" class="toggle">Humanities</a></li>
-            <li><a href="#" class="toggle">Languages</a></li>
-            <li><a href="#" class="toggle">Law</a></li>
-            <li><a href="#" class="toggle">Mathematics</a></li>
-            <li><a href="#" class="toggle">Music</a></li>
-            <li><a href="#" class="toggle">Physical Sciences</a></li>
-            <li><a href="#" class="toggle">Social Sciences</a></li>
-            <li><a href="#" class="toggle">Sports</a></li>
-        </ul>-->
     </div>
     <div id="investment-panel">
         <h2>Investment</h2>
+        <h3>Data overlays</h3>
         <ul>
-            <li><a href="#" class="toggle">Bus routes</a></li>
-            <li><a href="#" class="toggle">Bus stops</a></li>
-            <li><a href="#" class="toggle">Cycle routes</a></li>
-            <li><a href="#" class="toggle">Bike racks</a></li>
-            <li><a href="#" class="toggle">Parking</a></li>
+            <li><a href="#" class="toggle blue" id="investmenttoggle">Show latest investments</a></li>
+            <li><a href="#" class="toggle red" id="developmenttoggle">Show recent developments</a></li>
         </ul>
+        <h3>Upcoming developments</h3>
+        <a href="#" class="event">
+         	<img src="assets/images/summerball.png" alt="Summer Ball" />
+            <h3>Templeman Library</h3>
+            <p>Extension</p>
+        </a>
+        <a href="#" class="event">
+         	<img src="assets/images/summerball.png" alt="Summer Ball" />
+            <h3>Turing College</h3>
+            <p>New development</p>
+        </a>
+        <h3>Recent developments</h3>
+        <a href="#" class="event">
+         	<img src="assets/images/summerball.png" alt="Summer Ball" />
+            <h3>Keynes College</h3>
+            <p>Extension</p>
+        </a>
+        <a href="#" class="event">
+         	<img src="assets/images/summerball.png" alt="Summer Ball" />
+            <h3>Colyer Fergusson</h3>
+            <p>New development</p>
+        </a>
     </div>
     <div id="event-panel">
         <h2>Events</h2>
@@ -306,54 +309,160 @@
     </div>
 	<div id="subject-panel">
         <ul>
-            <li><a href="#" class="toggle">Architecture</a></li>
-            <li><a href="#" class="toggle">Arts</a></li>
-            <li><a href="#" class="toggle">Biosciences</a></li>
-            <li><a href="#" class="toggle">Computing</a></li>
-            <li><a href="#" class="toggle">Digital Arts</a></li>
-            <li><a href="#" class="toggle">Drama</a></li>
-            <li><a href="#" class="toggle">Economics</a></li>
-            <li><a href="#" class="toggle">Engineering</a></li>
-            <li><a href="#" class="toggle">English</a></li>
-            <li><a href="#" class="toggle">Humanities</a></li>
-            <li><a href="#" class="toggle">Languages</a></li>
-            <li><a href="#" class="toggle">Law</a></li>
-            <li><a href="#" class="toggle">Mathematics</a></li>
-            <li><a href="#" class="toggle">Music</a></li>
-            <li><a href="#" class="toggle">Physical Sciences</a></li>
-            <li><a href="#" class="toggle">Social Sciences</a></li>
-            <li><a href="#" class="toggle">Sports</a></li>
+        	<h3>American Studies</h3>
+            <ul>
+            	<li><a href="#" data-building="Rutherford_College">Rutherford College</a></li>
+        	</ul>
+            <h3>Architecture &amp; Anthropology</h3>
+            <ul>
+            	<li><a href="#" data-building="Marlowe">Marlowe</a></li>
+        	</ul>
+            <h3>Arts</h3>
+            <ul>
+            	<li><a href="#" data-building="Jarman">Jarman</a></li>
+        	</ul>
+            <h3>Biosciences</h3>
+            <ul>
+            	<li><a href="#" data-building="Stacey">Stacey</a></li>
+        	</ul>
+            <h3>Business &amp; Economics</h3>
+            <ul>
+            	<li><a href="#" data-building="Kent_Business_School">Kent Business School</a></li>
+                <li><a href="#" data-building="Keynes_College">Keynes College</a></li>
+                <li><a href="#" data-building="Rothford">Rothford</a></li>
+        	</ul>
+            <h3>Computing</h3>
+            <ul>
+            	<li><a href="#" data-building="Grimmond">Grimmond</a></li>
+                <li><a href="#" data-building="Cornwallis_South">Cornwallis South</a></li>
+                <li><a href="#" data-building="Cornwallis_South_West">Cornwallis South West</a></li>
+        	</ul>
+            <h3>Drama</h3>
+            <ul>
+            	<li><a href="#" data-building="Aphra_Theatre">Aphra Theatre</a></li>
+            	<li><a href="#" data-building="Gulbenkian">Gulbenkian</a></li>
+                <li><a href="#" data-building="Jarman">Jarman</a></li>
+        	</ul>
+            <h3>Engineering &amp; Digital Arts</h3>
+            <ul>
+            	<li><a href="#" data-building="Jennison">Jennison</a></li>
+        	</ul>
+            <h3>English</h3>
+            <ul>
+            	<li><a href="#" data-building="Rutherford_College">Rutherford College</a></li>
+        	</ul>
+            <h3>European Culture &amp; Languages</h3>
+            <ul>
+            	<li><a href="#" data-building="Cornwallis_North_West">Cornwallis North West</a></li>
+                <li><a href="#" data-building="Cornwallis_West">Cornwallis West</a></li>
+        	</ul>
+            <h3>History</h3>
+            <ul>
+            	<li><a href="#" data-building="Rutherford_College">Rutherford College</a></li>
+        	</ul>
+            <h3>Law</h3>
+            <ul>
+            	<li><a href="#" data-building="Kent_Law_School">Kent Law School</a></li>
+        	</ul>
+            <h3>Mathematics</h3>
+            <ul>
+            	<li><a href="#" data-building="Cornwallis_Mathematics_Institute">Cornwallis Mathematics Institute</a></li>
+        	</ul>
+            <h3>Music</h3>
+            <ul>
+            	<li><a href="#" data-building="Colyer_Fergusson">Colyer Fergusson</a></li>
+        	</ul>
+            <h3>Physical Sciences</h3>
+            <ul>
+            	<li><a href="#" data-building="Ingram">Ingram</a></li>
+        	</ul>
+            <h3>Psychology</h3>
+            <ul>
+            	<li><a href="#" data-building="Keynes_College">Keynes College</a></li>
+                <li><a href="#" data-building="Olive_Cottages">Olive Cottages</a></li>
+        	</ul>
+            <h3>Sociology</h3>
+            <ul>
+            	<li><a href="#" data-building="Cornwallis_George_Allen_Wing">Cornwallis George Allen Wing</a></li>
+            	<li><a href="#" data-building="Cornwallis_North_East">Cornwallis North East</a></li>
+                <li><a href="#" data-building="Woodlands">Woodlands</a></li>
+        	</ul>
+            <h3>Sports</h3>
+            <ul>
+            	<li><a href="#" data-building="Sports_Centre">Sports Centre</a></li>
+                <li><a href="#" data-building="Sports_Pavillion">Sports Pavillion</a></li>
+        	</ul>
         </ul>
     </div>
     <div id="community-panel">
+    	<h3>Community</h3>
         <ul>
-            <li><a href="#" class="toggle">Architecture</a></li>
-            <li><a href="#" class="toggle">Arts</a></li>
-            <li><a href="#" class="toggle">Biosciences</a></li>
-            <li><a href="#" class="toggle">Computing</a></li>
-            <li><a href="#" class="toggle">Digital Arts</a></li>
-            <li><a href="#" class="toggle">Drama</a></li>
-            <li><a href="#" class="toggle">Economics</a></li>
+        	<li><a href="#" data-building="Locke">Essentials</a></li>
+            <li><a href="#" data-building="Gulbenkian">Gulbenkian</a></li>
+            <li><a href="#" data-building="Parkwood_Shop">Parkwood Shop</a></li>
+            <li><a href="#" data-building="Sports_Centre">Sports Centre</a></li>
+            <li><a href="#" data-building="Sports_Pavillion">Sports Pavillion</a></li>
+            <li><a href="#" data-building="Templeman_Library">Templeman Library</a></li>
+            <li><a href="#" data-building="Venue">Venue</a></li>
+            <li><a href="#" data-building="Woodys">Woodys</a></li>
         </ul>
     </div>
     <div id="admin-panel">
+    	<h3>Admin</h3>
         <ul>
-            <li><a href="#" class="toggle">Architecture</a></li>
-            <li><a href="#" class="toggle">Arts</a></li>
-            <li><a href="#" class="toggle">Biosciences</a></li>
-            <li><a href="#" class="toggle">Computing</a></li>
-            <li><a href="#" class="toggle">Digital Arts</a></li>
-            <li><a href="#" class="toggle">Drama</a></li>
-            <li><a href="#" class="toggle">Economics</a></li>
+        	<li><a href="#" data-building="Careers_Employability_Service">Careers Employability Service</a></li>
+            <li><a href="#" data-building="Innovation_Center">Innovation Center</a></li>
+            <li><a href="#" data-building="Kent_Enterprise_Hub">Kent Enterprise Hub</a></li>
+            <li><a href="#" data-building="Mandela_Building">Mandela Building</a></li>
+            <li><a href="#" data-building="Parkwood_Administration">Parkwood Administration</a></li>
+            <li><a href="#" data-building="Registry">Registry</a></li>
+            <li><a href="#" data-building="Research_and_Development_Centre">Research and Development Centre</a></li>
+            <li><a href="#" data-building="UELT">Unit for the Enhancement of Learning &amp; Teaching</a></li>
         </ul>
     </div>
     <div id="accommodation-panel">
+    	<h3>Campus</h3>
         <ul>
-            <li><a href="#" class="toggle">Architecture</a></li>
-            <li><a href="#" class="toggle">Arts</a></li>
-            <li><a href="#" class="toggle">Biosciences</a></li>
-            <li><a href="#" class="toggle">Computing</a></li>
-            <li><a href="#" class="toggle">Digital Arts</a></li>
+            <li><a href="#" data-building="Darwin_Houses">Darwin Houses</a></li>
+            <li><a href="#" data-building="Eliot_College">Eliot College</a></li>
+            <li><a href="#" data-building="Keynes_Flats">Keynes Flats</a></li>
+            <li><a href="#" data-building="Rutherford_College">Rutherford College</a></li>
+            <li><a href="#" data-building="Tyler_Court_A">Tyler Court A</a></li>
+            <li><a href="#" data-building="Tyler_Court_B">Tyler Court B</a></li>
+            <li><a href="#" data-building="Tyler_Court_C">Tyler Court C</a></li>
+            <li><a href="#" data-building="Woolf_Flats">Woolf Flats</a></li>
+        </ul>
+        <h3>Parkwood</h3>
+        <ul>
+            <li><a href="#" data-building="Bishopden_Court">Bishopden Court</a></li>
+            <li><a href="#" data-building="Bossenden_Court">Bossenden Court</a></li>
+            <li><a href="#" data-building="Clowes_Court">Clowes Court</a></li>
+            <li><a href="#" data-building="Denstead_Court">Denstead Court</a></li>
+            <li><a href="#" data-building="Ellenden_Court">Ellenden Court</a></li>
+            <li><a href="#" data-building="Farthings_Court">Farthings Court</a></li>
+            <li><a href="#" data-building="Grimshill_Court">Grimshill Court</a></li>
+            <li><a href="#" data-building="Homestall_Court">Homestall Court</a></li>
+            <li><a href="#" data-building="Hothe_Court">Hothe Court</a></li>
+            <li><a href="#" data-building="Kemsdale_Court">Kemsdale Court</a></li>
+            <li><a href="#" data-building="Lypeatt_Court">Lypeatt Court</a></li>
+            <li><a href="#" data-building="Marley_Court">Marley Court</a></li>
+            <li><a href="#" data-building="Nickle_Court">Nickle Court</a></li>
+            <li><a href="#" data-building="Purchas_Court">Purchas Court</a></li>
+            <li><a href="#" data-building="Stock_Court">Stock Court</a></li>
+            <li><a href="#" data-building="Thornden_Court">Thornden Court</a></li>
+            <li><a href="#" data-building="Tudor_Court">Tudor Court</a></li>
+            <li><a href="#" data-building="Willows_Court">Willows Court</a></li>
+        </ul>
+    </div>
+    <div id="maintenance-panel">
+    	<h3>Maintenance</h3>
+        <ul>
+            <li><a href="#" data-building="Boiler_House">Boiler House</a></li>
+            <li><a href="#" data-building="Campus_Watch">Campus Watch</a></li>
+            <li><a href="#" data-building="Estates_Department">Estates Department</a></li>
+            <li><a href="#" data-building="Ground_Maintenance">Ground Maintenance</a></li>
+            <li><a href="#" data-building="Oaks_Day_Nursery">Oaks Day Nursery</a></li>
+            <li><a href="#" data-building="University_Medical_Centre">University Medical Centre</a></li>
         </ul>
     </div>
 </div>
@@ -439,7 +548,7 @@
 				$('#status').fadeOut(1000); // will first fade out the loading animation
 				$('#preloader').delay(350).fadeOut(1000); // will fade out the white DIV that covers the website.
 				$('body').delay(350).css({'overflow':'visible'});
-				new TWEEN.Tween( camera.position ).to( { x: 0, y: 300, z: 350 }, 3000 ).easing( TWEEN.Easing.Quadratic.InOut).start();
+				new TWEEN.Tween( camera.position ).to( { x: 0, y: 250, z: 300 }, 3000 ).easing( TWEEN.Easing.Quadratic.InOut).start();
 			 }, 750);
         })
     //]]>
