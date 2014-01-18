@@ -54,8 +54,9 @@ function onDocumentMouseUp( event ) {
 		} 
 		else {
 		
-			$('#modalpanel').empty();
+			$('#modalfront, #modalback').empty();
 			$("#modalpanel").removeClass('fadeOutUp fadeInDown opaque');
+			$(".card").removeClass('flipped');
 			closeTweet();
 			
 			modal = intersects[0].object;
@@ -78,11 +79,19 @@ function placeMarker(modal){
 	$(xml).find(node).each(function(){
 		var header = $(this).find('header').text();
 		var description = $(this).find('description').text();
-		var area = $(this).find('area').text();
-		$('<header></header>').html('<h2><i class="fa fa-map-marker"></i>'+header+'</h2>').appendTo('#modalpanel');
-		$('<section></section>').html('<p>'+description+'</p>').appendTo('#modalpanel');
-		$('<footer></footer>').html('<span>'+area+'</span><a href="#" onclick="closeModal()"><i class="fa fa-times"></i></a>').appendTo('#modalpanel');
-		$('<div class="arrow-down"></div>').appendTo('#modalpanel');
+		var list = $(this).find('list').text();
+		var backcontent = $(this).find('backcontent').text();
+		$('<div class="header"></div>').html('<a href="#" onclick="closeModal()"><i class="fa-times fa fa-lg"></i></a><img src="assets/images/buildings/becket_court.jpg" /><h2><i class="fa fa-map-marker"></i>'+header+'</h2>').appendTo('#modalfront');
+	
+		if (backcontent != ""){
+			$('<div class="content extrapadding"></div>').html('<p>'+description+'</p>'+list).appendTo('#modalfront');
+			$('<div class="next"></div><a href="#" onclick="flipModal()"><i class="fa-chevron-right fa"></i></a>').appendTo('#modalfront .content');
+			$('<div class="content"></div>').html(backcontent+'<div class="next"></div><a href="#" onclick="flipModal()"><i class="fa-chevron-left fa"></i></a>').appendTo('#modalback');
+			}
+		else {
+			$('<div class="content"></div>').html('<p>'+description+'</p>'+list).appendTo('#modalfront');
+		}
+		$('<div class="arrow-down"></div>').appendTo('#modalfront, #modalback');
 	});
 
 	var time = 1000;
@@ -96,16 +105,19 @@ function placeMarker(modal){
 		
 	if (camera.position.z >= position.z && controls.center.z <= camera.position.z){
 		new TWEEN.Tween( camera.position ).to( { x: 0, y: 80, z: 100 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {$("#modalpanel").addClass('fadeInDown opaque');}).start();
+		new TWEEN.Tween( group.position ).to( { x: group.position.x - position.x, y: -30, z: group.position.z - position.z +20 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).start();
 	}else if (camera.position.z >= position.z && controls.center.z >= camera.position.z) {
 		new TWEEN.Tween( camera.position ).to( { x: 0, y: 80, z: - 100 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {$("#modalpanel").addClass('fadeInDown opaque');}).start();
+		new TWEEN.Tween( group.position ).to( { x: group.position.x - position.x, y: -30, z: group.position.z - position.z -20 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).start();
 	}
 	else if (camera.position.z <= position.z && controls.center.z <= camera.position.z) {
 		new TWEEN.Tween( camera.position ).to( { x: 0, y: 80, z: 100 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {$("#modalpanel").addClass('fadeInDown opaque');}).start();
+		new TWEEN.Tween( group.position ).to( { x: group.position.x - position.x, y: -30, z: group.position.z - position.z +20 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).start();
 	}
 	else {
 		new TWEEN.Tween( camera.position ).to( { x: 0, y: 80, z: - 100 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {$("#modalpanel").addClass('fadeInDown opaque');}).start();
+		new TWEEN.Tween( group.position ).to( { x: group.position.x - position.x, y: -30, z: group.position.z - position.z -20 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).start();
 	}
-	new TWEEN.Tween( group.position ).to( { x: group.position.x - position.x, y: -30, z: group.position.z - position.z }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).start();
 }
 
 function twitterMap(intersects, tweetcontainer){
@@ -219,6 +231,9 @@ function closeModal() {
 	setTimeout(function() {
         $("#modalpanel").removeClass('opaque'); // alternative to menu.style.display = 'none';
     }, 500)
+}
+function flipModal() {
+	$(".card").toggleClass("flipped");
 }
 function closeTweet() {
 	$(".tweetpanel").addClass('fadeOutUp');

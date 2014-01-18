@@ -467,7 +467,13 @@
     </div>
 </div>
 <div id="mapwrapper">
-    <div id="modalpanel" class="animated"></div>
+    <div id="modalpanel" class="animated flipcard">
+    	<div class="card">
+    		<div id="modalfront" class="face front"></div>
+        	<div id="modalback" class="face back"></div>
+        </div>
+    </div>
+    
     <div id="tweet_kentunion" class="tweetpanel animated">
 		<?php include_once 'twitter/display-tweet.php';
         	display_tweet('kentunion','time_since', 1, 30);

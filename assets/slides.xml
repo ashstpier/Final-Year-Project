@@ -8,7 +8,8 @@
     <Becket_Court>
 		<header>Becket Court</header>
 		<description>Named after Thomas Becket and located adjacent to Eliot College, Becket Court offers en suite rooms on a bed and bistro basis.</description>
-		<area><![CDATA[<i class="fa fa-home"></i>Accomodation]]></area>
+		<list><![CDATA[<ul><li><span>134</span>rooms</li><li><span>B&amp;B</span>catering</li><li><span>£4500</span>annually</li></ul>]]></list>
+		<backcontent><![CDATA[<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed dapibus iaculis enim, a imperdiet lectus egestas eget. Quisque eu tortor diam. Vivamus consectetur odio sit amet viverra hendrerit. Etiam sollicitudin id purus accumsan mollis. Nam fringilla lacus eu molestie egestas. Aliquam vel tristique nulla. Nulla non felis nibh. Morbi magna nisi, fermentum sit amet volutpat at, malesuada et neque.</p><ul><li><span>134</span>rooms</li><li><span>B&amp;B</span>catering</li><li><span>£4500</span>annually</li></ul>]]></backcontent>
     </Becket_Court>
     <Bishopden_Court>
         <header>Bishopden Court</header>
