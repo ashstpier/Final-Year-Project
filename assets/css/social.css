@@ -1,11 +1,11 @@
 /* CSS Document */
 #stream {
-	margin: 20px auto;
+	margin: 0 auto;
 }
 .item {
 	background: #f8f8f8;
 	padding: 20px;
-	margin: 5px;
+	margin: 10px;
 	width: 360px;
 	float: left;
 	overflow: hidden;
