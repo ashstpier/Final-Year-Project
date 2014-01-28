@@ -1,4 +1,3 @@
-<?php //include_once 'twitter/display-tweet.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
 		<head>
@@ -29,12 +28,9 @@
 <div id="navbar">
 	<a href="#" id="drawer-toggle"><img src="assets/images/logo.png" alt="University of Kent logo" /></a>
     <ul id="nav">
-    	<li><a href="index.php" class="active">Explore</a></li>
     	<li><a href="facts.html">10 Facts</a></li>
+    	<li><a href="index.php" class="active">Explore</a></li>
         <li><a href="social.php">Social</a></li>
-        <li id="twitter"><a href="#"><i class="fa fa-twitter"></i></a></li>
-        <li id="facebook"><a href="#"><i class="fa fa-facebook"></i></a></li>
-        <li id="github"><a href="#"><i class="fa fa-github-alt"></i></a></li>
     </ul>
 </div>
 <div id="leftnav">
@@ -473,61 +469,401 @@
     </div>
     
     <div id="tweet_kentunion" class="tweetpanel animated">
-		<?php //display_tweet('kentunion','time_since', 1, 30); ?>
+		<?php include_once 'twitter/display-tweet.php';
+        	display_tweet('kentunion','time_since', 1, 30);
+    	?>
     </div>
     <div id="tweet_unikent" class="tweetpanel animated">
-		<?php //display_tweet('unikent','time_since', 1, 30); ?>
+		<?php include_once 'twitter/display-tweet.php';
+        	display_tweet('unikent','time_since', 1, 30);
+    	?>
     </div>
     <div id="tweet_unikentemploy" class="tweetpanel animated">
-		<?php //display_tweet('unikentemploy','time_since', 1, 30); ?>
+		<?php include_once 'twitter/display-tweet.php';
+        	display_tweet('unikentemploy','time_since', 1, 30);
+    	?>
     </div>
     <div id="tweet_unikent_music" class="tweetpanel animated">
-		<?php //display_tweet('unikent_music','time_since', 1, 30); ?>
+		<?php include_once 'twitter/display-tweet.php';
+        	display_tweet('unikent_music','time_since', 1, 30);
+    	?>
     </div>
     <div id="tweet_edakent" class="tweetpanel animated">
-		<?php //display_tweet('edakent','time_since', 1, 30); ?>
+		<?php include_once 'twitter/display-tweet.php';
+        	display_tweet('edakent','time_since', 1, 30);
+    	?>
     </div>
     <div id="tweet_parkwoodsc" class="tweetpanel animated">
-		<?php //display_tweet('parkwoodsc','time_since', 1, 30); ?>
+		<?php include_once 'twitter/display-tweet.php';
+        	display_tweet('parkwoodsc','time_since', 1, 30);
+    	?>
     </div>
     <div id="controls">
-        <button id="rotateleft" type="button"><i class="fa fa-chevron-left"></i></button>
-        <button id="twod" type="button" onclick="tiltView()"><i class="fa fa-compass"></i></button>
-        <button id="rotateright" type="button"><i class="fa fa-chevron-right"></i></button>
+        <button id="rotateleft" type="button" onclick="rotateLeft()"><i class="fa fa-chevron-left"></i></button>
+        <div id="controlhover">
+        	<button id="refresh" type="button" onclick="refreshView()"><i class="fa fa-chevron-up"></i></button>
+            <button id="twod" type="button" onclick="view2D()">2D</button>
+        	<button id="tilt" type="button" onclick="tilt()"><i class="fa fa-chevron-down"></i></button>
+        </div>
+        <button id="rotateright" type="button" onclick="rotateRight()"><i class="fa fa-chevron-right"></i></button>
     </div>
 </div>
+<!--<div id="footer">
+    <ul>
+        <li><a href="pages/about.php">About</a></li>
+        <li><a href="pages/casestudies.php">Case Studies</a></li>
+        <li><a href="http://www.kent.ac.uk/">UKC Website</a></li>
+        <li><a href="pages/disclaimer.php">Disclaimer</a></li>
+        <li><a href="pages/credits.php">Credits</a></li>
+    </ul>
+</div>-->
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
 
 <script src="assets/js/three_r62.min.js"></script> 
-<script src="assets/js/controls/OrbitControls_r62.js"></script> 
+<script src="assets/js/controls/FirstPersonControls.js"></script> 
 
 <script src="assets/js/utils/Detector.js"></script> 
 <script src="assets/js/utils/stats.min.js"></script> 
 <script src="assets/js/utils/tween.min.js"></script> 
-
-<script src="http://mrdoob.github.com/three.js/examples/js/shaders/CopyShader.js"></script>
-<script src="http://mrdoob.github.com/three.js/examples/js/shaders/SSAOShader.js"></script>
-
-<script src="http://mrdoob.github.com/three.js/examples/js/postprocessing/EffectComposer.js"></script>
-<script src="http://mrdoob.github.com/three.js/examples/js/postprocessing/RenderPass.js"></script>
-<script src="http://mrdoob.github.com/three.js/examples/js/postprocessing/MaskPass.js"></script>
-<script src="http://mrdoob.github.com/three.js/examples/js/postprocessing/ShaderPass.js"></script>
      
-<script src="assets/js/functions.js"></script> 
-<script src="assets/js/mouse_events.js"></script>
-<script src="assets/js/helvetiker_regular.typeface.js"></script>
-<script src="assets/js/core.js"></script>
-<script src="assets/js/universal.js"></script>
 <script type="text/javascript">
-    //<![CDATA[
+var container, stats, camera, scene, renderer, projector, controls, ground, group = new THREE.Object3D(), group = new THREE.Object3D(), xml;
+var depthMaterial, depthTarget, composer;
+var clickobjects = [], tweetobjects = [], sprites = [], locationIcons = [], foodIcons = [], shopIcons = [], tweetIcons = [], visitorParking = [], permitParking = [], rotate = [], investmentArray = [], developmentArray = [];
+var jsonFileNames = [
+	'assets/models/Aphra_Theatre.js',
+	'assets/models/Becket_Court.js',
+	'assets/models/Bishopden_Court.js',
+	'assets/models/Boiler_House.js',
+	'assets/models/Bossenden_Court.js',
+	'assets/models/Campus_Watch.js',
+	'assets/models/Careers_Employability_Service.js',
+	'assets/models/Clowes_Court.js',
+	'assets/models/Colyer_Fergusson.js',
+	'assets/models/Cornwallis_George_Allen_Wing.js',
+	'assets/models/Cornwallis_Mathematics_Institute.js',
+	'assets/models/Cornwallis_North_East.js',
+	'assets/models/Cornwallis_North_West.js',
+	'assets/models/Cornwallis_South_East.js',
+	'assets/models/Cornwallis_South_West.js',
+	'assets/models/Cornwallis_South.js',
+	'assets/models/Cornwallis_West.js',
+	'assets/models/Darwin_College.js',
+	'assets/models/Darwin_Houses.js',
+	'assets/models/Denstead_Court.js',
+	'assets/models/Eliot_College.js',
+	'assets/models/Ellenden_Court.js',
+	'assets/models/Estates_Department.js',
+	'assets/models/Farthings_Court.js',
+	'assets/models/Giles_Lane_Teaching_Complex.js',
+	'assets/models/Grimmond.js',
+	'assets/models/Grimshill_Court.js',
+	'assets/models/Ground_Maintenance.js',
+	'assets/models/Gulbenkian.js',
+	'assets/models/Homestall_Court.js',
+	'assets/models/Hothe_Court.js',
+	'assets/models/Ingram.js',
+	'assets/models/Innovation_Center.js',
+	'assets/models/Jarman.js',
+	'assets/models/Jennison.js',
+	'assets/models/Kemsdale_Court.js',
+	'assets/models/Kent_Business_School.js',
+	'assets/models/Kent_Enterprise_Hub.js',
+	'assets/models/Kent_Law_School.js',
+	'assets/models/Keynes_College.js',
+	'assets/models/Keynes_Flats.js',
+	'assets/models/Locke.js',
+	'assets/models/Lypeatt_Court.js',
+	'assets/models/Mandela_Building.js',
+	'assets/models/Marley_Court.js',
+	'assets/models/Marlowe.js',
+	'assets/models/Missing_Link.js',
+	'assets/models/Nickle_Court.js',
+	'assets/models/Oaks_Day_Nursery.js',
+	'assets/models/Olive_Cottages.js',
+	'assets/models/Parkwood_Administration.js',
+	'assets/models/Parkwood_Shop.js',
+	'assets/models/Purchas_Court.js',
+	'assets/models/Registry.js',
+	'assets/models/Research_and_Development_Centre.js',
+	'assets/models/Rothford.js',
+	'assets/models/Rutherford_College.js',
+	'assets/models/Senate.js',
+	'assets/models/Sports_Centre.js',
+	'assets/models/Sports_Pavillion.js',
+	'assets/models/Stacey.js',
+	'assets/models/Stock_Court.js',
+	'assets/models/Tanglewood.js',
+	'assets/models/Templeman_Library.js',
+	'assets/models/Thornden_Court.js',
+	'assets/models/Tudor_Court.js',
+	'assets/models/Tyler_Court_A.js',
+	'assets/models/Tyler_Court_B.js',
+	'assets/models/Tyler_Court_C.js',
+	'assets/models/UELT.js',
+	'assets/models/University_Medical_Centre.js',
+	'assets/models/Venue.js',
+	'assets/models/Willows_Court.js',
+	'assets/models/Woodlands.js',
+	'assets/models/Woodys.js',
+	'assets/models/Woolf_Blocks.js',
+	'assets/models/Woolf_Main.js',
+	'assets/models/Woolf_Pavillion.js',
+	'assets/models/Woolf_Residential.js'
+];
+
+var buildingNames = [
+	'Aphra Theatre',
+	'Becket Court',
+	'Bishopden Court',
+	'Boiler House',
+	'Bossenden Court',
+	'Campus Watch',
+	'Careers Employability Service',
+	'Clowes Court',
+	'Colyer Fergusson',
+	'Cornwallis George Allen Wing',
+	'Cornwallis Mathematics Institute',
+	'Cornwallis North East',
+	'Cornwallis North West',
+	'Cornwallis South East',
+	'Cornwallis South West',
+	'Cornwallis South',
+	'Cornwallis West',
+	'Darwin College',
+	'Darwin Houses',
+	'Denstead Court',
+	'Eliot College',
+	'Ellenden Court',
+	'Estates Department',
+	'Farthings Court',
+	'Giles Lane Teaching Complex',
+	'Grimmond',
+	'Grimshill Court',
+	'Ground Maintenance',
+	'Gulbenkian',
+	'Homestall Court',
+	'Hothe Court',
+	'Ingram',
+	'Innovation Center',
+	'Jarman',
+	'Jennison',
+	'Kemsdale Court',
+	'Kent Business School',
+	'Kent Enterprise Hub',
+	'Kent Law School',
+	'Keynes College',
+	'Keynes Flats',
+	'Locke',
+	'Lypeatt Court',
+	'Mandela Building',
+	'Marley Court',
+	'Marlowe',
+	'Missing Link',
+	'Nickle Court',
+	'Oaks Day Nursery',
+	'Olive Cottages',
+	'Parkwood Administration',
+	'Parkwood Shop',
+	'Purchas Court',
+	'Registry',
+	'Research and Development Centre',
+	'Rothford',
+	'Rutherford College',
+	'Senate',
+	'Sports Centre',
+	'Sports Pavillion',
+	'Stacey',
+	'Stock Court',
+	'Tanglewood',
+	'Templeman Library',
+	'Thornden Court',
+	'Tudor Court',
+	'Tyler Court A',
+	'Tyler Court B',
+	'Tyler Court C',
+	'UELT',
+	'University Medical Centre',
+	'Venue',
+	'Willows Court',
+	'Woodlands',
+	'Woodys',
+	'Woolf Flats',
+	'Woolf College',
+	'Woolf Pavillion',
+	'Woolf Residential'
+];
+
+var objects = [], plane;
+var mouse = new THREE.Vector2(),
+offset = new THREE.Vector3(),
+INTERSECTED, SELECTED;
+
+var WIDTH = $(window).width();
+var HEIGHT = $(window).height();
+	
+init();
+animate();
+
+function init() {
+	
+	container = document.createElement( 'div' );
+	container.id = 'app';
+	document.getElementById("mapwrapper").appendChild( container );
+	
+	camera = new THREE.PerspectiveCamera( 20, window.innerWidth / window.innerHeight, 10, 2000 );
+	camera.position.y = 3;
+	
+	//////// ORBIT CONTROLS /////////
+
+	controls = new THREE.FirstPersonControls(camera); // Handles camera control
+	controls.movementSpeed = 100; // How fast the player can walk around
+	controls.lookSpeed = 0.075; // How fast the player can look around with the mouse
+	controls.lookVertical = false; // Don't allow the player to look up or down. This is a temporary fix to keep people from flying
+	controls.noFly = true; // Don't allow hitting R or F to go up or down
+	
+	///////// SCENE SETUP //////////
+
+	scene = new THREE.Scene();
+	//scene.fog = new THREE.Fog( 0xffffff, 0.00002 );
+	
+	/////////// LIGHTS ////////////
+	
+	var directionalLight = new THREE.DirectionalLight( 0xffffff, 0.5 );
+	directionalLight.position.set( 1, 5, 1 );
+	scene.add( directionalLight );
+	
+	var ambientLight = new THREE.AmbientLight( 0xcccccc );
+	scene.add( ambientLight );
+
+	/////////// GEOMETRY /////////////
+	
+	texture = THREE.ImageUtils.loadTexture('assets/images/map.jpg', {}, function() {
+		renderer.render(scene);
+	})
+	mapmaterial = new THREE.MeshBasicMaterial({map: texture})
+	ground = new THREE.Mesh( new THREE.PlaneGeometry( 1200, 960, 8, 8 ), mapmaterial );
+	ground.rotation.x += 270 * Math.PI / 180;
+	ground.material.needsUpdate = true;
+	scene.add( ground );
+	group.add( ground );
+	
+	plane = new THREE.Mesh( new THREE.PlaneGeometry( 1200, 960, 8, 8 ), new THREE.MeshBasicMaterial( { transparent: true, wireframe: true } ) );
+	plane.visible = false;
+	scene.add( plane );
+	plane.rotation.x += 270 * Math.PI / 180;
+	
+	var material = new THREE.MeshLambertMaterial({ color: 0xcccccc });
+	
+	var loader = new THREE.JSONLoader();
+	
+	loader.load( "assets/models/trees.js", function( geometry, materials ) {
+        mesh = new THREE.Mesh( geometry, new THREE.MeshFaceMaterial(materials) );
+        mesh.scale.set( 1, 1, 1 );
+		group.add( mesh );
+    } );
+	
+	/*loader.load( "assets/models/cloud.js", function( geometry, materials ) {
+        mesh = new THREE.Mesh( geometry, new THREE.MeshLambertMaterial({ color: 0xcccccc, transparent: true, opacity: 0.8 }) );
+        mesh.scale.set( 1, 1, 1 );
+		mesh.position.set( 0, 0, 0);
+		group.add( mesh );
+    } );*/
+	
+	for(var i = 0; i < jsonFileNames.length; i++){
+		var spriteName = buildingNames[i];
+		var meshName = jsonFileNames[i].split("/")[2].split(".")[0];
+		loader.load(jsonFileNames[i], makeHandler(meshName, spriteName));
+	}
+	
+	function makeHandler(meshName, spriteName) {
+		return function(geometry, materials) {
+			mesh =  new THREE.Mesh( geometry, material );
+			mesh.scale.set( 1, 1, 1 );
+			mesh.position.set( 0, -0.1, 0 );
+			clickobjects.push( mesh );
+			group.add( mesh );
+			mesh.name = meshName;
+		};
+	}
+	
+	objects.push( group );
+	
+	//////////// RENDERER ////////////
+	
+	scene.add( group );
+	
+	projector = new THREE.Projector();
+
+	renderer = new THREE.WebGLRenderer();
+	renderer.setSize( window.innerWidth, window.innerHeight );
+
+	container.appendChild( renderer.domElement );
+
+	stats = new Stats();
+	stats.domElement.style.position = 'absolute';
+	stats.domElement.style.bottom = '0px';
+	stats.domElement.style.right = '0px';
+	container.appendChild( stats.domElement );
+	container.style.cursor = 'move';
+	
+
+	//
+
+	window.addEventListener( 'resize', onWindowResize, false );
+
+	/*			
+	///////////// DEPTH //////////////
+	
+	var depthShader = THREE.ShaderLib[ "depthRGBA" ];
+	var depthUniforms = THREE.UniformsUtils.clone( depthShader.uniforms );
+
+	depthMaterial = new THREE.ShaderMaterial( { fragmentShader: depthShader.fragmentShader, vertexShader: depthShader.vertexShader, uniforms: depthUniforms } );
+	depthMaterial.blending = THREE.NoBlending;
+
+	////////////// SSAO //////////////
+	
+	composer = new THREE.EffectComposer( renderer );
+	composer.addPass( new THREE.RenderPass( scene, camera ) );
+
+	depthTarget = new THREE.WebGLRenderTarget( window.innerWidth, window.innerHeight, { minFilter: THREE.NearestFilter, magFilter: THREE.NearestFilter, format: THREE.RGBAFormat } );
+	
+	var effect = new THREE.ShaderPass( THREE.SSAOShader );
+	effect.uniforms[ 'tDepth' ].value = depthTarget;
+	effect.uniforms[ 'size' ].value.set( window.innerWidth, window.innerHeight );
+	effect.uniforms[ 'cameraNear' ].value = camera.near;
+	effect.uniforms[ 'cameraFar' ].value = camera.far;
+	effect.renderToScreen = true;
+	composer.addPass( effect );
+	*/
+	
+}
+function onWindowResize() {
+	camera.aspect = window.innerWidth / window.innerHeight;
+	camera.updateProjectionMatrix();
+	renderer.setSize( window.innerWidth, window.innerHeight );
+	positionTrackingOverlay();
+}
+
+function animate() {
+	controls.update();
+	stats.update();
+	render();
+	requestAnimationFrame( animate );
+}
+function render() {
+	renderer.render( scene, camera );
+}
+
+//<![CDATA[
         $(window).load(function() { // makes sure the whole site is loaded
             setTimeout(function() {
 				$('#status').fadeOut(1000); // will first fade out the loading animation
 				$('#preloader').delay(350).fadeOut(1000); // will fade out the white DIV that covers the website.
 				$('body').delay(350).css({'overflow':'visible'});
-				new TWEEN.Tween( camera.position ).to( { x: 0, y: 250, z: 400 }, 3000 ).easing( TWEEN.Easing.Quadratic.InOut).start();
+				
 			 }, 750);
         })
     //]]>

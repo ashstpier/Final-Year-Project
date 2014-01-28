@@ -1,5 +1,6 @@
 function onDocumentMouseDown( event ) {
 	event.preventDefault();
+	controls.autoRotate = false;
 	var vector = new THREE.Vector3( mouse.x, mouse.y, 1 );
 	projector.unprojectVector( vector, camera );
 	var raycaster = new THREE.Raycaster( camera.position, vector.sub( camera.position ).normalize() );
@@ -78,18 +79,21 @@ function placeMarker(modal){
 			
 	$(xml).find(node).each(function(){
 		var header = $(this).find('header').text();
+		var type = $(this).find('type').text();
 		var description = $(this).find('description').text();
 		var list = $(this).find('list').text();
 		var backcontent = $(this).find('backcontent').text();
-		$('<div class="header"></div>').html('<a href="#" onclick="closeModal()"><i class="fa-times fa fa-lg"></i></a><img src="assets/images/buildings/becket_court.jpg" /><h2><i class="fa fa-map-marker"></i>'+header+'</h2>').appendTo('#modalfront');
 	
 		if (backcontent != ""){
-			$('<div class="content extrapadding"></div>').html('<p>'+description+'</p>'+list).appendTo('#modalfront');
-			$('<div class="next"></div><a href="#" onclick="flipModal()"><i class="fa-chevron-right fa"></i></a>').appendTo('#modalfront .content');
-			$('<div class="content"></div>').html(backcontent+'<div class="next"></div><a href="#" onclick="flipModal()"><i class="fa-chevron-left fa"></i></a>').appendTo('#modalback');
+			$('<div class="header"></div>').html('<img src="assets/images/buildings/becket_court.jpg" />').appendTo('#modalfront');
+			$('<div class="content"></div>').html('<a href="#" onclick="closeModal()"><i class="fa-times fa fa-lg"></i></a><h2>'+header+'</h2><h3>'+type+'</h3><p>'+description+'</p>').appendTo('#modalfront');
+			$('<div class="footer"></div>').html(list).appendTo('#modalfront');
+			$('<div class="content"></div>').html(backcontent+'<div class="next"></div><a href="#" onclick="flipModal()"><i class="fa-align-left fa"></i></a>').appendTo('#modalback');
 			}
 		else {
-			$('<div class="content"></div>').html('<p>'+description+'</p>'+list).appendTo('#modalfront');
+			$('<div class="header"></div>').html('<img src="assets/images/buildings/becket_court.jpg" />').appendTo('#modalfront');
+			$('<div class="content"></div>').html('<a href="#" onclick="closeModal()"><i class="fa-times fa fa-lg"></i></a><h2>'+header+'</h2><h3>'+type+'</h3><p>'+description+'</p>').appendTo('#modalfront');
+			$('<div class="footer"></div>').html(list).appendTo('#modalfront');
 		}
 		$('<div class="arrow-down"></div>').appendTo('#modalfront, #modalback');
 	});
@@ -104,19 +108,19 @@ function placeMarker(modal){
 	position.applyMatrix4( modal.matrixWorld );
 		
 	if (camera.position.z >= position.z && controls.center.z <= camera.position.z){
-		new TWEEN.Tween( camera.position ).to( { x: 0, y: 80, z: 100 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {$("#modalpanel").addClass('fadeInDown opaque');}).start();
-		new TWEEN.Tween( group.position ).to( { x: group.position.x - position.x, y: -30, z: group.position.z - position.z +20 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).start();
+		new TWEEN.Tween( camera.position ).to( { x: 0, y: 150, z: 250 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {$("#modalpanel").addClass('fadeInDown opaque');}).start();
+		new TWEEN.Tween( group.position ).to( { x: group.position.x - position.x, y: -10, z: group.position.z - position.z +50 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).start();
 	}else if (camera.position.z >= position.z && controls.center.z >= camera.position.z) {
-		new TWEEN.Tween( camera.position ).to( { x: 0, y: 80, z: - 100 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {$("#modalpanel").addClass('fadeInDown opaque');}).start();
-		new TWEEN.Tween( group.position ).to( { x: group.position.x - position.x, y: -30, z: group.position.z - position.z -20 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).start();
+		new TWEEN.Tween( camera.position ).to( { x: 0, y: 150, z: - 250 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {$("#modalpanel").addClass('fadeInDown opaque');}).start();
+		new TWEEN.Tween( group.position ).to( { x: group.position.x - position.x, y: -10, z: group.position.z - position.z -50 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).start();
 	}
 	else if (camera.position.z <= position.z && controls.center.z <= camera.position.z) {
-		new TWEEN.Tween( camera.position ).to( { x: 0, y: 80, z: 100 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {$("#modalpanel").addClass('fadeInDown opaque');}).start();
-		new TWEEN.Tween( group.position ).to( { x: group.position.x - position.x, y: -30, z: group.position.z - position.z +20 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).start();
+		new TWEEN.Tween( camera.position ).to( { x: 0, y: 150, z: 250 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {$("#modalpanel").addClass('fadeInDown opaque');}).start();
+		new TWEEN.Tween( group.position ).to( { x: group.position.x - position.x, y: -10, z: group.position.z - position.z +50 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).start();
 	}
 	else {
-		new TWEEN.Tween( camera.position ).to( { x: 0, y: 80, z: - 100 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {$("#modalpanel").addClass('fadeInDown opaque');}).start();
-		new TWEEN.Tween( group.position ).to( { x: group.position.x - position.x, y: -30, z: group.position.z - position.z -20 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).start();
+		new TWEEN.Tween( camera.position ).to( { x: 0, y: 150, z: - 250 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {$("#modalpanel").addClass('fadeInDown opaque');}).start();
+		new TWEEN.Tween( group.position ).to( { x: group.position.x - position.x, y: -10, z: group.position.z - position.z -50 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).start();
 	}
 }
 
@@ -140,17 +144,17 @@ function twitterMap(intersects, tweetcontainer){
 	position.applyMatrix4( tweetmodal.matrixWorld );
 		
 	if (camera.position.z >= position.z && controls.center.z <= camera.position.z){
-		new TWEEN.Tween( camera.position ).to( { x: 0, y: 80, z: 100 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {$(tweetcontainer).addClass('fadeInDown opaque');}).start();
+		new TWEEN.Tween( camera.position ).to( { x: 0, y: 80, z: 150 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {$(tweetcontainer).addClass('fadeInDown opaque');}).start();
 	}else if (camera.position.z >= position.z && controls.center.z >= camera.position.z) {
-		new TWEEN.Tween( camera.position ).to( { x: 0, y: 80, z: - 100 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {$(tweetcontainer).addClass('fadeInDown opaque');}).start();
+		new TWEEN.Tween( camera.position ).to( { x: 0, y: 80, z: - 150 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {$(tweetcontainer).addClass('fadeInDown opaque');}).start();
 	}
 	else if (camera.position.z <= position.z && controls.center.z <= camera.position.z) {
-		new TWEEN.Tween( camera.position ).to( { x: 0, y: 80, z: 100 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {$(tweetcontainer).addClass('fadeInDown opaque');}).start();
+		new TWEEN.Tween( camera.position ).to( { x: 0, y: 80, z: 150 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {$(tweetcontainer).addClass('fadeInDown opaque');}).start();
 	}
 	else {
-		new TWEEN.Tween( camera.position ).to( { x: 0, y: 80, z: - 100 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {$(tweetcontainer).addClass('fadeInDown opaque');}).start();
+		new TWEEN.Tween( camera.position ).to( { x: 0, y: 80, z: - 150 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {$(tweetcontainer).addClass('fadeInDown opaque');}).start();
 	}
-	new TWEEN.Tween( group.position ).to( { x: group.position.x - position.x, y: -30, z: group.position.z - position.z }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {$(tweetcontainer).addClass('fadeInDown opaque');}).start();
+	new TWEEN.Tween( group.position ).to( { x: group.position.x - position.x, z: group.position.z - position.z }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {$(tweetcontainer).addClass('fadeInDown opaque');}).start();
 }
 
 //////// MOUSEMOVE EVENT /////////
@@ -193,38 +197,44 @@ function onDocumentMouseMove( event ) {
 }
 
 ///////// CONTROLS //////////
-
-function view2D() {
-	if (camera.position.z >= controls.center.z){
-		new TWEEN.Tween( camera.position ).to( { x: controls.center.x, y: 500, z: controls.center.z + 1 }, 1000 ).easing( TWEEN.Easing.Sinusoidal.InOut).start();
-	}else{
-		new TWEEN.Tween( camera.position ).to( { x: controls.center.x, y: 500, z: controls.center.z - 1 }, 1000 ).easing( TWEEN.Easing.Sinusoidal.InOut).start();
+var tilt = 0;
+function tiltView() {
+	if (tilt == 0){
+		if (camera.position.z >= controls.center.z){
+			new TWEEN.Tween( camera.position ).to( { y: 60, z: controls.center.z + 200 }, 1000 ).easing( TWEEN.Easing.Sinusoidal.InOut).start();
+		}else {
+			new TWEEN.Tween( camera.position ).to( { y: 60, z: controls.center.z - 200 }, 1000 ).easing( TWEEN.Easing.Sinusoidal.InOut).start();
+		}
+		tilt = 1;
+	} else if (tilt == 1){
+		new TWEEN.Tween( camera.position ).to( { x: controls.center.x, y: 700 }, 1000 ).easing( TWEEN.Easing.Sinusoidal.InOut).start();
+		tilt = 2;
+	} else {
+		if (camera.position.z >= controls.center.z){
+			new TWEEN.Tween( camera.position ).to( { y: 250, z: controls.center.z + 400 }, 1000 ).easing( TWEEN.Easing.Sinusoidal.InOut).start();
+		}else {
+			new TWEEN.Tween( camera.position ).to( { y: 250, z: controls.center.z - 400 }, 1000 ).easing( TWEEN.Easing.Sinusoidal.InOut).start();
+		}
+		tilt = 0;
 	}
 }
-function tilt() {
-	if (camera.position.z >= controls.center.z){
-		new TWEEN.Tween( camera.position ).to( { y: 35, z: controls.center.z + 100 }, 1000 ).easing( TWEEN.Easing.Sinusoidal.InOut).start();
-	}else {
-		new TWEEN.Tween( camera.position ).to( { y: 35, z: controls.center.z - 100 }, 1000 ).easing( TWEEN.Easing.Sinusoidal.InOut).start();
-	}
-}
-function refreshView() {
-	if (camera.position.z >= controls.center.z){
-		new TWEEN.Tween( camera.position ).to( { y: 250, z: controls.center.z + 300 }, 1000 ).easing( TWEEN.Easing.Sinusoidal.InOut).start();
-	}else {
-		new TWEEN.Tween( camera.position ).to( { y: 250, z: controls.center.z - 300 }, 1000 ).easing( TWEEN.Easing.Sinusoidal.InOut).start();
-	}
-}
 
-function rotateRight() {
-	var x = camera.position.x, z = camera.position.z, rotSpeed = 1;
-	new TWEEN.Tween( camera.position ).to( { x: x * Math.cos(rotSpeed) + z * Math.sin(rotSpeed),  z: z * Math.cos(rotSpeed) - x * Math.sin(rotSpeed) }, 1000 ).easing( TWEEN.Easing.Quadratic.InOut).start();
-}
+$('#rotateleft').mousedown(function() {
+	controls.autoRotateRight = false;
+	controls.autoRotateSpeed = 10;
+    controls.autoRotate = true;
+}).bind('mouseup mouseleave', function() {
+    controls.autoRotate = false;
+});
 
-function rotateLeft() {
-	var x = camera.position.x, z = camera.position.z, rotSpeed = 1;
-	new TWEEN.Tween( camera.position ).to( { x: x * Math.cos(rotSpeed) - z * Math.sin(rotSpeed),  z: z * Math.cos(rotSpeed) + x * Math.sin(rotSpeed) }, 1000 ) .easing( TWEEN.Easing.Quadratic.InOut).start();
-}
+$('#rotateright').mousedown(function() {
+	controls.autoRotate = false;
+	controls.autoRotateSpeed = 10;
+    controls.autoRotateRight = true;
+}).bind('mouseup mouseleave', function() {
+    controls.autoRotateRight = false;
+});
+
 function closeModal() {
 	$("#modalpanel").addClass('fadeOutUp');
 	$("#modalpanel").removeClass('fadeInDown');

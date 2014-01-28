@@ -28,9 +28,12 @@
 <div id="navbar">
 	<a href="#" id="drawer-toggle"><img src="assets/images/logo.png" alt="University of Kent logo" /></a>
     <ul id="nav">
-    	<li><a href="facts.html">10 Facts</a></li>
     	<li><a href="index.php">Explore</a></li>
+    	<li><a href="facts.html">10 Facts</a></li>
         <li><a href="social.php" class="active">Social</a></li>
+        <li id="twitter"><a href="#"><i class="fa fa-twitter"></i></a></li>
+        <li id="facebook"><a href="#"><i class="fa fa-facebook"></i></a></li>
+        <li id="github"><a href="#"><i class="fa fa-github-alt"></i></a></li>
     </ul>
 </div>
 <div id="leftnav">
@@ -119,13 +122,6 @@
        
     ?>
     </section>
-    <ul>
-        <li><a href="pages/about.php">About</a></li>
-        <li><a href="pages/casestudies.php">Case Studies</a></li>
-        <li><a href="http://www.kent.ac.uk/">UKC Website</a></li>
-        <li><a href="pages/disclaimer.php">Disclaimer</a></li>
-        <li><a href="pages/credits.php">Credits</a></li>
-    </ul>
 </div>
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>

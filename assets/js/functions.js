@@ -33,7 +33,7 @@ function makeTextSprite( message, name )
 	position.add( boundingBox.min );
 	position.applyMatrix4( name.matrixWorld );
 	
-	sprite.position.set( position.x - 10, boundingBox.max.y + 5, position.z );
+	sprite.position.set( position.x - 10, boundingBox.max.y + 6, position.z );
 	sprite.scale.set(60,30,1.0);
 	return sprite;	
 }
@@ -112,7 +112,7 @@ function makeIcon(mesh) {
 function buildIcon(iconArray, iconPicture) {
 	var spriteMaterial = new THREE.SpriteMaterial( { map: THREE.ImageUtils.loadTexture( iconPicture ), useScreenCoordinates: false, alignment: THREE.SpriteAlignment.topCenter, transparent: true } );
 	var icon = new THREE.Sprite( spriteMaterial );
-	icon.scale.set(14,14,1.0);
+	icon.scale.set(10,10,1.0);
 	mesh.geometry.computeBoundingBox();
 	var boundingBox = mesh.geometry.boundingBox;
 	var position = new THREE.Vector3();
@@ -182,14 +182,39 @@ function parkingIcon(iconArray, iconPicture){
 	iconArray.push( icon );
 	icon.material.opacity = 0;
 	
-	var tweenOne = new TWEEN.Tween( icon.position ).to( { y: 11 }, 1500 ).easing( TWEEN.Easing.Sinusoidal.InOut);
-	var tweenTwo = new TWEEN.Tween( icon.position ).to( { y: 10 }, 1500 ).easing( TWEEN.Easing.Sinusoidal.InOut);
+	var tweenOne = new TWEEN.Tween( icon.position ).to( { y: 13 }, 1500 ).easing( TWEEN.Easing.Sinusoidal.InOut);
+	var tweenTwo = new TWEEN.Tween( icon.position ).to( { y: 12 }, 1500 ).easing( TWEEN.Easing.Sinusoidal.InOut);
 	
 	tweenOne.chain(tweenTwo);
 	tweenTwo.chain(tweenOne);
 	tweenOne.start();
 	
 	return icon;
+}
+function makeParkingOverlay(){
+	var parking1 = parkingIcon(visitorParking, "assets/images/icons/ico_parking.png");
+	parking1.position.set(78,0,-25);
+	var parking2 = parkingIcon(visitorParking, "assets/images/icons/ico_parking.png");
+	parking2.position.set(275,0,-205);
+	var parking3 = parkingIcon(visitorParking, "assets/images/icons/ico_parking.png");
+	parking3.position.set(39,0,344);
+	var parking4 = parkingIcon(visitorParking, "assets/images/icons/ico_parking.png");
+	parking4.position.set(-333,0,-248);
+	
+	var parking5 = parkingIcon(permitParking, "assets/images/icons/ico_parking2.png");
+	parking5.position.set(90,0,30);
+	var parking6 = parkingIcon(permitParking, "assets/images/icons/ico_parking2.png");
+	parking6.position.set(230,0,3);
+	var parking7 = parkingIcon(permitParking, "assets/images/icons/ico_parking2.png");
+	parking7.position.set(50,0,-200);
+	var parking8 = parkingIcon(permitParking, "assets/images/icons/ico_parking2.png");
+	parking8.position.set(230,0,-290);
+	var parking9 = parkingIcon(permitParking, "assets/images/icons/ico_parking2.png");
+	parking9.position.set(442,0,-153);
+	var parking10 = parkingIcon(permitParking, "assets/images/icons/ico_parking2.png");
+	parking10.position.set(-30,0,55);
+	var parking11 = parkingIcon(permitParking, "assets/images/icons/ico_parking2.png");
+	parking11.position.set(-115,0,-220);
 }
 
 function make3DText(message, color, size)
@@ -229,11 +254,11 @@ function makeInvestmentOverlay(){
 	var data2b = make3DText("student residences", 0x279CCD, 7);
 	data2b.position.set(-355, 55, -45);
 	
-	var cylinder3 = makeCylinder(0x279CCD, 60);
+	var cylinder3 = makeCylinder(0xd47356, 60);
 	cylinder3.position.set(19, 0, -186);
-	var data3a = make3DText("£0.9m refurbishment", 0x279CCD, 7);
+	var data3a = make3DText("£0.9m refurbishment", 0xd47356, 7);
 	data3a.position.set(19, 55, -186);
-	var data3b = make3DText("of Jennison building ", 0x279CCD, 7);
+	var data3b = make3DText("of Jennison building ", 0xd47356, 7);
 	data3b.position.set(19, 40, -186);
 	
 	var cylinder4 = makeCylinder(0x279CCD, 60);
@@ -257,24 +282,24 @@ function makeInvestmentOverlay(){
 	var data6b = make3DText("College Extension", 0xd47356, 7);
 	data6b.position.set(-30, 45, 112);
 	
-	investmentArray.push(cylinder1,cylinder2,cylinder3,cylinder4,data1,data2a,data2b,data3a,data3b,data4a,data4b);
-	developmentArray.push(cylinder5,cylinder6,data5a,data5b,data6a,data6b);
+	investmentArray.push(cylinder1,cylinder2,cylinder4,data1,data2a,data2b,data4a,data4b);
+	developmentArray.push(cylinder3,cylinder5,cylinder6,data3a,data3b,data5a,data5b,data6a,data6b);
 }
 
 function parkingRotate(){
 	if (camera.position.z < 0){
-		for (var i=0, tot=visitorParking.length; i < tot; i++) {
-			visitorParking[i].rotation.y = 270 * Math.PI / 280;
+		for (var i=0, tot=investmentArray.length; i < tot; i++) {
+			investmentArray[i].rotation.y = 270 * Math.PI / 280;
 		}
-		for (var i=0, tot=permitParking.length; i < tot; i++) {
-			permitParking[i].rotation.y = 270 * Math.PI / 280;
+		for (var i=0, tot=developmentArray.length; i < tot; i++) {
+			developmentArray[i].rotation.y = 270 * Math.PI / 280;
 		}
 	}else{
-		for (var i=0, tot=visitorParking.length; i < tot; i++) {
-			visitorParking[i].rotation.y = 0;
+		for (var i=0, tot=investmentArray.length; i < tot; i++) {
+			investmentArray[i].rotation.y = 0;
 		}
-		for (var i=0, tot=permitParking.length; i < tot; i++) {
-			permitParking[i].rotation.y = 0;
+		for (var i=0, tot=developmentArray.length; i < tot; i++) {
+			developmentArray[i].rotation.y = 0;
 		}
 	}	
 }

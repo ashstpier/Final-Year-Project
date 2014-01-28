@@ -182,7 +182,7 @@ function init() {
 	container.id = 'app';
 	document.getElementById("mapwrapper").appendChild( container );
 	
-	camera = new THREE.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 10, 2000 );
+	camera = new THREE.PerspectiveCamera( 40, window.innerWidth / window.innerHeight, 10, 2000 );
 	camera.position.z = 0;
 	camera.position.y = 700;
 	
@@ -191,8 +191,8 @@ function init() {
 	controls = new THREE.OrbitControls( camera );
 	controls.addEventListener( 'change', render );
 	controls.maxPolarAngle = Math.PI/2.25; 
-	controls.minDistance = 100;
-	controls.maxDistance = 350;
+	controls.minDistance = 160;
+	controls.maxDistance = 700;
 	controls.enabled = true;
 	controls.center.set(0,-10,0);
 	
@@ -203,8 +203,8 @@ function init() {
 	
 	/////////// LIGHTS ////////////
 	
-	var directionalLight = new THREE.DirectionalLight( 0xffffff, 0.5 );
-	directionalLight.position.set( 1, 5, 1 );
+	var directionalLight = new THREE.DirectionalLight( 0xffffff,0.9 );
+	directionalLight.position.set( 3, 20, 3 );
 	scene.add( directionalLight );
 	
 	var ambientLight = new THREE.AmbientLight( 0xcccccc );
@@ -212,6 +212,7 @@ function init() {
 
 	/////////// GEOMETRY /////////////
 	
+	/*
 	texture = THREE.ImageUtils.loadTexture('assets/images/map.jpg', {}, function() {
 		renderer.render(scene);
 	})
@@ -221,39 +222,15 @@ function init() {
 	ground.material.needsUpdate = true;
 	scene.add( ground );
 	group.add( ground );
-	
-	var parking1 = parkingIcon(visitorParking, "assets/images/icons/ico_parking.png");
-	parking1.position.set(78,0,-25);
-	var parking2 = parkingIcon(visitorParking, "assets/images/icons/ico_parking.png");
-	parking2.position.set(275,0,-205);
-	var parking3 = parkingIcon(visitorParking, "assets/images/icons/ico_parking.png");
-	parking3.position.set(39,0,344);
-	var parking4 = parkingIcon(visitorParking, "assets/images/icons/ico_parking.png");
-	parking4.position.set(-333,0,-248);
-	
-	var parking5 = parkingIcon(permitParking, "assets/images/icons/ico_parking2.png");
-	parking5.position.set(90,0,30);
-	var parking6 = parkingIcon(permitParking, "assets/images/icons/ico_parking2.png");
-	parking6.position.set(230,0,3);
-	var parking7 = parkingIcon(permitParking, "assets/images/icons/ico_parking2.png");
-	parking7.position.set(50,0,-200);
-	var parking8 = parkingIcon(permitParking, "assets/images/icons/ico_parking2.png");
-	parking8.position.set(230,0,-290);
-	var parking9 = parkingIcon(permitParking, "assets/images/icons/ico_parking2.png");
-	parking9.position.set(442,0,-153);
-	var parking10 = parkingIcon(permitParking, "assets/images/icons/ico_parking2.png");
-	parking10.position.set(-30,0,55);
-	var parking11 = parkingIcon(permitParking, "assets/images/icons/ico_parking2.png");
-	parking11.position.set(-115,0,-220);
+	*/
 		
+	makeParkingOverlay();
 	makeInvestmentOverlay();
 	
 	plane = new THREE.Mesh( new THREE.PlaneGeometry( 1200, 960, 8, 8 ), new THREE.MeshBasicMaterial( { transparent: true, wireframe: true } ) );
 	plane.visible = false;
 	scene.add( plane );
 	plane.rotation.x += 270 * Math.PI / 180;
-	
-	var material = new THREE.MeshLambertMaterial({ color: 0xcccccc });
 	
 	var loader = new THREE.JSONLoader();
 	
@@ -263,12 +240,15 @@ function init() {
 		group.add( mesh );
     } );
 	
-	/*loader.load( "assets/models/cloud.js", function( geometry, materials ) {
-        mesh = new THREE.Mesh( geometry, new THREE.MeshLambertMaterial({ color: 0xcccccc, transparent: true, opacity: 0.8 }) );
+	
+	loader.load( "assets/models/map.js", function( geometry, materials ) {
+        mesh = new THREE.Mesh( geometry, new THREE.MeshFaceMaterial(materials) );
         mesh.scale.set( 1, 1, 1 );
 		mesh.position.set( 0, 0, 0);
 		group.add( mesh );
-    } );*/
+    } );
+	
+	var material = new THREE.MeshLambertMaterial({ color: 0xcccccc });
 	
 	for(var i = 0; i < jsonFileNames.length; i++){
 		var spriteName = buildingNames[i];
@@ -280,7 +260,7 @@ function init() {
 		return function(geometry, materials) {
 			mesh =  new THREE.Mesh( geometry, material );
 			mesh.scale.set( 1, 1, 1 );
-			mesh.position.set( 0, 0, 0 );
+			mesh.position.set( 0, -0.1, 0 );
 			clickobjects.push( mesh );
 			group.add( mesh );
 			mesh.name = meshName;
@@ -292,7 +272,7 @@ function init() {
 			
 			sprite.material.opacity = 0;
 			makeIcon(mesh);
-			tweetIcon(mesh);
+			//tweetIcon(mesh);
 		};
 	}
 	

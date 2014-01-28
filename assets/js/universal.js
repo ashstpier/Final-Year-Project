@@ -14,7 +14,7 @@ function primaryOpen(button, panel){
 		$(".slide-drawer.secondary").hide();
 		$(".slide-drawer.primary a").removeClass( "checked" );
 	}else{
-		$(panel).fadeIn();
+		$(panel).show();
 		$(".slide-drawer.primary").toggle("slide", {direction:'left'});
 		$(button).addClass( "active" );
 	}
@@ -77,8 +77,9 @@ $( "#maintenance" ).click(function() {
 //////// SEARCH ///////
 
 $( ".secondary a" ).click(function() {
-	$('#modalpanel').empty();
+	$('#modalfront, #modalback').empty();
 	$("#modalpanel").removeClass('fadeOutUp fadeInDown opaque');
+	$(".card").removeClass('flipped');
 	closeTweet();
 	modal = scene.getObjectByName( $(this).attr("data-building"), true );
 	placeMarker(modal);

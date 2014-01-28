@@ -2,134 +2,149 @@
 <slides>
     <Aphra_Theatre>
         <header>Aphra Theatre</header>
-		<description>this is the brief description.</description>
-		<area><![CDATA[<i class="fa fa-film"></i>Theatre]]></area>
+		<type><![CDATA[<i class="fa-book fa"></i> Teaching]]></type>
+		<description>The Aphra Theatre is a courtyard-style gallery theatre space organised by the School of Arts.</description>
+		<list><![CDATA[<ul><li><span>113</span>seats</li><li><span>Studio</span>space</li><li><span>Drama</span>school</li></ul>]]></list>
     </Aphra_Theatre>
     <Becket_Court>
 		<header>Becket Court</header>
+		<type><![CDATA[<i class="fa-home fa"></i> Accommodation]]></type>
 		<description>Named after Thomas Becket and located adjacent to Eliot College, Becket Court offers en suite rooms on a bed and bistro basis.</description>
-		<list><![CDATA[<ul><li><span>134</span>rooms</li><li><span>B&amp;B</span>catering</li><li><span>£4500</span>annually</li></ul>]]></list>
-		<backcontent><![CDATA[<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed dapibus iaculis enim, a imperdiet lectus egestas eget. Quisque eu tortor diam. Vivamus consectetur odio sit amet viverra hendrerit. Etiam sollicitudin id purus accumsan mollis. Nam fringilla lacus eu molestie egestas. Aliquam vel tristique nulla. Nulla non felis nibh. Morbi magna nisi, fermentum sit amet volutpat at, malesuada et neque.</p><ul><li><span>134</span>rooms</li><li><span>B&amp;B</span>catering</li><li><span>£4500</span>annually</li></ul>]]></backcontent>
+		<list><![CDATA[<ul><li><span>En-suite</span>toilet</li><li><span>B&amp;B</span>catering</li><li><span>&pound;4500</span>annually</li></ul>]]></list>
+		<backcontent><![CDATA[<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed dapibus iaculis enim, a imperdiet lectus egestas eget. Quisque eu tortor diam. Vivamus consectetur odio sit amet viverra hendrerit. Etiam sollicitudin id purus accumsan mollis. Nam fringilla lacus eu molestie egestas. Aliquam vel tristique nulla. Nulla non felis nibh. Morbi magna nisi, fermentum sit amet volutpat at, malesuada et neque.</p>]]></backcontent>
     </Becket_Court>
     <Bishopden_Court>
         <header>Bishopden Court</header>
-		<description>this is the brief description.</description>
-		<area><![CDATA[<i class="fa fa-home"></i>Accomodation]]></area>
+		<type><![CDATA[<i class="fa-home fa"></i> Accommodation]]></type>
+		<description>Bishopden Court houses have shower and toilet facilities upstairs, with an additional downstairs toilet. The kitchen/diner has an oven and hob, fridge/freezer and microwave.</description>
+		<list><![CDATA[<ul><li><span>Shared</span>bathroom</li><li><span>Self</span>catering</li><li><span>&pound;3,865</span>annually</li></ul>]]></list>
     </Bishopden_Court>
     <Boiler_House>
         <header>Boiler House</header>
-		<description>this is the brief description.</description>
-		<area><![CDATA[<i class="fa fa-leaf"></i>Maintenance]]></area>
+		<type><![CDATA[<i class="fa-book fa"></i> Teaching]]></type>
+		<description>The Boiler House is a large workshop run by the School of Arts, ideal for large-scale 3D work.</description>
     </Boiler_House>
     <Bossenden_Court>
         <header>Bossenden Court</header>
-		<description>this is the brief description.</description>
-		<area><![CDATA[<i class="fa fa-home"></i>Accomodation]]></area>
+		<type><![CDATA[<i class="fa-home fa"></i> Accommodation]]></type>
+		<description>As one of the Parkwood Flats, Bossenden Court offers spacious en-suite rooms and a shared kitchen.</description>
+		<list><![CDATA[<ul><li><span>En-suite</span>toilet</li><li><span>Self</span>catering</li><li><span>&pound;5,361</span>annually</li></ul>]]></list>
     </Bossenden_Court>
     <Campus_Watch>
         <header>Campus Watch</header>
-		<description>this is the brief description.</description>
-		<area><![CDATA[<i class="fa fa-leaf"></i>Maintenance]]></area>
+		<type><![CDATA[<i class="fa-wrench fa"></i> Maintenance]]></type>
+		<description>The Campus Watch headquarters are the place to go for any security concerns you may have around campus.</description>
     </Campus_Watch>
     <Careers_Employability_Service>
         <header>Careers Employability Service</header>
+		<type><![CDATA[<i class="fa-info fa"></i> Admin]]></type>
 		<description>this is the brief description.</description>
-		<area><![CDATA[<i class="fa fa-info"></i>Admin]]></area>
     </Careers_Employability_Service>
     <Clowes_Court>
         <header>Clowes Court</header>
-		<description>this is the brief description.</description>
-		<area><![CDATA[<i class="fa fa-home"></i>Accomodation]]></area>
+		<type><![CDATA[<i class="fa-home fa"></i> Accommodation]]></type>
+		<description>Clowes Court houses have shower and toilet facilities upstairs, with an additional downstairs toilet. The kitchen/diner has an oven and hob, fridge/freezer and microwave.</description>
+		<list><![CDATA[<ul><li><span>Shared</span>bathroom</li><li><span>Self</span>catering</li><li><span>&pound;3,865</span>annually</li></ul>]]></list>
     </Clowes_Court>
     <Colyer_Fergusson>
         <header>Colyer Fergusson</header>
-		<description>this is the brief description.</description>
-		<area><![CDATA[<i class="fa fa-music"></i>Music]]></area>
+		<type><![CDATA[<i class="fa-group fa"></i> Social]]></type>
+		<description>A purpose-built, flexible performance space that can accommodate a wide range of musical activities.</description>
+		<list><![CDATA[<ul><li><span>400</span>seats</li><li><span>Studio</span>space</li><li><span>Music</span>school</li></ul>]]></list>
     </Colyer_Fergusson>
     <Cornwallis_George_Allen_Wing>
 		<header>Cornwallis George Allen Wing</header>
-		<description>this is the brief description.</description>
-		<area><![CDATA[<i class="fa fa-users"></i>Sociology]]></area>
+		<type><![CDATA[<i class="fa-book fa"></i> Teaching]]></type>
+		<description>The George Allen Wing houses the School of European Culture and Languages as well as the Knowledge Management Centre for the School of Social Policy, Sociology and Social Research.</description>
+		<list><![CDATA[<ul><li><span>5</span>rooms</li><li><span>Lecture</span>halls</li><li><span>Language</span>school</li></ul>]]></list>
 	</Cornwallis_George_Allen_Wing>
     <Cornwallis_Mathematics_Institute>
 		<header>Cornwallis Mathematics Institute</header>
-		<description>this is the brief description.</description>
-		<area><![CDATA[<i class="fa fa-bar-chart-o"></i>Maths]]></area>
+		<type><![CDATA[<i class="fa-book fa"></i> Teaching]]></type>
+		<description>The Cornwallis Mathematics Institute houses the main Mathematics lecture theatre along with the McVittie Library.</description>
+		<list><![CDATA[<ul><li><span>132</span>seats</li><li><span>Lecture</span>halls</li><li><span>Maths</span>school</li></ul>]]></list>
 	</Cornwallis_Mathematics_Institute>
     <Cornwallis_North_East>
 		<header>Cornwallis North East</header>
-		<description>this is the brief description.</description>
-		<area><![CDATA[<i class="fa fa-users"></i>Sociology]]></area>
+		<type><![CDATA[<i class="fa-book fa"></i> Teaching]]></type>
+		<description>Cornwallis North East contains 3 classrooms for the School of Social Policy, Sociology and Social Research.</description>
+		<list><![CDATA[<ul><li><span>3</span>rooms</li><li><span>Lecture</span>halls</li><li><span>Sociology</span>school</li></ul>]]></list>
 	</Cornwallis_North_East>
     <Cornwallis_North_West>
 		<header>Cornwallis North West</header>
-		<description>this is the brief description.</description>
-		<area><![CDATA[<i class="fa fa-globe"></i>Languages]]></area>
+		<type><![CDATA[<i class="fa-book fa"></i> Teaching]]></type>
+		<description>Cornwallis North West has a variety of teaching spaces for the School of European Culture and Languages as well as a large central quad area.</description>
+		<list><![CDATA[<ul><li><span>18</span>rooms</li><li><span>Lecture</span>halls</li><li><span>Language</span>school</li></ul>]]></list>
 	</Cornwallis_North_West>
     <Cornwallis_South_East>
 		<header>Cornwallis South East</header>
-		<description>this is the brief description.</description>
-		<area><![CDATA[<i class="fa fa-bar-chart-o"></i>Maths]]></area>
+		<type><![CDATA[<i class="fa-book fa"></i> Teaching]]></type>
+		<description>Cornwallis South East contains many computer facilities along with two large lecture rooms.</description>
+		<list><![CDATA[<ul><li><span>7</span>rooms</li><li><span>Lecture</span>halls</li><li><span>Maths</span>school</li></ul>]]></list>
 	</Cornwallis_South_East>
     <Cornwallis_South_West>
 		<header>Cornwallis South West</header>
-		<description>this is the brief description.</description>
-		<area><![CDATA[<i class="fa fa-desktop"></i>Computing]]></area>
+		<type><![CDATA[<i class="fa-book fa"></i> Teaching]]></type>
+		<description>Cornwallis South West consists of three computer rooms used by the School of Computing.</description>
+		<list><![CDATA[<ul><li><span>3</span>rooms</li><li><span>Computer</span>rooms</li><li><span>Computing</span>school</li></ul>]]></list>
 	</Cornwallis_South_West>
 	<Cornwallis_South>
 		<header>Cornwallis South</header>
-		<description>this is the brief description.</description>
-		<area><![CDATA[<i class="fa fa-desktop"></i>Computing]]></area>
+		<type><![CDATA[<i class="fa-book fa"></i> Teaching]]></type>
+		<description>Cornwallis South is home to the School of Computing consisting of three computer rooms and two class rooms.</description>
+		<list><![CDATA[<ul><li><span>6</span>rooms</li><li><span>Lecture</span>halls</li><li><span>Computing</span>school</li></ul>]]></list>
 	</Cornwallis_South>
     <Cornwallis_West>
 		<header>Cornwallis West</header>
-		<description>this is the brief description.</description>
-		<area><![CDATA[<i class="fa fa-globe"></i>Languages]]></area>
+		<type><![CDATA[<i class="fa-book fa"></i> Teaching]]></type>
+		<description>Cornwallis West contains four offices and a seminar room for the School of European Culture and Languages.</description>
+		<list><![CDATA[<ul><li><span>5</span>rooms</li><li><span>Office</span>rooms</li><li><span>Language</span>school</li></ul>]]></list>
 	</Cornwallis_West>
     <Darwin_College>
 		<header>Darwin College</header>
-		<description>this is the brief description.</description>
-		<area><![CDATA[<i class="fa fa-book"></i>College]]></area>
+		<type><![CDATA[<i class="fa-bell fa"></i> College]]></type>
+		<description>Darwin College is the fourth oldest of the Kent colleges. It contains a variety of teaching, seminar and office rooms which are used by many subject areas. Also home to the very popular in-house bar and bistro - Origins.</description>
+		<list><![CDATA[<ul><li><span>19</span>rooms</li><li><span>Various</span>rooms</li><li><span>College</span>building</li></ul>]]></list>
 	</Darwin_College>
     <Darwin_Houses>
 		<header>Darwin Houses</header>
-		<description>this is the brief description.</description>
-		<area><![CDATA[<i class="fa fa-home"></i>Accomodation]]></area>
+		<type><![CDATA[<i class="fa-home fa"></i> Accommodation]]></type>
+		<description>Rooms in the Darwin Houses have their own sink along with shared toilet and shower facilities. Rooms are arranged in corridors of 5 single rooms over four floors, with access to shared kitchens.</description>
+		<list><![CDATA[<ul><li><span>Shared</span>bathroom</li><li><span>Self</span>catering</li><li><span>&pound;4,092</span>annually</li></ul>]]></list>
 	</Darwin_Houses>
 	<Denstead_Court>
 		<header>Denstead Court</header>
-		<description>this is the brief description.</description>
-		<area><![CDATA[<i class="fa fa-home"></i>Accomodation]]></area>
+		<type><![CDATA[<i class="fa-home fa"></i> Accommodation]]></type>
+		<description>Denstead Court houses have shower and toilet facilities upstairs, with an additional downstairs toilet. The kitchen/diner has an oven and hob, fridge/freezer and microwave.</description>
+		<list><![CDATA[<ul><li><span>Shared</span>bathroom</li><li><span>Self</span>catering</li><li><span>&pound;3,865</span>annually</li></ul>]]></list>
 	</Denstead_Court>
 	<Eliot_College>
 		<header>Eliot College</header>
-		<description>this is the brief description.</description>
-		<area><![CDATA[<i class="fa fa-book"></i>College]]></area>
+		<type><![CDATA[<i class="fa-bell fa"></i> College]]></type>
+		<description>Eliot College is the oldest of the Kent colleges. Consisting of accommodation alongside large multipurpose rooms, it is situated right in the heart of the campus.</description>
+		<list><![CDATA[<ul><li><span>Shared</span>bathroom</li><li><span>B&amp;B</span>catering</li><li><span>&pound;3,680</span>annually</li></ul>]]></list>
 	</Eliot_College>
 	<Ellenden_Court>
 		<header>Ellenden Court</header>
-		<description>this is the brief description.</description>
-		<area><![CDATA[<i class="fa fa-home"></i>Accomodation]]></area>
+		<type><![CDATA[<i class="fa-home fa"></i> Accommodation]]></type>
+		<description>Ellenden Court houses have shower and toilet facilities upstairs, with an additional downstairs toilet. The kitchen/diner has an oven and hob, fridge/freezer and microwave.</description>
+		<list><![CDATA[<ul><li><span>Shared</span>bathroom</li><li><span>Self</span>catering</li><li><span>&pound;3,865</span>annually</li></ul>]]></list>
 	</Ellenden_Court>
     <Estates_Department>
 		<header>Estates Department</header>
 		<description>this is the brief description.</description>
-		<area><![CDATA[<i class="fa fa-leaf"></i>Maintenance]]></area>
 	</Estates_Department>
     <Farthings_Court>
 		<header>Farthings Court</header>
 		<description>this is the brief description.</description>
-		<area><![CDATA[<i class="fa fa-home"></i>Accomodation]]></area>
 	</Farthings_Court>
 	<Giles_Lane_Teaching_Complex>
 		<header>Giles Lane Teaching Complex</header>
 		<description>this is the brief description.</description>
-		<area><![CDATA[<i class="fa fa-book"></i>Teaching]]></area>
 	</Giles_Lane_Teaching_Complex>
     <Grimmond>
 		<header>Grimmond</header>
 		<description>this is the brief description.</description>
-		<area><![CDATA[<i class="fa fa-laptop"></i>Computing]]></area>
 	</Grimmond>
     <Grimshill_Court>
 		<header>Grimshill Court</header>
