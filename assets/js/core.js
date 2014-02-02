@@ -1,6 +1,6 @@
-var container, stats, camera, scene, renderer, projector, controls, ground, group = new THREE.Object3D(), group = new THREE.Object3D(), xml;
+var container, stats, camera, scene, renderer, composer, projector, controls, ground, particleSystem, group = new THREE.Object3D(), group = new THREE.Object3D(), xml;
 var depthMaterial, depthTarget, composer;
-var clickobjects = [], tweetobjects = [], sprites = [], locationIcons = [], foodIcons = [], shopIcons = [], tweetIcons = [], visitorParking = [], permitParking = [], rotate = [], investmentArray = [], developmentArray = [];
+var clickobjects = [], tweetobjects = [], sprites = [], locationIcons = [], teachingIcons = [], communityIcons = [], tweetIcons = [], visitorParking = [], permitParking = [], cycleArray = [], maintenanceIcons = [], adminIcons = [], rotate = [], investmentArray = [], developmentArray = [];
 var jsonFileNames = [
 	'assets/models/Aphra_Theatre.js',
 	'assets/models/Becket_Court.js',
@@ -26,7 +26,6 @@ var jsonFileNames = [
 	'assets/models/Ellenden_Court.js',
 	'assets/models/Estates_Department.js',
 	'assets/models/Farthings_Court.js',
-	'assets/models/Giles_Lane_Teaching_Complex.js',
 	'assets/models/Grimmond.js',
 	'assets/models/Grimshill_Court.js',
 	'assets/models/Ground_Maintenance.js',
@@ -108,7 +107,6 @@ var buildingNames = [
 	'Ellenden Court',
 	'Estates Department',
 	'Farthings Court',
-	'Giles Lane Teaching Complex',
 	'Grimmond',
 	'Grimshill Court',
 	'Ground Maintenance',
@@ -172,6 +170,8 @@ INTERSECTED, SELECTED;
 
 var WIDTH = $(window).width();
 var HEIGHT = $(window).height();
+
+var maincolour = 0xcccccc;
 	
 init();
 animate();
@@ -192,23 +192,24 @@ function init() {
 	controls.addEventListener( 'change', render );
 	controls.maxPolarAngle = Math.PI/2.25; 
 	controls.minDistance = 160;
-	controls.maxDistance = 700;
+	controls.maxDistance = 600;
 	controls.enabled = true;
 	controls.center.set(0,-10,0);
 	
 	///////// SCENE SETUP //////////
 
 	scene = new THREE.Scene();
-	//scene.fog = new THREE.Fog( 0xffffff, 0.00002 );
+	scene.fog = new THREE.Fog( 0xfff4cf, 100, 1800 );
 	
 	/////////// LIGHTS ////////////
 	
-	var directionalLight = new THREE.DirectionalLight( 0xffffff,0.9 );
-	directionalLight.position.set( 3, 20, 3 );
+	var directionalLight = new THREE.DirectionalLight( 0xffffde ,0.9 );
+	directionalLight.position.set( 3, 20, 3 )
 	scene.add( directionalLight );
 	
-	var ambientLight = new THREE.AmbientLight( 0xcccccc );
-	scene.add( ambientLight );
+	var hemiLight = new THREE.HemisphereLight( 0xcccccc, 0x999999, 0.8 ); 
+	scene.add( hemiLight );
+	
 
 	/////////// GEOMETRY /////////////
 	
@@ -223,8 +224,10 @@ function init() {
 	scene.add( ground );
 	group.add( ground );
 	*/
-		
+	
+	busRoutes();
 	makeParkingOverlay();
+	makeCycleRacks();
 	makeInvestmentOverlay();
 	
 	plane = new THREE.Mesh( new THREE.PlaneGeometry( 1200, 960, 8, 8 ), new THREE.MeshBasicMaterial( { transparent: true, wireframe: true } ) );
@@ -248,8 +251,6 @@ function init() {
 		group.add( mesh );
     } );
 	
-	var material = new THREE.MeshLambertMaterial({ color: 0xcccccc });
-	
 	for(var i = 0; i < jsonFileNames.length; i++){
 		var spriteName = buildingNames[i];
 		var meshName = jsonFileNames[i].split("/")[2].split(".")[0];
@@ -258,7 +259,8 @@ function init() {
 	
 	function makeHandler(meshName, spriteName) {
 		return function(geometry, materials) {
-			mesh =  new THREE.Mesh( geometry, material );
+			var material = new THREE.MeshLambertMaterial({ color: maincolour, wrapAround: true });
+			mesh = new THREE.Mesh( geometry, material );
 			mesh.scale.set( 1, 1, 1 );
 			mesh.position.set( 0, -0.1, 0 );
 			clickobjects.push( mesh );
@@ -336,6 +338,62 @@ function init() {
 	composer.addPass( effect );
 	*/
 	
+	/*
+	composer = new THREE.EffectComposer( renderer );
+	composer.setSize(window.innerWidth, window.innerHeight);
+	composer.addPass( new THREE.RenderPass( scene, camera ) );
+	
+	var vignette = new THREE.ShaderPass( THREE.VignetteShader );
+	vignette.uniforms[ 'darkness' ].value = 0.5;
+	composer.addPass( vignette )
+
+	var tiltH = new THREE.ShaderPass( THREE.HorizontalTiltShiftShader );
+	tiltH.uniforms[ 'h' ].value = 2 / window.innerWidth;
+	tiltH.uniforms[ 'r' ].value = 0.5;
+	composer.addPass( tiltH );
+	
+	var tiltV = new THREE.ShaderPass( THREE.VerticalTiltShiftShader );
+	tiltV.uniforms[ 'v' ].value = 2 / window.innerHeight;
+	tiltV.uniforms[ 'r' ].value = 0.5;
+	tiltV.renderToScreen = true;
+	composer.addPass( tiltV );
+	
+	tiltH.material.transparent = true;
+	tiltV.material.transparent = true;
+	vignette.material.transparent = true;
+	*/
+	
+	/*
+	var particleCount = 10,
+    particles = new THREE.Geometry(),
+    pMaterial = new THREE.ParticleBasicMaterial({
+	  color: 0x666666,
+	  size: 20,
+	  map: THREE.ImageUtils.loadTexture(
+		"assets/images/particle.png"
+	  ),
+	  transparent: true,
+	  depthWrite: false
+	});
+	for (var p = 0; p < particleCount; p++) {
+	  var pX = Math.random() * 500 - 250,
+		  pY = Math.random() * 100,
+		  pZ = Math.random() * 500 - 250,
+		  particle = new THREE.Vertex(
+			new THREE.Vector3(pX, pY, pZ)
+		  );
+	  particles.vertices.push(particle);
+	}
+	particleSystem = new THREE.ParticleSystem(
+		particles,
+		pMaterial);
+		
+	particleSystem.sortParticles = true;
+	
+	particle.velocity = new THREE.Vector3(0,-Math.random(),0);
+	group.add(particleSystem);
+	*/
+	
 }
 
 var modal, tweetmodal;
@@ -384,18 +442,10 @@ function positionTrackingOverlay()
 		position.applyMatrix4( tweetmodal.matrixWorld );
 		
 		p = position.clone();
-
-		// projectVector will translate position to 2d
 		v = projector.projectVector(p, camera);
-
-		// translate our vector so that percX=0 represents
-		// the left edge, percX=1 is the right edge,
-		// percY=0 is the top edge, and percY=1 is the bottom edge.
 		percX = (v.x + 1) / 2;
 		percY = (-v.y + 1) / 2;
 
-
-		// scale these values to our viewport size
 		left = percX * WIDTH;
 		top = percY * HEIGHT;
 				
@@ -413,6 +463,7 @@ function animate() {
 	controls.update();
 	stats.update();
 	//scene.overrideMaterial = depthMaterial;
+	//particleSystem.rotation.y += 0.001;
 	render();
 	positionTrackingOverlay();
 	parkingRotate();
@@ -421,5 +472,6 @@ function animate() {
 	requestAnimationFrame( animate );
 }
 function render() {
-	renderer.render( scene, camera/*, depthTarget*/ );
+	renderer.render(scene, camera);
+	//composer.render();
 }

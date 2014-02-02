@@ -194,6 +194,24 @@ function onDocumentMouseMove( event ) {
 	if (intersects.length > 0 ) {
 		container.style.cursor = 'pointer';	
 	}
+	
+	
+	//////
+	
+	var vector = new THREE.Vector3(
+    ( event.clientX / window.innerWidth ) * 2 - 1,
+    - ( event.clientY / window.innerHeight ) * 2 + 1,
+    0.5 );
+
+	projector.unprojectVector( vector, camera );
+	
+	var dir = vector.sub( camera.position ).normalize();
+	
+	var distance = - camera.position.y / dir.y;
+	
+	var pos = camera.position.clone().add( dir.multiplyScalar( distance ) );
+	
+	console.log(pos);
 }
 
 ///////// CONTROLS //////////
@@ -207,7 +225,7 @@ function tiltView() {
 		}
 		tilt = 1;
 	} else if (tilt == 1){
-		new TWEEN.Tween( camera.position ).to( { x: controls.center.x, y: 700 }, 1000 ).easing( TWEEN.Easing.Sinusoidal.InOut).start();
+		new TWEEN.Tween( camera.position ).to( { x: controls.center.x, y: 600 }, 1000 ).easing( TWEEN.Easing.Sinusoidal.InOut).start();
 		tilt = 2;
 	} else {
 		if (camera.position.z >= controls.center.z){
@@ -275,49 +293,49 @@ $( "#labelall" ).click(function() {
 			new TWEEN.Tween( sprites[i].material ).to( { opacity: 1 }, 500 ).easing( TWEEN.Easing.Quadratic.InOut).start();
 		}
 		for (var i=0, tot=locationIcons.length; i < tot; i++) {
-			new TWEEN.Tween( locationIcons[i].material ).to( { opacity: 1 }, 500 ).easing( TWEEN.Easing.Quadratic.InOut).start();
+			locationIcons[i].material.color.setHex(0x477d8f);
 		}
-		for (var i=0, tot=foodIcons.length; i < tot; i++) {
-			new TWEEN.Tween( foodIcons[i].material ).to( { opacity: 1 }, 500 ).easing( TWEEN.Easing.Quadratic.InOut).start();
+		for (var i=0, tot=teachingIcons.length; i < tot; i++) {
+			teachingIcons[i].material.color.setHex(0xb8793d);
 		}
-		for (var i=0, tot=shopIcons.length; i < tot; i++) {
-			new TWEEN.Tween( shopIcons[i].material ).to( { opacity: 1 }, 500 ).easing( TWEEN.Easing.Quadratic.InOut).start();
+		for (var i=0, tot=communityIcons.length; i < tot; i++) {
+			communityIcons[i].material.color.setHex(0x338061);
 		}
-		for (var i=0, tot=visitorParking.length; i < tot; i++) {
-			new TWEEN.Tween( visitorParking[i].material ).to( { opacity: 1 }, 500 ).easing( TWEEN.Easing.Quadratic.InOut).start();
+		for (var i=0, tot=maintenanceIcons.length; i < tot; i++) {
+			maintenanceIcons[i].material.color.setHex(0x944646);
 		}
-		for (var i=0, tot=permitParking.length; i < tot; i++) {
-			new TWEEN.Tween( permitParking[i].material ).to( { opacity: 1 }, 500 ).easing( TWEEN.Easing.Quadratic.InOut).start();
+		for (var i=0, tot=adminIcons.length; i < tot; i++) {
+			adminIcons[i].material.color.setHex(0x6e4399);
 		}
 		for (var i=0, tot=tweetIcons.length; i < tot; i++) {
 			tweetIcons[i].visible = true;
 		}
-		$("#labeltoggle, #accommodationtoggle, #foodtoggle, #shoptoggle, #tweettoggle, #visitorparking, #permitparking").removeClass( "toggle" );
-		$("#labeltoggle, #accommodationtoggle, #foodtoggle, #shoptoggle, #tweettoggle, #visitorparking, #permitparking").addClass( "toggled" );
+		$("#labeltoggle, #accommodationtoggle, #teachingtoggle, #communitytoggle, #maintenancetoggle, #admintoggle, #tweettoggle").removeClass( "toggle" );
+		$("#labeltoggle, #accommodationtoggle, #teachingtoggle, #communitytoggle, #maintenancetoggle, #admintoggle, #tweettoggle").addClass( "toggled" );
 	} else {
 		for (var i=0, tot=sprites.length; i < tot; i++) {
 			new TWEEN.Tween( sprites[i].material ).to( { opacity: 0 }, 500 ).easing( TWEEN.Easing.Quadratic.InOut).start();
 		}
 		for (var i=0, tot=locationIcons.length; i < tot; i++) {
-			new TWEEN.Tween( locationIcons[i].material ).to( { opacity: 0 }, 500 ).easing( TWEEN.Easing.Quadratic.InOut).start();
+			locationIcons[i].material.color.setHex(maincolour);
 		}
-		for (var i=0, tot=foodIcons.length; i < tot; i++) {
-			new TWEEN.Tween( foodIcons[i].material ).to( { opacity: 0 }, 500 ).easing( TWEEN.Easing.Quadratic.InOut).start();
+		for (var i=0, tot=teachingIcons.length; i < tot; i++) {
+			teachingIcons[i].material.color.setHex(maincolour);
 		}
-		for (var i=0, tot=shopIcons.length; i < tot; i++) {
-			new TWEEN.Tween( shopIcons[i].material ).to( { opacity: 0 }, 500 ).easing( TWEEN.Easing.Quadratic.InOut).start();
+		for (var i=0, tot=communityIcons.length; i < tot; i++) {
+			communityIcons[i].material.color.setHex(maincolour);
 		}
-		for (var i=0, tot=visitorParking.length; i < tot; i++) {
-			new TWEEN.Tween( visitorParking[i].material ).to( { opacity: 0 }, 500 ).easing( TWEEN.Easing.Quadratic.InOut).start();
+		for (var i=0, tot=maintenanceIcons.length; i < tot; i++) {
+			maintenanceIcons[i].material.color.setHex(maincolour);
 		}
-		for (var i=0, tot=permitParking.length; i < tot; i++) {
-			new TWEEN.Tween( permitParking[i].material ).to( { opacity: 0 }, 500 ).easing( TWEEN.Easing.Quadratic.InOut).start();
+		for (var i=0, tot=adminIcons.length; i < tot; i++) {
+			adminIcons[i].material.color.setHex(maincolour);
 		}
 		for (var i=0, tot=tweetIcons.length; i < tot; i++) {
 			tweetIcons[i].visible = false;
 		}
-		$("#labeltoggle, #accommodationtoggle, #foodtoggle, #shoptoggle, #tweettoggle, #visitorparking, #permitparking").removeClass( "toggled" );
-		$("#labeltoggle, #accommodationtoggle, #foodtoggle, #shoptoggle, #tweettoggle, #visitorparking, #permitparking").addClass( "toggle" );
+		$("#labeltoggle, #accommodationtoggle, #teachingtoggle, #communitytoggle, #maintenancetoggle, #admintoggle, #tweettoggle").removeClass( "toggled" );
+		$("#labeltoggle, #accommodationtoggle, #teachingtoggle, #communitytoggle, #maintenancetoggle, #admintoggle, #tweettoggle").addClass( "toggle" );
 	}
 });
 $( "#labeltoggle" ).click(function() {
@@ -336,38 +354,63 @@ $( "#labeltoggle" ).click(function() {
 $( "#accommodationtoggle" ).click(function() {
 	if ($(this).hasClass( "toggle" )) {
 		for (var i=0, tot=locationIcons.length; i < tot; i++) {
-			new TWEEN.Tween( locationIcons[i].material ).to( { opacity: 1 }, 500 ).easing( TWEEN.Easing.Quadratic.InOut).start();
+			locationIcons[i].material.color.setHex(0x477d8f);
 		}
 	} else {
 		for (var i=0, tot=locationIcons.length; i < tot; i++) {
-			new TWEEN.Tween( locationIcons[i].material ).to( { opacity: 0 }, 500 ).easing( TWEEN.Easing.Quadratic.InOut).start();
+			locationIcons[i].material.color.setHex(maincolour);
 		}
 		$("#labelall").removeClass( "toggled" );
 		$("#labelall").addClass( "toggle" );
 	}
 });
-$( "#foodtoggle" ).click(function() {
+$( "#teachingtoggle" ).click(function() {
 	if ($(this).hasClass( "toggle" )) {
-		for (var i=0, tot=foodIcons.length; i < tot; i++) {
-			new TWEEN.Tween( foodIcons[i].material ).to( { opacity: 1 }, 500 ).easing( TWEEN.Easing.Quadratic.InOut).start();
+		for (var i=0, tot=teachingIcons.length; i < tot; i++) {
+			teachingIcons[i].material.color.setHex(0xb8793d);
 		}
 	} else {
-		for (var i=0, tot=foodIcons.length; i < tot; i++) {
-			new TWEEN.Tween( foodIcons[i].material ).to( { opacity: 0 }, 500 ).easing( TWEEN.Easing.Quadratic.InOut).start();
+		for (var i=0, tot=teachingIcons.length; i < tot; i++) {
+			teachingIcons[i].material.color.setHex(maincolour);
 		}
 		$("#labelall").removeClass( "toggled" );
 		$("#labelall").addClass( "toggle" );
 	}
 });
-
-$( "#shoptoggle" ).click(function() {
+$( "#communitytoggle" ).click(function() {
 	if ($(this).hasClass( "toggle" )) {
-		for (var i=0, tot=shopIcons.length; i < tot; i++) {
-			new TWEEN.Tween( shopIcons[i].material ).to( { opacity: 1 }, 500 ).easing( TWEEN.Easing.Quadratic.InOut).start();
+		for (var i=0, tot=communityIcons.length; i < tot; i++) {
+			communityIcons[i].material.color.setHex(0x338061);
 		}
 	} else {
-		for (var i=0, tot=shopIcons.length; i < tot; i++) {
-			new TWEEN.Tween( shopIcons[i].material ).to( { opacity: 0 }, 500 ).easing( TWEEN.Easing.Quadratic.InOut).start();
+		for (var i=0, tot=communityIcons.length; i < tot; i++) {
+			communityIcons[i].material.color.setHex(maincolour);
+		}
+		$("#labelall").removeClass( "toggled" );
+		$("#labelall").addClass( "toggle" );
+	}
+});
+$( "#maintenancetoggle" ).click(function() {
+	if ($(this).hasClass( "toggle" )) {
+		for (var i=0, tot=maintenanceIcons.length; i < tot; i++) {
+			maintenanceIcons[i].material.color.setHex(0x944646);
+		}
+	} else {
+		for (var i=0, tot=maintenanceIcons.length; i < tot; i++) {
+			maintenanceIcons[i].material.color.setHex(maincolour);
+		}
+		$("#labelall").removeClass( "toggled" );
+		$("#labelall").addClass( "toggle" );
+	}
+});
+$( "#admintoggle" ).click(function() {
+	if ($(this).hasClass( "toggle" )) {
+		for (var i=0, tot=adminIcons.length; i < tot; i++) {
+			adminIcons[i].material.color.setHex(0x6e4399);
+		}
+	} else {
+		for (var i=0, tot=adminIcons.length; i < tot; i++) {
+			adminIcons[i].material.color.setHex(maincolour);
 		}
 		$("#labelall").removeClass( "toggled" );
 		$("#labelall").addClass( "toggle" );
@@ -388,30 +431,108 @@ $( "#tweettoggle" ).click(function() {
 		$(this).toggleClass( "toggle toggled" );
 	}
 });
+$( "#keynesbus" ).click(function() {
+	var route = scene.getObjectByName( 'keynesRoute', true );
+	if ($(this).hasClass( "toggle" )) {
+		route.visible = true;
+		new TWEEN.Tween( route.material ).to( { opacity: 1 }, 500 ).easing( TWEEN.Easing.Quadratic.InOut).start();
+	} else {
+		new TWEEN.Tween( route.material ).to( { opacity: 0 }, 500 ).easing( TWEEN.Easing.Quadratic.InOut).start();
+		setTimeout(function() {
+			route.visible = false;
+		}, 500);
+	}
+});
+$( "#darwinbus" ).click(function() {
+	var route = scene.getObjectByName( 'darwinRoute', true );
+	if ($(this).hasClass( "toggle" )) {
+		route.visible = true;
+		new TWEEN.Tween( route.material ).to( { opacity: 1 }, 500 ).easing( TWEEN.Easing.Quadratic.InOut).start();
+	} else {
+		new TWEEN.Tween( route.material ).to( { opacity: 0 }, 500 ).easing( TWEEN.Easing.Quadratic.InOut).start();
+		setTimeout(function() {
+			route.visible = false;
+		}, 500);
+	}
+});
+$( "#parkwoodbus" ).click(function() {
+	var route = scene.getObjectByName( 'parkwoodRoute', true );
+	if ($(this).hasClass( "toggle" )) {
+		route.visible = true;
+		new TWEEN.Tween( route.material ).to( { opacity: 1 }, 500 ).easing( TWEEN.Easing.Quadratic.InOut).start();
+	} else {
+		new TWEEN.Tween( route.material ).to( { opacity: 0 }, 500 ).easing( TWEEN.Easing.Quadratic.InOut).start();
+		setTimeout(function() {
+			route.visible = false;
+		}, 500);
+	}
+});
+$( "#cycleroutes" ).click(function() {
+	var route = scene.getObjectByName( 'cycle1', true );
+	var route2 = scene.getObjectByName( 'cycle2', true );
+	if ($(this).hasClass( "toggle" )) {
+		route.visible = true;
+		route2.visible = true;
+		new TWEEN.Tween( route.material ).to( { opacity: 1 }, 500 ).easing( TWEEN.Easing.Quadratic.InOut).start();
+		new TWEEN.Tween( route2.material ).to( { opacity: 1 }, 500 ).easing( TWEEN.Easing.Quadratic.InOut).start();
+	} else {
+		new TWEEN.Tween( route.material ).to( { opacity: 0 }, 500 ).easing( TWEEN.Easing.Quadratic.InOut).start();
+		new TWEEN.Tween( route2.material ).to( { opacity: 0 }, 500 ).easing( TWEEN.Easing.Quadratic.InOut).start();
+		setTimeout(function() {
+			route.visible = false;
+			route2.visible = false;
+		}, 500);
+	}
+});
+$( "#bikeracks" ).click(function() {
+	if ($(this).hasClass( "toggle" )) {
+		for (var i=0, tot=cycleArray.length; i < tot; i++) {
+			cycleArray[i].visible = true;
+			new TWEEN.Tween( cycleArray[i].material ).to( { opacity: 0.5 }, 500 ).easing( TWEEN.Easing.Quadratic.InOut).start();
+		}
+	} else {
+		for (var i=0, tot=cycleArray.length; i < tot; i++) {
+			new TWEEN.Tween( cycleArray[i].material ).to( { opacity: 0 }, 500 ).easing( TWEEN.Easing.Quadratic.InOut).start();
+		}
+		setTimeout(function() {
+			for (var i=0, tot=cycleArray.length; i < tot; i++) {
+				cycleArray[i].visible = false;
+			}
+		}, 500);
+	}
+});
 $( "#visitorparking" ).click(function() {
 	if ($(this).hasClass( "toggle" )) {
 		for (var i=0, tot=visitorParking.length; i < tot; i++) {
-			new TWEEN.Tween( visitorParking[i].material ).to( { opacity: 1 }, 500 ).easing( TWEEN.Easing.Quadratic.InOut).start();
+			visitorParking[i].visible = true;
+			new TWEEN.Tween( visitorParking[i].material ).to( { opacity: 0.5 }, 500 ).easing( TWEEN.Easing.Quadratic.InOut).start();
 		}
 	} else {
 		for (var i=0, tot=visitorParking.length; i < tot; i++) {
 			new TWEEN.Tween( visitorParking[i].material ).to( { opacity: 0 }, 500 ).easing( TWEEN.Easing.Quadratic.InOut).start();
 		}
-		$("#labelall").removeClass( "toggled" );
-		$("#labelall").addClass( "toggle" );
+		setTimeout(function() {
+			for (var i=0, tot=visitorParking.length; i < tot; i++) {
+				visitorParking[i].visible = false;
+			}
+		}, 500);
 	}
 });
 $( "#permitparking" ).click(function() {
 	if ($(this).hasClass( "toggle" )) {
 		for (var i=0, tot=permitParking.length; i < tot; i++) {
-			new TWEEN.Tween( permitParking[i].material ).to( { opacity: 1 }, 500 ).easing( TWEEN.Easing.Quadratic.InOut).start();
+			permitParking[i].visible = true;
+			new TWEEN.Tween( permitParking[i].material ).to( { opacity: 0.5 }, 500 ).easing( TWEEN.Easing.Quadratic.InOut).start();
 		}
 	} else {
 		for (var i=0, tot=permitParking.length; i < tot; i++) {
 			new TWEEN.Tween( permitParking[i].material ).to( { opacity: 0 }, 500 ).easing( TWEEN.Easing.Quadratic.InOut).start();
 		}
-		$("#labelall").removeClass( "toggled" );
-		$("#labelall").addClass( "toggle" );
+		setTimeout(function() {
+			for (var i=0, tot=permitParking.length; i < tot; i++) {
+				permitParking[i].visible = false;
+			}
+		}, 500);
 	}
 });
 

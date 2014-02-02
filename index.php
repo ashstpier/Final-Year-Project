@@ -39,6 +39,7 @@
 </div>
 <div id="leftnav">
     <button id="label-button" class="slide" type="button"><i class="fa fa-map-marker"></i></button>
+    <button id="overlay-button" class="slide" type="button"><i class="fa fa-map-marker"></i></button>
     <button id="event-button" class="slide" type="button"><i class="fa fa-calendar"></i></button>
     <button id="investment-button" class="slide" type="button"><i class="fa fa-bar-chart-o"></i></button>
     <button id="search-button" class="slide" type="button"><i class="fa fa-search"></i></button>
@@ -60,23 +61,31 @@
 <div class="slide-drawer primary">
 	<div id="label-panel">
         <h2>Places</h2>
-        <h3>Markers</h3>
+        <h3>Buildings</h3>
         <ul>
-            <li><a href="#" class="toggle" id="labelall">Show all</a></li>
+            <li><a href="#" class="toggle" id="labelall">Toggle all</a></li>
             <li><a href="#" class="toggle" id="labeltoggle">Building names</a></li>
-            <li><a href="#" class="toggle orange" id="accommodationtoggle">Accomodation</a></li>
-            <li><a href="#" class="toggle green" id="foodtoggle">Food &amp; Drink</a></li>
-            <li><a href="#" class="toggle red" id="shoptoggle">Shops</a></li>
-            <li><a href="#" class="toggle blue" id="visitorparking">Visitor parking</a></li>
-            <li><a href="#" class="toggle purple" id="permitparking">Permit holder parking</a></li>
-            <!--<li><a href="#" class="toggled blue" id="tweettoggle">Tweets</a></li>-->
+            <li><a href="#" class="toggle" id="accommodationtoggle">Accomodation</a></li>
+            <li><a href="#" class="toggle" id="teachingtoggle">Teaching</a></li>
+            <li><a href="#" class="toggle" id="admintoggle">Admin</a></li>
+            <li><a href="#" class="toggle" id="communitytoggle">Community</a></li>
+            <li><a href="#" class="toggle" id="maintenancetoggle">Other services</a></li>
+            
+            <!--<li><a href="#" class="toggled" id="tweettoggle">Tweets</a></li>-->
         </ul>
+    </div>
+    <div id="overlay-panel">
+        <h2>Overlays</h2>
         <h3>Transport</h3>
         <ul>
-            <li><a href="#" class="toggle">Bus routes</a></li>
+        	<li><a href="#" class="toggle" id="visitorparking">Visitor parking</a></li>
+            <li><a href="#" class="toggle" id="permitparking">Permit holder parking</a></li>
+            <li><a href="#" class="toggle" id="keynesbus">Keynes bus</a></li>
+            <li><a href="#" class="toggle" id="darwinbus">Darwin bus</a></li>
+            <li><a href="#" class="toggle" id="parkwoodbus">Parkwood bus</a></li>
             <li><a href="#" class="toggle">Bus stops</a></li>
-            <li><a href="#" class="toggle">Cycle routes</a></li>
-            <li><a href="#" class="toggle">Bike racks</a></li>
+            <li><a href="#" class="toggle" id="cycleroutes">Cycle routes</a></li>
+            <li><a href="#" class="toggle" id="bikeracks">Bike racks</a></li>
         </ul>
     </div>
     <div id="search-panel">
@@ -455,7 +464,6 @@
     <div id="maintenance-panel">
     	<h3>Maintenance</h3>
         <ul>
-            <li><a href="#" data-building="Boiler_House">Boiler House</a></li>
             <li><a href="#" data-building="Campus_Watch">Campus Watch</a></li>
             <li><a href="#" data-building="Estates_Department">Estates Department</a></li>
             <li><a href="#" data-building="Ground_Maintenance">Ground Maintenance</a></li>
@@ -507,13 +515,18 @@
 <script src="assets/js/utils/stats.min.js"></script> 
 <script src="assets/js/utils/tween.min.js"></script> 
 
-<script src="http://mrdoob.github.com/three.js/examples/js/shaders/CopyShader.js"></script>
-<script src="http://mrdoob.github.com/three.js/examples/js/shaders/SSAOShader.js"></script>
 
-<script src="http://mrdoob.github.com/three.js/examples/js/postprocessing/EffectComposer.js"></script>
-<script src="http://mrdoob.github.com/three.js/examples/js/postprocessing/RenderPass.js"></script>
-<script src="http://mrdoob.github.com/three.js/examples/js/postprocessing/MaskPass.js"></script>
-<script src="http://mrdoob.github.com/three.js/examples/js/postprocessing/ShaderPass.js"></script>
+
+<script src="assets/js/postprocessing/EffectComposer.js"></script>
+<script src="assets/js/postprocessing/RenderPass.js"></script>
+<script src="assets/js/postprocessing/MaskPass.js"></script>
+<script src="assets/js/postprocessing/ShaderPass.js"></script>
+
+<script src="assets/js/shaders/CopyShader.js"></script>
+<script src="assets/js/shaders/SSAOShader.js"></script>
+<script src="assets/js/shaders/VignetteShader.js"></script>
+<script src="assets/js/shaders/VerticalTiltShiftShader.js"></script>
+<script src="assets/js/shaders/HorizontalTiltShiftShader.js"></script>
      
 <script src="assets/js/functions.js"></script> 
 <script src="assets/js/mouse_events.js"></script>

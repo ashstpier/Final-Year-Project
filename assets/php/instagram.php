@@ -71,7 +71,7 @@ foreach ($images as $insta) {
 	$full_date = $day . ' ' . $month . ' ' . $year;
 	$sort_date = strtotime($full_date);
 	
-	$instagram .= '<article class="item instagram ' . $class . '"><img class="instagram_img" src="' . $src . '" alt="' . $title . '" /><p>' . $title . '</p><div class="tweet-footer"><i class="fa fa-instagram"></i>&nbsp; tagged <a href="#" data-filter=".' . $class . '">#' . $class . '</a> on ' . $full_date . '<span class="hidden_date">' . $sort_date . '</span></div></article>';
+	$instagram .= '<article class="item instagram ' . $class . '"><img class="instagram_img" src="' . $src . '" alt="' . $title . '" /><div class="tag"><a href="#" data-filter=".' . $class . '">#' . $class . '</a><span class="hidden_date">' . $sort_date . '</span></div><div class="caption"><p>' . $title . '</p></div></article>';
 }
 
 print_r($instagram);

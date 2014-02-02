@@ -54,7 +54,7 @@ THREE.OrbitControls = function ( object, domElement ) {
 	this.keyPanSpeed = 7.0;	// pixels moved per arrow key push
 
 	// Set to true to automatically rotate around the target
-	this.autoRotate = true;
+	this.autoRotate = false;
 	this.autoRotateRight = false;
 	this.autoRotateSpeed = 0.5; // 30 seconds per round when fps is 60
 

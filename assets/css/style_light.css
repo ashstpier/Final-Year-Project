@@ -87,7 +87,7 @@ body {
 #navbar ul#nav li {
 	display: inline-block;
 	margin: 0 0 0 -4px;
-	border-left: 1px solid #eee;
+	border-left: 1px solid #ddd;
 }
 #navbar ul#nav li a {
 	display:block;
@@ -108,9 +108,9 @@ body {
 	border-left: none;
 }
 #navbar ul#nav li a:hover, #navbar ul#nav li a:focus, #navbar ul#nav li a.active {
-	background: #f6f6f6;
+	background: #eee;
 	color:#999;
-	border-bottom: 1px solid #eee;
+	border-bottom: 1px solid #ddd;
 }
 #navbar ul#nav li#twitter a { background: #55acee; color: #fff; border: none; }
 #navbar ul#nav li#facebook a { background: #4c66a4; color: #fff; border: none; }
@@ -188,10 +188,11 @@ body {
 	box-sizing: border-box;
 	display: none;
 	overflow: auto;
+	border-right: #ddd solid 1px;
 }
 .slide-drawer.secondary {
 	left: 340px;
-	padding-top: 10px;
+	padding-top: 25px;
 }
 .slide-drawer.secondary ul {
 	margin-bottom: 10px;
@@ -252,20 +253,36 @@ body {
 	border-top: 1px solid #ececec!important;
 	border-bottom: 1px solid #ececec!important;
 }
-.orange.toggled:before {
-	color: #faaa5b;
+#accommodationtoggle.toggled:before {
+	color: #57b1cf;
 }
-.green.toggled:before {
-	color: #5fd081;
+#teachingtoggle.toggled:before {
+	color: #e08734;
 }
-.red.toggled:before {
-	color: #d47356;
+#admintoggle.toggled:before {
+	color: #8a43d1;
 }
-.blue.toggled:before {
-	color: #55acee;
+#communitytoggle.toggled:before {
+	color: #3bbf8a;
 }
-.purple.toggled:before {
-	color: #ca70e3;
+#maintenancetoggle.toggled:before {
+	color: #cc5454;
+}
+#keynesbus.toggled:before {
+	color: #ac5fcf;
+	content: "\f068";
+}
+#darwinbus.toggled:before {
+	color: #cc3333;
+	content: "\f068";
+}
+#parkwoodbus.toggled:before {
+	color: #0099cc;
+	content: "\f068";
+}
+#cycleroutes.toggled:before {
+	color: #ff7b00;
+	content: "\f068";
 }
 .slide-drawer i {
 	float: right;
@@ -570,3 +587,26 @@ a {
 .flipcard .card .back {
   -webkit-transform: rotateY(-180deg);
 }
+
+#factwrapper {
+	padding-top: 70px;
+	height: 100%;
+}
+.fact {
+	width: 100%;
+	height: 100%;
+	display:table;
+	padding: 100px 20px;
+}
+.fact h2 {
+	font-size: 800%;
+	color: #fff;
+	margin-bottom: 40px;
+}
+.fact p {
+	font-size: 200%;
+	color: #fff;
+}
+.fact.one { background: #40C6BB; }
+.fact.two { background: #5482b0; }
+.fact.three { background: #F44747; }

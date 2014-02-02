@@ -116,7 +116,7 @@
 <div id="wrapper">
     <section id="stream">
 	<?php include_once 'twitter/display-tweets.php';
-        display_tweets('unikent', 'kentunion','unikentemploy','unikent_music','unikentnews','default', 20, 30);
+        display_tweets('unikent', 'kentunion','unikentemploy','unikent_music','unikentnews','default', 20, 60);
     ?>
     <?php include_once 'assets/php/instagram.php';
        
@@ -327,6 +327,14 @@ $(window).load(function(){
 	  $("a#date-new").removeClass("checked");
 	  return false;
 	});
+	
+	$('.instagram ').hover(
+	  function() {
+		$(this).find('.caption').stop().fadeIn();
+	  }, function() {
+		$(this).find('.caption').stop().fadeOut();
+	  }
+	);
 	
 });
 </script>

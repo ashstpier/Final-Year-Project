@@ -23,6 +23,9 @@ function primaryOpen(button, panel){
 $( "#label-button" ).click(function() {
 	primaryOpen(this, "#label-panel");
 });
+$( "#overlay-button" ).click(function() {
+	primaryOpen(this, "#overlay-panel");
+});
 $( "#investment-button" ).click(function() {
 	primaryOpen(this, "#investment-panel");
 });

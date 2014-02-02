@@ -12,13 +12,42 @@
 }
 .item.instagram {
 	padding: 0;
+	position: relative;
+}
+.item.instagram img {
+	display: block;
 }
 .item.instagram p {
 	padding: 10px 20px 0;
+	font-size: 180%;
+	color: #fff;
 }
-.item.instagram .tweet-footer {
+.item.instagram .tag {
+	position: absolute;
+	bottom: 0;
+	right: 0;
 	margin: 0 20px 20px;
+	border: none;
+	color: #fff;
+	font-size: 120%;
+	text-shadow: 0px 1px 1px #111;
+	-moz-text-shadow: 0px 1px 1px #111;
+	-webkit-text-shadow: 0px 1px 1px #111;
 }
+.item.instagram .tag a {
+	color: #fff;
+}
+.item.instagram .caption {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	left: 0;
+	background: #629ad1;
+	display: none;
+	opacity: 0.9;
+}
+
 .item .tweet-content {
 	margin-left: 60px;
 }

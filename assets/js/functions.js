@@ -58,6 +58,10 @@ function roundRect(ctx, x, y, w, h, r)
 
 ////////// ICON FUNCTION ///////////
 
+function createArrays(array, mesh) {
+	array.push(mesh);
+}
+
 function makeIcon(mesh) {
 	if (
 	mesh.name == "Becket_Court" ||  
@@ -87,26 +91,77 @@ function makeIcon(mesh) {
 	mesh.name == "Tyler_Court_C" ||
 	mesh.name == "Willows_Court" ||
 	mesh.name == "Woolf_Blocks" ||
-	mesh.name == "Woolf_Residential"  
+	mesh.name == "Woolf_Residential" ||
+	mesh.name == "Woolf_Pavillion" 
 	){
-		buildIcon(locationIcons, "assets/images/icons/ico_location.png");
+		createArrays(locationIcons, mesh);
 	}
 	if (
-	mesh.name == "Woodys" ||
+	mesh.name == "Aphra_Theatre" ||
+	mesh.name == "Boiler_House" ||
+	mesh.name == "Cornwallis_George_Allen_Wing" ||
+	mesh.name == "Cornwallis_Mathematics_Institute" ||
+	mesh.name == "Cornwallis_North_East" ||
+	mesh.name == "Cornwallis_North_West" ||
+	mesh.name == "Cornwallis_South_East" ||
+	mesh.name == "Cornwallis_South_West" ||
+	mesh.name == "Cornwallis_South" ||
+	mesh.name == "Cornwallis_West" ||
 	mesh.name == "Darwin_College" ||
+	mesh.name == "Eliot_College" ||
+	mesh.name == "Grimmond" ||
+	mesh.name == "Ingram" ||
+	mesh.name == "Jarman" ||
+	mesh.name == "Jennison" ||
+	mesh.name == "Kent_Business_School" ||
+	mesh.name == "Kent_Law_School" ||
 	mesh.name == "Keynes_College" ||
-	mesh.name == "Sports_Centre" ||
 	mesh.name == "Marlowe" ||
-	mesh.name == "Sports_Pavillion" ||
-	mesh.name == "Gulbenkian"
+	mesh.name == "Missing_Link" ||
+	mesh.name == "Olive_Cottages" ||
+	mesh.name == "Rothford" ||
+	mesh.name == "Rutherford_College" ||
+	mesh.name == "Stacey" ||
+	mesh.name == "Tanglewood" ||
+	mesh.name == "Woodlands" ||
+	mesh.name == "Woolf_Main"
 	){
-		buildIcon(foodIcons, "assets/images/icons/ico_food.png");
+		createArrays(teachingIcons, mesh);
 	}
 	if (
+	mesh.name == "Colyer_Fergusson" ||
+	mesh.name == "Gulbenkian" ||
+	mesh.name == "Senate" ||
+	mesh.name == "Sports_Centre" ||
+	mesh.name == "Sports_Pavillion" ||
+	mesh.name == "Templeman_Library" ||
+	mesh.name == "Venue" ||
+	mesh.name == "Woodys" ||
 	mesh.name == "Locke" ||
-	mesh.name == "Parkwood_Shop"  
+	mesh.name == "Parkwood_Shop"
 	){
-		buildIcon(shopIcons, "assets/images/icons/ico_shop.png");
+		createArrays(communityIcons, mesh);
+	}
+	if (
+	mesh.name == "Campus_Watch" ||
+	mesh.name == "Estates_Department" ||
+	mesh.name == "Ground_Maintenance" ||
+	mesh.name == "Oaks_Day_Nursery" ||
+	mesh.name == "University_Medical_Centre"
+	){
+		createArrays(maintenanceIcons, mesh);
+	}
+	if (
+	mesh.name == "Careers_Employability_Service" ||
+	mesh.name == "Innovation_Center" ||
+	mesh.name == "Kent_Enterprise_Hub" ||
+	mesh.name == "Mandela_Building" ||
+	mesh.name == "Parkwood_Administration" ||
+	mesh.name == "Registry" ||
+	mesh.name == "Research_and_Development_Centre" ||
+	mesh.name == "UELT"
+	){
+		createArrays(adminIcons, mesh);
 	}
 }
 function buildIcon(iconArray, iconPicture) {
@@ -159,7 +214,6 @@ function tweetIcon(mesh) {
 		
 		icon.name = "tweet-" + mesh.name;
 		icon.position.set( position.x, boundingBox.max.y + 30, position.z );
-		scene.add( icon );
 		group.add( icon);
 		clickobjects.push( icon );
 		tweetIcons.push( icon );
@@ -173,48 +227,250 @@ function tweetIcon(mesh) {
 		tweenOne.start();
 	}
 }
-function parkingIcon(iconArray, iconPicture){
-	var spriteMaterial = new THREE.SpriteMaterial( { map: THREE.ImageUtils.loadTexture( iconPicture ), useScreenCoordinates: false, alignment: THREE.SpriteAlignment.topCenter, transparent: true } );
-	var icon = new THREE.Sprite( spriteMaterial );
-	icon.scale.set(12,12,1.0);
-	scene.add( icon );
-	group.add( icon);
-	iconArray.push( icon );
-	icon.material.opacity = 0;
+function busRoutes(){
+	var path = [
+		{ x:-17, y:-33, z:486 },
+		{ x:43, y:-28, z:462 },
+        { x:76, y:-17, z:436 },
+        { x:114,  z:389 },
+		{ x:136,  z:345 },
+        { x:146,  z:314 },
+        { x:151, y:2, z:260 },
+        { x:147, y:1, z:186 },
+		{ x:129, y:2, z:181 },
+		{ x:131, y:2, z:140 },
+		{ x:150, y:1, z:134 },
+        { x:153, y:2, z:108 },
+        { x:161, y:1, z:64 },
+        { x:171, y:1, z:26 },
+        { x:162, y:1, z:10 },
+		{ x:139, y:2, z:-1 },
+		{ x:128, y:2, z:-16 },
+		{ x:154, y:2, z:-40 },
+		{ x:168, y:2, z:-83 },
+		{ x:174, y:3, z:-154 },
+		{ x:189, y:1, z:-197 },//////// split
+		{ x:215, y:1, z:-218 },
+		{ x:370, y:1, z:-292 },
+		{ x:423, y:2, z:-315 },
+		{ x:437, y:1, z:-279 },
+		{ x:451, y:1, z:-246 },
+		{ x:436, y:1, z:-242 },
+		{ x:424, y:1, z:-271 },
+		{ x:437, y:1, z:-279 }
+    ];
+    
+    var geometry = new THREE.Geometry();
+    for (var pt = 0; pt < path.length; ++pt) {
+        var o = path[pt];
+        geometry.vertices.push(new THREE.Vector3(o.x, o.y, o.z));
+    }
+
+    var darwinRoute = new THREE.Line(geometry, new THREE.LineBasicMaterial({ color: 0xcc3333, linewidth: 4, transparent: true, opacity: 0 }));
+	darwinRoute.name = "darwinRoute"
+	darwinRoute.visible = false;
+	group.add(darwinRoute);
 	
-	var tweenOne = new TWEEN.Tween( icon.position ).to( { y: 13 }, 1500 ).easing( TWEEN.Easing.Sinusoidal.InOut);
-	var tweenTwo = new TWEEN.Tween( icon.position ).to( { y: 12 }, 1500 ).easing( TWEEN.Easing.Sinusoidal.InOut);
+	var path = [
+        { x:-16, y:-33, z:485 },
+		{ x:43, y:-28, z:460 },
+        { x:76, y:-17, z:434 },
+        { x:113,  z:389 },
+		{ x:135,  z:345 },
+        { x:145,  z:314 },
+        { x:150, y:2, z:260 },
+        { x:146, y:1, z:186 },
+		{ x:128, y:2, z:181 },
+		{ x:130, y:2, z:140 },
+		{ x:149, y:1, z:134 },
+        { x:152, y:2, z:108 },
+        { x:160, y:1, z:64 },
+        { x:170, y:1, z:26 },
+        { x:161, y:1, z:10 },
+		{ x:138, y:2, z:-1 },
+		{ x:127, y:2, z:-16 },
+		{ x:153, y:2, z:-40 },
+		{ x:167, y:2, z:-83 },
+		{ x:173, y:3, z:-154 },
+		{ x:188, y:1, z:-197 },//////// split
+		{ x:162, y:1, z:-211 },
+		{ x:-2, y:1, z:-261 },
+		{ x:-46, y:2, z:-268 },
+		{ x:-85, y:2, z:-258 },
+		{ x:-153, y:4, z:-226 },
+		{ x:-192, y:5, z:-219 },
+		{ x:-222, y:4.1, z:-219 },
+		{ x:-281, y:3, z:-223 },
+		{ x:-342, y:3, z:-218 },
+		{ x:-369, y:1, z:-208 },
+		{ x:-400, y:1, z:-189 },
+		{ x:-418, y:1, z:-183 },
+		{ x:-419, y:1, z:-121 },
+		{ x:-409, y:1, z:-110 },
+		{ x:-317, y:1, z:-165 },
+		{ x:-296, y:1, z:-163 },
+		{ x:-270, y:1, z:-161 },
+		{ x:-238, y:3, z:-172 },
+		{ x:-226, y:5.4, z:-171 },
+		{ x:-222, y:4.1, z:-219 }
+    ];
+    
+    var geometry = new THREE.Geometry();
+    for (var pt = 0; pt < path.length; ++pt) {
+        var o = path[pt];
+        geometry.vertices.push(new THREE.Vector3(o.x, o.y, o.z));
+    }
+
+    var parkwoodRoute = new THREE.Line(geometry, new THREE.LineBasicMaterial({ color: 0x0099cc, linewidth: 4, transparent: true, opacity: 0}));
+	parkwoodRoute.name = "parkwoodRoute"
+	parkwoodRoute.visible = false;
+	group.add(parkwoodRoute);
 	
-	tweenOne.chain(tweenTwo);
-	tweenTwo.chain(tweenOne);
-	tweenOne.start();
+	var path = [
+        { x:-18, y:-33, z:484 },
+		{ x:41, y:-28, z:459 },
+        { x:75, y:-17, z:433 },
+        { x:111,  z:389 },
+		{ x:133,  z:345 },
+        { x:143,  z:314 },
+        { x:148, y:2, z:260 },
+        { x:144, y:1, z:186 },
+		{ x:126, y:2.5, z:181 },
+		{ x:128, y:2, z:140 },
+		{ x:147, y:1, z:134 },
+		{ x:144, y:1, z:186 }
+    ];
+    
+    var geometry = new THREE.Geometry();
+    for (var pt = 0; pt < path.length; ++pt) {
+        var o = path[pt];
+        geometry.vertices.push(new THREE.Vector3(o.x, o.y, o.z));
+    }
+
+    var keynesRoute = new THREE.Line(geometry, new THREE.LineBasicMaterial({ color: 0x9367bf, linewidth: 4, transparent: true, opacity: 0 }));
+	keynesRoute.name = "keynesRoute"
+	keynesRoute.visible = false;
+	group.add(keynesRoute);
 	
-	return icon;
+	var path = [
+		{ x:36, y:1, z:-138 },
+        { x:26, y:1, z:-123 },
+		{ x:3, y:1, z:-110 },
+        { x:-29, y:1, z:-119 },
+		{ x:-89, y:9, z:-90 },
+		{ x:-123, y:9, z:-71 },
+		{ x:-145, y:6, z:-60 },
+		{ x:-183, y:7, z:-69 },
+		{ x:-200, y:6, z:-67 },
+		{ x:-217, y:2, z:-66 },
+		{ x:-254, y:2, z:-77 },
+    ];
+    
+    var geometry = new THREE.Geometry();
+    for (var pt = 0; pt < path.length; ++pt) {
+        var o = path[pt];
+        geometry.vertices.push(new THREE.Vector3(o.x, o.y, o.z));
+    }
+
+    var cycle1 = new THREE.Line(geometry, new THREE.LineBasicMaterial({ color: 0xff7b00, linewidth: 4, transparent: true, opacity: 0 }));
+	cycle1.name = "cycle1"
+	cycle1.visible = false;
+	group.add(cycle1);
+	
+	var path = [
+		{ x:490, y:-42, z:425 },
+		{ x:482, y:-38, z:410 },
+		{ x:465, y:-32, z:390 },
+		{ x:460, y:-29.5, z:377 },
+		{ x:408, y:-35, z:300 },
+		{ x:385, y:-23, z:264 },
+		{ x:381, y:-15, z:223 },
+		{ x:340, y:-13, z:141 },
+        { x:283, y:-2, z:72 },
+		{ x:263, y:-3, z:51 },
+		{ x:246, y:-2, z:41 },
+		{ x:234, y:-1, z:32 },
+		{ x:189, y:2, z:19 },
+		{ x:171, y:2, z:22 },
+		{ x:147, y:2, z:-25 },
+		{ x:161, y:1, z:-48 },
+		{ x:168, y:1, z:-74 },
+		{ x:172, y:3, z:-122 },
+		{ x:163, y:4, z:-123 },
+		{ x:167, y:1, z:-161 },
+		{ x:177, y:1, z:-188 },
+		{ x:172, y:1, z:-200 },
+		{ x:162, y:1, z:-213 },
+		{ x:-2, y:1, z:-263 },
+		{ x:-46, y:2, z:-270 },
+		{ x:-85, y:2, z:-258 },
+		{ x:-153, y:4, z:-228 },
+		{ x:-192, y:5, z:-221 },
+		{ x:-222, y:4.1, z:-221 },
+		{ x:-281, y:3, z:-225 },
+		{ x:-342, y:3, z:-220 },
+		{ x:-369, y:1, z:-210 },
+		{ x:-400, y:1, z:-191 },
+		{ x:-418, y:1, z:-183 },
+		{ x:-564, y:6, z:-176 },
+    ];
+    
+    var geometry = new THREE.Geometry();
+    for (var pt = 0; pt < path.length; ++pt) {
+        var o = path[pt];
+        geometry.vertices.push(new THREE.Vector3(o.x, o.y, o.z));
+    }
+
+    var cycle2 = new THREE.Line(geometry, new THREE.LineBasicMaterial({ color: 0xff7b00, linewidth: 4, transparent: true, opacity: 0 }));
+	cycle2.name = "cycle2"
+	cycle2.visible = false;
+	group.add(cycle2);
+}
+function parkingIcon(iconArray, size){
+	var color;
+	if (iconArray == visitorParking){
+		color = 0x4b4bb3;
+	} else if (iconArray == permitParking){
+		color = 0xff6600;
+	} else {
+		color = 0xff7b00;
+	}
+	var sphere = new THREE.Mesh(new THREE.SphereGeometry(size, 20, 20), new THREE.MeshBasicMaterial({color: color, transparent: true}));
+	group.add( sphere);
+	iconArray.push( sphere );
+	sphere.material.opacity = 0;
+	sphere.visible = false;
+	
+	return sphere;
 }
 function makeParkingOverlay(){
-	var parking1 = parkingIcon(visitorParking, "assets/images/icons/ico_parking.png");
+	var parking1 = parkingIcon(visitorParking, 20);
 	parking1.position.set(78,0,-25);
-	var parking2 = parkingIcon(visitorParking, "assets/images/icons/ico_parking.png");
+	var parking2 = parkingIcon(visitorParking, 20);
 	parking2.position.set(275,0,-205);
-	var parking3 = parkingIcon(visitorParking, "assets/images/icons/ico_parking.png");
+	var parking3 = parkingIcon(visitorParking, 20);
 	parking3.position.set(39,0,344);
-	var parking4 = parkingIcon(visitorParking, "assets/images/icons/ico_parking.png");
+	var parking4 = parkingIcon(visitorParking, 20);
 	parking4.position.set(-333,0,-248);
 	
-	var parking5 = parkingIcon(permitParking, "assets/images/icons/ico_parking2.png");
+	var parking5 = parkingIcon(permitParking, 20);
 	parking5.position.set(90,0,30);
-	var parking6 = parkingIcon(permitParking, "assets/images/icons/ico_parking2.png");
+	var parking6 = parkingIcon(permitParking, 20);
 	parking6.position.set(230,0,3);
-	var parking7 = parkingIcon(permitParking, "assets/images/icons/ico_parking2.png");
+	var parking7 = parkingIcon(permitParking, 20);
 	parking7.position.set(50,0,-200);
-	var parking8 = parkingIcon(permitParking, "assets/images/icons/ico_parking2.png");
+	var parking8 = parkingIcon(permitParking, 20);
 	parking8.position.set(230,0,-290);
-	var parking9 = parkingIcon(permitParking, "assets/images/icons/ico_parking2.png");
+	var parking9 = parkingIcon(permitParking, 20);
 	parking9.position.set(442,0,-153);
-	var parking10 = parkingIcon(permitParking, "assets/images/icons/ico_parking2.png");
+	var parking10 = parkingIcon(permitParking, 20);
 	parking10.position.set(-30,0,55);
-	var parking11 = parkingIcon(permitParking, "assets/images/icons/ico_parking2.png");
+	var parking11 = parkingIcon(permitParking, 20);
 	parking11.position.set(-115,0,-220);
+}
+function makeCycleRacks(){
+	var cycle1 = parkingIcon(cycleArray, 7);
+	cycle1.position.set(0,3,0);
 }
 
 function make3DText(message, color, size)
