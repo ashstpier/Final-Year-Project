@@ -1,6 +1,6 @@
 var container, stats, camera, scene, renderer, composer, projector, controls, ground, particleSystem, group = new THREE.Object3D(), group = new THREE.Object3D(), xml;
 var depthMaterial, depthTarget, composer;
-var clickobjects = [], tweetobjects = [], sprites = [], locationIcons = [], teachingIcons = [], communityIcons = [], tweetIcons = [], visitorParking = [], permitParking = [], cycleArray = [], maintenanceIcons = [], adminIcons = [], rotate = [], investmentArray = [], developmentArray = [];
+var clickobjects = [], tweetobjects = [], sprites = [], locationIcons = [], teachingIcons = [], communityIcons = [], tweetIcons = [], visitorParking = [], permitParking = [], cycleArray = [], busArray = [], maintenanceIcons = [], adminIcons = [], rotate = [], investmentArray = [], developmentArray = [], roompriceArray = [], populationArray = [], subjectscoreArray = [], subjectsatisfactionArray = [], entrypointsArray = [], sizeArray = [];
 var jsonFileNames = [
 	'assets/models/Aphra_Theatre.js',
 	'assets/models/Becket_Court.js',
@@ -42,6 +42,7 @@ var jsonFileNames = [
 	'assets/models/Kent_Law_School.js',
 	'assets/models/Keynes_College.js',
 	'assets/models/Keynes_Flats.js',
+	'assets/models/Keynes_Houses.js',
 	'assets/models/Locke.js',
 	'assets/models/Lypeatt_Court.js',
 	'assets/models/Mandela_Building.js',
@@ -57,7 +58,9 @@ var jsonFileNames = [
 	'assets/models/Registry.js',
 	'assets/models/Research_and_Development_Centre.js',
 	'assets/models/Rothford.js',
+	'assets/models/Rutherford_Annexe.js',
 	'assets/models/Rutherford_College.js',
+	'assets/models/Rutherford_Extension.js',
 	'assets/models/Senate.js',
 	'assets/models/Sports_Centre.js',
 	'assets/models/Sports_Pavillion.js',
@@ -82,87 +85,6 @@ var jsonFileNames = [
 	'assets/models/Woolf_Residential.js'
 ];
 
-var buildingNames = [
-	'Aphra Theatre',
-	'Becket Court',
-	'Bishopden Court',
-	'Boiler House',
-	'Bossenden Court',
-	'Campus Watch',
-	'Careers Employability Service',
-	'Clowes Court',
-	'Colyer Fergusson',
-	'Cornwallis George Allen Wing',
-	'Cornwallis Mathematics Institute',
-	'Cornwallis North East',
-	'Cornwallis North West',
-	'Cornwallis South East',
-	'Cornwallis South West',
-	'Cornwallis South',
-	'Cornwallis West',
-	'Darwin College',
-	'Darwin Houses',
-	'Denstead Court',
-	'Eliot College',
-	'Ellenden Court',
-	'Estates Department',
-	'Farthings Court',
-	'Grimmond',
-	'Grimshill Court',
-	'Ground Maintenance',
-	'Gulbenkian',
-	'Homestall Court',
-	'Hothe Court',
-	'Ingram',
-	'Innovation Center',
-	'Jarman',
-	'Jennison',
-	'Kemsdale Court',
-	'Kent Business School',
-	'Kent Enterprise Hub',
-	'Kent Law School',
-	'Keynes College',
-	'Keynes Flats',
-	'Locke',
-	'Lypeatt Court',
-	'Mandela Building',
-	'Marley Court',
-	'Marlowe',
-	'Missing Link',
-	'Nickle Court',
-	'Oaks Day Nursery',
-	'Olive Cottages',
-	'Parkwood Administration',
-	'Parkwood Shop',
-	'Purchas Court',
-	'Registry',
-	'Research and Development Centre',
-	'Rothford',
-	'Rutherford College',
-	'Senate',
-	'Sports Centre',
-	'Sports Pavillion',
-	'Stacey',
-	'Stock Court',
-	'Tanglewood',
-	'Templeman Library',
-	'Thornden Court',
-	'Tudor Court',
-	'Tyler Court A',
-	'Tyler Court B',
-	'Tyler Court C',
-	'UELT',
-	'University Medical Centre',
-	'Venue',
-	'Willows Court',
-	'Woodlands',
-	'Woodys',
-	'Woolf Flats',
-	'Woolf College',
-	'Woolf Pavillion',
-	'Woolf Residential'
-];
-
 var objects = [], plane;
 var mouse = new THREE.Vector2(),
 offset = new THREE.Vector3(),
@@ -171,7 +93,7 @@ INTERSECTED, SELECTED;
 var WIDTH = $(window).width();
 var HEIGHT = $(window).height();
 
-var maincolour = 0xcccccc;
+var maincolour = 0xaba7a2;
 	
 init();
 animate();
@@ -192,22 +114,22 @@ function init() {
 	controls.addEventListener( 'change', render );
 	controls.maxPolarAngle = Math.PI/2.25; 
 	controls.minDistance = 160;
-	controls.maxDistance = 600;
+	controls.maxDistance = 700;
 	controls.enabled = true;
 	controls.center.set(0,-10,0);
 	
 	///////// SCENE SETUP //////////
 
 	scene = new THREE.Scene();
-	scene.fog = new THREE.Fog( 0xfff4cf, 100, 1800 );
+	scene.fog = new THREE.Fog( 0xffffff, 100, 1800 );
 	
 	/////////// LIGHTS ////////////
 	
-	var directionalLight = new THREE.DirectionalLight( 0xffffde ,0.9 );
-	directionalLight.position.set( 3, 20, 3 )
+	var directionalLight = new THREE.DirectionalLight( 0xffffff ,0.9 );
+	directionalLight.position.set( 3, 15, 3 )
 	scene.add( directionalLight );
 	
-	var hemiLight = new THREE.HemisphereLight( 0xcccccc, 0x999999, 0.8 ); 
+	var hemiLight = new THREE.HemisphereLight( 0xeeeeee, 0x999999, 0.8 ); 
 	scene.add( hemiLight );
 	
 
@@ -228,7 +150,6 @@ function init() {
 	busRoutes();
 	makeParkingOverlay();
 	makeCycleRacks();
-	makeInvestmentOverlay();
 	
 	plane = new THREE.Mesh( new THREE.PlaneGeometry( 1200, 960, 8, 8 ), new THREE.MeshBasicMaterial( { transparent: true, wireframe: true } ) );
 	plane.visible = false;
@@ -237,12 +158,35 @@ function init() {
 	
 	var loader = new THREE.JSONLoader();
 	
+	
 	loader.load( "assets/models/trees.js", function( geometry, materials ) {
         mesh = new THREE.Mesh( geometry, new THREE.MeshFaceMaterial(materials) );
         mesh.scale.set( 1, 1, 1 );
 		group.add( mesh );
     } );
 	
+	loader.load( "assets/models/forest.js", function( geometry, materials ) {
+		mesh = new THREE.Mesh( geometry, new THREE.MeshFaceMaterial(materials) );
+        mesh.scale.set( 1, 1, 1 );
+		group.add( mesh );
+		
+        mesh = new THREE.Mesh( geometry, new THREE.MeshFaceMaterial(materials) );
+        mesh.scale.set( 1, 1, 1 );
+		mesh.position.set( 0, 4, 0 );
+		group.add( mesh );
+    } );
+	
+	loader.load( "assets/models/walls.js", function( geometry, materials ) {
+        mesh = new THREE.Mesh( geometry, new THREE.MeshLambertMaterial({ color: maincolour, wrapAround: true }) );
+        mesh.scale.set( 1, 1, 1 );
+		group.add( mesh );
+    } );
+	
+	loader.load( "assets/models/cars.js", function( geometry, materials ) {
+        mesh = new THREE.Mesh( geometry, new THREE.MeshFaceMaterial(materials) );
+        mesh.scale.set( 1, 1, 1 );
+		group.add( mesh );
+    } );
 	
 	loader.load( "assets/models/map.js", function( geometry, materials ) {
         mesh = new THREE.Mesh( geometry, new THREE.MeshFaceMaterial(materials) );
@@ -252,14 +196,13 @@ function init() {
     } );
 	
 	for(var i = 0; i < jsonFileNames.length; i++){
-		var spriteName = buildingNames[i];
 		var meshName = jsonFileNames[i].split("/")[2].split(".")[0];
-		loader.load(jsonFileNames[i], makeHandler(meshName, spriteName));
+		loader.load(jsonFileNames[i], makeHandler(meshName));
 	}
 	
-	function makeHandler(meshName, spriteName) {
+	function makeHandler(meshName) {
 		return function(geometry, materials) {
-			var material = new THREE.MeshLambertMaterial({ color: maincolour, wrapAround: true });
+			var material = new THREE.MeshLambertMaterial({ color: maincolour, wrapAround: true, transparent: true });
 			mesh = new THREE.Mesh( geometry, material );
 			mesh.scale.set( 1, 1, 1 );
 			mesh.position.set( 0, -0.1, 0 );
@@ -267,6 +210,7 @@ function init() {
 			group.add( mesh );
 			mesh.name = meshName;
 			
+			var spriteName = meshName.replace(/_/g, ' ');
 			var sprite = makeTextSprite( spriteName, mesh );
 			scene.add( sprite );
 			sprites.push( sprite );
@@ -274,7 +218,7 @@ function init() {
 			
 			sprite.material.opacity = 0;
 			makeIcon(mesh);
-			//tweetIcon(mesh);
+			tweetIcon(mesh);
 		};
 	}
 	
@@ -313,7 +257,7 @@ function init() {
 
 	window.addEventListener( 'resize', onWindowResize, false );
 
-	/*			
+	/*		
 	///////////// DEPTH //////////////
 	
 	var depthShader = THREE.ShaderLib[ "depthRGBA" ];
@@ -344,9 +288,9 @@ function init() {
 	composer.addPass( new THREE.RenderPass( scene, camera ) );
 	
 	var vignette = new THREE.ShaderPass( THREE.VignetteShader );
-	vignette.uniforms[ 'darkness' ].value = 0.5;
+	vignette.uniforms[ 'darkness' ].value = 0.8;
 	composer.addPass( vignette )
-
+	
 	var tiltH = new THREE.ShaderPass( THREE.HorizontalTiltShiftShader );
 	tiltH.uniforms[ 'h' ].value = 2 / window.innerWidth;
 	tiltH.uniforms[ 'r' ].value = 0.5;
@@ -362,6 +306,7 @@ function init() {
 	tiltV.material.transparent = true;
 	vignette.material.transparent = true;
 	*/
+	
 	
 	/*
 	var particleCount = 10,
@@ -466,7 +411,6 @@ function animate() {
 	//particleSystem.rotation.y += 0.001;
 	render();
 	positionTrackingOverlay();
-	parkingRotate();
 	//scene.overrideMaterial = null;
 	//composer.render();
 	requestAnimationFrame( animate );

@@ -37,7 +37,7 @@ function onDocumentMouseUp( event ) {
 			var tweetcontainer = "#tweet_kentunion";
 			twitterMap(intersects, tweetcontainer);
 		} 
-		else if ( intersects[0].object.name == "tweet-Templeman_Library" ) {
+		else if ( intersects[0].object.name == "tweet-Registry" ) {
 			var tweetcontainer = "#tweet_unikent";
 			twitterMap(intersects, tweetcontainer);
 		} 
@@ -77,25 +77,31 @@ function onDocumentMouseUp( event ) {
 function placeMarker(modal){
 	var node = modal.name;
 			
-	$(xml).find(node).each(function(){
-		var header = $(this).find('header').text();
+	$(xml).find("building[label='"+node+"']").each(function(){
+		var img = $(this).attr("label");
+		var header = $(this).attr("label").replace(/_/g, ' ');
 		var type = $(this).find('type').text();
 		var description = $(this).find('description').text();
-		var list = $(this).find('list').text();
-		var backcontent = $(this).find('backcontent').text();
+		var rooms = $(this).find('rooms').text();
 	
-		if (backcontent != ""){
-			$('<div class="header"></div>').html('<img src="assets/images/buildings/becket_court.jpg" />').appendTo('#modalfront');
+		if (rooms != ""){
+			$('<div class="header"></div>').html('<img src="assets/images/buildings/'+img+'.jpg" />').appendTo('#modalfront');
 			$('<div class="content"></div>').html('<a href="#" onclick="closeModal()"><i class="fa-times fa fa-lg"></i></a><h2>'+header+'</h2><h3>'+type+'</h3><p>'+description+'</p>').appendTo('#modalfront');
-			$('<div class="footer"></div>').html(list).appendTo('#modalfront');
-			$('<div class="content"></div>').html(backcontent+'<div class="next"></div><a href="#" onclick="flipModal()"><i class="fa-align-left fa"></i></a>').appendTo('#modalback');
-			}
-		else {
-			$('<div class="header"></div>').html('<img src="assets/images/buildings/becket_court.jpg" />').appendTo('#modalfront');
-			$('<div class="content"></div>').html('<a href="#" onclick="closeModal()"><i class="fa-times fa fa-lg"></i></a><h2>'+header+'</h2><h3>'+type+'</h3><p>'+description+'</p>').appendTo('#modalfront');
-			$('<div class="footer"></div>').html(list).appendTo('#modalfront');
+			$('<div class="footer"><form method="POST" target="_blank" id="roomform" action="http://www.kent.ac.uk/timetabling/rooms/room.html?room=" onsubmit="return SetData()"><select id="roomlist"><option value="default">select a room...</option></select><button type="submit">Find room</button></form></div>').appendTo('#modalfront');
+			$(this).find('rooms').children().each(function(){
+				var room = $(this).text();
+				var attr = $(this).attr("value");
+				$('<option value="'+attr+'">'+room+'</option>').appendTo('#roomlist');
+			});
+			$('<div class="arrow-down grey"></div>').appendTo('#modalfront, #modalback');
+			//$('<div class="content"></div>').html(backcontent+'<div class="next"></div><a href="#" onclick="flipModal()"><i class="fa-align-left fa"></i></a>').appendTo('#modalback');
 		}
-		$('<div class="arrow-down"></div>').appendTo('#modalfront, #modalback');
+		else {
+			$('<div class="header"></div>').html('<img src="assets/images/buildings/'+img+'.jpg" />').appendTo('#modalfront');
+			$('<div class="content"></div>').html('<a href="#" onclick="closeModal()"><i class="fa-times fa fa-lg"></i></a><h2>'+header+'</h2><h3>'+type+'</h3><p>'+description+'</p>').appendTo('#modalfront');
+			$('<div class="arrow-down"></div>').appendTo('#modalfront, #modalback');
+			
+		}
 	});
 
 	var time = 1000;
@@ -125,7 +131,8 @@ function placeMarker(modal){
 }
 
 function twitterMap(intersects, tweetcontainer){
-	closeModal();
+	$("#modalpanel").removeClass('fadeOutUp fadeInDown opaque');
+	$(".card").removeClass('flipped');
 	$(".tweetpanel").removeClass('fadeOutUp fadeInDown opaque');
 	var time = 1000;
 			
@@ -144,17 +151,20 @@ function twitterMap(intersects, tweetcontainer){
 	position.applyMatrix4( tweetmodal.matrixWorld );
 		
 	if (camera.position.z >= position.z && controls.center.z <= camera.position.z){
-		new TWEEN.Tween( camera.position ).to( { x: 0, y: 80, z: 150 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {$(tweetcontainer).addClass('fadeInDown opaque');}).start();
+		new TWEEN.Tween( camera.position ).to( { x: 0, y: 150, z: 250 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {$(tweetcontainer).addClass('fadeInDown opaque');}).start();
+		new TWEEN.Tween( group.position ).to( { x: group.position.x - position.x, y: -10, z: group.position.z - position.z +50 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).start();
 	}else if (camera.position.z >= position.z && controls.center.z >= camera.position.z) {
-		new TWEEN.Tween( camera.position ).to( { x: 0, y: 80, z: - 150 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {$(tweetcontainer).addClass('fadeInDown opaque');}).start();
+		new TWEEN.Tween( camera.position ).to( { x: 0, y: 150, z: -250 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {$(tweetcontainer).addClass('fadeInDown opaque');}).start();
+		new TWEEN.Tween( group.position ).to( { x: group.position.x - position.x, y: -10, z: group.position.z - position.z -50 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).start();
 	}
 	else if (camera.position.z <= position.z && controls.center.z <= camera.position.z) {
-		new TWEEN.Tween( camera.position ).to( { x: 0, y: 80, z: 150 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {$(tweetcontainer).addClass('fadeInDown opaque');}).start();
+		new TWEEN.Tween( camera.position ).to( { x: 0, y: 150, z: 250 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {$(tweetcontainer).addClass('fadeInDown opaque');}).start();
+		new TWEEN.Tween( group.position ).to( { x: group.position.x - position.x, y: -10, z: group.position.z - position.z +50 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).start();
 	}
 	else {
-		new TWEEN.Tween( camera.position ).to( { x: 0, y: 80, z: - 150 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {$(tweetcontainer).addClass('fadeInDown opaque');}).start();
+		new TWEEN.Tween( camera.position ).to( { x: 0, y: 150, z: -250 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {$(tweetcontainer).addClass('fadeInDown opaque');}).start();
+		new TWEEN.Tween( group.position ).to( { x: group.position.x - position.x, y: -10, z: group.position.z - position.z +50 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).start();
 	}
-	new TWEEN.Tween( group.position ).to( { x: group.position.x - position.x, z: group.position.z - position.z }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {$(tweetcontainer).addClass('fadeInDown opaque');}).start();
 }
 
 //////// MOUSEMOVE EVENT /////////
@@ -196,8 +206,7 @@ function onDocumentMouseMove( event ) {
 	}
 	
 	
-	//////
-	
+	/*
 	var vector = new THREE.Vector3(
     ( event.clientX / window.innerWidth ) * 2 - 1,
     - ( event.clientY / window.innerHeight ) * 2 + 1,
@@ -212,6 +221,8 @@ function onDocumentMouseMove( event ) {
 	var pos = camera.position.clone().add( dir.multiplyScalar( distance ) );
 	
 	console.log(pos);
+	*/
+	
 }
 
 ///////// CONTROLS //////////
@@ -225,7 +236,7 @@ function tiltView() {
 		}
 		tilt = 1;
 	} else if (tilt == 1){
-		new TWEEN.Tween( camera.position ).to( { x: controls.center.x, y: 600 }, 1000 ).easing( TWEEN.Easing.Sinusoidal.InOut).start();
+		new TWEEN.Tween( camera.position ).to( { x: controls.center.x, y: 600, z: controls.center.z, }, 1000 ).easing( TWEEN.Easing.Sinusoidal.InOut).start();
 		tilt = 2;
 	} else {
 		if (camera.position.z >= controls.center.z){
@@ -275,47 +286,77 @@ function closeTweet() {
 
 $( "#label-panel a" ).click(function() {
 	if ($(this).hasClass( "toggle" )) {
+		var route = scene.getObjectByName( 'keynesRoute', true );
+		route.visible = false;
+		route = scene.getObjectByName( 'darwinRoute', true );
+		route.visible = false;
+		route = scene.getObjectByName( 'parkwoodRoute', true );
+		route.visible = false;
+		route = scene.getObjectByName( 'cycle1', true );
+		route.visible = false;
+		route = scene.getObjectByName( 'cycle2', true );
+		route.visible = false;
+		for (var i=0, tot=cycleArray.length; i < tot; i++) {
+			cycleArray[i].visible = false;
+		}
+		for (var i=0, tot=busArray.length; i < tot; i++) {
+			busArray[i].visible = false;
+		}
+		var parking = scene.getObjectByName( "Visitor_Parking", true );
+		parking.visible = false;
+		parking = scene.getObjectByName( "Permit_Parking", true );
+		parking.visible = false;
+		
 		for (var i=0, tot=investmentArray.length; i < tot; i++) {
 			investmentArray[i].visible = false;
 		}
 		for (var i=0, tot=developmentArray.length; i < tot; i++) {
 			developmentArray[i].visible = false;
 		}
-		$("#investment-panel a").removeClass( "toggled" );
-		$("#investment-panel a").addClass( "toggle" );
+		for (var i=0, tot=populationArray.length; i < tot; i++) {
+			populationArray[i].visible = false;
+		}
+		for (var i=0, tot=roompriceArray.length; i < tot; i++) {
+			roompriceArray[i].visible = false;
+		}
+		for (var i=0, tot=subjectscoreArray.length; i < tot; i++) {
+			subjectscoreArray[i].visible = false;
+		}
+		for (var i=0, tot=subjectsatisfactionArray.length; i < tot; i++) {
+			subjectsatisfactionArray[i].visible = false;
+		}
+		for (var i=0, tot=entrypointsArray.length; i < tot; i++) {
+			entrypointsArray[i].visible = false;
+		}
+		for (var i=0, tot=sizeArray.length; i < tot; i++) {
+			sizeArray[i].visible = false;
+		}
+		$("#investment-panel a, #overlay-panel a").removeClass( "toggled" );
+		$("#investment-panel a, #overlay-panel a").addClass( "toggle" );
 	} else {
 	
 	}
 });
 $( "#labelall" ).click(function() {
 	if ($(this).hasClass( "toggle" )) {
-		for (var i=0, tot=sprites.length; i < tot; i++) {
-			new TWEEN.Tween( sprites[i].material ).to( { opacity: 1 }, 500 ).easing( TWEEN.Easing.Quadratic.InOut).start();
-		}
 		for (var i=0, tot=locationIcons.length; i < tot; i++) {
 			locationIcons[i].material.color.setHex(0x477d8f);
 		}
 		for (var i=0, tot=teachingIcons.length; i < tot; i++) {
-			teachingIcons[i].material.color.setHex(0xb8793d);
+			teachingIcons[i].material.color.setHex(0x338061);
 		}
 		for (var i=0, tot=communityIcons.length; i < tot; i++) {
-			communityIcons[i].material.color.setHex(0x338061);
+			communityIcons[i].material.color.setHex(0x944646);
 		}
 		for (var i=0, tot=maintenanceIcons.length; i < tot; i++) {
-			maintenanceIcons[i].material.color.setHex(0x944646);
+			maintenanceIcons[i].material.color.setHex(0xcc8746);
 		}
 		for (var i=0, tot=adminIcons.length; i < tot; i++) {
 			adminIcons[i].material.color.setHex(0x6e4399);
 		}
-		for (var i=0, tot=tweetIcons.length; i < tot; i++) {
-			tweetIcons[i].visible = true;
-		}
-		$("#labeltoggle, #accommodationtoggle, #teachingtoggle, #communitytoggle, #maintenancetoggle, #admintoggle, #tweettoggle").removeClass( "toggle" );
-		$("#labeltoggle, #accommodationtoggle, #teachingtoggle, #communitytoggle, #maintenancetoggle, #admintoggle, #tweettoggle").addClass( "toggled" );
+		$("#accommodationtoggle, #teachingtoggle, #communitytoggle, #maintenancetoggle, #admintoggle").removeClass( "toggle" );
+		$("#accommodationtoggle, #teachingtoggle, #communitytoggle, #maintenancetoggle, #admintoggle").addClass( "toggled" );
 	} else {
-		for (var i=0, tot=sprites.length; i < tot; i++) {
-			new TWEEN.Tween( sprites[i].material ).to( { opacity: 0 }, 500 ).easing( TWEEN.Easing.Quadratic.InOut).start();
-		}
 		for (var i=0, tot=locationIcons.length; i < tot; i++) {
 			locationIcons[i].material.color.setHex(maincolour);
 		}
@@ -331,11 +372,8 @@ $( "#labelall" ).click(function() {
 		for (var i=0, tot=adminIcons.length; i < tot; i++) {
 			adminIcons[i].material.color.setHex(maincolour);
 		}
-		for (var i=0, tot=tweetIcons.length; i < tot; i++) {
-			tweetIcons[i].visible = false;
-		}
-		$("#labeltoggle, #accommodationtoggle, #teachingtoggle, #communitytoggle, #maintenancetoggle, #admintoggle, #tweettoggle").removeClass( "toggled" );
-		$("#labeltoggle, #accommodationtoggle, #teachingtoggle, #communitytoggle, #maintenancetoggle, #admintoggle, #tweettoggle").addClass( "toggle" );
+		$("#accommodationtoggle, #teachingtoggle, #communitytoggle, #maintenancetoggle, #admintoggle").removeClass( "toggled" );
+		$("#accommodationtoggle, #teachingtoggle, #communitytoggle, #maintenancetoggle, #admintoggle").addClass( "toggle" );
 	}
 });
 $( "#labeltoggle" ).click(function() {
@@ -347,8 +385,13 @@ $( "#labeltoggle" ).click(function() {
 		for (var i=0, tot=sprites.length; i < tot; i++) {
 			new TWEEN.Tween( sprites[i].material ).to( { opacity: 0 }, 500 ).easing( TWEEN.Easing.Quadratic.InOut).start();
 		}
-		$("#labelall").removeClass( "toggled" );
-		$("#labelall").addClass( "toggle" );
+	}
+});
+$( "#eventtoggle" ).click(function() {
+	if ($(this).hasClass( "toggle" )) {
+		$(this).toggleClass( "toggle toggled" );
+	} else {
+		$(this).toggleClass( "toggle toggled" );
 	}
 });
 $( "#accommodationtoggle" ).click(function() {
@@ -367,7 +410,7 @@ $( "#accommodationtoggle" ).click(function() {
 $( "#teachingtoggle" ).click(function() {
 	if ($(this).hasClass( "toggle" )) {
 		for (var i=0, tot=teachingIcons.length; i < tot; i++) {
-			teachingIcons[i].material.color.setHex(0xb8793d);
+			teachingIcons[i].material.color.setHex(0x338061);
 		}
 	} else {
 		for (var i=0, tot=teachingIcons.length; i < tot; i++) {
@@ -380,7 +423,7 @@ $( "#teachingtoggle" ).click(function() {
 $( "#communitytoggle" ).click(function() {
 	if ($(this).hasClass( "toggle" )) {
 		for (var i=0, tot=communityIcons.length; i < tot; i++) {
-			communityIcons[i].material.color.setHex(0x338061);
+			communityIcons[i].material.color.setHex(0x944646);
 		}
 	} else {
 		for (var i=0, tot=communityIcons.length; i < tot; i++) {
@@ -393,7 +436,7 @@ $( "#communitytoggle" ).click(function() {
 $( "#maintenancetoggle" ).click(function() {
 	if ($(this).hasClass( "toggle" )) {
 		for (var i=0, tot=maintenanceIcons.length; i < tot; i++) {
-			maintenanceIcons[i].material.color.setHex(0x944646);
+			maintenanceIcons[i].material.color.setHex(0xcf5b2d);
 		}
 	} else {
 		for (var i=0, tot=maintenanceIcons.length; i < tot; i++) {
@@ -431,40 +474,70 @@ $( "#tweettoggle" ).click(function() {
 		$(this).toggleClass( "toggle toggled" );
 	}
 });
+
+$( "#overlay-panel a" ).click(function() {
+	if ($(this).hasClass( "toggle" )) {
+		for (var i=0, tot=locationIcons.length; i < tot; i++) {
+			locationIcons[i].material.color.setHex(maincolour);
+		}
+		for (var i=0, tot=teachingIcons.length; i < tot; i++) {
+			teachingIcons[i].material.color.setHex(maincolour);
+		}
+		for (var i=0, tot=communityIcons.length; i < tot; i++) {
+			communityIcons[i].material.color.setHex(maincolour);
+		}
+		for (var i=0, tot=maintenanceIcons.length; i < tot; i++) {
+			maintenanceIcons[i].material.color.setHex(maincolour);
+		}
+		for (var i=0, tot=adminIcons.length; i < tot; i++) {
+			adminIcons[i].material.color.setHex(maincolour);
+		}
+		for (var i=0, tot=populationArray.length; i < tot; i++) {
+			populationArray[i].visible = false;
+		}
+		for (var i=0, tot=roompriceArray.length; i < tot; i++) {
+			roompriceArray[i].visible = false;
+		}
+		for (var i=0, tot=subjectscoreArray.length; i < tot; i++) {
+			subjectscoreArray[i].visible = false;
+		}
+		for (var i=0, tot=subjectsatisfactionArray.length; i < tot; i++) {
+			subjectsatisfactionArray[i].visible = false;
+		}
+		for (var i=0, tot=entrypointsArray.length; i < tot; i++) {
+			entrypointsArray[i].visible = false;
+		}
+		for (var i=0, tot=sizeArray.length; i < tot; i++) {
+			sizeArray[i].visible = false;
+		}
+		$("#label-panel a, #investment-panel a").removeClass( "toggled" );
+		$("#label-panel a, #investment-panel a").addClass( "toggle" );
+	} else {
+	
+	}
+});
 $( "#keynesbus" ).click(function() {
 	var route = scene.getObjectByName( 'keynesRoute', true );
 	if ($(this).hasClass( "toggle" )) {
 		route.visible = true;
-		new TWEEN.Tween( route.material ).to( { opacity: 1 }, 500 ).easing( TWEEN.Easing.Quadratic.InOut).start();
 	} else {
-		new TWEEN.Tween( route.material ).to( { opacity: 0 }, 500 ).easing( TWEEN.Easing.Quadratic.InOut).start();
-		setTimeout(function() {
-			route.visible = false;
-		}, 500);
+		route.visible = false;
 	}
 });
 $( "#darwinbus" ).click(function() {
 	var route = scene.getObjectByName( 'darwinRoute', true );
 	if ($(this).hasClass( "toggle" )) {
 		route.visible = true;
-		new TWEEN.Tween( route.material ).to( { opacity: 1 }, 500 ).easing( TWEEN.Easing.Quadratic.InOut).start();
 	} else {
-		new TWEEN.Tween( route.material ).to( { opacity: 0 }, 500 ).easing( TWEEN.Easing.Quadratic.InOut).start();
-		setTimeout(function() {
-			route.visible = false;
-		}, 500);
+		route.visible = false;
 	}
 });
 $( "#parkwoodbus" ).click(function() {
 	var route = scene.getObjectByName( 'parkwoodRoute', true );
 	if ($(this).hasClass( "toggle" )) {
 		route.visible = true;
-		new TWEEN.Tween( route.material ).to( { opacity: 1 }, 500 ).easing( TWEEN.Easing.Quadratic.InOut).start();
 	} else {
-		new TWEEN.Tween( route.material ).to( { opacity: 0 }, 500 ).easing( TWEEN.Easing.Quadratic.InOut).start();
-		setTimeout(function() {
-			route.visible = false;
-		}, 500);
+		route.visible = false;
 	}
 });
 $( "#cycleroutes" ).click(function() {
@@ -473,106 +546,182 @@ $( "#cycleroutes" ).click(function() {
 	if ($(this).hasClass( "toggle" )) {
 		route.visible = true;
 		route2.visible = true;
-		new TWEEN.Tween( route.material ).to( { opacity: 1 }, 500 ).easing( TWEEN.Easing.Quadratic.InOut).start();
-		new TWEEN.Tween( route2.material ).to( { opacity: 1 }, 500 ).easing( TWEEN.Easing.Quadratic.InOut).start();
 	} else {
-		new TWEEN.Tween( route.material ).to( { opacity: 0 }, 500 ).easing( TWEEN.Easing.Quadratic.InOut).start();
-		new TWEEN.Tween( route2.material ).to( { opacity: 0 }, 500 ).easing( TWEEN.Easing.Quadratic.InOut).start();
-		setTimeout(function() {
-			route.visible = false;
-			route2.visible = false;
-		}, 500);
+		route.visible = false;
+		route2.visible = false;
 	}
 });
 $( "#bikeracks" ).click(function() {
 	if ($(this).hasClass( "toggle" )) {
 		for (var i=0, tot=cycleArray.length; i < tot; i++) {
 			cycleArray[i].visible = true;
-			new TWEEN.Tween( cycleArray[i].material ).to( { opacity: 0.5 }, 500 ).easing( TWEEN.Easing.Quadratic.InOut).start();
 		}
 	} else {
 		for (var i=0, tot=cycleArray.length; i < tot; i++) {
-			new TWEEN.Tween( cycleArray[i].material ).to( { opacity: 0 }, 500 ).easing( TWEEN.Easing.Quadratic.InOut).start();
+			cycleArray[i].visible = false;
 		}
-		setTimeout(function() {
-			for (var i=0, tot=cycleArray.length; i < tot; i++) {
-				cycleArray[i].visible = false;
-			}
-		}, 500);
+	}
+});
+$( "#busstops" ).click(function() {
+	if ($(this).hasClass( "toggle" )) {
+		for (var i=0, tot=busArray.length; i < tot; i++) {
+			busArray[i].visible = true;
+		}
+	} else {
+		for (var i=0, tot=busArray.length; i < tot; i++) {
+			busArray[i].visible = false;
+		}
 	}
 });
 $( "#visitorparking" ).click(function() {
+	var parking = scene.getObjectByName( "Visitor_Parking", true );
 	if ($(this).hasClass( "toggle" )) {
-		for (var i=0, tot=visitorParking.length; i < tot; i++) {
-			visitorParking[i].visible = true;
-			new TWEEN.Tween( visitorParking[i].material ).to( { opacity: 0.5 }, 500 ).easing( TWEEN.Easing.Quadratic.InOut).start();
-		}
+		parking.visible = true;
 	} else {
-		for (var i=0, tot=visitorParking.length; i < tot; i++) {
-			new TWEEN.Tween( visitorParking[i].material ).to( { opacity: 0 }, 500 ).easing( TWEEN.Easing.Quadratic.InOut).start();
-		}
-		setTimeout(function() {
-			for (var i=0, tot=visitorParking.length; i < tot; i++) {
-				visitorParking[i].visible = false;
-			}
-		}, 500);
+		parking.visible = false;
 	}
 });
 $( "#permitparking" ).click(function() {
+	var parking = scene.getObjectByName( "Permit_Parking", true );
 	if ($(this).hasClass( "toggle" )) {
-		for (var i=0, tot=permitParking.length; i < tot; i++) {
-			permitParking[i].visible = true;
-			new TWEEN.Tween( permitParking[i].material ).to( { opacity: 0.5 }, 500 ).easing( TWEEN.Easing.Quadratic.InOut).start();
-		}
+		parking.visible = true;
 	} else {
-		for (var i=0, tot=permitParking.length; i < tot; i++) {
-			new TWEEN.Tween( permitParking[i].material ).to( { opacity: 0 }, 500 ).easing( TWEEN.Easing.Quadratic.InOut).start();
-		}
-		setTimeout(function() {
-			for (var i=0, tot=permitParking.length; i < tot; i++) {
-				permitParking[i].visible = false;
-			}
-		}, 500);
+		parking.visible = false;
 	}
 });
 
 $( "#investment-panel a" ).click(function() {
 	if ($(this).hasClass( "toggle" )) {
-		for (var i=0, tot=sprites.length; i < tot; i++) {
-			new TWEEN.Tween( sprites[i].material ).to( { opacity: 0 }, 500 ).easing( TWEEN.Easing.Quadratic.InOut).start();
-		}
 		for (var i=0, tot=locationIcons.length; i < tot; i++) {
-			new TWEEN.Tween( locationIcons[i].material ).to( { opacity: 0 }, 500 ).easing( TWEEN.Easing.Quadratic.InOut).start();
+			locationIcons[i].material.color.setHex(maincolour);
 		}
-		for (var i=0, tot=foodIcons.length; i < tot; i++) {
-			new TWEEN.Tween( foodIcons[i].material ).to( { opacity: 0 }, 500 ).easing( TWEEN.Easing.Quadratic.InOut).start();
+		for (var i=0, tot=teachingIcons.length; i < tot; i++) {
+			teachingIcons[i].material.color.setHex(maincolour);
 		}
-		for (var i=0, tot=shopIcons.length; i < tot; i++) {
-			new TWEEN.Tween( shopIcons[i].material ).to( { opacity: 0 }, 500 ).easing( TWEEN.Easing.Quadratic.InOut).start();
+		for (var i=0, tot=communityIcons.length; i < tot; i++) {
+			communityIcons[i].material.color.setHex(maincolour);
 		}
-		for (var i=0, tot=visitorParking.length; i < tot; i++) {
-			new TWEEN.Tween( visitorParking[i].material ).to( { opacity: 0 }, 500 ).easing( TWEEN.Easing.Quadratic.InOut).start();
+		for (var i=0, tot=maintenanceIcons.length; i < tot; i++) {
+			maintenanceIcons[i].material.color.setHex(maincolour);
 		}
-		for (var i=0, tot=permitParking.length; i < tot; i++) {
-			new TWEEN.Tween( permitParking[i].material ).to( { opacity: 0 }, 500 ).easing( TWEEN.Easing.Quadratic.InOut).start();
+		for (var i=0, tot=adminIcons.length; i < tot; i++) {
+			adminIcons[i].material.color.setHex(maincolour);
 		}
-		for (var i=0, tot=tweetIcons.length; i < tot; i++) {
-			tweetIcons[i].visible = false;
+		var route = scene.getObjectByName( 'keynesRoute', true );
+		route.visible = false;
+		route = scene.getObjectByName( 'darwinRoute', true );
+		route.visible = false;
+		route = scene.getObjectByName( 'parkwoodRoute', true );
+		route.visible = false;
+		route = scene.getObjectByName( 'cycle1', true );
+		route.visible = false;
+		route = scene.getObjectByName( 'cycle2', true );
+		route.visible = false;
+		for (var i=0, tot=cycleArray.length; i < tot; i++) {
+			cycleArray[i].visible = false;
 		}
-		$("#label-panel a").removeClass( "toggled" );
-		$("#label-panel a").addClass( "toggle" );
-	} else {
+		for (var i=0, tot=busArray.length; i < tot; i++) {
+			busArray[i].visible = false;
+		}
+		var parking = scene.getObjectByName( "Visitor_Parking", true );
+		parking.visible = false;
+		parking = scene.getObjectByName( "Permit_Parking", true );
+		parking.visible = false;
 		
-	}
-});
-$( "#investmenttoggle" ).click(function() {
-	if ($(this).hasClass( "toggle" )) {
-		for (var i=0, tot=investmentArray.length; i < tot; i++) {
-			investmentArray[i].visible = true;
-		}
-	} else {
 		for (var i=0, tot=investmentArray.length; i < tot; i++) {
 			investmentArray[i].visible = false;
+		}
+		for (var i=0, tot=developmentArray.length; i < tot; i++) {
+			developmentArray[i].visible = false;
+		}
+		for (var i=0, tot=populationArray.length; i < tot; i++) {
+			populationArray[i].visible = false;
+		}
+		for (var i=0, tot=roompriceArray.length; i < tot; i++) {
+			roompriceArray[i].visible = false;
+		}
+		for (var i=0, tot=subjectscoreArray.length; i < tot; i++) {
+			subjectscoreArray[i].visible = false;
+		}
+		for (var i=0, tot=subjectsatisfactionArray.length; i < tot; i++) {
+			subjectsatisfactionArray[i].visible = false;
+		}
+		for (var i=0, tot=entrypointsArray.length; i < tot; i++) {
+			entrypointsArray[i].visible = false;
+		}
+		for (var i=0, tot=sizeArray.length; i < tot; i++) {
+			sizeArray[i].visible = false;
+		}
+		$("#label-panel a, #overlay-panel a, #investment-panel a").removeClass( "toggled" );
+		$("#label-panel a, #overlay-panel a, #investment-panel a").addClass( "toggle" );
+	} else {
+	
+	}
+});
+
+$( "#roomprice" ).click(function() {
+	if ($(this).hasClass( "toggle" )) {
+		for (var i=0, tot=roompriceArray.length; i < tot; i++) {
+			roompriceArray[i].visible = true;
+		}
+	} else {
+		for (var i=0, tot=roompriceArray.length; i < tot; i++) {
+			roompriceArray[i].visible = false;
+		}
+	}
+});
+$( "#population" ).click(function() {
+	if ($(this).hasClass( "toggle" )) {
+		for (var i=0, tot=populationArray.length; i < tot; i++) {
+			populationArray[i].visible = true;
+		}
+	} else {
+		for (var i=0, tot=populationArray.length; i < tot; i++) {
+			populationArray[i].visible = false;
+		}
+	}
+});
+$( "#subjectscore" ).click(function() {
+	if ($(this).hasClass( "toggle" )) {
+		for (var i=0, tot=subjectscoreArray.length; i < tot; i++) {
+			subjectscoreArray[i].visible = true;
+		}
+	} else {
+		for (var i=0, tot=subjectscoreArray.length; i < tot; i++) {
+			subjectscoreArray[i].visible = false;
+		}
+	}
+});
+$( "#subjectsatisfaction" ).click(function() {
+	if ($(this).hasClass( "toggle" )) {
+		for (var i=0, tot=subjectsatisfactionArray.length; i < tot; i++) {
+			subjectsatisfactionArray[i].visible = true;
+		}
+	} else {
+		for (var i=0, tot=subjectsatisfactionArray.length; i < tot; i++) {
+			subjectsatisfactionArray[i].visible = false;
+		}
+	}
+});
+$( "#entrypoints" ).click(function() {
+	if ($(this).hasClass( "toggle" )) {
+		for (var i=0, tot=entrypointsArray.length; i < tot; i++) {
+			entrypointsArray[i].visible = true;
+		}
+	} else {
+		for (var i=0, tot=entrypointsArray.length; i < tot; i++) {
+			entrypointsArray[i].visible = false;
+		}
+	}
+});
+$( "#roomsize" ).click(function() {
+	if ($(this).hasClass( "toggle" )) {
+		for (var i=0, tot=sizeArray.length; i < tot; i++) {
+			sizeArray[i].visible = true;
+		}
+	} else {
+		for (var i=0, tot=sizeArray.length; i < tot; i++) {
+			sizeArray[i].visible = false;
 		}
 	}
 });
@@ -588,22 +737,18 @@ $( "#developmenttoggle" ).click(function() {
 	}
 });
 
-
-/////////// DRAWER TOGGLE /////////////
-
-$( "#drawer-toggle" ).click(function() {
-	$(this).toggleClass( "active" );
-	$("#leftdrawer").toggle("slide", {direction:'left', duration: 200, easing: "linear"});
-	$("#wrapper").toggleClass( "slide-margin" );
-});
 $( ".slide-drawer .toggle" ).click(function() {
 	$(this).toggleClass( "toggle toggled" );
 });
 
-/////////// CONTROLS HOVER /////////////
-
-$( "#controlhover" ).hover(function() {
-	$("#tilt, #refresh").stop().fadeIn();
-}, function() {
-    $("#tilt, #refresh").stop().fadeOut();
-});
+function SetData(){
+   var selectbox = document.getElementById('roomlist');
+   var myform = document.getElementById('roomform');
+   var room = selectbox.options[selectbox.selectedIndex].value;
+   if (room == "default"){
+	   return false;
+   }else{
+	   myform.action = "http://www.kent.ac.uk/timetabling/rooms/room.html?room="+room ;
+  		myform.submit();
+   }
+}

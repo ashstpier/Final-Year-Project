@@ -79,10 +79,17 @@
 .tweet-modal {
 	width: 360px;
 	overflow: hidden;
+	background: #55ACEE;
+	color: #fff;
+	padding: 10px;
+}
+.closetweet {
+	position: absolute;
+	right: 10px;
+	top: 15px;
 }
 .tweet-modal header {
 	padding: 10px 20px;
-	background: #55ACEE;
 }
 .tweet-modal i {
 	padding-right: 10px;
@@ -97,18 +104,28 @@
 }
 .tweet-modal section {
 	padding: 20px;
-	background: #fff;
+	text-align:center;
 }
-.tweet-modal .tweet-content {
-	margin-left: 60px;
+.tweet-modal .tweet_img {
+	display: block;
+	margin: 0 auto 10px;
+	float: none;
+	border: 1px solid #fff;
 }
 .tweet-modal .tweet-footer {
 	background: #f3f3f3;
 	padding: 10px 20px;
 	border-bottom: 2px solid #f3f3f3;
 }
+.tweet-modal h2 a {
+	color: #fff;
+	text-decoration:none;
+}
 .tweet-modal a {
-	color: #71BAB8;
+	color: #fff;
+	text-decoration:underline;
+}
+.tweet-modal a:hover {
 	text-decoration:none;
 }
 .tweet-modal .tweet-footer a {
@@ -121,9 +138,6 @@
 	text-transform: uppercase;
 	font-size: 0.9em;
 	color:#999;
-}
-.tweet-modal a:hover {
-	text-decoration:underline;
 }
 
 /**** Isotope Filtering ****/

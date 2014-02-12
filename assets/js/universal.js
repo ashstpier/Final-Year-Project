@@ -1,21 +1,19 @@
 function primaryOpen(button, panel){
 	if($(panel).is(":visible")){
-		$(".slide-drawer.primary").toggle("slide", {direction:'left'}, function(){
-			$(".slide-drawer.primary div").hide();
+		$(".slide-drawer").toggle("slide", {direction:'left', easing:'easeInOutQuint'}, function(){
+			$(".slide-drawer .slidepanel").hide();
 		});
 		$("#leftnav button").removeClass( "active" );
-		$(".slide-drawer.secondary").hide();
 		$(".slide-drawer a").removeClass( "checked" );
-	}else if($($('.primary div').not(panel)).is(":visible")){
-		$(".slide-drawer.primary div").hide();
+	}else if($($('.slidepanel').not(panel)).is(":visible")){
+		$(".slide-drawer .slidepanel").hide();
 		$(panel).fadeIn();
 		$("#leftnav button").removeClass( "active" );
 		$(button).addClass( "active" );
-		$(".slide-drawer.secondary").hide();
-		$(".slide-drawer.primary a").removeClass( "checked" );
+		$(".slide-drawer a").removeClass( "checked" );
 	}else{
 		$(panel).show();
-		$(".slide-drawer.primary").toggle("slide", {direction:'left'});
+		$(".slide-drawer").toggle("slide", {direction:'left', easing:'easeInOutQuint'});
 		$(button).addClass( "active" );
 	}
 }
@@ -39,55 +37,37 @@ $( "#info-button" ).click(function() {
 	primaryOpen(this, "#info-panel");
 });
 
-///// SECONDARY //////
-
-function secondaryOpen(button, panel) {
-	if($(panel).is(":visible")){
-		$(".slide-drawer.secondary").toggle("slide", {direction:'left'}, function(){
-			$(".slide-drawer.secondary div").hide();
-		});
-		$(button).removeClass('checked');
-	}else if($($('.secondary div').not(panel)).is(":visible")){
-		$(".slide-drawer.secondary div").hide();
-		$(panel).fadeIn();
-		$("#search-panel a").removeClass('checked');
-		$(button).addClass('checked');
-	}else{
-		$(panel).fadeIn();
-		$(".slide-drawer.secondary").toggle("slide", {direction:'left'});
-		$(button).addClass('checked');
-	}
-}
-$( "#a-z" ).click(function() {
-	secondaryOpen(this, "#a-z-panel");
-});
-$( "#subjects" ).click(function() {
-	secondaryOpen(this, "#subject-panel");
-});
-$( "#community" ).click(function() {
-	secondaryOpen(this, "#community-panel");
-});
-$( "#admin" ).click(function() {
-	secondaryOpen(this, "#admin-panel");
-});
-$( "#accommodation" ).click(function() {
-	secondaryOpen(this, "#accommodation-panel");
-});
-$( "#maintenance" ).click(function() {
-	secondaryOpen(this, "#maintenance-panel");
+$( "#share a" ).click(function() {
+	$('#sharebox').slideToggle( 300, "easeInOutQuint" );
 });
 
 //////// SEARCH ///////
 
-$( ".secondary a" ).click(function() {
-	$('#modalfront, #modalback').empty();
-	$("#modalpanel").removeClass('fadeOutUp fadeInDown opaque');
-	$(".card").removeClass('flipped');
-	closeTweet();
-	modal = scene.getObjectByName( $(this).attr("data-building"), true );
-	placeMarker(modal);
-	$(".slide-drawer.secondary").toggle("slide", {direction:'left'}, function(){
-		$(".slide-drawer.secondary div").hide();
-	});
-	$("#search-panel a").removeClass('checked');
-});
+function searchResult(searchvalue) {
+	
+	var foo = searchvalue.searchString.value;
+	var dashes = foo.replace(/\s/g, '_');
+	
+	var room = $(xml).find('room[value="'+dashes+'"]');
+	
+	if( !room.length){
+		$('#modalfront, #modalback').empty();
+		$("#modalpanel").removeClass('fadeOutUp fadeInDown opaque');
+		$(".card").removeClass('flipped');
+		closeTweet();
+		modal = scene.getObjectByName( dashes, true );
+		placeMarker(modal);
+	}else{
+	room.each(function(){
+		var rooms = $(this).parent();
+		var building = rooms.parent().attr('label');
+		$('#modalfront, #modalback').empty();
+		$("#modalpanel").removeClass('fadeOutUp fadeInDown opaque');
+		$(".card").removeClass('flipped');
+		closeTweet();
+		modal = scene.getObjectByName( building, true );
+		placeMarker(modal);
+	});	
+	}
+	return false;
+}

@@ -63,70 +63,334 @@ function createArrays(array, mesh) {
 }
 
 function makeIcon(mesh) {
-	if (
-	mesh.name == "Becket_Court" ||  
-	mesh.name == "Bishopden_Court" ||
-	mesh.name == "Bossenden_Court" ||
-	mesh.name == "Clowes_Court" ||
-	mesh.name == "Darwin_Houses" ||
-	mesh.name == "Denstead_Court" ||
-	mesh.name == "Eliot_College" ||
-	mesh.name == "Ellenden_Court" ||
-	mesh.name == "Farthings_Court" ||
-	mesh.name == "Grimshill_Court" ||
-	mesh.name == "Homestall_Court" ||
-	mesh.name == "Hothe_Court" ||
-	mesh.name == "Kemsdale_Court" ||
-	mesh.name == "Keynes_Flats" ||
-	mesh.name == "Lypeatt_Court" ||
-	mesh.name == "Marley_Court" ||
-	mesh.name == "Nickle_Court" ||
-	mesh.name == "Purchas_Court" ||
-	mesh.name == "Rutherford_College" ||
-	mesh.name == "Stock_Court" ||
-	mesh.name == "Thornden_Court" ||
-	mesh.name == "Tudor_Court" ||
-	mesh.name == "Tyler_Court_A" || 
-	mesh.name == "Tyler_Court_B" || 
-	mesh.name == "Tyler_Court_C" ||
-	mesh.name == "Willows_Court" ||
-	mesh.name == "Woolf_Blocks" ||
-	mesh.name == "Woolf_Residential" ||
-	mesh.name == "Woolf_Pavillion" 
-	){
-		createArrays(locationIcons, mesh);
-	}
-	if (
-	mesh.name == "Aphra_Theatre" ||
-	mesh.name == "Boiler_House" ||
-	mesh.name == "Cornwallis_George_Allen_Wing" ||
-	mesh.name == "Cornwallis_Mathematics_Institute" ||
-	mesh.name == "Cornwallis_North_East" ||
-	mesh.name == "Cornwallis_North_West" ||
-	mesh.name == "Cornwallis_South_East" ||
-	mesh.name == "Cornwallis_South_West" ||
-	mesh.name == "Cornwallis_South" ||
-	mesh.name == "Cornwallis_West" ||
-	mesh.name == "Darwin_College" ||
-	mesh.name == "Eliot_College" ||
-	mesh.name == "Grimmond" ||
-	mesh.name == "Ingram" ||
-	mesh.name == "Jarman" ||
-	mesh.name == "Jennison" ||
-	mesh.name == "Kent_Business_School" ||
-	mesh.name == "Kent_Law_School" ||
-	mesh.name == "Keynes_College" ||
-	mesh.name == "Marlowe" ||
-	mesh.name == "Missing_Link" ||
-	mesh.name == "Olive_Cottages" ||
-	mesh.name == "Rothford" ||
-	mesh.name == "Rutherford_College" ||
-	mesh.name == "Stacey" ||
-	mesh.name == "Tanglewood" ||
-	mesh.name == "Woodlands" ||
-	mesh.name == "Woolf_Main"
-	){
-		createArrays(teachingIcons, mesh);
+	switch(mesh.name){
+		case "Becket_Court":
+			makeData(mesh, 5863, roompriceArray);
+			makeData(mesh, 103, populationArray);
+			makeData(mesh, 10, sizeArray);
+			createArrays(locationIcons, mesh);
+			break;
+		case "Bishopden_Court":
+			makeData(mesh, 3955, roompriceArray);
+			makeData(mesh, 80, populationArray);
+			makeData(mesh, 10, sizeArray);
+			createArrays(locationIcons, mesh);
+			break;
+		case "Bossenden_Court":
+			makeData(mesh, 5621, roompriceArray);
+			makeData(mesh, 90, populationArray);
+			makeData(mesh, 11, sizeArray);
+			createArrays(locationIcons, mesh);
+			break;
+		case "Clowes_Court":
+			makeData(mesh, 3955, roompriceArray);
+			makeData(mesh, 80, populationArray);
+			makeData(mesh, 10, sizeArray);
+			createArrays(locationIcons, mesh);
+			break;
+		case "Darwin_Houses":
+			makeData(mesh, 4204, roompriceArray);
+			makeData(mesh, 310, populationArray);
+			makeData(mesh, 12, sizeArray);
+			createArrays(locationIcons, mesh);
+			break;
+		case "Denstead_Court":
+			makeData(mesh, 3955, roompriceArray);
+			makeData(mesh, 80, populationArray);
+			makeData(mesh, 10, sizeArray);
+			createArrays(locationIcons, mesh);
+			break;
+		case "Eliot_College":
+			makeData(mesh, 3715, roompriceArray);
+			makeData(mesh, 481, populationArray);
+			makeData(mesh, 12, sizeArray);
+			createArrays(locationIcons, mesh);
+			break;
+		case "Ellenden_Court":
+			makeData(mesh, 4376, roompriceArray);
+			makeData(mesh, 130, populationArray);
+			makeData(mesh, 11, sizeArray);
+			createArrays(locationIcons, mesh);
+			break;
+		case "Farthings_Court":
+			makeData(mesh, 3955, roompriceArray);
+			makeData(mesh, 80, populationArray);
+			makeData(mesh, 10, sizeArray);
+			createArrays(locationIcons, mesh);
+			break;
+		case "Grimshill_Court":
+			makeData(mesh, 4376, roompriceArray);
+			makeData(mesh, 130, populationArray);
+			makeData(mesh, 11, sizeArray);
+			createArrays(locationIcons, mesh);
+			break;
+		case "Homestall_Court":
+			makeData(mesh, 3955, roompriceArray);
+			makeData(mesh, 80, populationArray);
+			makeData(mesh, 10, sizeArray);
+			createArrays(locationIcons, mesh);
+			break;
+		case "Hothe_Court":
+			makeData(mesh, 3955, roompriceArray);
+			makeData(mesh, 80, populationArray);
+			makeData(mesh, 10, sizeArray);
+			createArrays(locationIcons, mesh);
+			break;
+		case "Kemsdale_Court":
+			makeData(mesh, 5621, roompriceArray);
+			makeData(mesh, 170, populationArray);
+			createArrays(locationIcons, mesh);
+			break;
+		case "Keynes_College":
+			makeData(mesh, 5863, roompriceArray);
+			makeData(mesh, 162, populationArray);
+			makeData(mesh, 11, sizeArray);
+			createArrays(locationIcons, mesh);
+			break;
+		case "Keynes_Flats":
+			makeData(mesh, 5626, roompriceArray);
+			makeData(mesh, 445, populationArray);
+			makeData(mesh, 12, sizeArray);
+			createArrays(locationIcons, mesh);
+			break;
+		case "Keynes_Houses":
+			makeData(mesh, 4853, roompriceArray);
+			makeData(mesh, 45, populationArray);
+			makeData(mesh, 12, sizeArray);
+			createArrays(locationIcons, mesh);
+			break;
+		case "Lypeatt_Court":
+			makeData(mesh, 4376, roompriceArray);
+			makeData(mesh, 160, populationArray);
+			makeData(mesh, 11, sizeArray);
+			createArrays(locationIcons, mesh);
+			break;
+		case "Marley_Court":
+			makeData(mesh, 3955, roompriceArray);
+			makeData(mesh, 80, populationArray);
+			makeData(mesh, 10, sizeArray);
+			createArrays(locationIcons, mesh);
+			break;
+		case "Nickle_Court":
+			makeData(mesh, 5621, roompriceArray);
+			makeData(mesh, 170, populationArray);
+			createArrays(locationIcons, mesh);
+			break;
+		case "Purchas_Court":
+			makeData(mesh, 4376, roompriceArray);
+			makeData(mesh, 160, populationArray);
+			makeData(mesh, 11, sizeArray);
+			createArrays(locationIcons, mesh);
+			break;
+		case "Rutherford_College":
+			makeData(mesh, 3715, roompriceArray);
+			makeData(mesh, 481, populationArray);
+			makeData(mesh, 12, sizeArray);
+			createArrays(locationIcons, mesh);
+			break;
+		case "Stock_Court":
+			makeData(mesh, 5621, roompriceArray);
+			makeData(mesh, 90, populationArray);
+			makeData(mesh, 11, sizeArray);
+			createArrays(locationIcons, mesh);
+			break;
+		case "Thornden_Court":
+			makeData(mesh, 3955, roompriceArray);
+			makeData(mesh, 80, populationArray);
+			makeData(mesh, 10, sizeArray);
+			createArrays(locationIcons, mesh);
+			break;
+		case "Tudor_Court":
+			makeData(mesh, 3955, roompriceArray);
+			makeData(mesh, 80, populationArray);
+			makeData(mesh, 10, sizeArray);
+			createArrays(locationIcons, mesh);
+			break;
+		case "Tyler_Court_A":
+			makeData(mesh, 5353, roompriceArray);
+			makeData(mesh, 189, populationArray);
+			makeData(mesh, 10, sizeArray);
+			createArrays(locationIcons, mesh);
+			break;
+		case "Tyler_Court_B":
+			makeData(mesh, 5872, roompriceArray);
+			makeData(mesh, 339, populationArray);
+			makeData(mesh, 13, sizeArray);
+			createArrays(locationIcons, mesh);
+			break;
+		case "Tyler_Court_C":
+			makeData(mesh, 5872, roompriceArray);
+			makeData(mesh, 339, populationArray);
+			makeData(mesh, 13, sizeArray);
+			createArrays(locationIcons, mesh);
+			break;
+		case "Willows_Court":
+			makeData(mesh, 3955, roompriceArray);
+			makeData(mesh, 80, populationArray);
+			makeData(mesh, 10, sizeArray);
+			createArrays(locationIcons, mesh);
+			break;
+		case "Woolf_Blocks":
+			makeData(mesh, 5846, roompriceArray);
+			makeData(mesh, 503, populationArray);
+			makeData(mesh, 12, sizeArray);
+			createArrays(locationIcons, mesh);
+			break;
+		case "Woolf_Residential":
+			makeData(mesh, 6823, roompriceArray);
+			makeData(mesh, 41, populationArray);
+			makeData(mesh, 17, sizeArray);
+			createArrays(locationIcons, mesh);
+			break;
+		case "Woolf_Pavillion":
+			createArrays(locationIcons, mesh);
+			break;
+			
+			////// TEACHING //////
+			
+		case "Aphra_Theatre":
+			createArrays(teachingIcons, mesh);
+			break;
+		case "Boiler_House":
+			createArrays(teachingIcons, mesh);
+			break;
+		case "Colyer_Fergusson":
+			makeData(mesh, 82.7, subjectscoreArray);
+			makeData(mesh, 89, subjectsatisfactionArray);
+			makeData(mesh, 348, entrypointsArray);
+			break;
+		case "Cornwallis_George_Allen_Wing":
+			createArrays(teachingIcons, mesh);
+			break;
+		case "Cornwallis_Mathematics_Institute":
+			createArrays(teachingIcons, mesh);
+			makeData(mesh, 42.2, subjectscoreArray);
+			makeData(mesh, 91, subjectsatisfactionArray);
+			makeData(mesh, 361, entrypointsArray);
+			break;
+		case "Cornwallis_North_East":
+			createArrays(teachingIcons, mesh);
+			makeData(mesh, 71.1, subjectscoreArray);
+			makeData(mesh, 87, subjectsatisfactionArray);
+			makeData(mesh, 325, entrypointsArray);
+			break;
+		case "Cornwallis_North_West":
+			createArrays(teachingIcons, mesh);
+			makeData(mesh, 68.5, subjectscoreArray);
+			makeData(mesh, 91, subjectsatisfactionArray);
+			makeData(mesh, 365, entrypointsArray);
+			break;
+		case "Cornwallis_South_East":
+			createArrays(teachingIcons, mesh);
+			break;
+		case "Cornwallis_South_West":
+			createArrays(teachingIcons, mesh);
+			break;
+		case "Cornwallis_South":
+			createArrays(teachingIcons, mesh);
+			makeData(mesh, 66.4, subjectscoreArray);
+			makeData(mesh, 84, subjectsatisfactionArray);
+			makeData(mesh, 370, entrypointsArray);
+			break;
+		case "Cornwallis_West":
+			createArrays(teachingIcons, mesh);
+			break;
+		case "Darwin_College":
+			createArrays(teachingIcons, mesh);
+			break;
+		case "Eliot_College":
+			createArrays(teachingIcons, mesh);
+			break;
+		case "Grimmond":
+			createArrays(teachingIcons, mesh);
+			break;
+		case "Gulbenkian":
+			createArrays(teachingIcons, mesh);
+			makeData(mesh, 84.4, subjectscoreArray);
+			makeData(mesh, 93, subjectsatisfactionArray);
+			makeData(mesh, 397, entrypointsArray);
+			break;
+		case "Ingram":
+			createArrays(teachingIcons, mesh);
+			makeData(mesh, 49.7, subjectscoreArray);
+			makeData(mesh, 96, subjectsatisfactionArray);
+			makeData(mesh, 364, entrypointsArray);
+			break;
+		case "Jarman":
+			createArrays(teachingIcons, mesh);
+			makeData(mesh, 81.3, subjectscoreArray);
+			makeData(mesh, 78, subjectsatisfactionArray);
+			makeData(mesh, 355, entrypointsArray);
+			break;
+		case "Jennison":
+			createArrays(teachingIcons, mesh);
+			makeData(mesh, 82.9, subjectscoreArray);
+			makeData(mesh, 100, subjectsatisfactionArray);
+			makeData(mesh, 337, entrypointsArray);
+			break;
+		case "Kent_Business_School":
+			createArrays(teachingIcons, mesh);
+			makeData(mesh, 69.4, subjectscoreArray);
+			makeData(mesh, 90, subjectsatisfactionArray);
+			makeData(mesh, 377, entrypointsArray);
+			break;
+		case "Kent_Law_School":
+			createArrays(teachingIcons, mesh);
+			makeData(mesh, 66.1, subjectscoreArray);
+			makeData(mesh, 87, subjectsatisfactionArray);
+			makeData(mesh, 387, entrypointsArray);
+			break;
+		case "Keynes_College":
+			createArrays(teachingIcons, mesh);
+			break;
+		case "Marlowe":
+			createArrays(teachingIcons, mesh);
+			makeData(mesh, 86.1, subjectscoreArray);
+			makeData(mesh, 86, subjectsatisfactionArray);
+			makeData(mesh, 437, entrypointsArray);
+			break;
+		case "Missing_Link":
+			createArrays(teachingIcons, mesh);
+			break;
+		case "Olive_Cottages":
+			createArrays(teachingIcons, mesh);
+			break;
+		case "Rothford":
+			createArrays(teachingIcons, mesh);
+			break;
+		case "Rutherford_Annexe":
+			createArrays(teachingIcons, mesh);
+			break;
+		case "Rutherford_College":
+			createArrays(teachingIcons, mesh);
+			break;
+		case "Rutherford_Extension":
+			createArrays(teachingIcons, mesh);
+			makeData(mesh, 79.3, subjectscoreArray);
+			makeData(mesh, 94, subjectsatisfactionArray);
+			makeData(mesh, 409, entrypointsArray);
+			break;
+		case "Stacey":
+			createArrays(teachingIcons, mesh);
+			makeData(mesh, 62.4, subjectscoreArray);
+			makeData(mesh, 93, subjectsatisfactionArray);
+			makeData(mesh, 383, entrypointsArray);
+			break;
+		case "Sports_Centre":
+			createArrays(teachingIcons, mesh);
+			makeData(mesh, 86, subjectscoreArray);
+			makeData(mesh, 92, subjectsatisfactionArray);
+			makeData(mesh, 332, entrypointsArray);
+			break;
+		case "Tanglewood":
+			createArrays(teachingIcons, mesh);
+			break;
+		case "Woodlands":
+			createArrays(teachingIcons, mesh);
+			break;
+		case "Woolf_Main":
+			createArrays(teachingIcons, mesh);
+			break;
 	}
 	if (
 	mesh.name == "Colyer_Fergusson" ||
@@ -195,7 +459,7 @@ function tweetIcon(mesh) {
 	mesh.name == "Jennison" ||
 	mesh.name == "Locke" || 
 	mesh.name == "Careers_Employability_Service" || 
-	mesh.name == "Templeman_Library" ||
+	mesh.name == "Registry" ||
 	mesh.name == "Colyer_Fergusson" ||
 	mesh.name == "Parkwood_Administration"
 	){
@@ -213,13 +477,13 @@ function tweetIcon(mesh) {
 		position.applyMatrix4( mesh.matrixWorld );
 		
 		icon.name = "tweet-" + mesh.name;
-		icon.position.set( position.x, boundingBox.max.y + 30, position.z );
+		icon.position.set( position.x, boundingBox.max.y + 12, position.z );
 		group.add( icon);
 		clickobjects.push( icon );
 		tweetIcons.push( icon );
 		
-		var tweenOne = new TWEEN.Tween( icon.position ).to( { y: boundingBox.max.y + 35 }, 1000 ).easing( TWEEN.Easing.Sinusoidal.InOut);
-		var tweenTwo = new TWEEN.Tween( icon.position ).to( { y: boundingBox.max.y + 30 }, 1000 ).easing( TWEEN.Easing.Sinusoidal.InOut);
+		var tweenOne = new TWEEN.Tween( icon.position ).to( { y: boundingBox.max.y + 12 }, 1000 ).easing( TWEEN.Easing.Sinusoidal.InOut);
+		var tweenTwo = new TWEEN.Tween( icon.position ).to( { y: boundingBox.max.y + 10 }, 1000 ).easing( TWEEN.Easing.Sinusoidal.InOut);
 		
 		tweenOne.chain(tweenTwo);
 		tweenTwo.chain(tweenOne);
@@ -266,7 +530,7 @@ function busRoutes(){
         geometry.vertices.push(new THREE.Vector3(o.x, o.y, o.z));
     }
 
-    var darwinRoute = new THREE.Line(geometry, new THREE.LineBasicMaterial({ color: 0xcc3333, linewidth: 4, transparent: true, opacity: 0 }));
+    var darwinRoute = new THREE.Line(geometry, new THREE.LineBasicMaterial({ color: 0xcc3333, linewidth: 4, transparent: true, opacity: 0.8 }));
 	darwinRoute.name = "darwinRoute"
 	darwinRoute.visible = false;
 	group.add(darwinRoute);
@@ -321,7 +585,7 @@ function busRoutes(){
         geometry.vertices.push(new THREE.Vector3(o.x, o.y, o.z));
     }
 
-    var parkwoodRoute = new THREE.Line(geometry, new THREE.LineBasicMaterial({ color: 0x0099cc, linewidth: 4, transparent: true, opacity: 0}));
+    var parkwoodRoute = new THREE.Line(geometry, new THREE.LineBasicMaterial({ color: 0x0099cc, linewidth: 4, transparent: true, opacity: 0.8}));
 	parkwoodRoute.name = "parkwoodRoute"
 	parkwoodRoute.visible = false;
 	group.add(parkwoodRoute);
@@ -347,7 +611,7 @@ function busRoutes(){
         geometry.vertices.push(new THREE.Vector3(o.x, o.y, o.z));
     }
 
-    var keynesRoute = new THREE.Line(geometry, new THREE.LineBasicMaterial({ color: 0x9367bf, linewidth: 4, transparent: true, opacity: 0 }));
+    var keynesRoute = new THREE.Line(geometry, new THREE.LineBasicMaterial({ color: 0x9367bf, linewidth: 4, transparent: true, opacity: 0.8 }));
 	keynesRoute.name = "keynesRoute"
 	keynesRoute.visible = false;
 	group.add(keynesRoute);
@@ -355,14 +619,14 @@ function busRoutes(){
 	var path = [
 		{ x:36, y:1, z:-138 },
         { x:26, y:1, z:-123 },
-		{ x:3, y:1, z:-110 },
-        { x:-29, y:1, z:-119 },
-		{ x:-89, y:9, z:-90 },
-		{ x:-123, y:9, z:-71 },
-		{ x:-145, y:6, z:-60 },
-		{ x:-183, y:7, z:-69 },
-		{ x:-200, y:6, z:-67 },
-		{ x:-217, y:2, z:-66 },
+		{ x:0, y:1, z:-108 },
+        { x:-31, y:1, z:-118 },
+		{ x:-87, y:9, z:-87 },
+		{ x:-123, y:9, z:-68 },
+		{ x:-145, y:6, z:-56 },
+		{ x:-183, y:7, z:-65 },
+		{ x:-200, y:6, z:-63 },
+		{ x:-217, y:2, z:-62 },
 		{ x:-254, y:2, z:-77 },
     ];
     
@@ -372,7 +636,7 @@ function busRoutes(){
         geometry.vertices.push(new THREE.Vector3(o.x, o.y, o.z));
     }
 
-    var cycle1 = new THREE.Line(geometry, new THREE.LineBasicMaterial({ color: 0xff7b00, linewidth: 4, transparent: true, opacity: 0 }));
+    var cycle1 = new THREE.Line(geometry, new THREE.LineBasicMaterial({ color: 0xff7b00, linewidth: 4, transparent: true, opacity: 0.8 }));
 	cycle1.name = "cycle1"
 	cycle1.visible = false;
 	group.add(cycle1);
@@ -421,145 +685,201 @@ function busRoutes(){
         geometry.vertices.push(new THREE.Vector3(o.x, o.y, o.z));
     }
 
-    var cycle2 = new THREE.Line(geometry, new THREE.LineBasicMaterial({ color: 0xff7b00, linewidth: 4, transparent: true, opacity: 0 }));
+    var cycle2 = new THREE.Line(geometry, new THREE.LineBasicMaterial({ color: 0xff9900, linewidth: 4, transparent: true, opacity: 0.8 }));
 	cycle2.name = "cycle2"
 	cycle2.visible = false;
 	group.add(cycle2);
 }
-function parkingIcon(iconArray, size){
+function makeParkingOverlay(){
+	var loader = new THREE.JSONLoader();
+	loader.load( "assets/models/Permit_Parking.js", function( geometry, materials ) {
+        mesh = new THREE.Mesh( geometry, new THREE.MeshBasicMaterial({color: 0x5757b5, transparent: true, opacity: 0.8}) );
+        mesh.scale.set( 1, 1, 1 );
+		group.add( mesh );
+		mesh.name = "Permit_Parking";
+		mesh.visible = false;
+    } );
+	loader.load( "assets/models/Visitor_Parking.js", function( geometry, materials ) {
+        mesh = new THREE.Mesh( geometry, new THREE.MeshBasicMaterial({color: 0x0099cc, transparent: true, opacity: 0.8}) );
+        mesh.scale.set( 1, 1, 1 );
+		group.add( mesh );
+		mesh.name = "Visitor_Parking";
+		mesh.visible = false;
+    } );
+}
+function cycleIcon(iconArray, size){
 	var color;
-	if (iconArray == visitorParking){
-		color = 0x4b4bb3;
-	} else if (iconArray == permitParking){
-		color = 0xff6600;
-	} else {
-		color = 0xff7b00;
+	if (iconArray == cycleArray){
+		color = 0xff9900;
+	}else{
+		color = 0xcc3333;
 	}
-	var sphere = new THREE.Mesh(new THREE.SphereGeometry(size, 20, 20), new THREE.MeshBasicMaterial({color: color, transparent: true}));
+	var sphere = new THREE.Mesh(new THREE.SphereGeometry(size, 20, 20), new THREE.MeshBasicMaterial({color: color, transparent: true, opacity: 0.8}));
 	group.add( sphere);
 	iconArray.push( sphere );
-	sphere.material.opacity = 0;
 	sphere.visible = false;
 	
 	return sphere;
 }
-function makeParkingOverlay(){
-	var parking1 = parkingIcon(visitorParking, 20);
-	parking1.position.set(78,0,-25);
-	var parking2 = parkingIcon(visitorParking, 20);
-	parking2.position.set(275,0,-205);
-	var parking3 = parkingIcon(visitorParking, 20);
-	parking3.position.set(39,0,344);
-	var parking4 = parkingIcon(visitorParking, 20);
-	parking4.position.set(-333,0,-248);
-	
-	var parking5 = parkingIcon(permitParking, 20);
-	parking5.position.set(90,0,30);
-	var parking6 = parkingIcon(permitParking, 20);
-	parking6.position.set(230,0,3);
-	var parking7 = parkingIcon(permitParking, 20);
-	parking7.position.set(50,0,-200);
-	var parking8 = parkingIcon(permitParking, 20);
-	parking8.position.set(230,0,-290);
-	var parking9 = parkingIcon(permitParking, 20);
-	parking9.position.set(442,0,-153);
-	var parking10 = parkingIcon(permitParking, 20);
-	parking10.position.set(-30,0,55);
-	var parking11 = parkingIcon(permitParking, 20);
-	parking11.position.set(-115,0,-220);
-}
 function makeCycleRacks(){
-	var cycle1 = parkingIcon(cycleArray, 7);
-	cycle1.position.set(0,3,0);
+	cycleIcon(cycleArray, 5).position.set(31,0,-143);
+	cycleIcon(cycleArray, 5).position.set(-27,0,88);
+	cycleIcon(cycleArray, 5).position.set(53,1,167);
+	cycleIcon(cycleArray, 5).position.set(97,1,65);
+	cycleIcon(cycleArray, 5).position.set(237,-2,23);
+	cycleIcon(cycleArray, 5).position.set(474,-8,-28);
+	cycleIcon(cycleArray, 5).position.set(321,1,-218);
+	
+	cycleIcon(cycleArray, 3).position.set(-511,2,-133);
+	cycleIcon(cycleArray, 3).position.set(-500,2,-94);
+	cycleIcon(cycleArray, 3).position.set(-460,1,-118);
+	cycleIcon(cycleArray, 3).position.set(-456,1,-142);
+	cycleIcon(cycleArray, 3).position.set(-398,1,-145);
+	cycleIcon(cycleArray, 3).position.set(-351,1,-167);
+	cycleIcon(cycleArray, 3).position.set(-327,1,-125);
+	cycleIcon(cycleArray, 3).position.set(-292,1,-125);
+	cycleIcon(cycleArray, 3).position.set(-302,1,-192);
+	cycleIcon(cycleArray, 3).position.set(-276,1,-190);
+	cycleIcon(cycleArray, 3).position.set(-458,1,-32);
+	cycleIcon(cycleArray, 3).position.set(-471,1,45);
+	cycleIcon(cycleArray, 3).position.set(-434,1,55);
+	cycleIcon(cycleArray, 3).position.set(-401,1,56);
+	cycleIcon(cycleArray, 3).position.set(-338,1,22);
+	cycleIcon(cycleArray, 3).position.set(-282,1,3);
+	cycleIcon(cycleArray, 3).position.set(-213,1,-3);
+	cycleIcon(cycleArray, 3).position.set(-85,1,-186);
+	cycleIcon(cycleArray, 3).position.set(-47,1,79);
+	cycleIcon(cycleArray, 3).position.set(55,1,48);
+	cycleIcon(cycleArray, 3).position.set(88,1,56);
+	cycleIcon(cycleArray, 3).position.set(57,1,-125);
+	cycleIcon(cycleArray, 3).position.set(35,1,-165);
+	cycleIcon(cycleArray, 3).position.set(58,1,-181);
+	cycleIcon(cycleArray, 3).position.set(162,1,-244);
+	cycleIcon(cycleArray, 3).position.set(233,1,-22);
+	cycleIcon(cycleArray, 3).position.set(283,1,-144);
+	cycleIcon(cycleArray, 3).position.set(390,1,-209);
+	cycleIcon(cycleArray, 3).position.set(412,1,-212);
+	
+	cycleIcon(busArray, 5).position.set(125,2,148);
+	cycleIcon(busArray, 5).position.set(170,0,-92);
+	cycleIcon(busArray, 5).position.set(165,2,-146);
+	cycleIcon(busArray, 5).position.set(-331,0,-161);
+	cycleIcon(busArray, 5).position.set(-116,2,-238);
+	cycleIcon(busArray, 5).position.set(121,-3,363);
+	cycleIcon(busArray, 5).position.set(132,-3,372);
+	cycleIcon(busArray, 5).position.set(-133,2,-238);
+	cycleIcon(busArray, 5).position.set(-341,0,-215);
+	cycleIcon(busArray, 5).position.set(56,0,-237);
+	cycleIcon(busArray, 5).position.set(0,0,-264);
+	cycleIcon(busArray, 5).position.set(282,0,-240);
+	cycleIcon(busArray, 5).position.set(124,2,160);
+	cycleIcon(busArray, 5).position.set(423,0,-261);
 }
 
-function make3DText(message, color, size)
-{
+function make3DText(message, color, mesh){
 	var text3d = new THREE.TextGeometry( message, {
-		size: size,
+		size: 6,
 		height: 1,
 		curveSegments: 2,
 		font: "helvetiker"
 	});		
-	THREE.GeometryUtils.center( text3d );
-	var textMaterial = new THREE.MeshBasicMaterial( { color: color, overdraw: true, transparent: true, opacity: 0.8 } );
+	var textMaterial = new THREE.MeshBasicMaterial( { color: color, overdraw: true, transparent: true, opacity: 0.7, alphaTest: 0.5 } );
 	var text = new THREE.Mesh( text3d, textMaterial );
-	scene.add( text );
+	text.rotation.z = 270 * Math.PI / 60;
 	group.add( text );
 	text.visible = false;
-	return text;	
+	return text;
 }
-function makeCylinder(color, height)
+function makeData(mesh, height, dataArray)
 {
-	var cylinder = new THREE.Mesh( new THREE.CylinderGeometry(3, 3, height, 50, 50, false), new THREE.MeshBasicMaterial({color: color, transparent: true, opacity: 0.8}) );
-	scene.add(cylinder);
-	group.add(cylinder);
-	cylinder.visible = false;
-	return cylinder;	
+	var percent, color;
+	var prefix = "";
+	var suffix = "";
+	
+	switch(dataArray){
+		case roompriceArray:
+			if (height < 4000){
+				color = 0x3798b8;
+			}else if (height < 5000 && height > 4000){
+				color = 0x0066cc;
+			} else {
+				color = 0x333399;
+			}
+			percent = ((height / 6900) * 100);
+			prefix = "£";
+			break;
+		case populationArray:
+			if (height < 200){
+				color = 0x3798b8;
+			}else if (height < 400 && height > 200){
+				color = 0x0066cc;
+			} else {
+				color = 0x333399;
+			}
+			percent = ((height / 500) * 100) * 1.5;
+			break;
+		case subjectscoreArray:
+			if (height < 60){
+				color = 0x3798b8;
+			}else if (height < 80 && height > 60){
+				color = 0x0066cc;
+			} else {
+				color = 0x333399;
+			}
+			percent = ((height / 100) * 100) * 1;
+			break;
+		case subjectsatisfactionArray:
+			if (height < 85){
+				color = 0x3798b8;
+			}else if (height < 92 && height > 85){
+				color = 0x0066cc;
+			} else {
+				color = 0x333399;
+			}
+			percent = ((height / 100) * 100) * 1;
+			suffix = "%";
+			break;
+		case entrypointsArray:
+			if (height < 360){
+				color = 0x3798b8;
+			}else if (height < 380 && height > 360){
+				color = 0x0066cc;
+			} else {
+				color = 0x333399;
+			}
+			percent = ((height / 440) * 100) * 1;
+			break;
+		case sizeArray:
+			if (height < 11){
+				color = 0x3798b8;
+			}else if (height < 13 && height > 11){
+				color = 0x0066cc;
+			} else {
+				color = 0x333399;
+			}
+			percent = ((height / 15) * 100) * 1;
+			suffix = "m²";
+			break;
+	}
+	
+	var bar = new THREE.Mesh( new THREE.CubeGeometry(10, percent, 10), new THREE.MeshLambertMaterial({color: color, transparent: true, opacity: 0.7, alphaTest: 0.5}) );
+	mesh.geometry.computeBoundingBox();
+	var boundingBox = mesh.geometry.boundingBox;
+	var position = new THREE.Vector3();
+	position.subVectors( boundingBox.max, boundingBox.min );
+	position.multiplyScalar( 0.5 );
+	position.add( boundingBox.min );
+	position.applyMatrix4( mesh.matrixWorld );
+	
+	bar.position.set( position.x, boundingBox.max.y, position.z );
+	group.add(bar);
+	bar.visible = false;
+	
+	var text = make3DText(prefix+height+suffix, color, mesh);
+	text.position.set( position.x + 3, boundingBox.max.y + ((percent / 2) + 5), position.z );	
+	
+	dataArray.push( text, bar );
 }
-function makeInvestmentOverlay(){
-	var cylinder1 = makeCylinder(0x279CCD, 50);
-	cylinder1.position.set(40, 0, -90);
-	var data1 = make3DText("£4.8m sports facilities", 0x279CCD, 7);
-	data1.position.set(40, 35, -90);
-	
-	var cylinder2 = makeCylinder(0x279CCD, 80);
-	cylinder2.position.set(-355, 0, -45);
-	var data2a = make3DText("£120m on new", 0x279CCD, 7);
-	data2a.position.set(-355, 70, -45);
-	var data2b = make3DText("student residences", 0x279CCD, 7);
-	data2b.position.set(-355, 55, -45);
-	
-	var cylinder3 = makeCylinder(0xd47356, 60);
-	cylinder3.position.set(19, 0, -186);
-	var data3a = make3DText("£0.9m refurbishment", 0xd47356, 7);
-	data3a.position.set(19, 55, -186);
-	var data3b = make3DText("of Jennison building ", 0xd47356, 7);
-	data3b.position.set(19, 40, -186);
-	
-	var cylinder4 = makeCylinder(0x279CCD, 60);
-	cylinder4.position.set(225, 0, -40);
-	var data4a = make3DText("£12.6m new", 0x279CCD, 7);
-	data4a.position.set(225, 55, -40);
-	var data4b = make3DText("teaching spaces", 0x279CCD, 7);
-	data4b.position.set(225, 40, -40);
-	
-	var cylinder5 = makeCylinder(0xd47356, 50);
-	cylinder5.position.set(294, 0, -220);
-	var data5a = make3DText("£8m Colyer-Fergusson", 0xd47356, 7);
-	data5a.position.set(294, 50, -220);
-	var data5b = make3DText("Music Building", 0xd47356, 7);
-	data5b.position.set(294, 35, -220);
-	
-	var cylinder6 = makeCylinder(0xd47356, 70);
-	cylinder6.position.set(-30, 0, 112);
-	var data6a = make3DText("Keynes", 0xd47356, 7);
-	data6a.position.set(-30, 60, 112);
-	var data6b = make3DText("College Extension", 0xd47356, 7);
-	data6b.position.set(-30, 45, 112);
-	
-	investmentArray.push(cylinder1,cylinder2,cylinder4,data1,data2a,data2b,data4a,data4b);
-	developmentArray.push(cylinder3,cylinder5,cylinder6,data3a,data3b,data5a,data5b,data6a,data6b);
-}
-
-function parkingRotate(){
-	if (camera.position.z < 0){
-		for (var i=0, tot=investmentArray.length; i < tot; i++) {
-			investmentArray[i].rotation.y = 270 * Math.PI / 280;
-		}
-		for (var i=0, tot=developmentArray.length; i < tot; i++) {
-			developmentArray[i].rotation.y = 270 * Math.PI / 280;
-		}
-	}else{
-		for (var i=0, tot=investmentArray.length; i < tot; i++) {
-			investmentArray[i].rotation.y = 0;
-		}
-		for (var i=0, tot=developmentArray.length; i < tot; i++) {
-			developmentArray[i].rotation.y = 0;
-		}
-	}	
-}
-
 function onWindowResize() {
 	camera.aspect = window.innerWidth / window.innerHeight;
 	camera.updateProjectionMatrix();

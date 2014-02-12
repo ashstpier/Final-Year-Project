@@ -26,15 +26,27 @@
     </div>
 </div>
 <div id="navbar">
-	<a href="#" id="drawer-toggle"><img src="assets/images/logo.png" alt="University of Kent logo" /></a>
+	<div id="logo"><a href="http://www.kent.ac.uk/" target="_blank"><img src="assets/images/logo.png" alt="University of Kent logo" /></a><h1>Explore the UKC campus!</h1></div>
     <ul id="nav">
-    	<li><a href="index.php">Explore</a></li>
+    	<!--<li><a href="#"><i class="fa fa-reply"></i> Back</a></li>
+    	<li><a href="index.php" class="active">Explore</a></li>
     	<li><a href="facts.html">10 Facts</a></li>
-        <li><a href="social.php" class="active">Social</a></li>
-        <li id="twitter"><a href="#"><i class="fa fa-twitter"></i></a></li>
-        <li id="facebook"><a href="#"><i class="fa fa-facebook"></i></a></li>
-        <li id="github"><a href="#"><i class="fa fa-github-alt"></i></a></li>
+        <li><a href="social.php">Social</a></li>
+        <li id="twitter"><a href="#"><i class="fa fa-twitter"></i> Twitter</a></li>
+        <li id="facebook"><a href="#"><i class="fa fa-facebook"></i> Facebook</a></li>
+        <li id="github"><a href="#"><i class="fa fa-github-alt"></i> Github</a></li>-->
+        <li><a href="index.php"><i class="fa fa-compass"></i>&nbsp;&nbsp;Explore</a></li>
+        <li><a href="social.php" class="active"><i class="fa fa-users"></i>&nbsp;&nbsp;Social</a></li>
+        <li id="share"><a href="#"><i class="fa fa-share"></i></a></li>
     </ul>
+    <div id="sharebox">
+    	<div class="arrow-down"></div>
+    	<ul>
+        	<li><button type="button"><i class="fa fa-twitter"></i></button></li>
+            <li><button type="button"><i class="fa fa-facebook"></i></button></li>
+            <li><button type="button"><i class="fa fa-google-plus"></i></button></li>
+        </ul>
+    </div>
 </div>
 <div id="leftnav">
     <button id="twitter-button" class="slide" type="button"><i class="fa fa-bars"></i></button>
@@ -44,7 +56,7 @@
     </div>
 </div>
 <div class="slide-drawer">
-    <div id="twitter-panel">
+    <div id="twitter-panel" class="slidepanel">
         <h2>Filters</h2>
         <ul id="filters">
         	<li><a href="#" data-filter="*" class="checked"><i class="fa fa-th-large"></i>Show all</a></li>
@@ -65,7 +77,7 @@
           <li><a href="#" data-filter=".kentunion">#KentUnion</a></li>
         </ul>
     </div>
-    <div id="social-panel">
+    <div id="social-panel" class="slidepanel">
         <h2>Options</h2>
         <h3>Display</h3>
         <ul>
@@ -78,7 +90,7 @@
             <li><a href="#" id="date-old" class="sort"><i class="fa fa-sort-amount-asc"></i>Oldest</a></li>
         </ul>
     </div>
-    <div id="info-panel">
+    <div id="info-panel" class="slidepanel">
         <h2>Info</h2>
         
         <ul>

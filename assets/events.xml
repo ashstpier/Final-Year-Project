@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<events>
+	<event>
+		<title>#TREND present BONDAX</title>
+		<day>21</day>
+		<month>Feb</month>
+		<location>The Venue</location>
+	</event>
+	<event>
+		<title>UG Education Forum</title>
+		<day>24</day>
+		<month>Feb</month>
+		<location>GLT3</location>
+	</event>
+	<event>
+		<title>PG Education Forum</title>
+		<day>26</day>
+		<month>Feb</month>
+		<location>TBC</location>
+	</event>
+	<event>
+		<title>Course Rep. Election Nominations Open</title>
+		<day>31</day>
+		<month>Mar</month>
+		<location>TBC</location>
+	</event>
+</events>

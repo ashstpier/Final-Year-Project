@@ -1,410 +1,435 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
 <slides>
-    <Aphra_Theatre>
-        <header>Aphra Theatre</header>
+    <building label="Aphra_Theatre">
 		<type><![CDATA[<i class="fa-book fa"></i> Teaching]]></type>
 		<description>The Aphra Theatre is a courtyard-style gallery theatre space organised by the School of Arts.</description>
 		<list><![CDATA[<ul><li><span>113</span>seats</li><li><span>Studio</span>space</li><li><span>Drama</span>school</li></ul>]]></list>
-    </Aphra_Theatre>
-    <Becket_Court>
-		<header>Becket Court</header>
+    </building>
+   <building label="Becket_Court">
+   		<data>100</data>
 		<type><![CDATA[<i class="fa-home fa"></i> Accommodation]]></type>
 		<description>Named after Thomas Becket and located adjacent to Eliot College, Becket Court offers en suite rooms on a bed and bistro basis.</description>
-		<list><![CDATA[<ul><li><span>En-suite</span>toilet</li><li><span>B&amp;B</span>catering</li><li><span>&pound;4500</span>annually</li></ul>]]></list>
+		<list><![CDATA[<ul><li><span>En-suite</span>toilet</li><li><span>B&amp;B</span>catering</li><li><span>&pound;5863</span>annually</li></ul>]]></list>
 		<backcontent><![CDATA[<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed dapibus iaculis enim, a imperdiet lectus egestas eget. Quisque eu tortor diam. Vivamus consectetur odio sit amet viverra hendrerit. Etiam sollicitudin id purus accumsan mollis. Nam fringilla lacus eu molestie egestas. Aliquam vel tristique nulla. Nulla non felis nibh. Morbi magna nisi, fermentum sit amet volutpat at, malesuada et neque.</p>]]></backcontent>
-    </Becket_Court>
-    <Bishopden_Court>
-        <header>Bishopden Court</header>
+    </building>
+    <building label="Bishopden_Court">
 		<type><![CDATA[<i class="fa-home fa"></i> Accommodation]]></type>
 		<description>Bishopden Court houses have shower and toilet facilities upstairs, with an additional downstairs toilet. The kitchen/diner has an oven and hob, fridge/freezer and microwave.</description>
-		<list><![CDATA[<ul><li><span>Shared</span>bathroom</li><li><span>Self</span>catering</li><li><span>&pound;3,865</span>annually</li></ul>]]></list>
-    </Bishopden_Court>
-    <Boiler_House>
-        <header>Boiler House</header>
+		<list><![CDATA[<ul><li><span>Shared</span>bathroom</li><li><span>Self</span>catering</li><li><span>&pound;3,955</span>annually</li></ul>]]></list>
+    </building>
+    <building label="Boiler_House">
 		<type><![CDATA[<i class="fa-book fa"></i> Teaching]]></type>
 		<description>The Boiler House is a large workshop run by the School of Arts, ideal for large-scale 3D work.</description>
-    </Boiler_House>
-    <Bossenden_Court>
-        <header>Bossenden Court</header>
+    </building>
+    <building label="Bossenden_Court">
 		<type><![CDATA[<i class="fa-home fa"></i> Accommodation]]></type>
 		<description>As one of the Parkwood Flats, Bossenden Court offers spacious en-suite rooms and a shared kitchen.</description>
-		<list><![CDATA[<ul><li><span>En-suite</span>toilet</li><li><span>Self</span>catering</li><li><span>&pound;5,361</span>annually</li></ul>]]></list>
-    </Bossenden_Court>
-    <Campus_Watch>
-        <header>Campus Watch</header>
+		<list><![CDATA[<ul><li><span>En-suite</span>bathroom</li><li><span>Self</span>catering</li><li><span>&pound;5,621</span>annually</li></ul>]]></list>
+    </building>
+    <building label="Campus_Watch">
 		<type><![CDATA[<i class="fa-wrench fa"></i> Maintenance]]></type>
 		<description>The Campus Watch headquarters are the place to go for any security concerns you may have around campus.</description>
-    </Campus_Watch>
-    <Careers_Employability_Service>
-        <header>Careers Employability Service</header>
+    </building>
+    <building label="Careers_Employability_Service">
 		<type><![CDATA[<i class="fa-info fa"></i> Admin]]></type>
-		<description>this is the brief description.</description>
-    </Careers_Employability_Service>
-    <Clowes_Court>
-        <header>Clowes Court</header>
+		<description>The Careers Employability Service helps students with all aspects of career planning and decision-making. Opening hours: Monday 10.30am-5pm, Tuesday-Friday 9am-5pm.</description>
+    </building>
+    <building label="Clowes_Court">
 		<type><![CDATA[<i class="fa-home fa"></i> Accommodation]]></type>
 		<description>Clowes Court houses have shower and toilet facilities upstairs, with an additional downstairs toilet. The kitchen/diner has an oven and hob, fridge/freezer and microwave.</description>
-		<list><![CDATA[<ul><li><span>Shared</span>bathroom</li><li><span>Self</span>catering</li><li><span>&pound;3,865</span>annually</li></ul>]]></list>
-    </Clowes_Court>
-    <Colyer_Fergusson>
-        <header>Colyer Fergusson</header>
+		<list><![CDATA[<ul><li><span>Shared</span>bathroom</li><li><span>Self</span>catering</li><li><span>&pound;3,955</span>annually</li></ul>]]></list>
+    </building>
+    <building label="Colyer_Fergusson">
 		<type><![CDATA[<i class="fa-group fa"></i> Social]]></type>
 		<description>A purpose-built, flexible performance space that can accommodate a wide range of musical activities.</description>
 		<list><![CDATA[<ul><li><span>400</span>seats</li><li><span>Studio</span>space</li><li><span>Music</span>school</li></ul>]]></list>
-    </Colyer_Fergusson>
-    <Cornwallis_George_Allen_Wing>
-		<header>Cornwallis George Allen Wing</header>
-		<type><![CDATA[<i class="fa-book fa"></i> Teaching]]></type>
+    </building>
+    <building label="Cornwallis_George_Allen_Wing">
+		<type>School of Languages</type>
 		<description>The George Allen Wing houses the School of European Culture and Languages as well as the Knowledge Management Centre for the School of Social Policy, Sociology and Social Research.</description>
-		<list><![CDATA[<ul><li><span>5</span>rooms</li><li><span>Lecture</span>halls</li><li><span>Language</span>school</li></ul>]]></list>
-	</Cornwallis_George_Allen_Wing>
-    <Cornwallis_Mathematics_Institute>
-		<header>Cornwallis Mathematics Institute</header>
+		<rooms>
+			<room value="CGAWN03B">CGAWN03B</room>
+			<room value="CGAWN05">CGAWN05</room>
+			<room value="CGAWN08">CGAWN08</room>
+			<room value="CGAWN09B">CGAWN09B</room>
+			<room value="KMC">Knowledge Management Centre</room>
+		</rooms>
+	</building>
+    <building label="Cornwallis_Mathematics_Institute">
 		<type><![CDATA[<i class="fa-book fa"></i> Teaching]]></type>
 		<description>The Cornwallis Mathematics Institute houses the main Mathematics lecture theatre along with the McVittie Library.</description>
-		<list><![CDATA[<ul><li><span>132</span>seats</li><li><span>Lecture</span>halls</li><li><span>Maths</span>school</li></ul>]]></list>
-	</Cornwallis_Mathematics_Institute>
-    <Cornwallis_North_East>
-		<header>Cornwallis North East</header>
+		<rooms>
+			<room value="MATHSLT">MATHSLT</room>
+			<room value="McVittie_L">McVittie Lib</room>
+		</rooms>
+	</building>
+    <building label="Cornwallis_North_East">
 		<type><![CDATA[<i class="fa-book fa"></i> Teaching]]></type>
 		<description>Cornwallis North East contains 3 classrooms for the School of Social Policy, Sociology and Social Research.</description>
-		<list><![CDATA[<ul><li><span>3</span>rooms</li><li><span>Lecture</span>halls</li><li><span>Sociology</span>school</li></ul>]]></list>
-	</Cornwallis_North_East>
-    <Cornwallis_North_West>
-		<header>Cornwallis North West</header>
+		<rooms>
+			<room value="CNE08">CNE08</room>
+			<room value="CNE102">CNE102</room>
+			<room value="CNE112">CNE112</room>
+			<room value="CNE">CNE Reception</room>
+		</rooms>
+	</building>
+    <building label="Cornwallis_North_West">
 		<type><![CDATA[<i class="fa-book fa"></i> Teaching]]></type>
 		<description>Cornwallis North West has a variety of teaching spaces for the School of European Culture and Languages as well as a large central quad area.</description>
-		<list><![CDATA[<ul><li><span>18</span>rooms</li><li><span>Lecture</span>halls</li><li><span>Language</span>school</li></ul>]]></list>
-	</Cornwallis_North_West>
-    <Cornwallis_South_East>
-		<header>Cornwallis South East</header>
+		<rooms>
+			<room value="CNWG34">CNWG34</room>
+			<room value="CNWsr1">CNWsr1</room>
+			<room value="CNWsr10">CNWsr10</room>
+			<room value="CNWsr11">CNWsr11</room>
+			<room value="CNWsr12">CNWsr12</room>
+			<room value="CNWsr2">CNWsr2</room>
+			<room value="CNWsr3">CNWsr3</room>
+			<room value="CNWsr4">CNWsr4</room>
+			<room value="CNWsr5">CNWsr5</room>
+			<room value="CNWsr6">CNWsr6</room>
+			<room value="CNWsr7">CNWsr7</room>
+			<room value="CNWsr8">CNWsr8</room>
+			<room value="CNWsr9">CNWsr9</room>
+			<room value="MMLab1">MMLab1</room>
+		</rooms> 
+	</building>
+    <building label="Cornwallis_South_East">
 		<type><![CDATA[<i class="fa-book fa"></i> Teaching]]></type>
 		<description>Cornwallis South East contains many computer facilities along with two large lecture rooms.</description>
-		<list><![CDATA[<ul><li><span>7</span>rooms</li><li><span>Lecture</span>halls</li><li><span>Maths</span>school</li></ul>]]></list>
-	</Cornwallis_South_East>
-    <Cornwallis_South_West>
-		<header>Cornwallis South West</header>
+		<rooms>
+			<room value="CC02">CC02</room>
+			<room value="COLT2">COLT2</room>
+			<room value="COLT3">COLT3</room>
+			<room value="MTRA">Maths Terminal Room A </room>
+			<room value="MTRB">Maths Terminal Room B </room>
+		</rooms>
+	</building>
+    <building label="Cornwallis_South_West">
 		<type><![CDATA[<i class="fa-book fa"></i> Teaching]]></type>
 		<description>Cornwallis South West consists of three computer rooms used by the School of Computing.</description>
-		<list><![CDATA[<ul><li><span>3</span>rooms</li><li><span>Computer</span>rooms</li><li><span>Computing</span>school</li></ul>]]></list>
-	</Cornwallis_South_West>
-	<Cornwallis_South>
-		<header>Cornwallis South</header>
+		<rooms>
+			<room value="CompSW101">Comp SW101</room>
+			<room value="CompSW102">Comp SW102</room>
+			<room value="CompSW103">Comp SW103</room>
+		</rooms>
+	</building>
+	<building label="Cornwallis_South">
 		<type><![CDATA[<i class="fa-book fa"></i> Teaching]]></type>
 		<description>Cornwallis South is home to the School of Computing consisting of three computer rooms and two class rooms.</description>
-		<list><![CDATA[<ul><li><span>6</span>rooms</li><li><span>Lecture</span>halls</li><li><span>Computing</span>school</li></ul>]]></list>
-	</Cornwallis_South>
-    <Cornwallis_West>
-		<header>Cornwallis West</header>
+		<rooms>
+			<room value="CC01">CC01</room>
+			<room value="CC03">CC03</room>
+			<room value="CC04">CC04</room>
+			<room value="S110B">S110B</room>
+			<room value="S115B">S115B</room>
+			<room value="KITC">KITC</room>
+		</rooms>
+	</building>
+    <building label="Cornwallis_West">
 		<type><![CDATA[<i class="fa-book fa"></i> Teaching]]></type>
 		<description>Cornwallis West contains four offices and a seminar room for the School of European Culture and Languages.</description>
-		<list><![CDATA[<ul><li><span>5</span>rooms</li><li><span>Office</span>rooms</li><li><span>Language</span>school</li></ul>]]></list>
-	</Cornwallis_West>
-    <Darwin_College>
-		<header>Darwin College</header>
+		<rooms>
+			<room value="CW160">CW160</room>
+			<room value="CW161">CW161</room>
+			<room value="CW164">CW164</room>
+			<room value="CWG35">CWG35</room>
+			<room value="CWG36a">CWG36a</room>
+		</rooms>
+	</building>
+    <building label="Darwin_College">
 		<type><![CDATA[<i class="fa-bell fa"></i> College]]></type>
 		<description>Darwin College is the fourth oldest of the Kent colleges. It contains a variety of teaching, seminar and office rooms which are used by many subject areas. Also home to the very popular in-house bar and bistro - Origins.</description>
-		<list><![CDATA[<ul><li><span>19</span>rooms</li><li><span>Various</span>rooms</li><li><span>College</span>building</li></ul>]]></list>
-	</Darwin_College>
-    <Darwin_Houses>
-		<header>Darwin Houses</header>
+		<rooms>
+			<room value="DCMO">D.Master's Office</room>
+			<room value="D.PeterBro">D.PeterBrown</room>
+			<room value="Drecep">D.Reception</room>
+			<room value="D.SCR">D.Senior Common room</room>
+			<room value="D.Tw.Rm">D.Tw.Rm</room>
+			<room value="DConf">Darwin Conference Suite</room>
+			<room value="DCPC1">Darwin student PC hub 1</room>
+			<room value="DCPC2">Darwin student PC hub 2</room>
+			<room value="DLT1">DLT1</room>
+			<room value="DLT2">DLT2</room>
+			<room value="DLT3">DLT3</room>
+			<room value="DS1">DS1</room>
+			<room value="DS1">DS2</room>
+			<room value="DS7">DS7</room>
+			<room value="DS8">DS8</room>
+			<room value="DS9">DS9</room>
+			<room value="DS10">DS10</room>
+			<room value="DS11">DS11</room>
+			<room value="DS12">DS12</room>
+			<room value="DS14">DS14</room>
+		</rooms>
+	</building>
+    <building label="Darwin_Houses">
 		<type><![CDATA[<i class="fa-home fa"></i> Accommodation]]></type>
 		<description>Rooms in the Darwin Houses have their own sink along with shared toilet and shower facilities. Rooms are arranged in corridors of 5 single rooms over four floors, with access to shared kitchens.</description>
-		<list><![CDATA[<ul><li><span>Shared</span>bathroom</li><li><span>Self</span>catering</li><li><span>&pound;4,092</span>annually</li></ul>]]></list>
-	</Darwin_Houses>
-	<Denstead_Court>
-		<header>Denstead Court</header>
+		<list><![CDATA[<ul><li><span>Shared</span>bathroom</li><li><span>Self</span>catering</li><li><span>&pound;4,204</span>annually</li></ul>]]></list>
+	</building>
+	<building label="Denstead_Court">
 		<type><![CDATA[<i class="fa-home fa"></i> Accommodation]]></type>
 		<description>Denstead Court houses have shower and toilet facilities upstairs, with an additional downstairs toilet. The kitchen/diner has an oven and hob, fridge/freezer and microwave.</description>
-		<list><![CDATA[<ul><li><span>Shared</span>bathroom</li><li><span>Self</span>catering</li><li><span>&pound;3,865</span>annually</li></ul>]]></list>
-	</Denstead_Court>
-	<Eliot_College>
-		<header>Eliot College</header>
+		<list><![CDATA[<ul><li><span>Shared</span>bathroom</li><li><span>Self</span>catering</li><li><span>&pound;3,955</span>annually</li></ul>]]></list>
+	</building>
+	<building label="Eliot_College">
 		<type><![CDATA[<i class="fa-bell fa"></i> College]]></type>
 		<description>Eliot College is the oldest of the Kent colleges. Consisting of accommodation alongside large multipurpose rooms, it is situated right in the heart of the campus.</description>
-		<list><![CDATA[<ul><li><span>Shared</span>bathroom</li><li><span>B&amp;B</span>catering</li><li><span>&pound;3,680</span>annually</li></ul>]]></list>
-	</Eliot_College>
-	<Ellenden_Court>
-		<header>Ellenden Court</header>
+		<list><![CDATA[<ul><li><span>Shared</span>bathroom</li><li><span>B&amp;B</span>catering</li><li><span>&pound;3,715</span>annually</li></ul>]]></list>
+	</building>
+	<building label="Ellenden_Court">
 		<type><![CDATA[<i class="fa-home fa"></i> Accommodation]]></type>
 		<description>Ellenden Court houses have shower and toilet facilities upstairs, with an additional downstairs toilet. The kitchen/diner has an oven and hob, fridge/freezer and microwave.</description>
-		<list><![CDATA[<ul><li><span>Shared</span>bathroom</li><li><span>Self</span>catering</li><li><span>&pound;3,865</span>annually</li></ul>]]></list>
-	</Ellenden_Court>
-    <Estates_Department>
-		<header>Estates Department</header>
+		<list><![CDATA[<ul><li><span>Shared</span>bathroom</li><li><span>Self</span>catering</li><li><span>&pound;4,376</span>annually</li></ul>]]></list>
+	</building>
+    <building label="Estates_Department">
+		<type><![CDATA[<i class="fa-leaf fa"></i> Maintenance]]></type>
+		<description>The Estates Department provides a number of essential services to the University of Kent and is responsible for managing, maintaining and developing the infrastructure and building fabric of the various campuses.</description>
+	</building>
+    <building label="Farthings_Court">
+		<type><![CDATA[<i class="fa-home fa"></i> Accommodation]]></type>
+		<description>Farthings Court houses have shower and toilet facilities upstairs, with an additional downstairs toilet. The kitchen/diner has an oven and hob, fridge/freezer and microwave.</description>
+		<list><![CDATA[<ul><li><span>Shared</span>bathroom</li><li><span>Self</span>catering</li><li><span>&pound;3,955</span>annually</li></ul>]]></list>
+	</building>
+    <building label="Grimmond">
 		<description>this is the brief description.</description>
-	</Estates_Department>
-    <Farthings_Court>
-		<header>Farthings Court</header>
-		<description>this is the brief description.</description>
-	</Farthings_Court>
-    <Grimmond>
-		<header>Grimmond</header>
-		<description>this is the brief description.</description>
-	</Grimmond>
-    <Grimshill_Court>
-		<header>Grimshill Court</header>
-		<description>this is the brief description.</description>
-		<area><![CDATA[<i class="fa fa-home"></i>Accomodation]]></area>
-	</Grimshill_Court>
-	<Ground_Maintenance>
-		<header>Ground Maintenance</header>
-		<description>this is the brief description.</description>
+	</building>
+    <building label="Grimshill_Court">
+		<type><![CDATA[<i class="fa-home fa"></i> Accommodation]]></type>
+		<description>Grimshill Court houses have shower and toilet facilities upstairs, with an additional downstairs toilet. The kitchen/diner has an oven and hob, fridge/freezer and microwave.</description>
+		<list><![CDATA[<ul><li><span>Shared</span>bathroom</li><li><span>Self</span>catering</li><li><span>&pound;4376</span>annually</li></ul>]]></list>
+	</building>
+	<building label="Ground_Maintenance">
+		<type><![CDATA[<i class="fa-leaf fa"></i> Maintenance]]></type>
+		<description>The Grounds Maintenance team has a responsibility to ensure that the University grounds are maintained to an agreed standard, based upon a detailed specification.</description>
 		<area><![CDATA[<i class="fa fa-leaf"></i>Maintenance]]></area>
-	</Ground_Maintenance>
-    <Gulbenkian>
-		<header>Gulbenkian</header>
-		<description>this is the brief description.</description>
+	</building>
+    <building label="Gulbenkian">
+		<type><![CDATA[<i class="fa-users fa"></i> Community]]></type>
+		<description>Gulbenkian is a key part of the University of Kent's Arts Centre offering innovative, engaging and high quality arts activity for and with the public, staff and students.</description>
 		<area><![CDATA[<i class="fa fa-film"></i>Theatre]]></area>
-	</Gulbenkian>
-	<Homestall_Court>
-		<header>Homestall Court</header>
-		<description>this is the brief description.</description>
-		<area><![CDATA[<i class="fa fa-home"></i>Accomodation]]></area>
-	</Homestall_Court>
-	<Hothe_Court>
-		<header>Hothe Court</header>
-		<description>this is the brief description.</description>
-		<area><![CDATA[<i class="fa fa-home"></i>Accomodation]]></area>
-	</Hothe_Court>
-    <Ingram>
-		<header>Ingram</header>
-		<description>this is the brief description.</description>
-		<area><![CDATA[<i class="fa fa-flask"></i>Science]]></area>
-	</Ingram>
-	<Innovation_Center>
-		<header>Innovation Center</header>
-		<description>this is the brief description.</description>
-		<area><![CDATA[<i class="fa fa-info"></i>Admin]]></area>
-	</Innovation_Center>
-	<Jarman>
-		<header>Jarman</header>
-		<description>this is the brief description.</description>
-		<area><![CDATA[<i class="fa fa-picture-o"></i>Art]]></area>
-	</Jarman>
-	<Jennison>
-		<header>Jennison</header>
-		<description>this is the brief description.</description>
-		<area><![CDATA[<i class="fa fa-laptop"></i>Digital Arts]]></area>
-	</Jennison>
-    <Kemsdale_Court>
-		<header>Kemsdale Court</header>
-		<description>this is the brief description.</description>
-		<area><![CDATA[<i class="fa fa-home"></i>Accomodation]]></area>
-	</Kemsdale_Court>
-	<Kent_Business_School>
-		<header>Kent Business School</header>
-		<description>this is the brief description.</description>
-		<area><![CDATA[<i class="fa fa-gbp"></i>Business]]></area>
-	</Kent_Business_School>
-    <Kent_Enterprise_Hub>
-		<header>Kent Enterprise Hub</header>
-		<description>this is the brief description.</description>
-		<area><![CDATA[<i class="fa fa-info"></i>Admin]]></area>
-	</Kent_Enterprise_Hub>
-    <Kent_Law_School>
-		<header>Kent Law School</header>
-		<description>this is the brief description.</description>
-		<area><![CDATA[<i class="fa fa-gavel"></i>Law]]></area>
-	</Kent_Law_School>
-    <Keynes_College>
-		<header>Keynes College</header>
-		<description>this is the brief description.</description>
-		<area><![CDATA[<i class="fa fa-book"></i>College]]></area>
-	</Keynes_College>
-    <Keynes_Flats>
-		<header>Keynes Flats</header>
-		<description>this is the brief description.</description>
-		<area><![CDATA[<i class="fa fa-home"></i>Accomodation]]></area>
-	</Keynes_Flats>
-    <Locke>
-		<header>Locke</header>
+	</building>
+	<building label="Homestall_Court">
+		<type><![CDATA[<i class="fa-home fa"></i> Accommodation]]></type>
+		<description>Homestall Court houses have shower and toilet facilities upstairs, with an additional downstairs toilet. The kitchen/diner has an oven and hob, fridge/freezer and microwave.</description>
+		<list><![CDATA[<ul><li><span>Shared</span>bathroom</li><li><span>Self</span>catering</li><li><span>&pound;3,955</span>annually</li></ul>]]></list>
+	</building>
+	<building label="Hothe_Court">
+		<type><![CDATA[<i class="fa-home fa"></i> Accommodation]]></type>
+		<description>Hothe Court houses have shower and toilet facilities upstairs, with an additional downstairs toilet. The kitchen/diner has an oven and hob, fridge/freezer and microwave.</description>
+		<list><![CDATA[<ul><li><span>Shared</span>bathroom</li><li><span>Self</span>catering</li><li><span>&pound;3,955</span>annually</li></ul>]]></list>
+	</building>
+    <building label="Ingram">
+		<type><![CDATA[<i class="fa-book fa"></i> Teaching]]></type>
+		<description>Ingram is home to the Physics department and houses four large lab spaces as well as a lecture theatre and several classrooms.</description>
+		<list><![CDATA[<ul><li><span>9</span>rooms</li><li><span>Teaching</span>rooms</li><li><span>Physics</span>school</li></ul>]]></list>
+	</building>
+	<building label="Innovation_Center">
+		<type><![CDATA[<i class="fa-info fa"></i> Admin]]></type>
+		<description>The Innovation Centre houses over 2500 sq. metres of modern, affordable office, studio and workshop space set amongst 500 acres of green parkland, overlooking the beautiful cathedral city of Canterbury.</description>
+	</building>
+	<building label="Jarman">
+		<type><![CDATA[<i class="fa-book fa"></i> Teaching]]></type>
+		<description>The Jarman building is the centre of Arts for the Canterbury campus. It offers professional standard drama, and film production studios as well as teaching rooms, social spaces and a dedicated centre for postgraduate students.</description>
+		<list><![CDATA[<ul><li><span>17</span>rooms</li><li><span>Studio</span>spaces</li><li><span>Arts</span>school</li></ul>]]></list>
+	</building>
+	<building label="Jennison">
+		<type><![CDATA[<i class="fa-book fa"></i> Teaching]]></type>
+		<description>The Jennison building is home to the School of Engineering and Digital Arts, including four large computer suites and various production rooms as well as a large engineering lab.</description>
+		<list><![CDATA[<ul><li><span>12</span>rooms</li><li><span>Teaching</span>rooms</li><li><span>EDA</span>school</li></ul>]]></list>
+	</building>
+    <building label="Kemsdale_Court">
+	<type><![CDATA[<i class="fa-home fa"></i> Accommodation]]></type>
+		<description>As one of the Parkwood Flats, Kemsdale Court offers spacious en-suite rooms and a shared kitchen.</description>
+		<list><![CDATA[<ul><li><span>En-suite</span>bathroom</li><li><span>Self</span>catering</li><li><span>&pound;5,621</span>annually</li></ul>]]></list>
+	</building>
+	<building label="Kent_Business_School">
+		<type><![CDATA[<i class="fa-book fa"></i> Teaching]]></type>
+		<description>The Kent Business School contains five seminar rooms, an IT suite, a lecture theatre and a large symposium room.</description>
+		<list><![CDATA[<ul><li><span>8</span>rooms</li><li><span>Teaching</span>rooms</li><li><span>Business</span>school</li></ul>]]></list>
+	</building>
+    <building label="Kent_Enterprise_Hub">
+		<type><![CDATA[<i class="fa-book fa"></i> Admin]]></type>
+		<description>The Kent Enterprise business incubation and support unit is devoted to helping student, graduate and staff start-up ventures and early stage companies to increase survival rates.</description>
+	</building>
+    <building label="Kent_Law_School">
+		<type><![CDATA[<i class="fa-book fa"></i> Teaching]]></type>
+		<description>The law school is part of the Eliot College Extension and comprises of several teaching and meeting rooms.</description>
+		<list><![CDATA[<ul><li><span>3</span>rooms</li><li><span>Teaching</span>rooms</li><li><span>Law</span>school</li></ul>]]></list>
+	</building>
+    <building label="Keynes_College">
+		<type><![CDATA[<i class="fa-bell fa"></i> College]]></type>
+		<description>Keynes College is now one of the biggest colleges on the Canterbury Campus and has rooms for catered and self-catered students. Keynes College boast an expanded Dolche Vita where catered students are provided with breakfast and dinner.</description>
+		<list><![CDATA[<ul><li><span>30</span>rooms</li><li><span>Various</span>rooms</li><li><span>College</span>building</li></ul>]]></list>
+	</building>
+    <building label="Keynes_Flats">
+		<type><![CDATA[<i class="fa-home fa"></i> Accommodation]]></type>
+		<description>Rooms in the Keynes Flats have en-suite bathrooms and are self-catered. The flats are brand new and provide a very high standard of living including broadband computer links and laundry services.</description>
+		<list><![CDATA[<ul><li><span>En-suite</span>bathroom</li><li><span>Self</span>catering</li><li><span>&pound;5,626</span>annually</li></ul>]]></list>
+	</building>
+	<building label="Keynes_Houses">
+		<type><![CDATA[<i class="fa-home fa"></i> Accommodation]]></type>
+		<description>In each of the Keynes Houses, 9 people share the accommodation over three floors. The ground floor has a spacious kitchen and one bedroom with en suite facilities. There are four rooms on both the first and second floors, with two sets of shower and toilet facilities on each floor.</description>
+		<list><![CDATA[<ul><li><span>Shared</span>bathroom</li><li><span>Self</span>catering</li><li><span>&pound;4,853</span>annually</li></ul>]]></list>
+	</building>
+    <building label="Locke">
 		<description>this is the brief description.</description>
 		<area><![CDATA[<i class="fa fa-shopping-cart"></i>Shops]]></area>
-	</Locke>
-    <Lypeatt_Court>
-		<header>Lypeatt Court</header>
+	</building>
+    <building label="Lypeatt_Court">
 		<description>this is the brief description.</description>
 		<area><![CDATA[<i class="fa fa-home"></i>Accomodation]]></area>
-	</Lypeatt_Court>
-    <Mandela_Building>
-		<header>Mandela Building</header>
+	</building>
+    <building label="Mandela_Building">
 		<description>this is the brief description.</description>
 		<area><![CDATA[<i class="fa fa-info"></i>Student Union]]></area>
-	</Mandela_Building>
-    <Marley_Court>
-		<header>Marley Court</header>
+	</building>
+    <building label="Marley_Court">
 		<description>this is the brief description.</description>
 		<area><![CDATA[<i class="fa fa-home"></i>Accomodation]]></area>
-	</Marley_Court>
-	<Marlowe>
-		<header>Marlowe</header>
+	</building>
+	<building label="Marlowe">
 		<description>this is the brief description.</description>
 		<area><![CDATA[<i class="fa fa-building-o"></i>Architecture]]></area>
-	</Marlowe>
-	<Missing_Link>
-		<header>Missing Link</header>
+	</building>
+	<building label="Missing_Link">
 		<description>this is the brief description.</description>
 		<area><![CDATA[<i class="fa fa-book"></i>College]]></area>
-	</Missing_Link>
-    <Nickle_Court>
-		<header>Nickle Court</header>
+	</building>
+    <building label="Nickle_Court">
 		<description>this is the brief description.</description>
 		<area><![CDATA[<i class="fa fa-home"></i>Accomodation]]></area>
-	</Nickle_Court>
-	<Oaks_Day_Nursery>
-		<header>Oaks Day Nursery</header>
+	</building>
+	<building label="Oaks_Day_Nursery">
 		<description>this is the brief description.</description>
 		<area><![CDATA[<i class="fa fa-smile-o"></i>Nursery]]></area>
-	</Oaks_Day_Nursery>
-	<Olive_Cottages>
-		<header>Olive Cottages</header>
+	</building>
+	<building label="Olive_Cottages">
 		<description>this is the brief description.</description>
 		<area><![CDATA[<i class="fa fa-users"></i>Psychology]]></area>
-	</Olive_Cottages>
-    <Parkwood_Administration>
-		<header>Parkwood Administration</header>
+	</building>
+    <building label="Parkwood_Administration">
 		<description>this is the brief description.</description>
 		<area><![CDATA[<i class="fa fa-info"></i>Admin]]></area>
-	</Parkwood_Administration>
-    <Parkwood_Shop>
-		<header>Parkwood Shop</header>
+	</building>
+    <building label="Parkwood_Shop">
 		<description>this is the brief description.</description>
 		<area><![CDATA[<i class="fa fa-shopping-cart"></i>Shops]]></area>
-	</Parkwood_Shop>
-    <Purchas_Court>
-		<header>Purchas Court</header>
+	</building>
+    <building label="Purchas_Court">
 		<description>this is the brief description.</description>
 		<area><![CDATA[<i class="fa fa-home"></i>Accomodation]]></area>
-	</Purchas_Court>
-    <Registry>
-		<header>Registry</header>
+	</building>
+    <building label="Registry">
 		<description>this is the brief description.</description>
 		<area><![CDATA[<i class="fa fa-info"></i>Admin]]></area>
-	</Registry>
-    <Research_and_Development_Centre>
-		<header>Research and Development Centre</header>
+	</building>
+    <building label="Research_and_Development_Centre">
 		<description>this is the brief description.</description>
 		<area><![CDATA[<i class="fa fa-info"></i>Admin]]></area>
-	</Research_and_Development_Centre>
-    <Rothford>
-		<header>Rothford</header>
+	</building>
+    <building label="Rothford">
 		<description>this is the brief description.</description>
 		<area><![CDATA[<i class="fa fa-gbp"></i>Business]]></area>
-	</Rothford>
-    <Rutherford_College>
-		<header>Rutherford College</header>
+	</building>
+	<building label="Rutherford_Annexe">
+		<description>this is the brief description.</description>
+		<area><![CDATA[<i class="fa fa-home"></i>College]]></area>
+	</building>
+    <building label="Rutherford_College">
 		<description>this is the brief description.</description>
 		<area><![CDATA[<i class="fa fa-book"></i>College]]></area>
-	</Rutherford_College>
-    <Senate>
-		<header>Senate</header>
+	</building>
+	<building label="Rutherford_Extension">
+		<description>this is the brief description.</description>
+		<area><![CDATA[<i class="fa fa-book"></i>College]]></area>
+	</building>
+    <building label="Senate">
 		<description>this is the brief description.</description>
 		<area><![CDATA[<i class="fa fa-info"></i>Admin]]></area>
-	</Senate>
-    <Sports_Centre>
-		<header>Sports Centre</header>
+	</building>
+    <building label="Sports_Centre">
 		<description>this is the brief description.</description>
 		<area><![CDATA[<i class="fa fa-trophy"></i>Sport]]></area>
-	</Sports_Centre>
-    <Sports_Pavillion>
-		<header>Sports Pavillion</header>
+	</building>
+    <building label="Sports_Pavillion">
 		<description>this is the brief description.</description>
 		<area><![CDATA[<i class="fa fa-trophy"></i>Sport]]></area>
-	</Sports_Pavillion>
-    <Stacey>
-		<header>Stacey</header>
+	</building>
+    <building label="Stacey">
 		<description>this is the brief description.</description>
 		<area><![CDATA[<i class="fa fa-flask"></i>Bioscience]]></area>
-	</Stacey>
-    <Stock_Court>
-		<header>Stock Court</header>
+	</building>
+    <building label="Stock_Court">
 		<description>this is the brief description.</description>
 		<area><![CDATA[<i class="fa fa-home"></i>Accomodation]]></area>
-	</Stock_Court>
-    <Tanglewood>
-		<header>Tanglewood</header>
+	</building>
+    <building label="Tanglewood">
 		<description>this is the brief description.</description>
 		<area><![CDATA[<i class="fa fa-home"></i>Hospitality]]></area>
-	</Tanglewood>
-    <Templeman_Library>
-		<header>Templeman Library</header>
+	</building>
+    <building label="Templeman_Library">
 		<description>this is the brief description.</description>
 		<area><![CDATA[<i class="fa fa-book"></i>Library]]></area>
-	</Templeman_Library>
-    <Thornden_Court>
-		<header>Thornden Court</header>
+	</building>
+    <building label="Thornden_Court">
 		<description>this is the brief description.</description>
 		<area><![CDATA[<i class="fa fa-home"></i>Accomodation]]></area>
-	</Thornden_Court>
-    <Tudor_Court>
-		<header>Tudor Court</header>
+	</building>
+    <building label="Tudor_Court">
 		<description>this is the brief description.</description>
 		<area><![CDATA[<i class="fa fa-home"></i>Accomodation]]></area>
-	</Tudor_Court>
-	<Tyler_Court_A>
-		<header>Tyler Court A</header>
+	</building>
+	<building label="Tyler_Court_A">
 		<description>this is the brief description.</description>
 		<area><![CDATA[<i class="fa fa-home"></i>Accomodation]]></area>
-	</Tyler_Court_A>
-	<Tyler_Court_B>
-		<header>Tyler Court B</header>
+	</building>
+	<building label="Tyler_Court_B">
 		<description>this is the brief description.</description>
 		<area><![CDATA[<i class="fa fa-home"></i>Accomodation]]></area>
-	</Tyler_Court_B>
-	<Tyler_Court_C>
-		<header>Tyler Court C</header>
+	</building>
+	<building label="Tyler_Court_C">
 		<description>this is the brief description.</description>
 		<area><![CDATA[<i class="fa fa-home"></i>Accomodation]]></area>
-	</Tyler_Court_C>
-	<UELT>
-		<header>Unit for the Enhancement of Learning and Teaching</header>
+	</building>
+	<building label="UELT">
 		<description>this is the brief description.</description>
 		<area><![CDATA[<i class="fa fa-info"></i>Admin]]></area>
-	</UELT>
-	<University_Medical_Centre>
-		<header>University Medical Centre</header>
+	</building>
+	<building label="University_Medical_Centre">
 		<description>this is the brief description.</description>
 		<area><![CDATA[<i class="fa fa-medkit"></i>Medical]]></area>
-	</University_Medical_Centre>
-    <Venue>
-		<header>Venue</header>
+	</building>
+    <building label="Venue">
 		<description>this is the brief description.</description>
 		<area><![CDATA[<i class="fa fa-music"></i>Music]]></area>
-	</Venue>
-    <Willows_Court>
-		<header>Willows Court</header>
+	</building>
+    <building label="Willows_Court">
 		<description>this is the brief description.</description>
 		<area><![CDATA[<i class="fa fa-home"></i>Accomodation]]></area>
-	</Willows_Court>
-    <Woodlands>
-		<header>Woodlands</header>
+	</building>
+    <building label="Woodlands">
 		<description>this is the brief description.</description>
 		<area><![CDATA[<i class="fa fa-users"></i>Sociology]]></area>
-	</Woodlands>
-    <Woodys>
-		<header>Woodys</header>
+	</building>
+    <building label="Woodys">
 		<description>this is the brief description.</description>
 		<area><![CDATA[<i class="fa fa-cutlery"></i>Food and Drink]]></area>
-	</Woodys>
-    <Woolf_Blocks>
-		<header>Woolf Flats</header>
+	</building>
+    <building label="Woolf_Blocks">
 		<description>this is the brief description.</description>
 		<area><![CDATA[<i class="fa fa-home"></i>Accomodation]]></area>
-	</Woolf_Blocks>
-    <Woolf_Main>
-		<header>Woolf College</header>
+	</building>
+    <building label="Woolf_Main">
 		<description>this is the brief description.</description>
 		<area><![CDATA[<i class="fa fa-book"></i>College]]></area>
-	</Woolf_Main>
-	<Woolf_Pavillion>
-		<header>Woolf Pavillion</header>
+	</building>
+	<building label="Woolf_Pavillion">
 		<description>this is the brief description.</description>
 		<area><![CDATA[<i class="fa fa-home"></i>Accomodation]]></area>
-	</Woolf_Pavillion>
-    <Woolf_Residential>
-		<header>Woolf Residential</header>
+	</building>
+    <building label="Woolf_Residential">
 		<description>this is the brief description.</description>
 		<area><![CDATA[<i class="fa fa-home"></i>Accomodation]]></area>
-	</Woolf_Residential>
+	</building>
 </slides>
