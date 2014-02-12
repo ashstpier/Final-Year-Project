@@ -42,32 +42,30 @@ $( "#share a" ).click(function() {
 });
 
 //////// SEARCH ///////
-
 function searchResult(searchvalue) {
-	
+ 	
 	var foo = searchvalue.searchString.value;
-	var dashes = foo.replace(/\s/g, '_');
-	
-	var room = $(xml).find('room[value="'+dashes+'"]');
+ 	var dashes = foo.replace(/\s/g, '_');
+ 	
+	var room = $(xml).find('room:contains('+foo+')');
 	
 	if( !room.length){
-		$('#modalfront, #modalback').empty();
-		$("#modalpanel").removeClass('fadeOutUp fadeInDown opaque');
-		$(".card").removeClass('flipped');
-		closeTweet();
+ 		$('#modalfront, #modalback').empty();
+ 		$("#modalpanel").removeClass('fadeOutUp fadeInDown opaque');
+ 		$(".card").removeClass('flipped');
+ 		closeTweet();
 		modal = scene.getObjectByName( dashes, true );
-		placeMarker(modal);
+ 		placeMarker(modal);
 	}else{
-	room.each(function(){
-		var rooms = $(this).parent();
+		var rooms = $(room).parent()
 		var building = rooms.parent().attr('label');
-		$('#modalfront, #modalback').empty();
-		$("#modalpanel").removeClass('fadeOutUp fadeInDown opaque');
-		$(".card").removeClass('flipped');
-		closeTweet();
+ 		$('#modalfront, #modalback').empty();
+ 		$("#modalpanel").removeClass('fadeOutUp fadeInDown opaque');
+ 		$(".card").removeClass('flipped');
+ 		closeTweet();
 		modal = scene.getObjectByName( building, true );
-		placeMarker(modal);
-	});	
+ 		placeMarker(modal);
 	}
+	
 	return false;
 }

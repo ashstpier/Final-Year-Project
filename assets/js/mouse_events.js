@@ -82,6 +82,7 @@ function placeMarker(modal){
 		var header = $(this).attr("label").replace(/_/g, ' ');
 		var type = $(this).find('type').text();
 		var description = $(this).find('description').text();
+		var list = $(this).find('list').text();
 		var rooms = $(this).find('rooms').text();
 	
 		if (rooms != ""){
@@ -95,8 +96,16 @@ function placeMarker(modal){
 			});
 			$('<div class="arrow-down grey"></div>').appendTo('#modalfront, #modalback');
 			//$('<div class="content"></div>').html(backcontent+'<div class="next"></div><a href="#" onclick="flipModal()"><i class="fa-align-left fa"></i></a>').appendTo('#modalback');
-		}
-		else {
+		}else if(list != ""){
+			$('<div class="header"></div>').html('<img src="assets/images/buildings/'+img+'.jpg" />').appendTo('#modalfront');
+			$('<div class="content"></div>').html('<a href="#" onclick="closeModal()"><i class="fa-times fa fa-lg"></i></a><h2>'+header+'</h2><h3>'+type+'</h3><p>'+description+'</p>').appendTo('#modalfront');
+			$('<div class="footer"><ul></ul></div>').appendTo('#modalfront');
+			$(this).find('list').children().each(function(){
+				var listitem = $(this).text();
+				$('<li>'+listitem+'</li>').appendTo('#modalfront .footer ul');
+			});
+			$('<div class="arrow-down grey"></div>').appendTo('#modalfront, #modalback');
+		}else {
 			$('<div class="header"></div>').html('<img src="assets/images/buildings/'+img+'.jpg" />').appendTo('#modalfront');
 			$('<div class="content"></div>').html('<a href="#" onclick="closeModal()"><i class="fa-times fa fa-lg"></i></a><h2>'+header+'</h2><h3>'+type+'</h3><p>'+description+'</p>').appendTo('#modalfront');
 			$('<div class="arrow-down"></div>').appendTo('#modalfront, #modalback');

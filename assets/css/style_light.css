@@ -552,6 +552,26 @@ body {
 	padding: 20px;
 	border-top: #ddd solid 1px;
 }
+#modalpanel .footer ul {
+	list-style-type:none;
+	margin: 0;
+	padding: 0;
+}
+#modalpanel .footer ul li {
+	display: inline-block;
+	width: 33%;
+	text-align: center;
+	color: #999;
+	border-right: 1px solid #ddd;
+}
+#modalpanel .footer ul li:last-child {
+	border-right: none;
+}
+#modalpanel .footer span {
+	padding-bottom: 5px;
+	display: block;
+	font-size: 1.3em;
+}
 .arrow-down {
 	position: absolute;
 	bottom: -20px;
