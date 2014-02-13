@@ -225,6 +225,8 @@
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
 
+<script src="assets/js/jquery.simplemodal.1.4.4.min.js"></script>
+
 <script src="assets/js/three_r62.min.js"></script> 
 <script src="assets/js/controls/OrbitControls_r62.js"></script> 
 
@@ -289,7 +291,6 @@
 	/////// SEARCH ///////
 	
 	$(document).ready(function() {
-		var buildings = [];
 	
 		$.ajax({
 			type: "GET",

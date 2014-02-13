@@ -248,7 +248,7 @@ function makeIcon(mesh) {
 			
 			////// TEACHING //////
 			
-		case "Aphra_Theatre":
+		case "Aphra_and_Lumley_Theatre":
 			createArrays(teachingIcons, mesh);
 			break;
 		case "Boiler_House":
@@ -301,7 +301,7 @@ function makeIcon(mesh) {
 		case "Eliot_College":
 			createArrays(teachingIcons, mesh);
 			break;
-		case "Grimmond":
+		case "Grimond":
 			createArrays(teachingIcons, mesh);
 			break;
 		case "Gulbenkian":
@@ -388,7 +388,7 @@ function makeIcon(mesh) {
 		case "Woodlands":
 			createArrays(teachingIcons, mesh);
 			break;
-		case "Woolf_Main":
+		case "Woolf_College":
 			createArrays(teachingIcons, mesh);
 			break;
 	}

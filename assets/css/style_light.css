@@ -599,7 +599,7 @@ body {
 	bottom: 40px;
 	right: 50%;
 	margin-right:  -96px;
-	z-index: 9999;
+	z-index: 9980;
 	width: 132px;
 }
 #controls button {
@@ -788,4 +788,20 @@ a {
 }
 #roomform button:hover {
 	background: #d66549;
+}
+
+/* Overlay */
+#simplemodal-overlay { z-index: 999999!important}
+
+/* Container */
+#simplemodal-container {min-height:70px; width:300px; color:#5b656e; background-color:#242B31; padding:20px; font-weight: bold; z-index: 9999999!important; top: 90px!important; text-align:center;}
+.simplemodal-wrap { height: auto; }
+#simplemodal-container .arrow-down {
+	top: -20px;
+	left: 50%;
+	margin-left: -11px;
+	border-top: 10px solid transparent;
+	border-left: 10px solid transparent;
+	border-right: 10px solid transparent;
+	border-bottom: 10px solid #242B31;
 }

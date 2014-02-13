@@ -45,26 +45,30 @@ $( "#share a" ).click(function() {
 function searchResult(searchvalue) {
  	
 	var foo = searchvalue.searchString.value;
- 	var dashes = foo.replace(/\s/g, '_');
- 	
-	var room = $(xml).find('room:contains('+foo+')');
-	
-	if( !room.length){
- 		$('#modalfront, #modalback').empty();
- 		$("#modalpanel").removeClass('fadeOutUp fadeInDown opaque');
- 		$(".card").removeClass('flipped');
- 		closeTweet();
-		modal = scene.getObjectByName( dashes, true );
- 		placeMarker(modal);
+	if(jQuery.inArray( foo, buildings ) != -1){
+		var dashes = foo.replace(/\s/g, '_');
+		
+		var room = $(xml).find('room:contains('+foo+')');
+		
+		if( !room.length){
+			$('#modalfront, #modalback').empty();
+			$("#modalpanel").removeClass('fadeOutUp fadeInDown opaque');
+			$(".card").removeClass('flipped');
+			closeTweet();
+			modal = scene.getObjectByName( dashes, true );
+			placeMarker(modal);
+		}else{
+			var rooms = $(room).parent()
+			var building = rooms.parent().attr('label');
+			$('#modalfront, #modalback').empty();
+			$("#modalpanel").removeClass('fadeOutUp fadeInDown opaque');
+			$(".card").removeClass('flipped');
+			closeTweet();
+			modal = scene.getObjectByName( building, true );
+			placeMarker(modal);
+		}
 	}else{
-		var rooms = $(room).parent()
-		var building = rooms.parent().attr('label');
- 		$('#modalfront, #modalback').empty();
- 		$("#modalpanel").removeClass('fadeOutUp fadeInDown opaque');
- 		$(".card").removeClass('flipped');
- 		closeTweet();
-		modal = scene.getObjectByName( building, true );
- 		placeMarker(modal);
+		$.modal("<div class='arrow-down'></div><div>No search results match: "+foo+"</div>", {overlayClose: true});
 	}
 	
 	return false;

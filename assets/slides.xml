@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
 <slides>
-    <building label="Aphra_Theatre">
+    <building label="Aphra_and_Lumley_Theatre">
 		<type><![CDATA[<i class="fa-book fa"></i> Teaching]]></type>
 		<description>The Aphra Theatre is a courtyard-style gallery theatre space organised by the School of Arts.</description>
 		<list><![CDATA[<ul><li><span>113</span>seats</li><li><span>Studio</span>space</li><li><span>Drama</span>school</li></ul>]]></list>
@@ -225,7 +225,7 @@
 			<listitem>£3,995 p.a.</listitem>
 		</list>
 	</building>
-    <building label="Grimmond">
+    <building label="Grimond">
 		<description>this is the brief description.</description>
 	</building>
     <building label="Grimshill_Court">
@@ -267,7 +267,6 @@
     <building label="Ingram">
 		<type><![CDATA[<i class="fa-book fa"></i> Teaching]]></type>
 		<description>Ingram is home to the Physics department and houses four large lab spaces as well as a lecture theatre and several classrooms.</description>
-		<list><![CDATA[<ul><li><span>9</span>rooms</li><li><span>Teaching</span>rooms</li><li><span>Physics</span>school</li></ul>]]></list>
 	</building>
 	<building label="Innovation_Center">
 		<type><![CDATA[<i class="fa-info fa"></i> Admin]]></type>
@@ -481,7 +480,7 @@
 		<description>this is the brief description.</description>
 		<area><![CDATA[<i class="fa fa-home"></i>Accomodation]]></area>
 	</building>
-    <building label="Woolf_Main">
+    <building label="Woolf_College">
 		<description>this is the brief description.</description>
 		<area><![CDATA[<i class="fa fa-book"></i>College]]></area>
 	</building>

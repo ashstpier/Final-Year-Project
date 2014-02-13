@@ -1,8 +1,8 @@
 var container, stats, camera, scene, renderer, composer, projector, controls, ground, particleSystem, group = new THREE.Object3D(), group = new THREE.Object3D(), xml;
 var depthMaterial, depthTarget, composer;
-var clickobjects = [], tweetobjects = [], sprites = [], locationIcons = [], teachingIcons = [], communityIcons = [], tweetIcons = [], visitorParking = [], permitParking = [], cycleArray = [], busArray = [], maintenanceIcons = [], adminIcons = [], rotate = [], investmentArray = [], developmentArray = [], roompriceArray = [], populationArray = [], subjectscoreArray = [], subjectsatisfactionArray = [], entrypointsArray = [], sizeArray = [];
+var clickobjects = [], tweetobjects = [], sprites = [], locationIcons = [], teachingIcons = [], communityIcons = [], tweetIcons = [], visitorParking = [], permitParking = [], cycleArray = [], busArray = [], maintenanceIcons = [], adminIcons = [], rotate = [], investmentArray = [], developmentArray = [], roompriceArray = [], populationArray = [], subjectscoreArray = [], subjectsatisfactionArray = [], entrypointsArray = [], sizeArray = [], buildings = [];
 var jsonFileNames = [
-	'assets/models/Aphra_Theatre.js',
+	'assets/models/Aphra_and_Lumley_Theatre.js',
 	'assets/models/Becket_Court.js',
 	'assets/models/Bishopden_Court.js',
 	'assets/models/Boiler_House.js',
@@ -26,7 +26,7 @@ var jsonFileNames = [
 	'assets/models/Ellenden_Court.js',
 	'assets/models/Estates_Department.js',
 	'assets/models/Farthings_Court.js',
-	'assets/models/Grimmond.js',
+	'assets/models/Grimond.js',
 	'assets/models/Grimshill_Court.js',
 	'assets/models/Ground_Maintenance.js',
 	'assets/models/Gulbenkian.js',
@@ -80,7 +80,7 @@ var jsonFileNames = [
 	'assets/models/Woodlands.js',
 	'assets/models/Woodys.js',
 	'assets/models/Woolf_Blocks.js',
-	'assets/models/Woolf_Main.js',
+	'assets/models/Woolf_College.js',
 	'assets/models/Woolf_Pavillion.js',
 	'assets/models/Woolf_Residential.js'
 ];
