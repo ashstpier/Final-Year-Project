@@ -474,8 +474,6 @@ $( "#tweettoggle" ).click(function() {
 			tweetIcons[i].visible = false;
 		}
 		$(this).toggleClass( "toggle toggled" );
-		$("#labelall").removeClass( "toggled" );
-		$("#labelall").addClass( "toggle" );
 	} else {
 		for (var i=0, tot=tweetIcons.length; i < tot; i++) {
 			tweetIcons[i].visible = true;
@@ -598,6 +596,17 @@ $( "#permitparking" ).click(function() {
 		parking.visible = false;
 	}
 });
+/*$( "#roadnames" ).click(function() {
+	if ($(this).hasClass( "toggle" )) {
+		for (var i=0, tot=roadArray.length; i < tot; i++) {
+			new TWEEN.Tween( roadArray[i].material ).to( { opacity: 1 }, 500 ).easing( TWEEN.Easing.Quadratic.InOut).start();
+		}
+	} else {
+		for (var i=0, tot=roadArray.length; i < tot; i++) {
+			new TWEEN.Tween( roadArray[i].material ).to( { opacity: 0 }, 500 ).easing( TWEEN.Easing.Quadratic.InOut).start();
+		}
+	}
+});*/
 
 $( "#investment-panel a" ).click(function() {
 	if ($(this).hasClass( "toggle" )) {

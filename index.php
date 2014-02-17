@@ -109,6 +109,7 @@
         <p>Use the controls below to display transport information and bus routes:</p>
         <h3>Transport</h3>
         <ul>
+        	<li><a href="#" class="toggle" id="roadnames">Road Names</a></li>
         	<li><a href="#" class="toggle" id="visitorparking">Visitor parking</a></li>
             <li><a href="#" class="toggle" id="permitparking">Permit holder parking</a></li>
             <li><a href="#" class="toggle" id="busstops">Bus stops</a></li>
@@ -217,13 +218,24 @@
     </div>
     <div id="controls">
         <button id="rotateleft" type="button"><i class="fa fa-chevron-left"></i></button>
-        <button id="twod" type="button" onclick="tiltView()"><i class="fa fa-compass"></i></button>
+        <button id="twod" type="button" onclick="tiltView()"><i class="fa fa-th-large"></i></button>
         <button id="rotateright" type="button"><i class="fa fa-chevron-right"></i></button>
     </div>
 </div>
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+
+<script>
+var xml;
+
+$.ajax({
+	type: "GET",
+	url: "assets/buildings.xml",
+	dataType: "xml",
+	success: function(data) { xml = data;}
+});
+</script>
 
 <script src="assets/js/jquery.simplemodal.1.4.4.min.js"></script>
 
@@ -294,7 +306,7 @@
 	
 		$.ajax({
 			type: "GET",
-			url: "assets/slides.xml", // change to full path of file on server
+			url: "assets/buildings.xml", // change to full path of file on server
 			dataType: "xml",
 			success: parseXml,
 			complete: setupAC,

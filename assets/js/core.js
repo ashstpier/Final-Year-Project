@@ -1,6 +1,6 @@
-var container, stats, camera, scene, renderer, composer, projector, controls, ground, particleSystem, group = new THREE.Object3D(), group = new THREE.Object3D(), xml;
+var container, stats, camera, scene, renderer, composer, projector, controls, ground, particleSystem, group = new THREE.Object3D(), group = new THREE.Object3D();
 var depthMaterial, depthTarget, composer;
-var clickobjects = [], tweetobjects = [], sprites = [], locationIcons = [], teachingIcons = [], communityIcons = [], tweetIcons = [], visitorParking = [], permitParking = [], cycleArray = [], busArray = [], maintenanceIcons = [], adminIcons = [], rotate = [], investmentArray = [], developmentArray = [], roompriceArray = [], populationArray = [], subjectscoreArray = [], subjectsatisfactionArray = [], entrypointsArray = [], sizeArray = [], buildings = [];
+var clickobjects = [], tweetobjects = [], sprites = [], locationIcons = [], teachingIcons = [], communityIcons = [], tweetIcons = [], visitorParking = [], permitParking = [], cycleArray = [], busArray = [], maintenanceIcons = [], adminIcons = [], rotate = [], investmentArray = [], developmentArray = [], roompriceArray = [], populationArray = [], subjectscoreArray = [], subjectsatisfactionArray = [], entrypointsArray = [], sizeArray = [], buildings = [], roadArray = [];
 var jsonFileNames = [
 	'assets/models/Aphra_and_Lumley_Theatre.js',
 	'assets/models/Becket_Court.js',
@@ -150,6 +150,7 @@ function init() {
 	busRoutes();
 	makeParkingOverlay();
 	makeCycleRacks();
+	makeRoads();
 	
 	plane = new THREE.Mesh( new THREE.PlaneGeometry( 1200, 960, 8, 8 ), new THREE.MeshBasicMaterial( { transparent: true, wireframe: true } ) );
 	plane.visible = false;
@@ -212,18 +213,15 @@ function init() {
 			
 			var spriteName = meshName.replace(/_/g, ' ');
 			var sprite = makeTextSprite( spriteName, mesh );
-			scene.add( sprite );
-			sprites.push( sprite );
-			group.add( sprite );
 			
-			sprite.material.opacity = 0;
 			makeIcon(mesh);
 			tweetIcon(mesh);
 		};
 	}
 	
 	objects.push( group );
-	
+
+
 	//////////// RENDERER ////////////
 	
 	scene.add( group );
@@ -241,13 +239,6 @@ function init() {
 	stats.domElement.style.right = '0px';
 	container.appendChild( stats.domElement );
 	container.style.cursor = 'move';
-	
-	$.ajax({
-		type: "GET",
-		url: "assets/slides.xml",
-		dataType: "xml",
-		success: function(data) { xml = data;}
-	});
 
 	document.getElementById("mapwrapper").addEventListener( 'mousemove', onDocumentMouseMove, false );
 	document.getElementById("app").addEventListener( 'mousedown', onDocumentMouseDown, false );
@@ -409,6 +400,45 @@ function animate() {
 	stats.update();
 	//scene.overrideMaterial = depthMaterial;
 	//particleSystem.rotation.y += 0.001;
+	if(camera.position.z < 0){
+		for (var i=0, tot=roompriceArray.length; i < tot; i++) {
+			roompriceArray[i].rotation.y = 270 * Math.PI / 90;
+		}
+		for (var i=0, tot=populationArray.length; i < tot; i++) {
+			populationArray[i].rotation.y = 270 * Math.PI / 90;
+		}
+		for (var i=0, tot=subjectscoreArray.length; i < tot; i++) {
+			subjectscoreArray[i].rotation.y = 270 * Math.PI / 90;
+		}
+		for (var i=0, tot=subjectsatisfactionArray.length; i < tot; i++) {
+			subjectsatisfactionArray[i].rotation.y = 270 * Math.PI / 90;
+		}
+		for (var i=0, tot=entrypointsArray.length; i < tot; i++) {
+			entrypointsArray[i].rotation.y = 270 * Math.PI / 90;
+		}
+		for (var i=0, tot=sizeArray.length; i < tot; i++) {
+			sizeArray[i].rotation.y = 270 * Math.PI / 90;
+		}
+	}else{
+		for (var i=0, tot=roompriceArray.length; i < tot; i++) {
+			roompriceArray[i].rotation.y = 0;
+		}
+		for (var i=0, tot=populationArray.length; i < tot; i++) {
+			populationArray[i].rotation.y = 0;
+		}
+		for (var i=0, tot=subjectscoreArray.length; i < tot; i++) {
+			subjectscoreArray[i].rotation.y = 0;
+		}
+		for (var i=0, tot=subjectsatisfactionArray.length; i < tot; i++) {
+			subjectsatisfactionArray[i].rotation.y = 0;
+		}
+		for (var i=0, tot=entrypointsArray.length; i < tot; i++) {
+			entrypointsArray[i].rotation.y = 0;
+		}
+		for (var i=0, tot=sizeArray.length; i < tot; i++) {
+			sizeArray[i].rotation.y = 0;
+		}
+	}
 	render();
 	positionTrackingOverlay();
 	//scene.overrideMaterial = null;
