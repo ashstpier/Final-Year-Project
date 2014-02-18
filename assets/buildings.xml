@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
-<slides>
+<buildings>
     <building label="Aphra_and_Lumley_Theatre">
 		<type><![CDATA[<i class="fa-book fa"></i> Teaching]]></type>
 		<description>The Aphra Theatre is a courtyard-style gallery theatre space organised by the School of Arts.</description>
@@ -401,7 +401,7 @@
 		</datalist>
 	</building>
     <building label="Ingram">
-		<type><![CDATA[<i class="fa-book fa"></i> Teaching]]></type>
+		<type><![CDATA[<i class="fa-book fa"></i> School of Physical Sciences]]></type>
 		<description>Ingram is home to the Physics department and houses four large lab spaces as well as a lecture theatre and several classrooms.</description>
 		<rooms>
 			<room value="Ingram_Foy">Ingram Foyer</room>
@@ -907,7 +907,7 @@
 		<area><![CDATA[<i class="fa fa-medkit"></i>Medical]]></area>
 	</building>
     <building label="Venue">
-		<description>this is the brief description.</description>
+		<description>test</description>
 		<area><![CDATA[<i class="fa fa-music"></i>Music]]></area>
 	</building>
     <building label="Willows_Court">
@@ -961,4 +961,4 @@
 			<data type="roomsize">17</data>
 		</datalist>
 	</building>
-</slides>
+</buildings>
