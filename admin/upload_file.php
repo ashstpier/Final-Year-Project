@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-		<head>
+<head>
 		<title>Admin</title>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
-        <link href="assets/css/admin.css" rel="stylesheet" type="text/css"/>
-        <link href="assets/css/toast.css" rel="stylesheet" type="text/css"/>
+        <link href="../assets/css/admin.css" rel="stylesheet" type="text/css"/>
+        <link href="../assets/css/toast.css" rel="stylesheet" type="text/css"/>
         <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
         <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700,400,300' rel='stylesheet' type='text/css'>
         <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>
@@ -13,7 +13,7 @@
 </head>
 <body>
 <div id="navbar">
-	<div id="logo"><a href="http://www.kent.ac.uk/" target="_blank"><img src="assets/images/logo.png" alt="University of Kent logo" /></a><h1>Admin panel</h1></div>
+	<div id="logo"><a href="http://www.kent.ac.uk/" target="_blank"><img src="../assets/images/logo.png" alt="University of Kent logo" /></a><h1>Admin panel</h1></div>
     <ul id="nav">
     	<li><a href="#" class="active" id="toggledrawer"><i class="fa fa-bars"></i></a></li>
         <li><a href="#"><i class="fa fa-user"></i>&nbsp;&nbsp;Profile</a></li>
@@ -21,24 +21,11 @@
     </ul>
 </div>
 
-<?php
-$last_mod = filemtime("assets/buildings.xml");
-$xml=simplexml_load_file("assets/buildings.xml");
-global $table_string;
-$table_string = "<table cellpadding='0' cellspacing='0'><thead><tr><th>Image</th><th>Building</th><th>Last modified</th><th></th></tr></thead><tbody>";
-foreach ($xml->building as $building) {
-	$titleraw = $building->attributes();
-	$title = str_replace('_', ' ', $titleraw);
-	$description = $building->description;
-	$type = $building->type;
-	$table_string .= "<tr><td><img src='assets/images/buildings/".$titleraw.".jpg' /></td><td>".$title."</td><td>".date("H:i j/m/y", $last_mod)."</td><td><form action='assets/php/editXML.php' method='post'><input type='hidden' name='id' value='".$titleraw."' /><button type='submit'><i class='fa fa-lg fa-pencil-square-o'></i></button></form></td></tr>";
-}
-$table_string .= "</tbody></table>";
-?>
 <div id="leftcolumn">
 	<ul>
     	<li><a href="#" class="active"><i class="fa fa-dashboard"></i>Dashboard</a></li>
       	<li><a href="#"><i class="fa fa-pencil-square-o"></i>Edit buildings</a></li>
+        <li><a href="#"><i class="fa fa-pencil-square-o"></i>Edit rooms</a></li>
     </ul>
     <h3>Map data</h3>
     <ul>
@@ -49,8 +36,47 @@ $table_string .= "</tbody></table>";
 <div class="container">
     <div class="grid">
         <div class="unit span-grid">
-        	<h2><i class='fa fa-clock-o'></i> <?php print("Last edit made ".date("H:i j M Y", $last_mod)) ?></h2>
-            <?php echo $table_string ?>
+        	<?php
+$name = $_GET["building"];		
+echo $name;
+
+$allowedExts = array("jpg");
+$temp = explode(".", $_FILES["file"]["name"]);
+$extension = end($temp);
+if ((($_FILES["file"]["type"] == "image/jpeg")
+|| ($_FILES["file"]["type"] == "image/jpg"))
+&& ($_FILES["file"]["size"] < 2000000)
+&& in_array($extension, $allowedExts))
+  {
+  if ($_FILES["file"]["error"] > 0)
+    {
+    echo "Return Code: " . $_FILES["file"]["error"] . "<br>";
+    }
+  else
+    {
+    echo "Upload: " . $_FILES["file"]["name"] . "<br>";
+    echo "Type: " . $_FILES["file"]["type"] . "<br>";
+    echo "Size: " . ($_FILES["file"]["size"] / 1024) . " kB<br>";
+    echo "Temp file: " . $_FILES["file"]["tmp_name"] . "<br>";
+
+    if (file_exists("upload/" . $_FILES["file"]["name"]))
+      {
+      echo $_FILES["file"]["name"] . " already exists. ";
+      }
+    else
+      {
+      move_uploaded_file($_FILES["file"]["tmp_name"], "../assets/images/buildings/".$name.".".$extension);
+      echo "Stored in: " . "upload/{$name}";
+      }
+    }
+  }
+else
+  {
+  echo "Invalid file";
+  }
+  
+ 
+?>
         </div>
     </div>
 </div>

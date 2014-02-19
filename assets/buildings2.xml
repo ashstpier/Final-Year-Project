@@ -1,0 +1,964 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<buildings>
+    <building label="Aphra_and_Lumley_Theatre">
+		<type><![CDATA[<i class="fa-book fa"></i> Teaching]]></type>
+		<description>The Aphra Theatre is a courtyard-style gallery theatre space organised by the School of Arts.</description>
+		<rooms>
+			<room value="APHRA_Thea">Aphra Theatre</room>
+			<room value="APHRA_FO">Aphra Foyer</room>
+			<room value="LUMLEY">Lumley Theatre</room>
+		</rooms>
+    </building>
+   <building label="Becket_Court">
+		<type>&lt;i class="fa-home fa"&gt;&lt;/i&gt; Accommodation</type>
+		<description>Named after Thomas Becket and located adjacent to Eliot College, Becket Court offers en suite rooms on a bed and bistro basis.</description>
+		<list>
+			<listitem>En-suite</listitem>
+			<listitem>Catered</listitem>
+			<listitem>£5,863 p.a.</listitem>
+		</list>
+		<datalist>
+			<data type="roomprice">5863</data>
+			<data type="population">103</data>
+			<data type="roomsize">10</data>
+		</datalist>
+    </building>
+    <building label="Bishopden_Court">
+		<type><![CDATA[<i class="fa-home fa"></i> Accommodation]]></type>
+		<description>Bishopden Court houses have shower and toilet facilities upstairs, with an additional downstairs toilet. The kitchen/diner has an oven and hob, fridge/freezer and microwave.</description>
+		<list>
+			<listitem>Shared facilities</listitem>
+			<listitem>Self catering</listitem>
+			<listitem>£3,995 p.a.</listitem>
+		</list>
+		<datalist>
+			<data type="roomprice">3955</data>
+			<data type="population">80</data>
+			<data type="roomsize">10</data>
+		</datalist>
+    </building>
+    <building label="Boiler_House">
+		<type><![CDATA[<i class="fa-book fa"></i> Teaching]]></type>
+		<description>The Boiler House is a large workshop run by the School of Arts, ideal for large-scale 3D work.</description>
+    </building>
+    <building label="Bossenden_Court">
+		<type><![CDATA[<i class="fa-home fa"></i> Accommodation]]></type>
+		<description>As one of the Parkwood Flats, Bossenden Court offers spacious en-suite rooms and a shared kitchen.</description>
+		<list>
+			<listitem>En-suite</listitem>
+			<listitem>Self catering</listitem>
+			<listitem>£5,621 p.a.</listitem>
+		</list>
+		<datalist>
+			<data type="roomprice">5621</data>
+			<data type="population">90</data>
+			<data type="roomsize">11</data>
+		</datalist>
+    </building>
+    <building label="Campus_Watch">
+		<type><![CDATA[<i class="fa-wrench fa"></i> Maintenance]]></type>
+		<description>The Campus Watch headquarters are the place to go for any security concerns you may have around campus.</description>
+    </building>
+    <building label="Careers_Employability_Service">
+		<type><![CDATA[<i class="fa-info fa"></i> Admin]]></type>
+		<description>The Careers Employability Service helps students with all aspects of career planning and decision-making. Opening hours: Monday 10.30am-5pm, Tuesday-Friday 9am-5pm.</description>
+    </building>
+    <building label="Clowes_Court">
+		<type><![CDATA[<i class="fa-home fa"></i> Accommodation]]></type>
+		<description>Clowes Court houses have shower and toilet facilities upstairs, with an additional downstairs toilet. The kitchen/diner has an oven and hob, fridge/freezer and microwave.</description>
+		<list>
+			<listitem>Shared facilities</listitem>
+			<listitem>Self catering</listitem>
+			<listitem>£3,995 p.a.</listitem>
+		</list>
+		<datalist>
+			<data type="roomprice">3955</data>
+			<data type="population">80</data>
+			<data type="roomsize">10</data>
+		</datalist>
+    </building>
+    <building label="Colyer_Fergusson">
+		<type><![CDATA[<i class="fa-group fa"></i> Social]]></type>
+		<description>A purpose-built, flexible performance space that can accommodate a wide range of musical activities.</description>
+		<rooms>
+			<room value="CFhall">CF Concert Hall</room>
+			<room value="CFSR">CFSR</room>
+		</rooms>
+		<datalist>
+			<data type="subjectscore">82.7</data>
+			<data type="subjectsatisfaction">89</data>
+			<data type="entrypoints">348</data>
+		</datalist>
+    </building>
+    <building label="Cornwallis_George_Allen_Wing">
+		<type><![CDATA[<i class="fa-book fa"></i> School of European Culture and Languages]]></type>
+		<description>The George Allen Wing houses the School of European Culture and Languages as well as the Knowledge Management Centre for the School of Social Policy, Sociology and Social Research.</description>
+		<rooms>
+			<room value="CGAWN03B">CGAWN03B</room>
+			<room value="CGAWN05">CGAWN05</room>
+			<room value="CGAWN08">CGAWN08</room>
+			<room value="CGAWN09B">CGAWN09B</room>
+			<room value="KMC">Knowledge Management Centre</room>
+		</rooms>
+	</building>
+    <building label="Cornwallis_Mathematics_Institute">
+		<type><![CDATA[<i class="fa-book fa"></i> School of Mathematics]]></type>
+		<description>The Cornwallis Mathematics Institute houses the main Mathematics lecture theatre along with the McVittie Library.</description>
+		<rooms>
+			<room value="MATHSLT">MATHSLT</room>
+			<room value="McVittie_L">McVittie Lib</room>
+		</rooms>
+		<datalist>
+			<data type="subjectscore">42.2</data>
+			<data type="subjectsatisfaction">91</data>
+			<data type="entrypoints">361</data>
+		</datalist>
+	</building>
+    <building label="Cornwallis_North_East">
+		<type><![CDATA[<i class="fa-book fa"></i> School of Social Policy, Sociology and Social Research]]></type>
+		<description>Cornwallis North East contains 3 classrooms for the School of Social Policy, Sociology and Social Research.</description>
+		<rooms>
+			<room value="CNE08">CNE08</room>
+			<room value="CNE102">CNE102</room>
+			<room value="CNE112">CNE112</room>
+			<room value="CNE">CNE Reception</room>
+		</rooms>
+		<datalist>
+			<data type="subjectscore">71.1</data>
+			<data type="subjectsatisfaction">87</data>
+			<data type="entrypoints">325</data>
+		</datalist>
+	</building>
+    <building label="Cornwallis_North_West">
+		<type><![CDATA[<i class="fa-book fa"></i> School of European Culture and Languages]]></type>
+		<description>Cornwallis North West has a variety of teaching spaces for the School of European Culture and Languages as well as a large central quad area.</description>
+		<rooms>
+			<room value="CNWG34">CNWG34</room>
+			<room value="CNWsr1">CNWsr1</room>
+			<room value="CNWsr10">CNWsr10</room>
+			<room value="CNWsr11">CNWsr11</room>
+			<room value="CNWsr12">CNWsr12</room>
+			<room value="CNWsr2">CNWsr2</room>
+			<room value="CNWsr3">CNWsr3</room>
+			<room value="CNWsr4">CNWsr4</room>
+			<room value="CNWsr5">CNWsr5</room>
+			<room value="CNWsr6">CNWsr6</room>
+			<room value="CNWsr7">CNWsr7</room>
+			<room value="CNWsr8">CNWsr8</room>
+			<room value="CNWsr9">CNWsr9</room>
+			<room value="MMLab1">MMLab1</room>
+		</rooms>
+		<datalist>
+			<data type="subjectscore">68.5</data>
+			<data type="subjectsatisfaction">91</data>
+			<data type="entrypoints">365</data>
+		</datalist>
+	</building>
+    <building label="Cornwallis_South_East">
+		<type><![CDATA[<i class="fa-book fa"></i> Teaching]]></type>
+		<description>Cornwallis South East contains many computer facilities along with two large lecture rooms.</description>
+		<rooms>
+			<room value="CC02">CC02</room>
+			<room value="COLT2">COLT2</room>
+			<room value="COLT3">COLT3</room>
+			<room value="MTRA">Maths Terminal Room A </room>
+			<room value="MTRB">Maths Terminal Room B </room>
+		</rooms>
+	</building>
+    <building label="Cornwallis_South_West">
+		<type><![CDATA[<i class="fa-book fa"></i> School of Computing]]></type>
+		<description>Cornwallis South West consists of three computer rooms used by the School of Computing.</description>
+		<rooms>
+			<room value="CompSW101">Comp SW101</room>
+			<room value="CompSW102">Comp SW102</room>
+			<room value="CompSW103">Comp SW103</room>
+		</rooms>
+	</building>
+	<building label="Cornwallis_South">
+		<type><![CDATA[<i class="fa-book fa"></i> School of Computing]]></type>
+		<description>Cornwallis South is home to the School of Computing consisting of three computer rooms and two class rooms.</description>
+		<rooms>
+			<room value="CC01">CC01</room>
+			<room value="CC03">CC03</room>
+			<room value="CC04">CC04</room>
+			<room value="S110B">S110B</room>
+			<room value="S115B">S115B</room>
+			<room value="KITC">KITC</room>
+		</rooms>
+		<datalist>
+			<data type="subjectscore">66.4</data>
+			<data type="subjectsatisfaction">84</data>
+			<data type="entrypoints">370</data>
+		</datalist>
+	</building>
+    <building label="Cornwallis_West">
+		<type><![CDATA[<i class="fa-book fa"></i> School of European Culture and Languages]]></type>
+		<description>Cornwallis West contains four offices and a seminar room for the School of European Culture and Languages.</description>
+		<rooms>
+			<room value="CW160">CW160</room>
+			<room value="CW161">CW161</room>
+			<room value="CW164">CW164</room>
+			<room value="CWG35">CWG35</room>
+			<room value="CWG36a">CWG36a</room>
+		</rooms>
+	</building>
+    <building label="Darwin_College">
+		<type><![CDATA[<i class="fa-bell fa"></i> College]]></type>
+		<description>Darwin College is the fourth oldest of the Kent colleges. It contains a variety of teaching, seminar and office rooms which are used by many subject areas. Also home to the very popular in-house bar and bistro - Origins.</description>
+		<rooms>
+			<room value="Drecep">Darwin College Reception</room>
+			<room value="DCMO">Darwin Master's Office</room>
+			<room value="D.PeterBro">Darwin PeterBrown</room>
+			<room value="D.SCR">Darwin Senior Common room</room>
+			<room value="D.Tw.Rm">Darwin Tower Room</room>
+			<room value="DConf">Darwin Conference Suite</room>
+			<room value="DCPC1">Darwin student PC hub 1</room>
+			<room value="DCPC2">Darwin student PC hub 2</room>
+			<room value="DLT1">DLT1</room>
+			<room value="DLT2">DLT2</room>
+			<room value="DLT3">DLT3</room>
+			<room value="DS1">DS1</room>
+			<room value="DS1">DS2</room>
+			<room value="DS7">DS7</room>
+			<room value="DS11">DS11</room>
+			<room value="DS12">DS12</room>
+			<room value="DS14">DS14</room>
+		</rooms>
+	</building>
+    <building label="Darwin_Houses">
+		<type><![CDATA[<i class="fa-home fa"></i> Accommodation]]></type>
+		<description>Rooms in the Darwin Houses have their own sink along with shared toilet and shower facilities. Rooms are arranged in corridors of 5 single rooms over four floors, with access to shared kitchens.</description>
+		<list>
+			<listitem>Shared facilities</listitem>
+			<listitem>Self catering</listitem>
+			<listitem>£4,204 p.a.</listitem>
+		</list>
+		<datalist>
+			<data type="roomprice">4204</data>
+			<data type="population">310</data>
+			<data type="roomsize">12</data>
+		</datalist>
+	</building>
+	<building label="Denstead_Court">
+		<type><![CDATA[<i class="fa-home fa"></i> Accommodation]]></type>
+		<description>Denstead Court houses have shower and toilet facilities upstairs, with an additional downstairs toilet. The kitchen/diner has an oven and hob, fridge/freezer and microwave.</description>
+		<list>
+			<listitem>Shared facilities</listitem>
+			<listitem>Self catering</listitem>
+			<listitem>£3,995 p.a.</listitem>
+		</list>
+		<datalist>
+			<data type="roomprice">3955</data>
+			<data type="population">80</data>
+			<data type="roomsize">10</data>
+		</datalist>
+	</building>
+	<building label="Eliot_College">
+		<type><![CDATA[<i class="fa-bell fa"></i> College]]></type>
+		<description>Eliot College is the oldest of the Kent colleges. Consisting of accommodation alongside large multipurpose rooms, it is situated right in the heart of the campus.</description>
+		<rooms>
+			<room value="Erecep">Eliot College Reception</room>
+			<room value="E.Barlow">Eliot Shirley Barlow room</room>
+			<room value="E.BC16">Eliot Becket Court seminar room 16</room>
+			<room value="E.BC17">Eliot Becket Court seminar room 17</room>
+			<room value="E.Bird">Eliot Peter Bird room</room>
+			<room value="E.Bradby">Eliot Bradby room</room>
+			<room value="E.Chilver">Eliot Chilver room</room>
+			<room value="E.Dr.St">Eliot Drama Studio</room>
+			<room value="E.Dr.White">Eliot Drama Whitehouse room</room>
+			<room value="E.E3.W1">Law School Mentors room</room>
+			<room value="E.Hall">Eliot Hall</room>
+			<room value="E.Holland">Eliot Holland room</room>
+			<room value="E.Lyons">Eliot Lyons room</room>
+			<room value="E.Pollard">Eliot Pollard room</room>
+			<room value="E.SCR">Eliot Senior Common room</room>
+			<room value="E.Taylor">Eliot Taylor room</room>
+			<room value="ECT1">Eliot computer terminal room 1</room>
+			<room value="ECPC">Eliot student PC hub</room>
+			<room value="ELT2">ELT2</room>
+			<room value="ES1">ES1</room>
+			<room value="ES2">ES2</room>
+			<room value="ES3">ES3</room>
+			<room value="ECPC">Eliot student PC hub</room>
+			<room value="Sound_Stud">Drama Sound Studio</room>
+		</rooms>
+		<datalist>
+			<data type="roomprice">3715</data>
+			<data type="population">481</data>
+			<data type="roomsize">12</data>
+		</datalist>
+	</building>
+	<building label="Ellenden_Court">
+		<type><![CDATA[<i class="fa-home fa"></i> Accommodation]]></type>
+		<description>Ellenden Court houses have shower and toilet facilities upstairs, with an additional downstairs toilet. The kitchen/diner has an oven and hob, fridge/freezer and microwave.</description>
+		<list>
+			<listitem>Shared facilities</listitem>
+			<listitem>Self catering</listitem>
+			<listitem>£4,376 p.a.</listitem>
+		</list>
+		<datalist>
+			<data type="roomprice">4376</data>
+			<data type="population">130</data>
+			<data type="roomsize">11</data>
+		</datalist>
+	</building>
+    <building label="Estates_Department">
+		<type><![CDATA[<i class="fa-wrench fa"></i> Maintenance]]></type>
+		<description>The Estates Department provides a number of essential services to the University of Kent and is responsible for managing, maintaining and developing the infrastructure and building fabric of the various campuses.</description>
+	</building>
+    <building label="Farthings_Court">
+		<type><![CDATA[<i class="fa-home fa"></i> Accommodation]]></type>
+		<description>Farthings Court houses have shower and toilet facilities upstairs, with an additional downstairs toilet. The kitchen/diner has an oven and hob, fridge/freezer and microwave.</description>
+		<list>
+			<listitem>Shared facilities</listitem>
+			<listitem>Self catering</listitem>
+			<listitem>£3,995 p.a.</listitem>
+		</list>
+		<datalist>
+			<data type="roomprice">3955</data>
+			<data type="population">80</data>
+			<data type="roomsize">10</data>
+		</datalist>
+	</building>
+    <building label="Grimond">
+		<type><![CDATA[<i class="fa-book fa"></i> Teaching]]></type>
+		<description>this is the brief description.</description>
+		<rooms>
+			<room value="GRIMOND_FO">Grimond Foyer</room>
+			<room value="GLT1">GLT1</room>
+			<room value="GLT2">GLT2</room>
+			<room value="GLT3">GLT3</room>
+			<room value="GS1">GS1</room>
+			<room value="GS2">GS2</room>
+			<room value="GS3">GS3</room>
+			<room value="GS4">GS4</room>
+			<room value="GS5">GS5</room>
+			<room value="GS6">GS6</room>
+			<room value="GS7">GS7</room>
+			<room value="GS8">GS8</room>
+			<room value="LScr">Lupino Screening Room</room>
+		</rooms>
+	</building>
+    <building label="Grimshill_Court">
+		<type><![CDATA[<i class="fa-home fa"></i> Accommodation]]></type>
+		<description>Grimshill Court houses have shower and toilet facilities upstairs, with an additional downstairs toilet. The kitchen/diner has an oven and hob, fridge/freezer and microwave.</description>
+		<list>
+			<listitem>Shared facilities</listitem>
+			<listitem>Self catering</listitem>
+			<listitem>£4,376 p.a.</listitem>
+		</list>
+		<datalist>
+			<data type="roomprice">4376</data>
+			<data type="population">130</data>
+			<data type="roomsize">11</data>
+		</datalist>
+	</building>
+	<building label="Ground_Maintenance">
+		<type><![CDATA[<i class="fa-wrench fa"></i> Maintenance]]></type>
+		<description>The Grounds Maintenance team has a responsibility to ensure that the University grounds are maintained to an agreed standard, based upon a detailed specification.</description>
+	</building>
+    <building label="Gulbenkian">
+		<type><![CDATA[<i class="fa-users fa"></i> Community]]></type>
+		<description>Gulbenkian is a key part of the University of Kent's Arts Centre offering innovative, engaging and high quality arts activity for and with the public, staff and students.</description>
+		<rooms>
+			<room value="CGUCafe">Gulbenkian Cafe</room>
+			<room value="Theatre">Gulbenkian Theatre</room>
+			<room value="CGUS">Gulbenkian seminar room</room>
+			<room value="CINEMA">Gulbenkian Cinema</room>
+		</rooms>
+		<datalist>
+			<data type="subjectscore">84.4</data>
+			<data type="subjectsatisfaction">93</data>
+			<data type="entrypoints">397</data>
+		</datalist>
+	</building>
+	<building label="Homestall_Court">
+		<type><![CDATA[<i class="fa-home fa"></i> Accommodation]]></type>
+		<description>Homestall Court houses have shower and toilet facilities upstairs, with an additional downstairs toilet. The kitchen/diner has an oven and hob, fridge/freezer and microwave.</description>
+		<list>
+			<listitem>Shared facilities</listitem>
+			<listitem>Self catering</listitem>
+			<listitem>£3,955 p.a.</listitem>
+		</list>
+		<datalist>
+			<data type="roomprice">3955</data>
+			<data type="population">80</data>
+			<data type="roomsize">10</data>
+		</datalist>
+	</building>
+	<building label="Hothe_Court">
+		<type><![CDATA[<i class="fa-home fa"></i> Accommodation]]></type>
+		<description>Hothe Court houses have shower and toilet facilities upstairs, with an additional downstairs toilet. The kitchen/diner has an oven and hob, fridge/freezer and microwave.</description>
+		<list>
+			<listitem>Shared facilities</listitem>
+			<listitem>Self catering</listitem>
+			<listitem>£3,955 p.a.</listitem>
+		</list>
+		<datalist>
+			<data type="roomprice">3955</data>
+			<data type="population">80</data>
+			<data type="roomsize">10</data>
+		</datalist>
+	</building>
+    <building label="Ingram">
+		<type><![CDATA[<i class="fa-book fa"></i> School of Physical Sciences]]></type>
+		<description>Ingram is home to the Physics department and houses four large lab spaces as well as a lecture theatre and several classrooms.</description>
+		<rooms>
+			<room value="Ingram_Foy">Ingram Foyer</room>
+			<room value="I316">I316</room>
+			<room value="ILT">ILT</room>
+			<room value="PS_G52">Physical Sciences room G52</room>
+			<room value="PS_Lab_1">Physical Sciences Teaching Lab 1</room>
+			<room value="PS_Lab_2">Physical Sciences Teaching Lab 2</room>
+			<room value="PS_Lab_3">Physical Sciences Teaching Lab 3</room>
+			<room value="PS_Lab_4">Physical Sciences Teaching Lab 4</room>
+			<room value="Research_L">Physical Sciences Research Labs</room>
+			<room value="PS110">PS110</room>
+		</rooms>
+		<datalist>
+			<data type="subjectscore">49.7</data>
+			<data type="subjectsatisfaction">96</data>
+			<data type="entrypoints">364</data>
+		</datalist>
+	</building>
+	<building label="Innovation_Center">
+		<type><![CDATA[<i class="fa-info fa"></i> Admin]]></type>
+		<description>The Innovation Centre houses over 2500 sq. metres of modern, affordable office, studio and workshop space set amongst 500 acres of green parkland, overlooking the beautiful cathedral city of Canterbury.</description>
+	</building>
+	<building label="Jarman">
+		<type><![CDATA[<i class="fa-book fa"></i> Teaching]]></type>
+		<description>The Jarman building is the centre of Arts for the Canterbury campus. It offers professional standard drama, and film production studios as well as teaching rooms, social spaces and a dedicated centre for postgraduate students.</description>
+		<rooms>
+			<room value="JarFoyer">Jarman Foyer</room>
+			<room value="Jar-2-05">Postgraduate Study Room</room>
+			<room value="Jar-2-20">Practice as Research Room</room>
+			<room value="JarMez">Jarman Mezzanine</room>
+			<room value="JPC">Jarman Public Computers</room>
+			<room value="Jar1">Jarman Studio 1</room>
+			<room value="Jar2">Jarman Studio 2</room>
+			<room value="Jar3">Jarman Studio 3</room>
+			<room value="Jar4">Jarman Studio 4</room>
+			<room value="Jar5">Jarman Studio 5</room>
+			<room value="Jar6">Jarman Studio 6</room>
+			<room value="Jar7">Jarman Studio 7</room>
+			<room value="Jar8">Jarman Studio 8</room>
+			<room value="Jar9">Jarman Studio 9</room>
+			<room value="Jar10">Jarman Studio 10</room>
+			<room value="Jar11">Jarman Studio 11</room>
+			<room value="Jar12">Jarman Studio 12</room>
+			<room value="Jar13">Jarman Studio 13</room>
+			<room value="Jar14">Jarman Studio 14</room>
+			<room value="Jar15">Jarman Studio 15</room>
+			<room value="Jar16">Jarman Studio 16</room>
+			<room value="Jar17">Jarman Studio 17</room>
+		</rooms>
+		<datalist>
+			<data type="subjectscore">81.3</data>
+			<data type="subjectsatisfaction">78</data>
+			<data type="entrypoints">355</data>
+		</datalist>
+	</building>
+	<building label="Jennison">
+		<type><![CDATA[<i class="fa-book fa"></i> Teaching]]></type>
+		<description>The Jennison building is home to the School of Engineering and Digital Arts, including four large computer suites and various production rooms as well as a large engineering lab.</description>
+		<rooms>
+			<room value="Eng_LabB">Engineering Lab Blue</room>
+			<room value="Eng_LabG">Engineering Lab Green</room>
+			<room value="Eng_LabO">Engineering Lab Orange</room>
+			<room value="JCS1">JCS1 Purple</room>
+			<room value="JCS2">JCS2 Red</room>
+			<room value="JCS3">JCS3 Blue</room>
+			<room value="JCS4">JCS4</room>
+			<room value="JCS5">JCS5</room>
+			<room value="JLT">JLT</room>
+			<room value="JS2">JS2</room>
+			<room value="Phot_Stud">Photographic Studio</room>
+			<room value="Prod_Stud">Production Studio</room>
+		</rooms>
+		<datalist>
+			<data type="subjectscore">82.9</data>
+			<data type="subjectsatisfaction">100</data>
+			<data type="entrypoints">337</data>
+		</datalist>
+	</building>
+    <building label="Kemsdale_Court">
+	<type><![CDATA[<i class="fa-home fa"></i> Accommodation]]></type>
+		<description>As one of the Parkwood Flats, Kemsdale Court offers spacious en-suite rooms and a shared kitchen.</description>
+		<list>
+			<listitem>En-suite</listitem>
+			<listitem>Self catering</listitem>
+			<listitem>£5,621 p.a.</listitem>
+		</list>
+		<datalist>
+			<data type="roomprice">5621</data>
+			<data type="population">170</data>
+			<data type="roomsize">11</data>
+		</datalist>
+	</building>
+	<building label="Kent_Business_School">
+		<type><![CDATA[<i class="fa-book fa"></i> Teaching]]></type>
+		<description>The Kent Business School contains five seminar rooms, an IT suite, a lecture theatre and a large symposium room.</description>
+		<rooms>
+			<room value="KBS_Foy">KBS Lower Foyer</room>
+			<room value="KBS_UF">KBS Upper Foyer</room>
+			<room value="KBS_204">KBS 204 Meeting Room</room>
+			<room value="KBS_Board">KBS Board Room</room>
+			<room value="KBS-IT">KBS IT Suite</room>
+			<room value="KBS_SR1">KBS SR 1</room>
+			<room value="KBS_SR2">KBS SR 2</room>
+			<room value="KBS_SR3">KBS SR 3</room>
+			<room value="KBS_SR4">KBS SR 4</room>
+			<room value="KBS_SR5">KBS SR 5</room>
+			<room value="KBS_SO">KBS Student Office</room>
+			<room value="KBS-Symp">KBS Symposium Room</room>
+			<room value="KBSLT">KBSLT</room>
+			<room value="KBSXMR">KBS Extension Meeting Room</room>
+			<room value="KBSX1">KBS Extension room 1</room>
+			<room value="KBSX2">KBS Extension room 2</room>
+			<room value="KBSX3">KBS Extension room 3</room>
+			<room value="KBSX4">KBS Extension room 4</room>
+			<room value="KBSXBB">KBS Extension Bloomberg Suite</room>
+		</rooms>
+		<datalist>
+			<data type="subjectscore">69.4</data>
+			<data type="subjectsatisfaction">90</data>
+			<data type="entrypoints">377</data>
+		</datalist>
+	</building>
+    <building label="Kent_Enterprise_Hub">
+		<type><![CDATA[<i class="fa-book fa"></i> Admin]]></type>
+		<description>The Kent Enterprise business incubation and support unit is devoted to helping student, graduate and staff start-up ventures and early stage companies to increase survival rates.</description>
+	</building>
+    <building label="Kent_Law_School">
+		<type><![CDATA[<i class="fa-book fa"></i> Teaching]]></type>
+		<description>The law school is part of the Eliot College Extension and comprises of several teaching and meeting rooms.</description>
+		<rooms>
+			<room value="E.L49">Law postgraduate room</room>
+			<room value="EX7">EX7</room>
+			<room value="EX8">EX8</room>
+			<room value="EX9">EX9</room>
+			<room value="KLS_Cmt_Rm">Law School Committee room</room>
+			<room value="KLS_PGS_Rm">Law School Postgraduate seminar room</room>
+			<room value="KLS_PGT_Rm">Law School Postgraduate teaching room</room>
+		</rooms>
+		<datalist>
+			<data type="subjectscore">66.1</data>
+			<data type="subjectsatisfaction">87</data>
+			<data type="entrypoints">387</data>
+		</datalist>
+	</building>
+    <building label="Keynes_College">
+		<type><![CDATA[<i class="fa-bell fa"></i> College]]></type>
+		<description>Keynes College is now one of the biggest colleges on the Canterbury Campus and has rooms for catered and self-catered students. Keynes College boast an expanded Dolche Vita where catered students are provided with breakfast and dinner.</description>
+		<rooms>
+			<room value="Krecep">Keynes College Reception</room>
+			<room value="K.Atrium">Keynes Atrium</room>
+			<room value="K.BAR">K Bar</room>
+			<room value="K.RED">Keynes Lounge</room>
+			<room value="KSCR">Keynes Senior Common Room</room>
+			<room value="KQSCR">Keynes Quiet Senior Common Room</room>
+			<room value="K.SR_L1.9">Keynes Seminar Room L1.9</room>
+			<room value="KPC2">Keynes student PC Hub</room>
+			<room value="2U_KEYNES">Keynes Teaching Foyer</room>
+			<room value="KLT1">KLT1</room>
+			<room value="KLT2">KLT2</room>
+			<room value="KLT3">KLT3</room>
+			<room value="KLT4">KLT4</room>
+			<room value="KLT5">KLT5</room>
+			<room value="KLT6">KLT6</room>
+			<room value="KS1">KS1</room>
+			<room value="KS2">KS2</room>
+			<room value="KS3">KS3</room>
+			<room value="KS4">KS4</room>
+			<room value="KS5">KS5</room>
+			<room value="KS6">KS6</room>
+			<room value="KS7">KS7</room>
+			<room value="KS9">KS9</room>
+			<room value="KS11">KS11</room>
+			<room value="KS12">KS12</room>
+			<room value="KS13">KS13</room>
+			<room value="KS14">KS14</room>
+			<room value="KS15">KS15</room>
+			<room value="KS16">KS16</room>
+			<room value="KS17">KS17</room>
+			<room value="KS20">KS20</room>
+			<room value="KS21">KS21</room>
+			<room value="KS23">KS23</room>
+			<room value="KS24">KS24</room>
+			<room value="KS26">KS26</room>
+			<room value="KSA1">KSA1</room>
+			<room value="D.Crabtree">Derek Crabtree room</room>
+			<room value="Psyc_Comp">Psychology Computer Room</room>
+			<room value="Psyc_Conf">Psychology Conference Room</room>
+		</rooms>
+		<datalist>
+			<data type="roomprice">5863</data>
+			<data type="population">162</data>
+			<data type="roomsize">11</data>
+		</datalist>
+	</building>
+    <building label="Keynes_Flats">
+		<type><![CDATA[<i class="fa-home fa"></i> Accommodation]]></type>
+		<description>Rooms in the Keynes Flats have en-suite bathrooms and are self-catered. The flats are brand new and provide a very high standard of living including broadband computer links and laundry services.</description>
+		<list>
+			<listitem>En-suite</listitem>
+			<listitem>Self catering</listitem>
+			<listitem>£5,626 p.a.</listitem>
+		</list>
+		<datalist>
+			<data type="roomprice">5626</data>
+			<data type="population">445</data>
+			<data type="roomsize">12</data>
+		</datalist>
+	</building>
+	<building label="Keynes_Houses">
+		<type><![CDATA[<i class="fa-home fa"></i> Accommodation]]></type>
+		<description>In each of the Keynes Houses, 9 people share the accommodation over three floors. The ground floor has a spacious kitchen and one bedroom with en suite facilities. There are four rooms on both the first and second floors, with two sets of shower and toilet facilities on each floor.</description>
+		<list>
+			<listitem>Shared facilities</listitem>
+			<listitem>Self catering</listitem>
+			<listitem>£4,853 p.a.</listitem>
+		</list>
+		<datalist>
+			<data type="roomprice">4853</data>
+			<data type="population">45</data>
+			<data type="roomsize">12</data>
+		</datalist>
+	</building>
+    <building label="Locke">
+		<type><![CDATA[<i class="fa-shopping-cart fa"></i> Shops]]></type>
+		<description>Locke is the main shopping complex on the campus. Essentials provides general groceries along with Blackwells Bookshop and Unique Clothing. The Sports &amp; Societies section of Kent Union are also situated upstairs.</description>
+	</building>
+    <building label="Lypeatt_Court">
+		<type><![CDATA[<i class="fa-home fa"></i> Accommodation]]></type>
+		<description>Lypeatt Court houses have shower and toilet facilities upstairs, with an additional downstairs toilet. The kitchen/diner has an oven and hob, fridge/freezer and microwave.</description>
+		<list>
+			<listitem>Shared facilities</listitem>
+			<listitem>Self catering</listitem>
+			<listitem>£4,376 p.a.</listitem>
+		</list>
+		<datalist>
+			<data type="roomprice">4376</data>
+			<data type="population">160</data>
+			<data type="roomsize">11</data>
+		</datalist>
+	</building>
+    <building label="Mandela_Building">
+		<type><![CDATA[<i class="fa-info fa"></i> Admin]]></type>
+		<description>Mandela Building is home to Kent Union and more specifically the Jobshop, where staff handle general enquiries and suggestions.</description>
+		<area><![CDATA[<i class="fa fa-info"></i>Student Union]]></area>
+	</building>
+    <building label="Marley_Court">
+		<type><![CDATA[<i class="fa-home fa"></i> Accommodation]]></type>
+		<description>Marley Court houses have shower and toilet facilities upstairs, with an additional downstairs toilet. The kitchen/diner has an oven and hob, fridge/freezer and microwave.</description>
+		<list>
+			<listitem>Shared facilities</listitem>
+			<listitem>Self catering</listitem>
+			<listitem>£3,995 p.a.</listitem>
+		</list>
+		<datalist>
+			<data type="roomprice">3955</data>
+			<data type="population">80</data>
+			<data type="roomsize">10</data>
+		</datalist>
+	</building>
+	<building label="Marlowe">
+		<description>Marlowe contains Several large studio spaces and lecture theatres for the School of Architecture and the School of Anthropology.</description>
+		<rooms>
+			<room value="MAR_FOYER">Marlowe Foyer</room>
+			<room value="Mar_Ant_Re">Anthropology Reception</room>
+			<room value="BA_Mod_Are">BA Model-making area</room>
+			<room value="Drama_Work">Drama Workshop</room>
+			<room value="Ethno_Lab">Ethnobiology Lab</room>
+			<room value="Mar_113">Marlowe room 113</room>
+			<room value="Mar_116">Marlowe room 116</room>
+			<room value="Mar_119">Marlowe room 119</room>
+			<room value="Mar124">Marlowe room 124</room>
+			<room value="Mar_9">Marlowe 9 Visual Anthropology</room>
+			<room value="Mar_Crit_R">Marlowe Crit Space</room>
+			<room value="Mar_Draw_R">Marlowe Drawing Room</room>
+			<room value="Mar_MAcomp">Marlowe MA Computer Lab</room>
+			<room value="Marlowe PC lab">Mar_PC_Lab</room>
+			<room value="Studio_A">Marlowe Studio A</room>
+			<room value="Studio_B">Marlowe Studio B</room>
+			<room value="Studio_C">Marlowe Studio C</room>
+			<room value="Mar_Worksh">Marlowe Architecture Workshop</room>
+			<room value="MarLT1">MarLT1</room>
+			<room value="MarLT2">MarLT2</room>
+			<room value="Stirling">Stirling Library</room>
+			<room value="Swingland">Swingland Room</room>
+		</rooms>
+		<datalist>
+			<data type="subjectscore">86.1</data>
+			<data type="subjectsatisfaction">86</data>
+			<data type="entrypoints">437</data>
+		</datalist>
+	</building>
+	<building label="Missing_Link">
+		<description>this is the brief description.</description>
+		<rooms>
+			<room value="DS8">DS8</room>
+			<room value="DS9">DS9</room>
+			<room value="DS10">DS10</room>
+		</rooms>
+	</building>
+    <building label="Nickle_Court">
+		<description>this is the brief description.</description>
+		<datalist>
+			<data type="roomprice">5621</data>
+			<data type="population">170</data>
+			<data type="roomsize">11</data>
+		</datalist>
+	</building>
+	<building label="Oaks_Day_Nursery">
+		<description>this is the brief description.</description>
+		<area><![CDATA[<i class="fa fa-smile-o"></i>Nursery]]></area>
+	</building>
+	<building label="Olive_Cottages">
+		<description>this is the brief description.</description>
+		<area><![CDATA[<i class="fa fa-users"></i>Psychology]]></area>
+	</building>
+    <building label="Parkwood_Administration">
+		<description>this is the brief description.</description>
+		<area><![CDATA[<i class="fa fa-info"></i>Admin]]></area>
+	</building>
+    <building label="Parkwood_Shop">
+		<description>this is the brief description.</description>
+		<area><![CDATA[<i class="fa fa-shopping-cart"></i>Shops]]></area>
+	</building>
+    <building label="Purchas_Court">
+		<description>this is the brief description.</description>
+		<datalist>
+			<data type="roomprice">4376</data>
+			<data type="population">160</data>
+			<data type="roomsize">11</data>
+		</datalist>
+	</building>
+    <building label="Registry">
+		<description>this is the brief description.</description>
+		<area><![CDATA[<i class="fa fa-info"></i>Admin]]></area>
+	</building>
+    <building label="Research_and_Development_Centre">
+		<description>this is the brief description.</description>
+		<rooms>
+			<room value="RDC-101A">RDC 101A Video Conference Room</room>
+			<room value="RDC-101B">RDC 101B Mirror Lab</room>
+			<room value="RDC-102">RDC 102</room>
+			<room value="RDC-108">RDC 108</room>
+			<room value="RDC-G22">RDC G22</room>
+			<room value="RDC-G23">RDC G23</room>
+		</rooms>
+	</building>
+    <building label="Rothford">
+		<description>this is the brief description.</description>
+		<area><![CDATA[<i class="fa fa-gbp"></i>Business]]></area>
+	</building>
+	<building label="Rutherford_Annexe">
+		<description>this is the brief description.</description>
+	</building>
+    <building label="Rutherford_College">
+		<description>this is the brief description.</description>
+		<rooms>
+			<room value="R_Foy">Rutherford Foyer</room>
+			<room value="R.Cl.15">Rutherford Cl 15</room>
+			<room value="R.Cl.16">Rutherford Cl 16</room>
+			<room value="R.Cl.17">Rutherford Cl 17</room>
+			<room value="R.Cl.19">Rutherford Cl 19</room>
+			<room value="R.Cl.20">Rutherford Cl 20</room>
+			<room value="R.Cl.21">Rutherford Cl 21</room>
+			<room value="R.DiningHa">Rutherford Dining Hall</room>
+			<room value="Rrecep">Rutherford College Reception</room>
+			<room value="R.RogersRm">Rutherford Stanley Rogers Room</room>
+			<room value="RLT1">RLT1</room>
+			<room value="RLT2">RLT2</room>
+			<room value="RN3N2">RN3N2</room>
+			<room value="RN3N3">RN3N3</room>
+			<room value="RS4">RS4</room>
+			<room value="RS5">RS5</room>
+			<room value="RS6">RS6</room>
+			<room value="RS7">RS7</room>
+			<room value="RJCR">Rutherford Junior Common Room</room>
+			<room value="RSCR">Rutherford Senior Common Room</room>
+			<room value="RCPC1">Rutherford student PC hub 1</room>
+			<room value="RCPC2">Rutherford student PC hub 2</room>
+			<room value="RCSH">Rutherford Study Hub</room>
+			<room value="RW4W8">RW4W8</room>
+		</rooms>
+		<datalist>
+			<data type="roomprice">3715</data>
+			<data type="population">481</data>
+			<data type="roomsize">12</data>
+		</datalist>
+	</building>
+	<building label="Rutherford_Extension">
+		<description>this is the brief description.</description>
+		<rooms>
+			<room value="EN_Foy">School of English Foyer</room>
+			<room value="RX_NC8">Rutherford Extension NC8</room>
+			<room value="RX11">Rutherford Extension 11</room>
+			<room value="RX12">Rutherford Extension 12</room>
+		</rooms>
+		<datalist>
+			<data type="subjectscore">79.3</data>
+			<data type="subjectsatisfaction">94</data>
+			<data type="entrypoints">409</data>
+		</datalist>
+	</building>
+    <building label="Senate">
+		<description>this is the brief description.</description>
+		<rooms>
+			<room value="SChb">Senate Chamber Silent Study Hub</room>
+			<room value="Sen_CR1">Senate Commitee Room 1</room>
+			<room value="Sen_CR2">Senate Commitee Room 2</room>
+		</rooms>
+	</building>
+    <building label="Sports_Centre">
+		<description>this is the brief description.</description>
+		<datalist>
+			<data type="subjectscore">86</data>
+			<data type="subjectsatisfaction">92</data>
+			<data type="entrypoints">332</data>
+		</datalist>
+	</building>
+    <building label="Sports_Pavillion">
+		<description>this is the brief description.</description>
+		<area><![CDATA[<i class="fa fa-trophy"></i>Sport]]></area>
+	</building>
+    <building label="Stacey">
+		<description>this is the brief description.</description>
+		<rooms>
+			<room value="BI_Foyer">Biosciences Foyer</room>
+			<room value="Biol_Lab_1">Biosciences Teaching Lab 1</room>
+			<room value="Biol_Lab_2">Biosciences Teaching Lab 2</room>
+			<room value="Biol_Lab_3">Biosciences Teaching Lab 3</room>
+			<room value="Res_Labs">Biosciences Research Labs</room>
+			<room value="HRR">Howard Rogers Room</room>
+			<room value="SLT1">SLT1</room>
+			<room value="SLT2">SLT2</room>
+		</rooms>
+		<datalist>
+			<data type="subjectscore">62.4</data>
+			<data type="subjectsatisfaction">93</data>
+			<data type="entrypoints">383</data>
+		</datalist>
+	</building>
+    <building label="Stock_Court">
+		<description>this is the brief description.</description>
+		<datalist>
+			<data type="roomprice">5621</data>
+			<data type="population">90</data>
+			<data type="roomsize">11</data>
+		</datalist>
+	</building>
+    <building label="Tanglewood">
+		<description>this is the brief description.</description>
+		<area><![CDATA[<i class="fa fa-home"></i>Hospitality]]></area>
+	</building>
+    <building label="Templeman_Library">
+		<description>this is the brief description.</description>
+		<area><![CDATA[<i class="fa fa-book"></i>Library]]></area>
+	</building>
+    <building label="Thornden_Court">
+		<description>this is the brief description.</description>
+		<datalist>
+			<data type="roomprice">3955</data>
+			<data type="population">80</data>
+			<data type="roomsize">10</data>
+		</datalist>
+	</building>
+    <building label="Tudor_Court">
+		<description>this is the brief description.</description>
+		<datalist>
+			<data type="roomprice">3955</data>
+			<data type="population">80</data>
+			<data type="roomsize">10</data>
+		</datalist>
+	</building>
+	<building label="Tyler_Court_A">
+		<description>this is the brief description.</description>
+		<datalist>
+			<data type="roomprice">5353</data>
+			<data type="population">189</data>
+			<data type="roomsize">10</data>
+		</datalist>
+	</building>
+	<building label="Tyler_Court_B">
+		<description>this is the brief description.</description>
+		<datalist>
+			<data type="roomprice">5872</data>
+			<data type="population">339</data>
+			<data type="roomsize">13</data>
+		</datalist>
+	</building>
+	<building label="Tyler_Court_C">
+		<description>this is the brief description.</description>
+		<datalist>
+			<data type="roomprice">5872</data>
+			<data type="population">339</data>
+			<data type="roomsize">13</data>
+		</datalist>
+	</building>
+	<building label="UELT">
+		<description>this is the brief description.</description>
+		<area><![CDATA[<i class="fa fa-info"></i>Admin]]></area>
+	</building>
+	<building label="University_Medical_Centre">
+		<description>this is the brief description.</description>
+		<area><![CDATA[<i class="fa fa-medkit"></i>Medical]]></area>
+	</building>
+    <building label="Venue">
+		<description>test</description>
+		<area><![CDATA[<i class="fa fa-music"></i>Music]]></area>
+	</building>
+    <building label="Willows_Court">
+		<description>this is the brief description.</description>
+		<datalist>
+			<data type="roomprice">3955</data>
+			<data type="population">80</data>
+			<data type="roomsize">10</data>
+		</datalist>
+	</building>
+    <building label="Woodlands">
+		<description>this is the brief description.</description>
+		<area><![CDATA[<i class="fa fa-users"></i>Sociology]]></area>
+	</building>
+    <building label="Woodys">
+		<description>this is the brief description.</description>
+		<area><![CDATA[<i class="fa fa-cutlery"></i>Food and Drink]]></area>
+	</building>
+    <building label="Woolf_Blocks">
+		<description>this is the brief description.</description>
+		<datalist>
+			<data type="roomprice">5846</data>
+			<data type="population">503</data>
+			<data type="roomsize">12</data>
+		</datalist>
+	</building>
+    <building label="Woolf_College">
+		<description>this is the brief description.</description>
+		<rooms>
+			<room value="W_L-FOYER">Woolf Lower Foyer</room>
+			<room value="W_U-FOYER">Woolf Upper Foyer</room>
+			<room value="W1-SR1">Woolf SR1</room>
+			<room value="W1-SR2">Woolf SR2</room>
+			<room value="W1-SR3">Woolf SR3</room>
+			<room value="W1-SR4">Woolf SR4</room>
+			<room value="W1-SR5">Woolf SR5</room>
+			<room value="W1-SR6">Woolf SR5</room>
+			<room value="W-LT">WLT</room>
+			<room value="W_CR">Woolf Common Room</room>
+		</rooms>
+	</building>
+	<building label="Woolf_Pavillion">
+		<description>this is the brief description.</description>
+		<area><![CDATA[<i class="fa fa-home"></i>Accomodation]]></area>
+	</building>
+    <building label="Woolf_Residential">
+		<description>this is the brief description.</description>
+		<datalist>
+			<data type="roomprice">6823</data>
+			<data type="population">41</data>
+			<data type="roomsize">17</data>
+		</datalist>
+	</building>
+</buildings>
