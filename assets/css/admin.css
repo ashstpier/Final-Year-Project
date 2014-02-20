@@ -17,9 +17,9 @@ body {
 	height: 100%;
 }
 .container {
-	margin: 100px 0 0 300px!important;
+	margin: 100px 0 0 280px!important;
 	max-width: 1024px!important;
-	padding: 0;
+	padding-bottom: 30px!important;
 }
 #navbar {
 	position: fixed;
@@ -116,7 +116,7 @@ body {
 	font-weight: bold;
 	text-transform: uppercase;
 	font-size: 95%;
-	padding-bottom: 8px;
+	padding-bottom: 3px;
 	margin: 0 30px 10px;
 	border-bottom: 1px solid #5b656e;
 }
@@ -124,9 +124,9 @@ body {
 	border-bottom: 1px solid #ddd;
 	padding-bottom: 10px;
 }
-.grid h2 { font-size: 120%; color: #629ad1; padding-bottom: 15px; }
+.grid h2 { font-size: 120%; color: #629ad1; padding-bottom: 10px; }
 .grid h2 i { padding-right: 10px; }
-.grid h3 { padding-bottom: 60px; }
+.grid h3 { padding-bottom: 10px; font-weight: 400; }
 .margin-bottom { margin-bottom: 30px; }
 table {
 	width: 100%;
@@ -134,7 +134,7 @@ table {
 th, td {
 	text-align: left;
 	border-bottom: 1px solid #eee;
-	padding: 15px 20px;
+	padding: 10px 20px;
 	margin: 0;
 }
 tbody tr:hover {
@@ -149,8 +149,11 @@ td img {
 	display: block;
 	margin: 0;
 }
+td button {
+	padding: 5px 8px;
+}
 button {
-	padding: 15px 15px;
+	padding: 15px 30px;
 	border: none;
 	font-weight: 300;
 	text-align: center;
@@ -163,7 +166,6 @@ button {
 	display: block;
 	outline: none;
 	float: right;
-	width: 100%;
 }
 button:hover {
 	background: #d66549;
@@ -177,14 +179,15 @@ button i {
 }
 textarea {
 	width: 100%;
-	height: 60px;
+	height: 40px;
 	font-size: 110%;
 	color: #666;
-	padding: 20px;
+	padding: 10px;
 	border: 1px solid #ccc;
 	border-radius: 5px;
 	-webkit-border-radius: 5px;
 	margin-bottom: 20px;
+	outline: none;
 }
 textarea.description {
 	min-height: 120px;
@@ -258,3 +261,16 @@ input[type=file]::-webkit-file-upload-button {
 }
 .filetypes { padding-top: 10px; font-size: 85%; text-align:center; }
 .time { float:right; font-size: 14px; line-height: 400%;}
+select { 
+	width: 100%;
+	margin-bottom: 30px;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	padding: 10px;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	color: #666;
+	font-size: 14px;
+	cursor: pointer;
+	outline: none;
+}

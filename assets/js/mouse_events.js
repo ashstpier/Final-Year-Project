@@ -84,10 +84,32 @@ function placeMarker(modal){
 		var description = $(this).find('description').text();
 		var list = $(this).find('list').text();
 		var rooms = $(this).find('rooms').text();
+		
+		var typeicon;
+		switch(type){ 
+		case 'Accommodation': 
+			typeicon = '<![CDATA[<i class="fa-home fa"></i> Accommodation]]>'; 
+			break; 
+		case 'Admin': 
+			typeicon = '<![CDATA[<i class="fa-info fa"></i> Admin]]>'; 
+			break;
+		case 'Maintenance': 
+			typeicon = '<![CDATA[<i class="fa-wrench fa"></i> Maintenance]]>'; 
+			break;
+		case 'Community': 
+			typeicon = '<![CDATA[<i class="fa-users fa"></i> Community]]>'; 
+			break; 
+		case 'Teaching': 
+			typeicon = '<![CDATA[<i class="fa-book fa"></i> Teaching]]>'; 
+			break;
+		case 'College': 
+			typeicon = '<![CDATA[<i class="fa-bell fa"></i> College]]>'; 
+			break;
+		} 
 	
 		if (rooms != ""){
 			$('<div class="header"></div>').html('<img src="assets/images/buildings/'+img+'.jpg" />').appendTo('#modalfront');
-			$('<div class="content"></div>').html('<a href="#" onclick="closeModal()"><i class="fa-times fa fa-lg"></i></a><h2>'+header+'</h2><h3>'+type+'</h3><p>'+description+'</p>').appendTo('#modalfront');
+			$('<div class="content"></div>').html('<a href="#" onclick="closeModal()"><i class="fa-times fa fa-lg"></i></a><h2>'+header+'</h2><h3>'+typeicon+'</h3><p>'+description+'</p>').appendTo('#modalfront');
 			$('<div class="footer"><form method="POST" target="_blank" id="roomform" action="http://www.kent.ac.uk/timetabling/rooms/room.html?room=" onsubmit="return SetData()"><select id="roomlist"><option value="default">select a room...</option></select><button type="submit">Find room</button></form></div>').appendTo('#modalfront');
 			$(this).find('rooms').children().each(function(){
 				var room = $(this).text();

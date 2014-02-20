@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
 <buildings>
     <building label="Aphra_and_Lumley_Theatre">
-		<type><![CDATA[<i class="fa-book fa"></i> Teaching]]></type>
+		<type>Teaching</type>
 		<description>The Aphra Theatre is a courtyard-style gallery theatre space organised by the School of Arts.</description>
 		<rooms>
 			<room value="APHRA_Thea">Aphra Theatre</room>
@@ -10,7 +10,7 @@
 		</rooms>
     </building>
    <building label="Becket_Court">
-		<type><![CDATA[<i class="fa-home fa"></i> Accommodation]]></type>
+		<type>Accommodation</type>
 		<description>Named after Thomas Becket and located adjacent to Eliot College, Becket Court offers en suite rooms on a bed and bistro basis.</description>
 		<list>
 			<listitem>En-suite</listitem>
@@ -24,7 +24,7 @@
 		</datalist>
     </building>
     <building label="Bishopden_Court">
-		<type><![CDATA[<i class="fa-home fa"></i> Accommodation]]></type>
+		<type>Accommodation</type>
 		<description>Bishopden Court houses have shower and toilet facilities upstairs, with an additional downstairs toilet. The kitchen/diner has an oven and hob, fridge/freezer and microwave.</description>
 		<list>
 			<listitem>Shared facilities</listitem>
@@ -38,11 +38,11 @@
 		</datalist>
     </building>
     <building label="Boiler_House">
-		<type><![CDATA[<i class="fa-book fa"></i> Teaching]]></type>
+		<type>Teaching</type>
 		<description>The Boiler House is a large workshop run by the School of Arts, ideal for large-scale 3D work.</description>
     </building>
     <building label="Bossenden_Court">
-		<type><![CDATA[<i class="fa-home fa"></i> Accommodation]]></type>
+		<type>Accommodation</type>
 		<description>As one of the Parkwood Flats, Bossenden Court offers spacious en-suite rooms and a shared kitchen.</description>
 		<list>
 			<listitem>En-suite</listitem>
@@ -56,15 +56,15 @@
 		</datalist>
     </building>
     <building label="Campus_Watch">
-		<type><![CDATA[<i class="fa-wrench fa"></i> Maintenance]]></type>
+		<type>Maintenance</type>
 		<description>The Campus Watch headquarters are the place to go for any security concerns you may have around campus.</description>
     </building>
     <building label="Careers_Employability_Service">
-		<type><![CDATA[<i class="fa-info fa"></i> Admin]]></type>
+		<type>Admin</type>
 		<description>The Careers Employability Service helps students with all aspects of career planning and decision-making. Opening hours: Monday 10.30am-5pm, Tuesday-Friday 9am-5pm.</description>
     </building>
     <building label="Clowes_Court">
-		<type><![CDATA[<i class="fa-home fa"></i> Accommodation]]></type>
+		<type>Accommodation</type>
 		<description>Clowes Court houses have shower and toilet facilities upstairs, with an additional downstairs toilet. The kitchen/diner has an oven and hob, fridge/freezer and microwave.</description>
 		<list>
 			<listitem>Shared facilities</listitem>
@@ -78,7 +78,7 @@
 		</datalist>
     </building>
     <building label="Colyer_Fergusson">
-		<type><![CDATA[<i class="fa-group fa"></i> Social]]></type>
+		<type>Community</type>
 		<description>A purpose-built, flexible performance space that can accommodate a wide range of musical activities.</description>
 		<rooms>
 			<room value="CFhall">CF Concert Hall</room>
@@ -91,7 +91,7 @@
 		</datalist>
     </building>
     <building label="Cornwallis_George_Allen_Wing">
-		<type><![CDATA[<i class="fa-book fa"></i> School of European Culture and Languages]]></type>
+		<type>Teaching</type>
 		<description>The George Allen Wing houses the School of European Culture and Languages as well as the Knowledge Management Centre for the School of Social Policy, Sociology and Social Research.</description>
 		<rooms>
 			<room value="CGAWN03B">CGAWN03B</room>
@@ -102,7 +102,7 @@
 		</rooms>
 	</building>
     <building label="Cornwallis_Mathematics_Institute">
-		<type><![CDATA[<i class="fa-book fa"></i> School of Mathematics]]></type>
+		<type>Teaching</type>
 		<description>The Cornwallis Mathematics Institute houses the main Mathematics lecture theatre along with the McVittie Library.</description>
 		<rooms>
 			<room value="MATHSLT">MATHSLT</room>
@@ -115,7 +115,7 @@
 		</datalist>
 	</building>
     <building label="Cornwallis_North_East">
-		<type><![CDATA[<i class="fa-book fa"></i> School of Social Policy, Sociology and Social Research]]></type>
+		<type>Teaching</type>
 		<description>Cornwallis North East contains 3 classrooms for the School of Social Policy, Sociology and Social Research.</description>
 		<rooms>
 			<room value="CNE08">CNE08</room>
@@ -130,7 +130,7 @@
 		</datalist>
 	</building>
     <building label="Cornwallis_North_West">
-		<type><![CDATA[<i class="fa-book fa"></i> School of European Culture and Languages]]></type>
+		<type>Teaching</type>
 		<description>Cornwallis North West has a variety of teaching spaces for the School of European Culture and Languages as well as a large central quad area.</description>
 		<rooms>
 			<room value="CNWG34">CNWG34</room>
@@ -155,7 +155,7 @@
 		</datalist>
 	</building>
     <building label="Cornwallis_South_East">
-		<type><![CDATA[<i class="fa-book fa"></i> Teaching]]></type>
+		<type>Teaching</type>
 		<description>Cornwallis South East contains many computer facilities along with two large lecture rooms.</description>
 		<rooms>
 			<room value="CC02">CC02</room>
@@ -166,7 +166,7 @@
 		</rooms>
 	</building>
     <building label="Cornwallis_South_West">
-		<type><![CDATA[<i class="fa-book fa"></i> School of Computing]]></type>
+		<type>Teaching</type>
 		<description>Cornwallis South West consists of three computer rooms used by the School of Computing.</description>
 		<rooms>
 			<room value="CompSW101">Comp SW101</room>
@@ -175,7 +175,7 @@
 		</rooms>
 	</building>
 	<building label="Cornwallis_South">
-		<type><![CDATA[<i class="fa-book fa"></i> School of Computing]]></type>
+		<type>Teaching</type>
 		<description>Cornwallis South is home to the School of Computing consisting of three computer rooms and two class rooms.</description>
 		<rooms>
 			<room value="CC01">CC01</room>
@@ -192,7 +192,7 @@
 		</datalist>
 	</building>
     <building label="Cornwallis_West">
-		<type><![CDATA[<i class="fa-book fa"></i> School of European Culture and Languages]]></type>
+		<type>Teaching</type>
 		<description>Cornwallis West contains four offices and a seminar room for the School of European Culture and Languages.</description>
 		<rooms>
 			<room value="CW160">CW160</room>
@@ -203,7 +203,7 @@
 		</rooms>
 	</building>
     <building label="Darwin_College">
-		<type><![CDATA[<i class="fa-bell fa"></i> College]]></type>
+		<type>College</type>
 		<description>Darwin College is the fourth oldest of the Kent colleges. It contains a variety of teaching, seminar and office rooms which are used by many subject areas. Also home to the very popular in-house bar and bistro - Origins.</description>
 		<rooms>
 			<room value="Drecep">Darwin College Reception</room>
@@ -226,7 +226,7 @@
 		</rooms>
 	</building>
     <building label="Darwin_Houses">
-		<type><![CDATA[<i class="fa-home fa"></i> Accommodation]]></type>
+		<type>Accommodation</type>
 		<description>Rooms in the Darwin Houses have their own sink along with shared toilet and shower facilities. Rooms are arranged in corridors of 5 single rooms over four floors, with access to shared kitchens.</description>
 		<list>
 			<listitem>Shared facilities</listitem>
@@ -240,7 +240,7 @@
 		</datalist>
 	</building>
 	<building label="Denstead_Court">
-		<type><![CDATA[<i class="fa-home fa"></i> Accommodation]]></type>
+		<type>Accommodation</type>
 		<description>Denstead Court houses have shower and toilet facilities upstairs, with an additional downstairs toilet. The kitchen/diner has an oven and hob, fridge/freezer and microwave.</description>
 		<list>
 			<listitem>Shared facilities</listitem>
@@ -254,7 +254,7 @@
 		</datalist>
 	</building>
 	<building label="Eliot_College">
-		<type><![CDATA[<i class="fa-bell fa"></i> College]]></type>
+		<type>College</type>
 		<description>Eliot College is the oldest of the Kent colleges. Consisting of accommodation alongside large multipurpose rooms, it is situated right in the heart of the campus.</description>
 		<rooms>
 			<room value="Erecep">Eliot College Reception</room>
@@ -289,7 +289,7 @@
 		</datalist>
 	</building>
 	<building label="Ellenden_Court">
-		<type><![CDATA[<i class="fa-home fa"></i> Accommodation]]></type>
+		<type>Accommodation</type>
 		<description>Ellenden Court houses have shower and toilet facilities upstairs, with an additional downstairs toilet. The kitchen/diner has an oven and hob, fridge/freezer and microwave.</description>
 		<list>
 			<listitem>Shared facilities</listitem>
@@ -303,11 +303,11 @@
 		</datalist>
 	</building>
     <building label="Estates_Department">
-		<type><![CDATA[<i class="fa-wrench fa"></i> Maintenance]]></type>
+		<type>Maintenance</type>
 		<description>The Estates Department provides a number of essential services to the University of Kent and is responsible for managing, maintaining and developing the infrastructure and building fabric of the various campuses.</description>
 	</building>
     <building label="Farthings_Court">
-		<type><![CDATA[<i class="fa-home fa"></i> Accommodation]]></type>
+		<type>Accommodation</type>
 		<description>Farthings Court houses have shower and toilet facilities upstairs, with an additional downstairs toilet. The kitchen/diner has an oven and hob, fridge/freezer and microwave.</description>
 		<list>
 			<listitem>Shared facilities</listitem>
@@ -321,7 +321,7 @@
 		</datalist>
 	</building>
     <building label="Grimond">
-		<type><![CDATA[<i class="fa-book fa"></i> Teaching]]></type>
+		<type>Teaching</type>
 		<description>this is the brief description.</description>
 		<rooms>
 			<room value="GRIMOND_FO">Grimond Foyer</room>
@@ -340,7 +340,7 @@
 		</rooms>
 	</building>
     <building label="Grimshill_Court">
-		<type><![CDATA[<i class="fa-home fa"></i> Accommodation]]></type>
+		<type>Accommodation</type>
 		<description>Grimshill Court houses have shower and toilet facilities upstairs, with an additional downstairs toilet. The kitchen/diner has an oven and hob, fridge/freezer and microwave.</description>
 		<list>
 			<listitem>Shared facilities</listitem>
@@ -354,11 +354,11 @@
 		</datalist>
 	</building>
 	<building label="Ground_Maintenance">
-		<type><![CDATA[<i class="fa-wrench fa"></i> Maintenance]]></type>
+		<type>Maintenance</type>
 		<description>The Grounds Maintenance team has a responsibility to ensure that the University grounds are maintained to an agreed standard, based upon a detailed specification.</description>
 	</building>
     <building label="Gulbenkian">
-		<type><![CDATA[<i class="fa-users fa"></i> Community]]></type>
+		<type>Community</type>
 		<description>Gulbenkian is a key part of the University of Kent's Arts Centre offering innovative, engaging and high quality arts activity for and with the public, staff and students.</description>
 		<rooms>
 			<room value="CGUCafe">Gulbenkian Cafe</room>
@@ -373,7 +373,7 @@
 		</datalist>
 	</building>
 	<building label="Homestall_Court">
-		<type><![CDATA[<i class="fa-home fa"></i> Accommodation]]></type>
+		<type>Accommodation</type>
 		<description>Homestall Court houses have shower and toilet facilities upstairs, with an additional downstairs toilet. The kitchen/diner has an oven and hob, fridge/freezer and microwave.</description>
 		<list>
 			<listitem>Shared facilities</listitem>
@@ -387,7 +387,7 @@
 		</datalist>
 	</building>
 	<building label="Hothe_Court">
-		<type><![CDATA[<i class="fa-home fa"></i> Accommodation]]></type>
+		<type>Accommodation</type>
 		<description>Hothe Court houses have shower and toilet facilities upstairs, with an additional downstairs toilet. The kitchen/diner has an oven and hob, fridge/freezer and microwave.</description>
 		<list>
 			<listitem>Shared facilities</listitem>
@@ -401,7 +401,7 @@
 		</datalist>
 	</building>
     <building label="Ingram">
-		<type><![CDATA[<i class="fa-book fa"></i> School of Physical Sciences]]></type>
+		<type>Teaching</type>
 		<description>Ingram is home to the Physics department and houses four large lab spaces as well as a lecture theatre and several classrooms.</description>
 		<rooms>
 			<room value="Ingram_Foy">Ingram Foyer</room>
@@ -422,11 +422,11 @@
 		</datalist>
 	</building>
 	<building label="Innovation_Center">
-		<type><![CDATA[<i class="fa-info fa"></i> Admin]]></type>
+		<type>Admin</type>
 		<description>The Innovation Centre houses over 2500 sq. metres of modern, affordable office, studio and workshop space set amongst 500 acres of green parkland, overlooking the beautiful cathedral city of Canterbury.</description>
 	</building>
 	<building label="Jarman">
-		<type><![CDATA[<i class="fa-book fa"></i> Teaching]]></type>
+		<type>Teaching</type>
 		<description>The Jarman building is the centre of Arts for the Canterbury campus. It offers professional standard drama, and film production studios as well as teaching rooms, social spaces and a dedicated centre for postgraduate students.</description>
 		<rooms>
 			<room value="JarFoyer">Jarman Foyer</room>
@@ -459,7 +459,7 @@
 		</datalist>
 	</building>
 	<building label="Jennison">
-		<type><![CDATA[<i class="fa-book fa"></i> Teaching]]></type>
+		<type>Teaching</type>
 		<description>The Jennison building is home to the School of Engineering and Digital Arts, including four large computer suites and various production rooms as well as a large engineering lab.</description>
 		<rooms>
 			<room value="Eng_LabB">Engineering Lab Blue</room>
@@ -482,7 +482,7 @@
 		</datalist>
 	</building>
     <building label="Kemsdale_Court">
-	<type><![CDATA[<i class="fa-home fa"></i> Accommodation]]></type>
+	<type>Accommodation</type>
 		<description>As one of the Parkwood Flats, Kemsdale Court offers spacious en-suite rooms and a shared kitchen.</description>
 		<list>
 			<listitem>En-suite</listitem>
@@ -496,7 +496,7 @@
 		</datalist>
 	</building>
 	<building label="Kent_Business_School">
-		<type><![CDATA[<i class="fa-book fa"></i> Teaching]]></type>
+		<type>Teaching</type>
 		<description>The Kent Business School contains five seminar rooms, an IT suite, a lecture theatre and a large symposium room.</description>
 		<rooms>
 			<room value="KBS_Foy">KBS Lower Foyer</room>
@@ -526,11 +526,11 @@
 		</datalist>
 	</building>
     <building label="Kent_Enterprise_Hub">
-		<type><![CDATA[<i class="fa-book fa"></i> Admin]]></type>
+		<type>Admin</type>
 		<description>The Kent Enterprise business incubation and support unit is devoted to helping student, graduate and staff start-up ventures and early stage companies to increase survival rates.</description>
 	</building>
     <building label="Kent_Law_School">
-		<type><![CDATA[<i class="fa-book fa"></i> Teaching]]></type>
+		<type>Teaching</type>
 		<description>The law school is part of the Eliot College Extension and comprises of several teaching and meeting rooms.</description>
 		<rooms>
 			<room value="E.L49">Law postgraduate room</room>
@@ -548,7 +548,7 @@
 		</datalist>
 	</building>
     <building label="Keynes_College">
-		<type><![CDATA[<i class="fa-bell fa"></i> College]]></type>
+		<type>College</type>
 		<description>Keynes College is now one of the biggest colleges on the Canterbury Campus and has rooms for catered and self-catered students. Keynes College boast an expanded Dolche Vita where catered students are provided with breakfast and dinner.</description>
 		<rooms>
 			<room value="Krecep">Keynes College Reception</room>
@@ -598,7 +598,7 @@
 		</datalist>
 	</building>
     <building label="Keynes_Flats">
-		<type><![CDATA[<i class="fa-home fa"></i> Accommodation]]></type>
+		<type>Accommodation</type>
 		<description>Rooms in the Keynes Flats have en-suite bathrooms and are self-catered. The flats are brand new and provide a very high standard of living including broadband computer links and laundry services.</description>
 		<list>
 			<listitem>En-suite</listitem>
@@ -612,7 +612,7 @@
 		</datalist>
 	</building>
 	<building label="Keynes_Houses">
-		<type><![CDATA[<i class="fa-home fa"></i> Accommodation]]></type>
+		<type>Accommodation</type>
 		<description>In each of the Keynes Houses, 9 people share the accommodation over three floors. The ground floor has a spacious kitchen and one bedroom with en suite facilities. There are four rooms on both the first and second floors, with two sets of shower and toilet facilities on each floor.</description>
 		<list>
 			<listitem>Shared facilities</listitem>
@@ -626,11 +626,11 @@
 		</datalist>
 	</building>
     <building label="Locke">
-		<type><![CDATA[<i class="fa-shopping-cart fa"></i> Shops]]></type>
+		<type>Community</type>
 		<description>Locke is the main shopping complex on the campus. Essentials provides general groceries along with Blackwells Bookshop and Unique Clothing. The Sports &amp; Societies section of Kent Union are also situated upstairs.</description>
 	</building>
     <building label="Lypeatt_Court">
-		<type><![CDATA[<i class="fa-home fa"></i> Accommodation]]></type>
+		<type>Accommodation</type>
 		<description>Lypeatt Court houses have shower and toilet facilities upstairs, with an additional downstairs toilet. The kitchen/diner has an oven and hob, fridge/freezer and microwave.</description>
 		<list>
 			<listitem>Shared facilities</listitem>
@@ -644,12 +644,12 @@
 		</datalist>
 	</building>
     <building label="Mandela_Building">
-		<type><![CDATA[<i class="fa-info fa"></i> Admin]]></type>
+		<type>Admin</type>
 		<description>Mandela Building is home to Kent Union and more specifically the Jobshop, where staff handle general enquiries and suggestions.</description>
 		<area><![CDATA[<i class="fa fa-info"></i>Student Union]]></area>
 	</building>
     <building label="Marley_Court">
-		<type><![CDATA[<i class="fa-home fa"></i> Accommodation]]></type>
+		<type>Accommodation</type>
 		<description>Marley Court houses have shower and toilet facilities upstairs, with an additional downstairs toilet. The kitchen/diner has an oven and hob, fridge/freezer and microwave.</description>
 		<list>
 			<listitem>Shared facilities</listitem>

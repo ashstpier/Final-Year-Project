@@ -2,7 +2,7 @@
 <div class="container">
     <div class="grid">
         <div class="unit span-grid">
-        	<h1>Dashboard</h1>
+        	<h1>Help</h1>
         </div>
     </div>
 </div>

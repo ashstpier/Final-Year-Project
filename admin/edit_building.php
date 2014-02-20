@@ -1,31 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-		<title>Admin</title>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
-        <link href="../assets/css/admin.css" rel="stylesheet" type="text/css"/>
-        <link href="../assets/css/toast.css" rel="stylesheet" type="text/css"/>
-        <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
-        <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700,400,300' rel='stylesheet' type='text/css'>
-        <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>
-        
-</head>
-<body>
-<div id="navbar">
-	<div id="logo"><a href="http://www.kent.ac.uk/" target="_blank"><img src="../assets/images/logo.png" alt="University of Kent logo" /></a><h1>Admin panel</h1></div>
-    <ul id="nav">
-    	<li><a href="#" class="active" id="toggledrawer"><i class="fa fa-bars"></i></a></li>
-        <li><a href="#"><i class="fa fa-user"></i>&nbsp;&nbsp;Profile</a></li>
-        <li><a href="#"><i class="fa fa-sign-out"></i>&nbsp;&nbsp;Logout</a></li>
-    </ul>
-</div>
-
+<?php require 'header.php'; ?>
 <?
 $name = $_GET["building"];
-$xml=simplexml_load_file("../assets/buildings.xml");
+$xml=simplexml_load_file("../assets/buildings2.xml");
 
-global $description, $type, $list, $title, $titleraw;
+global $description, $type, $list, $title, $titleraw, $toilet, $catering, $price;
 
 $query = $xml->xpath('/buildings/building[@label="'.$name.'"]');
 foreach ($query as $building) {
@@ -33,24 +11,13 @@ foreach ($query as $building) {
 	$title = str_replace('_', ' ', $titleraw);
 	$description = $building->description;
 	$type = $building->type;
-	foreach ($building->list->listitem as $listitem) {
-		$list .= "<textarea>".$listitem."</textarea>";
-	}
+	$list = $building->list->listitem;
+	
+	$toilet = $xml->xpath('/buildings/building[@label="'.$name.'"]/list/listitem[1]');
+	$catering = $xml->xpath('/buildings/building[@label="'.$name.'"]/list/listitem[2]');
+	$price = $xml->xpath('/buildings/building[@label="'.$name.'"]/list/listitem[3]');
 }
 ?>
-
-<div id="leftcolumn">
-	<ul>
-    	<li><a href="#" class="active"><i class="fa fa-dashboard"></i>Dashboard</a></li>
-      	<li><a href="#"><i class="fa fa-pencil-square-o"></i>Edit buildings</a></li>
-        <li><a href="#"><i class="fa fa-pencil-square-o"></i>Edit rooms</a></li>
-    </ul>
-    <h3>Map data</h3>
-    <ul>
-   		<li><a href="#"><i class="fa fa-bar-chart-o"></i>Accommodation data</a></li>
-      	<li><a href="#"><i class="fa fa-bar-chart-o"></i>Subject data</a></li>
-    </ul>
-</div>
 <div class="container">
     <div class="grid">
         <div class="unit span-grid">
@@ -58,12 +25,26 @@ foreach ($query as $building) {
         </div>
         <div class="unit two-of-three">
             <form action='save_edit.php?building=<?php echo $name ?>' method='post'>
-                <h2><i class='fa fa-pencil-square-o'></i> Building description <a href="#" class="clear"><i class='fa fa-times'></i> Clear</a></h2>
-                <textarea name="description" class="description" maxlength="250"><?php echo $description ?></textarea>
-                <h2><i class='fa fa-pencil-square-o'></i> Type of building <a href="#" class="clear"><i class='fa fa-times'></i> Clear</a></h2>
-                <textarea name="type"><?php echo $type ?></textarea>
-                <h2><i class='fa fa-pencil-square-o'></i> Extra information <a href="#" class="clear"><i class='fa fa-times'></i> Clear</a></h2>
-                <?php echo $list ?>
+                <h2><i class='fa fa-pencil-square-o'></i> Building description <a href="#" class="clear" name="description"><i class='fa fa-times'></i> Clear</a></h2>
+                <textarea name="description" class="description" maxlength="250" id="description"><?php echo $description ?></textarea>
+                <h2><i class='fa fa-pencil-square-o'></i> Type of building</h2>
+                <select name="type">
+                	<option value="Accommodation">Accommodation</option>
+                    <option value="Admin">Admin</option>
+                    <option value="College">College</option>
+                    <option value="Community">Community</option>
+                    <option value="Maintenance">Maintenance</option>
+                    <option value="Teaching">Teaching</option>
+                </select>
+                <?php if(isset($list)) : ?>
+				<h2><i class='fa fa-pencil-square-o'></i> Accommodation information</h2>
+                <h3>Toilet and bathroom facilities <a href="#" class="clear" name="toilet"><i class='fa fa-times'></i> Clear</a></h3>
+                <textarea name="toilet" id="toilet"><?php echo $toilet[0] ?></textarea>
+                <h3>Catering services <a href="#" class="clear" name="catering"><i class='fa fa-times'></i> Clear</a></h3>
+                <textarea name="catering" id="catering"><?php echo $catering[0] ?></textarea>
+                <h3>Price per year <a href="#" class="clear" name="price"><i class='fa fa-times'></i> Clear</a></h3>
+                <textarea name="price" id="price"><?php echo $price[0] ?></textarea>
+                <?php endif; ?>
                 <button type="submit"><i class='fa fa-floppy-o'></i> Save</button>
             </form>
         </div>
@@ -78,8 +59,4 @@ foreach ($query as $building) {
         </div>
     </div>
 </div>
-
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
-</body>
-</html>
+<?php require 'footer.php'; ?>
