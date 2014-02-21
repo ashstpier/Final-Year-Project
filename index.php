@@ -246,8 +246,6 @@ $.ajax({
 <script src="assets/js/utils/stats.min.js"></script> 
 <script src="assets/js/utils/tween.min.js"></script> 
 
-
-
 <script src="assets/js/postprocessing/EffectComposer.js"></script>
 <script src="assets/js/postprocessing/RenderPass.js"></script>
 <script src="assets/js/postprocessing/MaskPass.js"></script>

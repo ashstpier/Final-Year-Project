@@ -17,7 +17,7 @@ body {
 	height: 100%;
 }
 .container {
-	margin: 100px 0 0 280px!important;
+	margin: 90px 0 0 280px!important;
 	max-width: 1024px!important;
 	padding-bottom: 30px!important;
 }
@@ -123,6 +123,7 @@ body {
 .grid h1 {
 	border-bottom: 1px solid #ddd;
 	padding-bottom: 10px;
+	margin-bottom: 20px;
 }
 .grid h2 { font-size: 120%; color: #629ad1; padding-bottom: 10px; }
 .grid h2 i { padding-right: 10px; }
@@ -149,8 +150,24 @@ td img {
 	display: block;
 	margin: 0;
 }
+td textarea {
+	margin-bottom: 0;
+}
 td button {
 	padding: 5px 8px;
+	float: right;
+	margin-bottom: 0px;
+}
+td .modal-add {
+	background: #33cc7d;
+	border-bottom: 2px solid #27b36b;
+}
+td .modal-add:hover {
+	background: #27b36b;
+	border-bottom: 2px solid #27b36b;
+}
+td.left, th.left {
+	padding-left: 0;
 }
 button {
 	padding: 15px 30px;
@@ -165,7 +182,7 @@ button {
 	font-size:14px;
 	display: block;
 	outline: none;
-	float: right;
+	margin-bottom: 20px;
 }
 button:hover {
 	background: #d66549;
@@ -238,7 +255,7 @@ input[type=file]::-webkit-file-upload-button {
 	outline: none;
 	cursor: pointer;
 }
-.upload {
+.modal-upload {
 	padding: 15px 20px;
 	border: none;
 	font-weight: 300;
@@ -258,12 +275,13 @@ input[type=file]::-webkit-file-upload-button {
 .back {
 	width: auto;
 	float: none;
+	margin-top: 20px;
 }
 .filetypes { padding-top: 10px; font-size: 85%; text-align:center; }
-.time { float:right; font-size: 14px; line-height: 400%;}
+.time { float:right; font-size: 14px; line-height: 300%;}
 select { 
 	width: 100%;
-	margin-bottom: 30px;
+	margin-bottom: 20px;
 	-webkit-appearance: none;
 	-moz-appearance: none;
 	padding: 10px;
@@ -274,3 +292,20 @@ select {
 	cursor: pointer;
 	outline: none;
 }
+/* Overlay */
+#simplemodal-overlay { opacity: 0.5!important; background-color: #000!important;}
+
+/* Container */
+#simplemodal-container {min-height:135px; width:400px; color:#666; background-color:#f8f8f8; padding:20px; font-weight: bold; z-index: 9999999!important; top: 100px!important; text-align:center; border-radius: 5px;}
+#simplemodal-container p { margin-bottom: 20px; }
+#simplemodal-container button {
+	float: left;
+	width: 49%;
+	margin-bottom: 0;
+}
+.modalCloseImg { display: none; }
+.simplemodal-close { margin-right: 2%; background: #384047; color: #eee; border-bottom: 2px solid #242B31; }
+.simplemodal-close:hover { background: #242B31; color: #eee; border-bottom: 2px solid #242B31; }
+.simplemodal-wrap { height: auto; }
+.confirm, .modal-save { background: #629ad1; border-bottom: 2px solid #5085ba; }
+.confirm:hover, .modal-save:hover { background: #5085ba; border-bottom: 2px solid #5085ba; }

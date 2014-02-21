@@ -11,7 +11,7 @@
         $title = 'Admin - Dashboard'; 
 		$id = 'dashboard';
         break; 
-	case 'edit.php': 
+	case 'buildings.php': 
         $title = 'Admin - Edit Building'; 
 		$id = 'editbuilding';
         break;
@@ -26,6 +26,30 @@
     case 'upload_file.php': 
         $title = 'Admin - Image Upload'; 
 		$id = 'editbuilding';
+        break;
+	case 'accommodation_data.php': 
+        $title = 'Admin - Accommodation Data'; 
+		$id = 'accommodationdata';
+        break;
+	case 'edit_accommodation.php': 
+        $title = 'Admin - Edit Accommodation Data'; 
+		$id = 'accommodationdata';
+        break;
+	case 'save_accommodation.php': 
+        $title = 'Admin - Save Accommodation Data'; 
+		$id = 'accommodationdata';
+        break;
+	case 'subject_data.php': 
+        $title = 'Admin - Subject Data'; 
+		$id = 'subjectdata';
+        break;
+	case 'edit_subject.php': 
+        $title = 'Admin - Edit Subject Data'; 
+		$id = 'subjectdata';
+        break;
+	case 'save_subject.php': 
+        $title = 'Admin - Save Subject Data'; 
+		$id = 'subjectdata';
         break;
 	case 'help.php': 
         $title = 'Admin - Help'; 
@@ -59,13 +83,12 @@
 <div id="leftcolumn">
 	<ul>
     	<li><a href="dashboard.php" id="dashboard"><i class="fa fa-dashboard"></i>Dashboard</a></li>
-      	<li><a href="edit.php" id="editbuilding"><i class="fa fa-pencil-square-o"></i>Edit buildings</a></li>
-        <li><a href="#" id="editrooms"><i class="fa fa-pencil-square-o"></i>Edit rooms</a></li>
+      	<li><a href="buildings.php" id="editbuilding"><i class="fa fa-pencil-square-o"></i>Edit buildings</a></li>
     </ul>
     <h3>Map data</h3>
     <ul>
-   		<li><a href="#" id="accommodationdata"><i class="fa fa-bar-chart-o"></i>Accommodation data</a></li>
-      	<li><a href="#" id="subjectdata"><i class="fa fa-bar-chart-o"></i>Subject data</a></li>
+   		<li><a href="accommodation_data.php" id="accommodationdata"><i class="fa fa-bar-chart-o"></i>Accommodation data</a></li>
+      	<li><a href="subject_data.php" id="subjectdata"><i class="fa fa-bar-chart-o"></i>Subject data</a></li>
     </ul>
     <h3>Help</h3>
     <ul>

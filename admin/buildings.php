@@ -3,7 +3,7 @@
 $last_mod = filemtime("../assets/buildings.xml");
 $xml=simplexml_load_file("../assets/buildings.xml");
 global $table_string;
-$table_string = "<table cellpadding='0' cellspacing='0'><tbody>";
+$table_string = "<table cellpadding='0' cellspacing='0'><thead><tr><th>Image</th><th>Building</th><th>Type</th><th></th></tr></thead><tbody>";
 foreach ($xml->building as $building) {
 	$titleraw = $building->attributes();
 	$title = str_replace('_', ' ', $titleraw);
