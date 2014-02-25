@@ -88,22 +88,22 @@ function placeMarker(modal){
 		var typeicon;
 		switch(type){ 
 		case 'Accommodation': 
-			typeicon = '<![CDATA[<i class="fa-home fa"></i> Accommodation]]>'; 
+			typeicon = '<i class="fa-home fa"></i> Accommodation'; 
 			break; 
 		case 'Admin': 
-			typeicon = '<![CDATA[<i class="fa-info fa"></i> Admin]]>'; 
+			typeicon = '<i class="fa-info fa"></i> Admin'; 
 			break;
 		case 'Maintenance': 
-			typeicon = '<![CDATA[<i class="fa-wrench fa"></i> Maintenance]]>'; 
+			typeicon = '<i class="fa-wrench fa"></i> Maintenance'; 
 			break;
 		case 'Community': 
-			typeicon = '<![CDATA[<i class="fa-users fa"></i> Community]]>'; 
+			typeicon = '<i class="fa-users fa"></i> Community'; 
 			break; 
 		case 'Teaching': 
-			typeicon = '<![CDATA[<i class="fa-book fa"></i> Teaching]]>'; 
+			typeicon = '<i class="fa-book fa"></i> Teaching'; 
 			break;
 		case 'College': 
-			typeicon = '<![CDATA[<i class="fa-bell fa"></i> College]]>'; 
+			typeicon = '<i class="fa-bell fa"></i> College'; 
 			break;
 		} 
 	
@@ -120,7 +120,7 @@ function placeMarker(modal){
 			//$('<div class="content"></div>').html(backcontent+'<div class="next"></div><a href="#" onclick="flipModal()"><i class="fa-align-left fa"></i></a>').appendTo('#modalback');
 		}else if(list != ""){
 			$('<div class="header"></div>').html('<img src="assets/images/buildings/'+img+'.jpg" />').appendTo('#modalfront');
-			$('<div class="content"></div>').html('<a href="#" onclick="closeModal()"><i class="fa-times fa fa-lg"></i></a><h2>'+header+'</h2><h3>'+type+'</h3><p>'+description+'</p>').appendTo('#modalfront');
+			$('<div class="content"></div>').html('<a href="#" onclick="closeModal()"><i class="fa-times fa fa-lg"></i></a><h2>'+header+'</h2><h3>'+typeicon+'</h3><p>'+description+'</p>').appendTo('#modalfront');
 			$('<div class="footer"><ul></ul></div>').appendTo('#modalfront');
 			$(this).find('list').children().each(function(){
 				var listitem = $(this).text();
@@ -129,7 +129,7 @@ function placeMarker(modal){
 			$('<div class="arrow-down grey"></div>').appendTo('#modalfront, #modalback');
 		}else {
 			$('<div class="header"></div>').html('<img src="assets/images/buildings/'+img+'.jpg" />').appendTo('#modalfront');
-			$('<div class="content"></div>').html('<a href="#" onclick="closeModal()"><i class="fa-times fa fa-lg"></i></a><h2>'+header+'</h2><h3>'+type+'</h3><p>'+description+'</p>').appendTo('#modalfront');
+			$('<div class="content"></div>').html('<a href="#" onclick="closeModal()"><i class="fa-times fa fa-lg"></i></a><h2>'+header+'</h2><h3>'+typeicon+'</h3><p>'+description+'</p>').appendTo('#modalfront');
 			$('<div class="arrow-down"></div>').appendTo('#modalfront, #modalback');
 			
 		}
@@ -182,18 +182,18 @@ function twitterMap(intersects, tweetcontainer){
 	position.applyMatrix4( tweetmodal.matrixWorld );
 		
 	if (camera.position.z >= position.z && controls.center.z <= camera.position.z){
-		new TWEEN.Tween( camera.position ).to( { x: 0, y: 150, z: 250 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {$(tweetcontainer).addClass('fadeInDown opaque');}).start();
+		new TWEEN.Tween( camera.position ).to( { x: 0, y: 150, z: 250 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {$(tweetcontainer).addClass('flipInY opaque');}).start();
 		new TWEEN.Tween( group.position ).to( { x: group.position.x - position.x, y: -10, z: group.position.z - position.z +50 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).start();
 	}else if (camera.position.z >= position.z && controls.center.z >= camera.position.z) {
-		new TWEEN.Tween( camera.position ).to( { x: 0, y: 150, z: -250 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {$(tweetcontainer).addClass('fadeInDown opaque');}).start();
+		new TWEEN.Tween( camera.position ).to( { x: 0, y: 150, z: -250 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {$(tweetcontainer).addClass('flipInY opaque');}).start();
 		new TWEEN.Tween( group.position ).to( { x: group.position.x - position.x, y: -10, z: group.position.z - position.z -50 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).start();
 	}
 	else if (camera.position.z <= position.z && controls.center.z <= camera.position.z) {
-		new TWEEN.Tween( camera.position ).to( { x: 0, y: 150, z: 250 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {$(tweetcontainer).addClass('fadeInDown opaque');}).start();
+		new TWEEN.Tween( camera.position ).to( { x: 0, y: 150, z: 250 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {$(tweetcontainer).addClass('flipInY opaque');}).start();
 		new TWEEN.Tween( group.position ).to( { x: group.position.x - position.x, y: -10, z: group.position.z - position.z +50 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).start();
 	}
 	else {
-		new TWEEN.Tween( camera.position ).to( { x: 0, y: 150, z: -250 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {$(tweetcontainer).addClass('fadeInDown opaque');}).start();
+		new TWEEN.Tween( camera.position ).to( { x: 0, y: 150, z: -250 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {$(tweetcontainer).addClass('flipInY opaque');}).start();
 		new TWEEN.Tween( group.position ).to( { x: group.position.x - position.x, y: -10, z: group.position.z - position.z +50 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).start();
 	}
 }
@@ -380,7 +380,7 @@ $( "#labelall" ).click(function() {
 			communityIcons[i].material.color.setHex(0x944646);
 		}
 		for (var i=0, tot=maintenanceIcons.length; i < tot; i++) {
-			maintenanceIcons[i].material.color.setHex(0xcc8746);
+			maintenanceIcons[i].material.color.setHex(0xcf5b2d);
 		}
 		for (var i=0, tot=adminIcons.length; i < tot; i++) {
 			adminIcons[i].material.color.setHex(0x6e4399);
@@ -491,16 +491,14 @@ $( "#admintoggle" ).click(function() {
 	}
 });
 $( "#tweettoggle" ).click(function() {
-	if ($(this).hasClass( "toggled" )) {
-		for (var i=0, tot=tweetIcons.length; i < tot; i++) {
-			tweetIcons[i].visible = false;
-		}
-		$(this).toggleClass( "toggle toggled" );
-	} else {
+	if ($(this).hasClass( "toggle" )) {
 		for (var i=0, tot=tweetIcons.length; i < tot; i++) {
 			tweetIcons[i].visible = true;
 		}
-		$(this).toggleClass( "toggle toggled" );
+	} else {
+		for (var i=0, tot=tweetIcons.length; i < tot; i++) {
+			tweetIcons[i].visible = false;
+		}
 	}
 });
 
@@ -546,38 +544,47 @@ $( "#overlay-panel a" ).click(function() {
 	}
 });
 $( "#keynesbus" ).click(function() {
-	var route = scene.getObjectByName( 'keynesRoute', true );
 	if ($(this).hasClass( "toggle" )) {
-		route.visible = true;
+		for (var i=0, tot=keynesRoute.length; i < tot; i++) {
+			keynesRoute[i].visible = true;
+		}
 	} else {
-		route.visible = false;
+		for (var i=0, tot=keynesRoute.length; i < tot; i++) {
+			keynesRoute[i].visible = false;
+		}
 	}
 });
 $( "#darwinbus" ).click(function() {
-	var route = scene.getObjectByName( 'darwinRoute', true );
 	if ($(this).hasClass( "toggle" )) {
-		route.visible = true;
+		for (var i=0, tot=darwinRoute.length; i < tot; i++) {
+			darwinRoute[i].visible = true;
+		}
 	} else {
-		route.visible = false;
+		for (var i=0, tot=darwinRoute.length; i < tot; i++) {
+			darwinRoute[i].visible = false;
+		}
 	}
 });
 $( "#parkwoodbus" ).click(function() {
-	var route = scene.getObjectByName( 'parkwoodRoute', true );
 	if ($(this).hasClass( "toggle" )) {
-		route.visible = true;
+		for (var i=0, tot=parkwoodRoute.length; i < tot; i++) {
+			parkwoodRoute[i].visible = true;
+		}
 	} else {
-		route.visible = false;
+		for (var i=0, tot=parkwoodRoute.length; i < tot; i++) {
+			parkwoodRoute[i].visible = false;
+		}
 	}
 });
 $( "#cycleroutes" ).click(function() {
-	var route = scene.getObjectByName( 'cycle1', true );
-	var route2 = scene.getObjectByName( 'cycle2', true );
 	if ($(this).hasClass( "toggle" )) {
-		route.visible = true;
-		route2.visible = true;
+		for (var i=0, tot=cycleRoute.length; i < tot; i++) {
+			cycleRoute[i].visible = true;
+		}
 	} else {
-		route.visible = false;
-		route2.visible = false;
+		for (var i=0, tot=cycleRoute.length; i < tot; i++) {
+			cycleRoute[i].visible = false;
+		}
 	}
 });
 $( "#bikeracks" ).click(function() {
@@ -792,3 +799,16 @@ function SetData(){
   		myform.submit();
    }
 }
+$("#start").click(function() {
+	$('#status').fadeOut(1000); // will first fade out the loading animation
+	$('#preloader').fadeOut(1000); // will fade out the white DIV that covers the website.
+	$('body').css({'overflow':'visible'});
+	new TWEEN.Tween( camera.position ).to( { x: 0, y: 350, z: 500 }, 3000 ).easing( TWEEN.Easing.Quadratic.InOut).start();
+	setTimeout(function(){
+		$('#navbar').toggleClass("open close");
+	},3000);
+	setTimeout(function(){
+		$('#leftnav').toggleClass("openleft closeleft");
+		$('#search').fadeIn(1000);
+	},3300);
+});

@@ -38,7 +38,7 @@
 		</datalist>
     </building>
     <building label="Boiler_House">
-		<type>Teaching</type>
+		<type>Maintenance</type>
 		<description>The Boiler House is a large workshop run by the School of Arts, ideal for large-scale 3D work.</description>
     </building>
     <building label="Bossenden_Court">

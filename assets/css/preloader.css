@@ -1,11 +1,13 @@
 #preloader {
     position:fixed;
-    top:70px;
+    top:0;
     left:0;
     right:0;
     bottom:0;
-    background-color:#242B31; /* change if the mask should have another color then white */
-    z-index:99999999; /* makes sure it stays on top */
+    background: url(../images/splash.jpg) center center;
+	background-size: cover;
+    z-index:99999999;
+	text-align: center;
 }
 @keyframes spin {
     from { transform: rotate(0deg); }
@@ -51,4 +53,31 @@ to { transform: rotate(360deg); }
     height: 52px;
     animation: spin 1s infinite linear;
 	-webkit-animation: spin 1s infinite linear;
+}
+#start { 
+	display: none;
+}
+#start span {
+	padding: 15px 30px;
+	font-weight: 300;
+	text-align: center;
+	border-radius: 3px;
+	background: #ed7b5f;
+	border-bottom: 2px solid #d66549;
+	color: #fff;
+}
+#start span::before {
+	background: #d66549;
+	border-bottom: 2px solid #d66549;
+	border-radius: 3px;
+	color: #fff;
+	padding: 15px 30px;
+}
+#percent {
+	font-size: 1000%;
+	color: #fff;
+	font-weight: bold;
+	text-align: center;
+	padding: 200px 0 30px;
+	text-shadow: 0px 2px 20px #333;
 }

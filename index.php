@@ -1,33 +1,29 @@
 <?php include_once 'twitter/display-tweet.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
-		<head>
-		<title>Final Year Project</title>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
-		<link href="assets/css/style_light.css" rel="stylesheet" type="text/css">
-        <link href="assets/css/typography.css" rel="stylesheet" type="text/css">
-        <link href="assets/css/preloader.css" rel="stylesheet" type="text/css">
-        <link href="assets/css/social.css" rel="stylesheet" type="text/css">
-        <link rel="stylesheet" href="assets/css/animate.css">
-        <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
-        <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700,400,300' rel='stylesheet' type='text/css'>
-        <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>
+    <head>
+    <title>Final Year Project</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <link href="assets/css/style_light.css" rel="stylesheet" type="text/css">
+    <link href="assets/css/typography.css" rel="stylesheet" type="text/css">
+    <link href="assets/css/preloader.css" rel="stylesheet" type="text/css">
+    <link href="assets/css/social.css" rel="stylesheet" type="text/css">
+    <link href="assets/css/3dbuttons.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="assets/css/animate.css">
+    <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700,400,300' rel='stylesheet' type='text/css'>
+    <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="preloader">
-    <div class="loading">
-    <!-- We make this div spin -->
-        <div class="spinner">
-            <!-- Mask of the quarter of circle -->
-            <div class="mask">
-                <!-- Inner masked circle -->
-                <div class="maskedCircle"></div>
-            </div>
-        </div>
-    </div>
+	<img src="assets/images/logo.png" alt="University of Kent logo" />
+    <div id="percent">0%</div>
+    <nav class="cl-effect-2">
+        <a href="#" id="start"><span data-hover="Explore the campus now!" class="external">Explore the campus now!</span></a>
+    </nav>
 </div>
-<div id="navbar">
+<div id="navbar" class="fold close">
 	<div id="logo"><a href="http://www.kent.ac.uk/" target="_blank"><img src="assets/images/logo.png" alt="University of Kent logo" /></a><h1>Explore the campus!</h1></div>
     <ul id="nav">
     	<!--<li><a href="#"><i class="fa fa-reply"></i> Back</a></li>
@@ -46,7 +42,7 @@
         </ul>
     </div>
 </div>
-<div id="leftnav">
+<div id="leftnav" class="foldleft closeleft">
     <button id="label-button" class="slide" type="button"><i class="fa fa-map-marker"></i></button>
     <button id="overlay-button" class="slide" type="button"><i class="fa fa-location-arrow"></i></button>
     <button id="investment-button" class="slide" type="button"><i class="fa fa-bar-chart-o"></i></button>
@@ -79,8 +75,8 @@
         <h3>Labels</h3>
         <ul>
         	<li><a href="#" class="toggle" id="labeltoggle">Names</a></li>
-            <li><a href="#" class="toggled" id="eventtoggle">Events</a></li>
-            <li><a href="#" class="toggled" id="tweettoggle">Twitter</a></li>
+            <li><a href="#" class="toggle" id="eventtoggle">Events</a></li>
+            <li><a href="#" class="toggle" id="tweettoggle">Tweets</a></li>
         </ul>
         <h3>Buildings</h3>
         <ul>
@@ -109,7 +105,7 @@
         <p>Use the controls below to display transport information and bus routes:</p>
         <h3>Transport</h3>
         <ul>
-        	<li><a href="#" class="toggle" id="roadnames">Road Names</a></li>
+        	<!--<li><a href="#" class="toggle" id="roadnames">Road Names</a></li>-->
         	<li><a href="#" class="toggle" id="visitorparking">Visitor parking</a></li>
             <li><a href="#" class="toggle" id="permitparking">Permit holder parking</a></li>
             <li><a href="#" class="toggle" id="busstops">Bus stops</a></li>
@@ -122,7 +118,7 @@
             <li><a href="#" class="toggle" id="parkwoodbus">Parkwood bus</a></li>
             <li><a href="#" class="toggle" id="cycleroutes">Cycle routes</a></li>
         </ul>
-        <a href="" class="external">Bus timetables</a>
+        <a href="#" class="external">Bus timetables</a>
     </div>
     <div id="investment-panel" class="slidepanel">
         <h2>Data</h2>
@@ -225,6 +221,7 @@
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+<script src="http://code.createjs.com/preloadjs-0.4.1.min.js"></script>
 
 <script>
 var xml;
@@ -262,21 +259,8 @@ $.ajax({
 <script src="assets/js/helvetiker_regular.typeface.js"></script>
 <script src="assets/js/core.js"></script>
 <script src="assets/js/universal.js"></script>
-<script type="text/javascript">
-    //<![CDATA[
-        $(window).load(function() { // makes sure the whole site is loaded
-            setTimeout(function() {
-				$('#status').fadeOut(1000); // will first fade out the loading animation
-				$('#preloader').delay(350).fadeOut(1000); // will fade out the white DIV that covers the website.
-				$('body').delay(350).css({'overflow':'visible'});
-				new TWEEN.Tween( camera.position ).to( { x: 0, y: 350, z: 500 }, 3000 ).easing( TWEEN.Easing.Quadratic.InOut).start();
-			 }, 750);
-        })
-    //]]>
-</script>
 
 <script>
-
 	/////// EVENTS ///////
 	$(document).ready(function() {
 		$.ajax({
@@ -295,12 +279,9 @@ $.ajax({
 				});	
 			}
 		});
-	});
 	
 
 	/////// SEARCH ///////
-	
-	$(document).ready(function() {
 	
 		$.ajax({
 			type: "GET",
@@ -344,7 +325,6 @@ $.ajax({
 		}
 	});
 </script>
- 
 
 </body>
 </html>

@@ -150,6 +150,7 @@ body {
 	top: 13px;
 	z-index: 99999;
 	height: 70px;
+	display:none;
 }
 #searchForm label {
 	color: #999;
@@ -214,9 +215,10 @@ body {
 	left: 0;
 }
 #leftnav #leftnav-footer {
-	position: fixed;
-	bottom: 0;
+	position: absolute;
+	bottom: 70px;
 	border-top: 1px solid #1f262b;
+	z-index: 999999;
 }
 
 .slide-drawer {
@@ -627,10 +629,10 @@ button {
 	margin: 0;
 	height: 60px;
 	width: 60px;
-	-moz-transition:background-color 0.2s ease;
-    -webkit-transition:background-color 0.2s ease;
-    -o-transition:background-color 0.2s ease;
-    transition:background-color 0.2s ease;
+	-moz-transition:background-color 0.2s ease-out;
+    -webkit-transition:background-color 0.2s ease-out;
+    -o-transition:background-color 0.2s ease-out;
+    transition:background-color 0.2s ease-out;
 	font-size: 1em;
 	color: #5b656e;
 	float: left;
@@ -640,7 +642,6 @@ button:hover, button.active {
 	background: #f6f6f6;
 }
 a {
-	
 	color: #666;
 	text-decoration:none;
 }
@@ -662,11 +663,6 @@ a {
 	-ms-transform-origin: top center;
 	-o-transform-origin: top center;
 	transform-origin: top center;
-	-webkit-transform: rotateX(-90deg);
-	-moz-transform: rotateX(-90deg);
-	-ms-transform: rotateX(-90deg);
-	-o-transform: rotateX(-90deg);
-	transform: rotateX(-90deg);
 	-webkit-transition: -webkit-transform .3s linear;
 	-moz-transition: -moz-transform .3s linear;
 	-ms-transition: -ms-transform .3s linear;
@@ -680,8 +676,6 @@ a {
 	-ms-transform: perspective( 600px ) rotateX(0);
 	-o-transform: perspective( 600px ) rotateX(0);
 	transform: perspective( 600px ) rotateX(0);
-	transition-delay: 1s;
-	-webkit-transition-delay: 1s;
 }
 .fold.close {
 	opacity: 1;
@@ -690,6 +684,35 @@ a {
 	-ms-transform: perspective( 600px ) rotateX(-90deg);
 	-o-transform: perspective( 600px ) rotateX(-90deg);
 	transform: perspective( 600px ) rotateX(-90deg);
+}
+.foldleft {
+	opacity: 0;
+	-webkit-transform-origin: left center;
+	-moz-transform-origin: left center;
+	-ms-transform-origin: left center;
+	-o-transform-origin: left center;
+	transform-origin: left center;
+	-webkit-transition: -webkit-transform .3s linear;
+	-moz-transition: -moz-transform .3s linear;
+	-ms-transition: -ms-transform .3s linear;
+	-o-transition: -o-transform .3s linear;
+	transition: transform .3s linear;
+}
+.foldleft.openleft {
+	opacity: 1;
+	-webkit-transform: perspective( 600px ) rotateY(0);
+	-moz-transform: perspective( 600px ) rotateY(0);
+	-ms-transform: perspective( 600px ) rotateY(0);
+	-o-transform: perspective( 600px ) rotateY(0);
+	transform: perspective( 600px ) rotateY(0);
+}
+.foldleft.closeleft {
+	opacity: 1;
+	-webkit-transform: perspective( 600px ) rotateY(90deg);
+	-moz-transform: perspective( 600px ) rotateY(90deg);
+	-ms-transform: perspective( 600px ) rotateY(90deg);
+	-o-transform: perspective( 600px ) rotateY(90deg);
+	transform: perspective( 600px ) rotateY(90deg);
 }
 #footer {
 	width: 100%;

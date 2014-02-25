@@ -210,9 +210,10 @@ function makeIcon(mesh) {
 			break;
 		case "Colyer_Fergusson":
 			createSubjectData(mesh);
+			createArrays(teachingIcons, mesh);
 			break;
 		case "Cornwallis_George_Allen_Wing":
-			createArrays(teachingIcons, mesh);
+			createArrays(communityIcons, mesh);
 			break;
 		case "Cornwallis_Mathematics_Institute":
 			createArrays(teachingIcons, mesh);
@@ -250,6 +251,7 @@ function makeIcon(mesh) {
 			break;
 		case "Gulbenkian":
 			createSubjectData(mesh);
+			createArrays(communityIcons, mesh);
 			break;
 		case "Ingram":
 			createArrays(teachingIcons, mesh);
@@ -303,6 +305,7 @@ function makeIcon(mesh) {
 			break;
 		case "Sports_Centre":
 			createSubjectData(mesh);
+			createArrays(communityIcons, mesh);
 			break;
 		case "Tanglewood":
 			createArrays(teachingIcons, mesh);
@@ -323,7 +326,7 @@ function makeIcon(mesh) {
 			createArrays(communityIcons, mesh);
 			break;
 		case "Senate":
-			createArrays(communityIcons, mesh);
+			createArrays(teachingIcons, mesh);
 			break;
 		case "Sports_Centre":
 			createArrays(communityIcons, mesh);
@@ -456,9 +459,32 @@ function tweetIcon(mesh) {
 		tweenOne.start();
 	}
 }
+
+function drawCylinder(vstart, vend, name, colour){
+    var HALF_PI = Math.PI * .5;
+    var distance = vstart.distanceTo(vend);
+    var position  = vend.clone().add(vstart).divideScalar(2);
+
+    var material = new THREE.MeshBasicMaterial({ color: colour, transparent: true, opacity: 0.8 });
+    var cylinder = new THREE.CylinderGeometry(1,1,distance,6,6,false);
+
+    var orientation = new THREE.Matrix4();//a new orientation matrix to offset pivot
+    var offsetRotation = new THREE.Matrix4();//a matrix to fix pivot rotation
+    var offsetPosition = new THREE.Matrix4();//a matrix to fix pivot position
+    orientation.lookAt(vstart,vend,new THREE.Vector3(0,1,0));//look at destination
+    offsetRotation.makeRotationX(HALF_PI);//rotate 90 degs on X
+    orientation.multiply(offsetRotation);//combine orientation with rotation transformations
+    cylinder.applyMatrix(orientation)
+
+    var mesh = new THREE.Mesh(cylinder,material);
+    mesh.position=position;
+	mesh.visible = false;
+    name.push(mesh);
+	group.add(mesh);
+}
+	
 function busRoutes(){
 	var path = [
-		{ x:-17, y:-33, z:486 },
 		{ x:43, y:-28, z:462 },
         { x:76, y:-17, z:436 },
         { x:114,  z:389 },
@@ -489,19 +515,14 @@ function busRoutes(){
 		{ x:437, y:1, z:-279 }
     ];
     
-    var geometry = new THREE.Geometry();
+    var previous = new THREE.Vector3(-17, -33, 486)
     for (var pt = 0; pt < path.length; ++pt) {
         var o = path[pt];
-        geometry.vertices.push(new THREE.Vector3(o.x, o.y, o.z));
+		drawCylinder(previous, new THREE.Vector3(o.x, o.y, o.z), darwinRoute, 0xcc3333);
+		previous = new THREE.Vector3(o.x, o.y, o.z);
     }
-
-    var darwinRoute = new THREE.Line(geometry, new THREE.LineBasicMaterial({ color: 0xcc3333, linewidth: 4, transparent: true, opacity: 0.8 }));
-	darwinRoute.name = "darwinRoute"
-	darwinRoute.visible = false;
-	group.add(darwinRoute);
 	
 	var path = [
-        { x:-16, y:-33, z:485 },
 		{ x:43, y:-28, z:460 },
         { x:76, y:-17, z:434 },
         { x:113,  z:389 },
@@ -544,19 +565,14 @@ function busRoutes(){
 		{ x:-222, y:4.1, z:-219 }
     ];
     
-    var geometry = new THREE.Geometry();
+    var previous = new THREE.Vector3(-16, -33, 485)
     for (var pt = 0; pt < path.length; ++pt) {
         var o = path[pt];
-        geometry.vertices.push(new THREE.Vector3(o.x, o.y, o.z));
-    }
-
-    var parkwoodRoute = new THREE.Line(geometry, new THREE.LineBasicMaterial({ color: 0x0099cc, linewidth: 4, transparent: true, opacity: 0.8}));
-	parkwoodRoute.name = "parkwoodRoute"
-	parkwoodRoute.visible = false;
-	group.add(parkwoodRoute);
+		drawCylinder(previous, new THREE.Vector3(o.x, o.y, o.z), parkwoodRoute, 0x0099cc);
+		previous = new THREE.Vector3(o.x, o.y, o.z);
+	}
 	
 	var path = [
-        { x:-18, y:-33, z:484 },
 		{ x:41, y:-28, z:459 },
         { x:75, y:-17, z:433 },
         { x:111,  z:389 },
@@ -570,19 +586,14 @@ function busRoutes(){
 		{ x:144, y:1, z:186 }
     ];
     
-    var geometry = new THREE.Geometry();
+    var previous = new THREE.Vector3(-18, -33, 484)
     for (var pt = 0; pt < path.length; ++pt) {
         var o = path[pt];
-        geometry.vertices.push(new THREE.Vector3(o.x, o.y, o.z));
-    }
-
-    var keynesRoute = new THREE.Line(geometry, new THREE.LineBasicMaterial({ color: 0x9367bf, linewidth: 4, transparent: true, opacity: 0.8 }));
-	keynesRoute.name = "keynesRoute"
-	keynesRoute.visible = false;
-	group.add(keynesRoute);
+		drawCylinder(previous, new THREE.Vector3(o.x, o.y, o.z), keynesRoute, 0x9367bf);
+		previous = new THREE.Vector3(o.x, o.y, o.z);
+	}
 	
 	var path = [
-		{ x:36, y:1, z:-138 },
         { x:26, y:1, z:-123 },
 		{ x:0, y:1, z:-108 },
         { x:-31, y:1, z:-118 },
@@ -595,16 +606,12 @@ function busRoutes(){
 		{ x:-254, y:2, z:-77 },
     ];
     
-    var geometry = new THREE.Geometry();
+    var previous = new THREE.Vector3( 36, 1, -138)
     for (var pt = 0; pt < path.length; ++pt) {
         var o = path[pt];
-        geometry.vertices.push(new THREE.Vector3(o.x, o.y, o.z));
-    }
-
-    var cycle1 = new THREE.Line(geometry, new THREE.LineBasicMaterial({ color: 0xff7b00, linewidth: 4, transparent: true, opacity: 0.8 }));
-	cycle1.name = "cycle1"
-	cycle1.visible = false;
-	group.add(cycle1);
+		drawCylinder(previous, new THREE.Vector3(o.x, o.y, o.z), cycleRoute, 0xff7b00);
+		previous = new THREE.Vector3(o.x, o.y, o.z);
+	}
 	
 	var path = [
 		{ x:490, y:-42, z:425 },
@@ -644,16 +651,12 @@ function busRoutes(){
 		{ x:-564, y:6, z:-176 },
     ];
     
-    var geometry = new THREE.Geometry();
+    var previous = new THREE.Vector3(490, -42, 425)
     for (var pt = 0; pt < path.length; ++pt) {
         var o = path[pt];
-        geometry.vertices.push(new THREE.Vector3(o.x, o.y, o.z));
-    }
-
-    var cycle2 = new THREE.Line(geometry, new THREE.LineBasicMaterial({ color: 0xff9900, linewidth: 4, transparent: true, opacity: 0.8 }));
-	cycle2.name = "cycle2"
-	cycle2.visible = false;
-	group.add(cycle2);
+		drawCylinder(previous, new THREE.Vector3(o.x, o.y, o.z), cycleRoute, 0xff7b00);
+		previous = new THREE.Vector3(o.x, o.y, o.z);
+	}
 }
 function makeParkingOverlay(){
 	var loader = new THREE.JSONLoader();

@@ -1,6 +1,6 @@
 var container, stats, camera, scene, renderer, composer, projector, controls, ground, particleSystem, group = new THREE.Object3D(), group = new THREE.Object3D();
 var depthMaterial, depthTarget, composer;
-var clickobjects = [], tweetobjects = [], sprites = [], locationIcons = [], teachingIcons = [], communityIcons = [], tweetIcons = [], visitorParking = [], permitParking = [], cycleArray = [], busArray = [], maintenanceIcons = [], adminIcons = [], rotate = [], investmentArray = [], developmentArray = [], roompriceArray = [], populationArray = [], subjectscoreArray = [], subjectsatisfactionArray = [], entrypointsArray = [], sizeArray = [], buildings = [], roadArray = [];
+var clickobjects = [], tweetobjects = [], sprites = [], locationIcons = [], teachingIcons = [], communityIcons = [], tweetIcons = [], visitorParking = [], permitParking = [], cycleArray = [], busArray = [], maintenanceIcons = [], adminIcons = [], rotate = [], investmentArray = [], developmentArray = [], roompriceArray = [], populationArray = [], subjectscoreArray = [], subjectsatisfactionArray = [], entrypointsArray = [], sizeArray = [], buildings = [], roadArray = [], darwinRoute = [], keynesRoute = [], parkwoodRoute = [], cycleRoute = [];
 var jsonFileNames = [
 	'assets/models/Aphra_and_Lumley_Theatre.js',
 	'assets/models/Becket_Court.js',
@@ -93,7 +93,8 @@ INTERSECTED, SELECTED;
 var WIDTH = $(window).width();
 var HEIGHT = $(window).height();
 
-var maincolour = 0xaba7a2;
+var maincolour = 0xcccccc;
+var percent = 0;
 	
 init();
 animate();
@@ -119,6 +120,25 @@ function init() {
 	controls.center.set(0,-10,0);
 	
 	///////// SCENE SETUP //////////
+	
+	var preload = new createjs.LoadQueue(true);
+	preload.on("complete", handleComplete, this);
+	preload.on("fileload", handleLoad, this);
+	preload.loadManifest(jsonFileNames);
+	preload.loadManifest([
+		"assets/models/textures/map.jpg",
+		"assets/models/trees.js",
+		"assets/models/cars.js"
+	]);
+	
+	function handleLoad() {
+		percent += 1.19;
+		$('#preloader #percent').html(Math.round(percent)+'%');
+	}
+	function handleComplete() {
+		$('#start').css('display','inline-block');
+		$('.spinner').fadeOut(1000);
+	}
 
 	scene = new THREE.Scene();
 	scene.fog = new THREE.Fog( 0xffffff, 100, 1800 );
@@ -129,7 +149,7 @@ function init() {
 	directionalLight.position.set( 3, 15, 3 )
 	scene.add( directionalLight );
 	
-	var hemiLight = new THREE.HemisphereLight( 0xeeeeee, 0x999999, 0.8 ); 
+	var hemiLight = new THREE.HemisphereLight( 0xdddddd, 0x555555, 0.8 ); 
 	scene.add( hemiLight );
 	
 
@@ -279,19 +299,21 @@ function init() {
 	composer.addPass( new THREE.RenderPass( scene, camera ) );
 	
 	var vignette = new THREE.ShaderPass( THREE.VignetteShader );
-	vignette.uniforms[ 'darkness' ].value = 0.8;
-	composer.addPass( vignette )
+	vignette.uniforms[ 'darkness' ].value = 1.5;
+	vignette.uniforms[ 'offset' ].value = 1;
+	vignette.renderToScreen = true;
+	composer.addPass( vignette );
 	
 	var tiltH = new THREE.ShaderPass( THREE.HorizontalTiltShiftShader );
 	tiltH.uniforms[ 'h' ].value = 2 / window.innerWidth;
 	tiltH.uniforms[ 'r' ].value = 0.5;
-	composer.addPass( tiltH );
+	//composer.addPass( tiltH );
 	
 	var tiltV = new THREE.ShaderPass( THREE.VerticalTiltShiftShader );
 	tiltV.uniforms[ 'v' ].value = 2 / window.innerHeight;
 	tiltV.uniforms[ 'r' ].value = 0.5;
-	tiltV.renderToScreen = true;
-	composer.addPass( tiltV );
+	
+	//composer.addPass( tiltV );
 	
 	tiltH.material.transparent = true;
 	tiltV.material.transparent = true;
