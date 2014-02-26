@@ -4,8 +4,7 @@
     left:0;
     right:0;
     bottom:0;
-    background: url(../images/splash.jpg) center center;
-	background-size: cover;
+    background: #fff;
     z-index:99999999;
 	text-align: center;
 }
@@ -57,6 +56,9 @@ to { transform: rotate(360deg); }
 #start { 
 	display: none;
 }
+#preloader img {
+	padding: 200px 0 30px;
+}
 #start span {
 	padding: 15px 30px;
 	font-weight: 300;
@@ -74,10 +76,9 @@ to { transform: rotate(360deg); }
 	padding: 15px 30px;
 }
 #percent {
-	font-size: 1000%;
-	color: #fff;
+	font-size: 200%;
+	color: #ed7b5f;
 	font-weight: bold;
 	text-align: center;
-	padding: 200px 0 30px;
-	text-shadow: 0px 2px 20px #333;
+	padding-bottom: 30px;
 }

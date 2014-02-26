@@ -37,6 +37,7 @@ body {
 	margin-left: 340px!important;
 }
 #mapwrapper {
+	display: none;
 	width: 100%;
 	height: 100%;
 	position: relative;
@@ -599,10 +600,11 @@ body {
 #controls {
 	position: absolute;
 	bottom: 40px;
-	right: 50%;
-	margin-right:  -96px;
-	z-index: 9980;
+	left: 50%;
+	margin-left:  -66px;
+	z-index: 990;
 	width: 132px;
+	display: none;
 }
 #controls button {
 	height: 40px;
@@ -812,19 +814,29 @@ a {
 #roomform button:hover {
 	background: #d66549;
 }
-
-/* Overlay */
-#simplemodal-overlay { z-index: 999999!important}
-
-/* Container */
-#simplemodal-container {min-height:70px; width:300px; color:#5b656e; background-color:#242B31; padding:20px; font-weight: bold; z-index: 9999999!important; top: 90px!important; text-align:center;}
-.simplemodal-wrap { height: auto; }
-#simplemodal-container .arrow-down {
-	top: -20px;
+.controls-modal h2 { padding-right: 20px; }
+.controls-modal {
+	display: none;
+	padding: 20px;
+	background: #629ad1;
+	color: #eee;
+	border-radius: 5px;
+	position: absolute;
+	bottom: 110px;
 	left: 50%;
-	margin-left: -11px;
-	border-top: 10px solid transparent;
-	border-left: 10px solid transparent;
-	border-right: 10px solid transparent;
-	border-bottom: 10px solid #242B31;
+	width: 360px;
+	margin-left: -180px;
+	z-index: 9999;
+}
+.controls-modal p {
+	margin: 0;
+}
+.controls-modal .arrow-down {
+	border-top: 20px solid #629ad1;
+}
+.controls-close {
+	position: absolute;
+	top:20px;
+	right:20px;
+	color: #4c80b5;
 }

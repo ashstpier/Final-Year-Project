@@ -213,6 +213,7 @@ function init() {
         mesh = new THREE.Mesh( geometry, new THREE.MeshFaceMaterial(materials) );
         mesh.scale.set( 1, 1, 1 );
 		mesh.position.set( 0, 0, 0);
+		mesh.material.needsUpdate = true;
 		group.add( mesh );
     } );
 	
@@ -252,12 +253,6 @@ function init() {
 	renderer.setSize( window.innerWidth, window.innerHeight );
 
 	container.appendChild( renderer.domElement );
-
-	stats = new Stats();
-	stats.domElement.style.position = 'absolute';
-	stats.domElement.style.bottom = '0px';
-	stats.domElement.style.right = '0px';
-	container.appendChild( stats.domElement );
 	container.style.cursor = 'move';
 
 	document.getElementById("mapwrapper").addEventListener( 'mousemove', onDocumentMouseMove, false );
@@ -419,7 +414,6 @@ function positionTrackingOverlay()
 function animate() {
 	TWEEN.update();
 	controls.update();
-	stats.update();
 	//scene.overrideMaterial = depthMaterial;
 	//particleSystem.rotation.y += 0.001;
 	if(camera.position.z < 0){

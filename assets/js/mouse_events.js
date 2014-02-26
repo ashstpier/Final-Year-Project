@@ -317,16 +317,7 @@ function closeTweet() {
 
 $( "#label-panel a" ).click(function() {
 	if ($(this).hasClass( "toggle" )) {
-		var route = scene.getObjectByName( 'keynesRoute', true );
-		route.visible = false;
-		route = scene.getObjectByName( 'darwinRoute', true );
-		route.visible = false;
-		route = scene.getObjectByName( 'parkwoodRoute', true );
-		route.visible = false;
-		route = scene.getObjectByName( 'cycle1', true );
-		route.visible = false;
-		route = scene.getObjectByName( 'cycle2', true );
-		route.visible = false;
+		
 		for (var i=0, tot=cycleArray.length; i < tot; i++) {
 			cycleArray[i].visible = false;
 		}
@@ -654,16 +645,7 @@ $( "#investment-panel a" ).click(function() {
 		for (var i=0, tot=adminIcons.length; i < tot; i++) {
 			adminIcons[i].material.color.setHex(maincolour);
 		}
-		var route = scene.getObjectByName( 'keynesRoute', true );
-		route.visible = false;
-		route = scene.getObjectByName( 'darwinRoute', true );
-		route.visible = false;
-		route = scene.getObjectByName( 'parkwoodRoute', true );
-		route.visible = false;
-		route = scene.getObjectByName( 'cycle1', true );
-		route.visible = false;
-		route = scene.getObjectByName( 'cycle2', true );
-		route.visible = false;
+		
 		for (var i=0, tot=cycleArray.length; i < tot; i++) {
 			cycleArray[i].visible = false;
 		}
@@ -799,10 +781,12 @@ function SetData(){
   		myform.submit();
    }
 }
+
 $("#start").click(function() {
-	$('#status').fadeOut(1000); // will first fade out the loading animation
-	$('#preloader').fadeOut(1000); // will fade out the white DIV that covers the website.
+	$('#status').fadeOut(500); // will first fade out the loading animation
+	$('#preloader').fadeOut(500); // will fade out the white DIV that covers the website.
 	$('body').css({'overflow':'visible'});
+	$('#mapwrapper').show();
 	new TWEEN.Tween( camera.position ).to( { x: 0, y: 350, z: 500 }, 3000 ).easing( TWEEN.Easing.Quadratic.InOut).start();
 	setTimeout(function(){
 		$('#navbar').toggleClass("open close");
@@ -810,5 +794,11 @@ $("#start").click(function() {
 	setTimeout(function(){
 		$('#leftnav').toggleClass("openleft closeleft");
 		$('#search').fadeIn(1000);
+		$('#controls').fadeIn(1000);
+		$('.controls-modal').slideDown(500);
+		$('.modal-overlay').show();
 	},3300);
+});
+$(".controls-close").click(function() {
+	$('.controls-modal').fadeOut(500);
 });

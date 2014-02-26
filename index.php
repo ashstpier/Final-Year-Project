@@ -17,7 +17,7 @@
 </head>
 <body>
 <div id="preloader">
-	<img src="assets/images/logo.png" alt="University of Kent logo" />
+	<img src="assets/images/splash.gif" alt="University of Kent logo" />
     <div id="percent">0%</div>
     <nav class="cl-effect-2">
         <a href="#" id="start"><span data-hover="Explore the campus now!" class="external">Explore the campus now!</span></a>
@@ -186,6 +186,7 @@
         </ul>
     </div>
 </div>
+<div class="controls-modal"><a href="#" class="controls-close"><i class="fa-times fa fa-lg"></i></a><h2>Welcome to the University of Kent Campus map!</h2><p>You can control the map by clicking and dragging with your mouse. Click on individual buildings to reveal information about them.</p><br/><p>Use the buttons below to rotate the map and change perspective.</p><div class="arrow-down"></div></div>
 <div id="mapwrapper">
     <div id="modalpanel" class="animated flipcard">
     	<div class="card">
