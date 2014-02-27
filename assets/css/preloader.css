@@ -7,6 +7,9 @@
     background: #fff;
     z-index:99999999;
 	text-align: center;
+	display: table;
+	width: 100%;
+	height: 100%;
 }
 @keyframes spin {
     from { transform: rotate(0deg); }
@@ -56,8 +59,13 @@ to { transform: rotate(360deg); }
 #start { 
 	display: none;
 }
+#preloader-content {
+	display: table-cell;
+	vertical-align: middle;
+}
+
 #preloader img {
-	padding: 200px 0 30px;
+	margin: 0 0 30px;
 }
 #start span {
 	padding: 15px 30px;

@@ -317,7 +317,18 @@ function closeTweet() {
 
 $( "#label-panel a" ).click(function() {
 	if ($(this).hasClass( "toggle" )) {
-		
+		for (var i=0, tot=darwinRoute.length; i < tot; i++) {
+			darwinRoute[i].visible = false;
+		}
+		for (var i=0, tot=parkwoodRoute.length; i < tot; i++) {
+			parkwoodRoute[i].visible = false;
+		}
+		for (var i=0, tot=keynesRoute.length; i < tot; i++) {
+			keynesRoute[i].visible = false;
+		}
+		for (var i=0, tot=cycleRoute.length; i < tot; i++) {
+			cycleRoute[i].visible = false;
+		}
 		for (var i=0, tot=cycleArray.length; i < tot; i++) {
 			cycleArray[i].visible = false;
 		}
@@ -645,7 +656,18 @@ $( "#investment-panel a" ).click(function() {
 		for (var i=0, tot=adminIcons.length; i < tot; i++) {
 			adminIcons[i].material.color.setHex(maincolour);
 		}
-		
+		for (var i=0, tot=darwinRoute.length; i < tot; i++) {
+			darwinRoute[i].visible = false;
+		}
+		for (var i=0, tot=parkwoodRoute.length; i < tot; i++) {
+			parkwoodRoute[i].visible = false;
+		}
+		for (var i=0, tot=keynesRoute.length; i < tot; i++) {
+			keynesRoute[i].visible = false;
+		}
+		for (var i=0, tot=cycleRoute.length; i < tot; i++) {
+			cycleRoute[i].visible = false;
+		}
 		for (var i=0, tot=cycleArray.length; i < tot; i++) {
 			cycleArray[i].visible = false;
 		}
@@ -783,8 +805,8 @@ function SetData(){
 }
 
 $("#start").click(function() {
-	$('#status').fadeOut(500); // will first fade out the loading animation
-	$('#preloader').fadeOut(500); // will fade out the white DIV that covers the website.
+	$('#status').fadeOut(500);
+	$('#preloader').fadeOut(500);
 	$('body').css({'overflow':'visible'});
 	$('#mapwrapper').show();
 	new TWEEN.Tween( camera.position ).to( { x: 0, y: 350, z: 500 }, 3000 ).easing( TWEEN.Easing.Quadratic.InOut).start();
@@ -795,8 +817,15 @@ $("#start").click(function() {
 		$('#leftnav').toggleClass("openleft closeleft");
 		$('#search').fadeIn(1000);
 		$('#controls').fadeIn(1000);
-		$('.controls-modal').slideDown(500);
-		$('.modal-overlay').show();
+		var visited = $.cookie('visited')
+		if (visited == null) {
+			$('.controls-modal').slideDown(500);
+			$('.modal-overlay').show();
+		}
+		$.cookie('visited', 'yes_visited', {
+			expires: 1,
+			path: '/'
+		});
 	},3300);
 });
 $(".controls-close").click(function() {

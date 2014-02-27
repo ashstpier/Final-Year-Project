@@ -17,11 +17,13 @@
 </head>
 <body>
 <div id="preloader">
-	<img src="assets/images/splash.gif" alt="University of Kent logo" />
-    <div id="percent">0%</div>
-    <nav class="cl-effect-2">
-        <a href="#" id="start"><span data-hover="Explore the campus now!" class="external">Explore the campus now!</span></a>
-    </nav>
+	<div id="preloader-content">
+        <img src="assets/images/splash.gif" alt="University of Kent logo" />
+        <div id="percent">0%</div>
+        <nav class="cl-effect-2">
+            <a href="#" id="start"><span data-hover="Explore the campus now!" class="external">Explore the campus now!</span></a>
+        </nav>
+    </div>
 </div>
 <div id="navbar" class="fold close">
 	<div id="logo"><a href="http://www.kent.ac.uk/" target="_blank"><img src="assets/images/logo.png" alt="University of Kent logo" /></a><h1>Explore the campus!</h1></div>
@@ -222,6 +224,7 @@
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+<script src="assets/js/cookies.js"></script>
 <script src="http://code.createjs.com/preloadjs-0.4.1.min.js"></script>
 
 <script>
@@ -323,7 +326,7 @@ $.ajax({
 						$("#searchForm").submit();
 					}
 			});
-		}
+		}	
 	});
 </script>
 

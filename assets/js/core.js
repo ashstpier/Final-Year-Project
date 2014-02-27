@@ -136,6 +136,7 @@ function init() {
 		$('#preloader #percent').html(Math.round(percent)+'%');
 	}
 	function handleComplete() {
+		$('#percent').css('display','none');
 		$('#start').css('display','inline-block');
 		$('.spinner').fadeOut(1000);
 	}
@@ -146,7 +147,15 @@ function init() {
 	/////////// LIGHTS ////////////
 	
 	var directionalLight = new THREE.DirectionalLight( 0xffffff ,0.9 );
-	directionalLight.position.set( 3, 15, 3 )
+	directionalLight.position.set( 700, 1600, 200 )
+	directionalLight.castShadow = true;
+	directionalLight.shadowDarkness = 0.4;
+	directionalLight.shadowMapWidth = 2048;
+	directionalLight.shadowMapHeight = 2048;
+	
+	directionalLight.shadowCameraNear = 1200;
+	directionalLight.shadowCameraFar = 2500;
+	directionalLight.shadowCameraFov = 50;
 	scene.add( directionalLight );
 	
 	var hemiLight = new THREE.HemisphereLight( 0xdddddd, 0x555555, 0.8 ); 
@@ -183,6 +192,7 @@ function init() {
 	loader.load( "assets/models/trees.js", function( geometry, materials ) {
         mesh = new THREE.Mesh( geometry, new THREE.MeshFaceMaterial(materials) );
         mesh.scale.set( 1, 1, 1 );
+		mesh.castShadow = true;
 		group.add( mesh );
     } );
 	
@@ -194,18 +204,21 @@ function init() {
         mesh = new THREE.Mesh( geometry, new THREE.MeshFaceMaterial(materials) );
         mesh.scale.set( 1, 1, 1 );
 		mesh.position.set( 0, 4, 0 );
+		mesh.castShadow = true;
 		group.add( mesh );
     } );
 	
 	loader.load( "assets/models/walls.js", function( geometry, materials ) {
         mesh = new THREE.Mesh( geometry, new THREE.MeshLambertMaterial({ color: maincolour, wrapAround: true }) );
         mesh.scale.set( 1, 1, 1 );
+		mesh.castShadow = true;
 		group.add( mesh );
     } );
 	
 	loader.load( "assets/models/cars.js", function( geometry, materials ) {
         mesh = new THREE.Mesh( geometry, new THREE.MeshFaceMaterial(materials) );
         mesh.scale.set( 1, 1, 1 );
+		mesh.castShadow = true;
 		group.add( mesh );
     } );
 	
@@ -214,6 +227,7 @@ function init() {
         mesh.scale.set( 1, 1, 1 );
 		mesh.position.set( 0, 0, 0);
 		mesh.material.needsUpdate = true;
+		mesh.receiveShadow = true;
 		group.add( mesh );
     } );
 	
@@ -224,11 +238,12 @@ function init() {
 	
 	function makeHandler(meshName) {
 		return function(geometry, materials) {
-			var material = new THREE.MeshLambertMaterial({ color: maincolour, wrapAround: true, transparent: true });
+			var material = new THREE.MeshPhongMaterial( { color: maincolour, specular: 0x555555, ambient: 0x222222, wrapAround: true, transparent: true } )
 			mesh = new THREE.Mesh( geometry, material );
 			mesh.scale.set( 1, 1, 1 );
 			mesh.position.set( 0, -0.1, 0 );
 			clickobjects.push( mesh );
+			mesh.castShadow = true;
 			group.add( mesh );
 			mesh.name = meshName;
 			
@@ -251,6 +266,9 @@ function init() {
 
 	renderer = new THREE.WebGLRenderer();
 	renderer.setSize( window.innerWidth, window.innerHeight );
+	renderer.shadowMapEnabled = true;
+	renderer.shadowMapSoft = true;
+	renderer.shadowMapType = THREE.PCFSoftShadowMap;
 
 	container.appendChild( renderer.domElement );
 	container.style.cursor = 'move';
@@ -414,6 +432,7 @@ function positionTrackingOverlay()
 function animate() {
 	TWEEN.update();
 	controls.update();
+	positionTrackingOverlay();
 	//scene.overrideMaterial = depthMaterial;
 	//particleSystem.rotation.y += 0.001;
 	if(camera.position.z < 0){
@@ -456,10 +475,9 @@ function animate() {
 		}
 	}
 	render();
-	positionTrackingOverlay();
+	requestAnimationFrame( animate );
 	//scene.overrideMaterial = null;
 	//composer.render();
-	requestAnimationFrame( animate );
 }
 function render() {
 	renderer.render(scene, camera);
