@@ -53,7 +53,14 @@ $( document ).ready(function() {
 	});
 	$("input:file").change(function (){
        fileName = $(this).val();
-     });
+    });
+	$('#toggledrawer').click(function(event) {
+		$('#leftcolumn').toggle("slide", {direction:'left', easing:'easeInOutQuint'});
+		$('#toggledrawer').toggleClass("slide");
+	});
+	<?php if($_GET["saved"] == "true") :?>
+			$.modal("<p>Your changes have been saved.</p><button class='simplemodal-close ok'>OK</button>");
+	<?php endif ?>
 });
 </script>
 </body>

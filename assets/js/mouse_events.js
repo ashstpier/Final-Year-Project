@@ -17,19 +17,125 @@ function onDocumentMouseDown( event ) {
 }
 
 ////////// CLICK EVENT ///////////
-
 function onDocumentMouseUp( event ) {
 	event.preventDefault();
 	var vector = new THREE.Vector3( ( event.clientX / window.innerWidth ) * 2 - 1, - ( event.clientY / window.innerHeight ) * 2 + 1, 0.5 );
 	projector.unprojectVector( vector, camera );
 	var raycaster = new THREE.Raycaster( camera.position, vector.sub( camera.position ).normalize() );
-	var intersects = raycaster.intersectObjects( clickobjects, true );
 	
-	/////////// AJAX call from XML ///////////
+	var intersects = raycaster.intersectObjects( clickobjects, true );
 
 	if ( intersects.length > 0 ) {
 		
-		if ( intersects[0].object.name == "tweet-Jennison" ) {
+		if ( intersects[0].object.name == "zoom_venue" ) {
+			var object = intersects[0].object;
+			object.geometry.computeBoundingBox();
+			var boundingBox = object.geometry.boundingBox;
+			var position = new THREE.Vector3();
+			position.subVectors( boundingBox.max, boundingBox.min );
+			position.multiplyScalar( 0.5 );
+			position.add( boundingBox.min );
+			position.applyMatrix4( object.matrixWorld );
+			
+			controls.minDistance = 0;
+			
+			object.visible = false;
+			new TWEEN.Tween( controls.center ).to( { x: position.x, y: 6, z: position.z }, 1500 ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {
+				controls.minPolarAngle = Math.PI/2.25; 
+				controls.maxPolarAngle = Math.PI/1.5; 
+				controls.maxDistance = 1;
+				controls.noZoom = true;
+				$('#controls').fadeOut();
+				$('#exitzoom').fadeIn();
+				$('#exitzoom a').css('display','inline-block');
+				for (var i=0, tot=zoomobjects.length; i < tot; i++) {
+					zoomobjects[i].visible = false;
+				}
+				for (var i=0, tot=zoomArray.length; i < tot; i++) {
+					zoomArray[i].visible = true;
+				}
+				closeModal();
+			}).start();
+			new TWEEN.Tween( camera.position ).to( { x: position.x - 1, y: 6, z: position.z + 0.5 }, 1500 ).easing( TWEEN.Easing.Sinusoidal.InOut).start();
+			document.getElementById("mapwrapper").removeEventListener( 'mousemove', onDocumentMouseMove, false );
+			document.getElementById("app").removeEventListener( 'mousedown', onDocumentMouseDown, false );
+			document.getElementById("app").removeEventListener( 'mouseup', onDocumentMouseUp, false );
+			$('#controls').fadeOut();
+			$('#leftnav').toggleClass("closeleft openleft");
+		}
+		else if ( intersects[0].object.name == "zoom_library" ) {
+			var object = intersects[0].object;
+			object.geometry.computeBoundingBox();
+			var boundingBox = object.geometry.boundingBox;
+			var position = new THREE.Vector3();
+			position.subVectors( boundingBox.max, boundingBox.min );
+			position.multiplyScalar( 0.5 );
+			position.add( boundingBox.min );
+			position.applyMatrix4( object.matrixWorld );
+			
+			controls.minDistance = 0;
+			
+			object.visible = false;
+			new TWEEN.Tween( controls.center ).to( { x: position.x, y: 6, z: position.z }, 1500 ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {
+				controls.minPolarAngle = Math.PI/2.25; 
+				controls.maxPolarAngle = Math.PI/1.5; 
+				controls.maxDistance = 1;
+				controls.noZoom = true;
+				$('#controls').fadeOut();
+				$('#exitzoom').fadeIn();
+				$('#exitzoom a').css('display','inline-block');
+				for (var i=0, tot=zoomobjects.length; i < tot; i++) {
+					zoomobjects[i].visible = false;
+				}
+				for (var i=0, tot=zoomArray.length; i < tot; i++) {
+					zoomArray[i].visible = true;
+				}
+				closeModal();
+			}).start();
+			new TWEEN.Tween( camera.position ).to( { x: position.x + 0.8, y: 6, z: position.z + 1 }, 1500 ).easing( TWEEN.Easing.Sinusoidal.InOut).start();
+			document.getElementById("mapwrapper").removeEventListener( 'mousemove', onDocumentMouseMove, false );
+			document.getElementById("app").removeEventListener( 'mousedown', onDocumentMouseDown, false );
+			document.getElementById("app").removeEventListener( 'mouseup', onDocumentMouseUp, false );
+			$('#controls').fadeOut();
+			$('#leftnav').toggleClass("closeleft openleft");
+		}
+		else if ( intersects[0].object.name == "zoom_sport" ) {
+			var object = intersects[0].object;
+			object.geometry.computeBoundingBox();
+			var boundingBox = object.geometry.boundingBox;
+			var position = new THREE.Vector3();
+			position.subVectors( boundingBox.max, boundingBox.min );
+			position.multiplyScalar( 0.5 );
+			position.add( boundingBox.min );
+			position.applyMatrix4( object.matrixWorld );
+			
+			controls.minDistance = 0;
+			
+			object.visible = false;
+			new TWEEN.Tween( controls.center ).to( { x: position.x, y: 6, z: position.z }, 1500 ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {
+				controls.minPolarAngle = Math.PI/2.25; 
+				controls.maxPolarAngle = Math.PI/1.5; 
+				controls.maxDistance = 1;
+				controls.noZoom = true;
+				$('#controls').fadeOut();
+				$('#exitzoom').fadeIn();
+				$('#exitzoom a').css('display','inline-block');
+				for (var i=0, tot=zoomobjects.length; i < tot; i++) {
+					zoomobjects[i].visible = false;
+				}
+				for (var i=0, tot=zoomArray.length; i < tot; i++) {
+					zoomArray[i].visible = true;
+				}
+				closeModal();
+			}).start();
+			new TWEEN.Tween( camera.position ).to( { x: position.x - 0.3, y: 6, z: position.z - 1 }, 1500 ).easing( TWEEN.Easing.Sinusoidal.InOut).start();
+			document.getElementById("mapwrapper").removeEventListener( 'mousemove', onDocumentMouseMove, false );
+			document.getElementById("app").removeEventListener( 'mousedown', onDocumentMouseDown, false );
+			document.getElementById("app").removeEventListener( 'mouseup', onDocumentMouseUp, false );
+			$('#controls').fadeOut();
+			$('#leftnav').toggleClass("closeleft openleft");
+		}
+		else if ( intersects[0].object.name == "tweet-Jennison" ) {
 			var tweetcontainer = "#tweet_edakent";
 			twitterMap(intersects, tweetcontainer);
 		} 
@@ -116,7 +222,9 @@ function placeMarker(modal){
 				var attr = $(this).attr("value");
 				$('<option value="'+attr+'">'+room+'</option>').appendTo('#roomlist');
 			});
-			$('<div class="arrow-down grey"></div>').appendTo('#modalfront, #modalback');
+			if($(window).height() > 600){
+				$('<div class="arrow-down grey"></div>').appendTo('#modalfront, #modalback');
+			}
 			//$('<div class="content"></div>').html(backcontent+'<div class="next"></div><a href="#" onclick="flipModal()"><i class="fa-align-left fa"></i></a>').appendTo('#modalback');
 		}else if(list != ""){
 			$('<div class="header"></div>').html('<img src="assets/images/buildings/'+img+'.jpg" />').appendTo('#modalfront');
@@ -126,11 +234,15 @@ function placeMarker(modal){
 				var listitem = $(this).text();
 				$('<li>'+listitem+'</li>').appendTo('#modalfront .footer ul');
 			});
-			$('<div class="arrow-down grey"></div>').appendTo('#modalfront, #modalback');
+			if($(window).height() > 600){
+				$('<div class="arrow-down grey"></div>').appendTo('#modalfront, #modalback');
+			}
 		}else {
 			$('<div class="header"></div>').html('<img src="assets/images/buildings/'+img+'.jpg" />').appendTo('#modalfront');
 			$('<div class="content"></div>').html('<a href="#" onclick="closeModal()"><i class="fa-times fa fa-lg"></i></a><h2>'+header+'</h2><h3>'+typeicon+'</h3><p>'+description+'</p>').appendTo('#modalfront');
-			$('<div class="arrow-down"></div>').appendTo('#modalfront, #modalback');
+			if($(window).height() > 600){
+				$('<div class="arrow-down"></div>').appendTo('#modalfront, #modalback');
+			}
 			
 		}
 	});
@@ -146,18 +258,18 @@ function placeMarker(modal){
 		
 	if (camera.position.z >= position.z && controls.center.z <= camera.position.z){
 		new TWEEN.Tween( camera.position ).to( { x: 0, y: 150, z: 250 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {$("#modalpanel").addClass('fadeInDown opaque');}).start();
-		new TWEEN.Tween( group.position ).to( { x: group.position.x - position.x, y: -10, z: group.position.z - position.z +50 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).start();
+		new TWEEN.Tween( group.position ).to( { x: group.position.x - position.x, y: 0, z: group.position.z - position.z +50 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).start();
 	}else if (camera.position.z >= position.z && controls.center.z >= camera.position.z) {
 		new TWEEN.Tween( camera.position ).to( { x: 0, y: 150, z: - 250 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {$("#modalpanel").addClass('fadeInDown opaque');}).start();
-		new TWEEN.Tween( group.position ).to( { x: group.position.x - position.x, y: -10, z: group.position.z - position.z -50 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).start();
+		new TWEEN.Tween( group.position ).to( { x: group.position.x - position.x, y: 0, z: group.position.z - position.z -50 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).start();
 	}
 	else if (camera.position.z <= position.z && controls.center.z <= camera.position.z) {
 		new TWEEN.Tween( camera.position ).to( { x: 0, y: 150, z: 250 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {$("#modalpanel").addClass('fadeInDown opaque');}).start();
-		new TWEEN.Tween( group.position ).to( { x: group.position.x - position.x, y: -10, z: group.position.z - position.z +50 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).start();
+		new TWEEN.Tween( group.position ).to( { x: group.position.x - position.x, y: 0, z: group.position.z - position.z +50 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).start();
 	}
 	else {
 		new TWEEN.Tween( camera.position ).to( { x: 0, y: 150, z: - 250 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {$("#modalpanel").addClass('fadeInDown opaque');}).start();
-		new TWEEN.Tween( group.position ).to( { x: group.position.x - position.x, y: -10, z: group.position.z - position.z -50 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).start();
+		new TWEEN.Tween( group.position ).to( { x: group.position.x - position.x, y: 0, z: group.position.z - position.z -50 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).start();
 	}
 }
 
@@ -236,8 +348,14 @@ function onDocumentMouseMove( event ) {
 		container.style.cursor = 'pointer';	
 	}
 	
+	var intersects = raycaster.intersectObjects( zoomobjects, true );
+
+	if (intersects.length > 0 ) {
+		container.style.cursor = 'pointer';	
+	}
 	
-	/*
+	
+	
 	var vector = new THREE.Vector3(
     ( event.clientX / window.innerWidth ) * 2 - 1,
     - ( event.clientY / window.innerHeight ) * 2 + 1,
@@ -252,7 +370,7 @@ function onDocumentMouseMove( event ) {
 	var pos = camera.position.clone().add( dir.multiplyScalar( distance ) );
 	
 	console.log(pos);
-	*/
+	
 	
 }
 
@@ -335,6 +453,9 @@ $( "#label-panel a" ).click(function() {
 		for (var i=0, tot=busArray.length; i < tot; i++) {
 			busArray[i].visible = false;
 		}
+		for (var i=0, tot=roadArray.length; i < tot; i++) {
+			new TWEEN.Tween( roadArray[i].material ).to( { opacity: 0 }, 500 ).easing( TWEEN.Easing.Quadratic.InOut).start();
+		}
 		var parking = scene.getObjectByName( "Visitor_Parking", true );
 		parking.visible = false;
 		parking = scene.getObjectByName( "Permit_Parking", true );
@@ -382,13 +503,19 @@ $( "#labelall" ).click(function() {
 			communityIcons[i].material.color.setHex(0x944646);
 		}
 		for (var i=0, tot=maintenanceIcons.length; i < tot; i++) {
-			maintenanceIcons[i].material.color.setHex(0xcf5b2d);
+			maintenanceIcons[i].material.color.setHex(0xad426b);
 		}
 		for (var i=0, tot=adminIcons.length; i < tot; i++) {
 			adminIcons[i].material.color.setHex(0x6e4399);
 		}
-		$("#accommodationtoggle, #teachingtoggle, #communitytoggle, #maintenancetoggle, #admintoggle").removeClass( "toggle" );
-		$("#accommodationtoggle, #teachingtoggle, #communitytoggle, #maintenancetoggle, #admintoggle").addClass( "toggled" );
+		var development = scene.getObjectByName( "Templeman_Extension", true );
+		var development2 = scene.getObjectByName( "Turing_College", true );
+		development.visible = true;
+		development.position.y = 0;
+		development2.visible = true;
+		development2.position.y = 0;
+		$("#accommodationtoggle, #teachingtoggle, #communitytoggle, #maintenancetoggle, #admintoggle, #developmenttoggle").removeClass( "toggle" );
+		$("#accommodationtoggle, #teachingtoggle, #communitytoggle, #maintenancetoggle, #admintoggle, #developmenttoggle").addClass( "toggled" );
 	} else {
 		for (var i=0, tot=locationIcons.length; i < tot; i++) {
 			locationIcons[i].material.color.setHex(maincolour);
@@ -405,8 +532,14 @@ $( "#labelall" ).click(function() {
 		for (var i=0, tot=adminIcons.length; i < tot; i++) {
 			adminIcons[i].material.color.setHex(maincolour);
 		}
-		$("#accommodationtoggle, #teachingtoggle, #communitytoggle, #maintenancetoggle, #admintoggle").removeClass( "toggled" );
-		$("#accommodationtoggle, #teachingtoggle, #communitytoggle, #maintenancetoggle, #admintoggle").addClass( "toggle" );
+		var development = scene.getObjectByName( "Templeman_Extension", true );
+		var development2 = scene.getObjectByName( "Turing_College", true );
+		development.visible = false;
+		development.position.y = -99999;
+		development2.visible = false;
+		development2.position.y = -99999;
+		$("#accommodationtoggle, #teachingtoggle, #communitytoggle, #maintenancetoggle, #admintoggle, #developmenttoggle").removeClass( "toggled" );
+		$("#accommodationtoggle, #teachingtoggle, #communitytoggle, #maintenancetoggle, #admintoggle, #developmenttoggle").addClass( "toggle" );
 	}
 });
 $( "#labeltoggle" ).click(function() {
@@ -422,9 +555,9 @@ $( "#labeltoggle" ).click(function() {
 });
 $( "#eventtoggle" ).click(function() {
 	if ($(this).hasClass( "toggle" )) {
-		$(this).toggleClass( "toggle toggled" );
+
 	} else {
-		$(this).toggleClass( "toggle toggled" );
+		
 	}
 });
 $( "#accommodationtoggle" ).click(function() {
@@ -469,7 +602,7 @@ $( "#communitytoggle" ).click(function() {
 $( "#maintenancetoggle" ).click(function() {
 	if ($(this).hasClass( "toggle" )) {
 		for (var i=0, tot=maintenanceIcons.length; i < tot; i++) {
-			maintenanceIcons[i].material.color.setHex(0xcf5b2d);
+			maintenanceIcons[i].material.color.setHex(0xad426b);
 		}
 	} else {
 		for (var i=0, tot=maintenanceIcons.length; i < tot; i++) {
@@ -490,6 +623,21 @@ $( "#admintoggle" ).click(function() {
 		}
 		$("#labelall").removeClass( "toggled" );
 		$("#labelall").addClass( "toggle" );
+	}
+});
+$( "#developmenttoggle" ).click(function() {
+	var development = scene.getObjectByName( "Templeman_Extension", true );
+	var development2 = scene.getObjectByName( "Turing_College", true );
+	if ($(this).hasClass( "toggle" )) {
+		development.visible = true;
+		development.position.y = 0;
+		development2.visible = true;
+		development2.position.y = 0;
+	} else {
+		development.visible = false;
+		development.position.y = -99999;
+		development2.visible = false;
+		development2.position.y = -99999;
 	}
 });
 $( "#tweettoggle" ).click(function() {
@@ -539,6 +687,12 @@ $( "#overlay-panel a" ).click(function() {
 		for (var i=0, tot=sizeArray.length; i < tot; i++) {
 			sizeArray[i].visible = false;
 		}
+		var development = scene.getObjectByName( "Templeman_Extension", true );
+		var development2 = scene.getObjectByName( "Turing_College", true );
+		development.visible = false;
+		development.position.y = -99999;
+		development2.visible = false;
+		development2.position.y = -99999;
 		$("#label-panel a, #investment-panel a").removeClass( "toggled" );
 		$("#label-panel a, #investment-panel a").addClass( "toggle" );
 	} else {
@@ -627,7 +781,7 @@ $( "#permitparking" ).click(function() {
 		parking.visible = false;
 	}
 });
-/*$( "#roadnames" ).click(function() {
+$( "#roadnames" ).click(function() {
 	if ($(this).hasClass( "toggle" )) {
 		for (var i=0, tot=roadArray.length; i < tot; i++) {
 			new TWEEN.Tween( roadArray[i].material ).to( { opacity: 1 }, 500 ).easing( TWEEN.Easing.Quadratic.InOut).start();
@@ -637,7 +791,7 @@ $( "#permitparking" ).click(function() {
 			new TWEEN.Tween( roadArray[i].material ).to( { opacity: 0 }, 500 ).easing( TWEEN.Easing.Quadratic.InOut).start();
 		}
 	}
-});*/
+});
 
 $( "#investment-panel a" ).click(function() {
 	if ($(this).hasClass( "toggle" )) {
@@ -674,11 +828,19 @@ $( "#investment-panel a" ).click(function() {
 		for (var i=0, tot=busArray.length; i < tot; i++) {
 			busArray[i].visible = false;
 		}
+		for (var i=0, tot=roadArray.length; i < tot; i++) {
+			new TWEEN.Tween( roadArray[i].material ).to( { opacity: 0 }, 500 ).easing( TWEEN.Easing.Quadratic.InOut).start();
+		}
 		var parking = scene.getObjectByName( "Visitor_Parking", true );
 		parking.visible = false;
 		parking = scene.getObjectByName( "Permit_Parking", true );
 		parking.visible = false;
-		
+		var development = scene.getObjectByName( "Templeman_Extension", true );
+		var development2 = scene.getObjectByName( "Turing_College", true );
+		development.visible = false;
+		development.position.y = -99999;
+		development2.visible = false;
+		development2.position.y = -99999;
 		for (var i=0, tot=investmentArray.length; i < tot; i++) {
 			investmentArray[i].visible = false;
 		}
@@ -815,7 +977,9 @@ $("#start").click(function() {
 	},3000);
 	setTimeout(function(){
 		$('#leftnav').toggleClass("openleft closeleft");
-		$('#search').fadeIn(1000);
+		if($(window).width() > 676){
+			$('#search').fadeIn(1000);
+		}
 		$('#controls').fadeIn(1000);
 		var visited = $.cookie('visited')
 		if (visited == null) {
@@ -830,4 +994,26 @@ $("#start").click(function() {
 });
 $(".controls-close").click(function() {
 	$('.controls-modal').fadeOut(500);
+});
+$("#exitzoom").click(function() {
+	for (var i=0, tot=zoomobjects.length; i < tot; i++) {
+		zoomobjects[i].visible = true;
+	}
+	controls.maxPolarAngle = Math.PI/2.25; 
+	controls.minPolarAngle = 0; 
+	controls.maxDistance = 700;
+	document.getElementById("mapwrapper").addEventListener( 'mousemove', onDocumentMouseMove, false );
+	document.getElementById("app").addEventListener( 'mousedown', onDocumentMouseDown, false );
+	document.getElementById("app").addEventListener( 'mouseup', onDocumentMouseUp, false );
+	$(this).fadeOut();
+	for (var i=0, tot=zoomArray.length; i < tot; i++) {
+		zoomArray[i].visible = false;
+	}
+	new TWEEN.Tween( camera.position ).to( { x: 0, y: 350, z: 500 }, 1500 ).easing( TWEEN.Easing.Quadratic.InOut).onComplete(function () {
+		controls.minDistance = 120;
+		controls.noZoom = false;
+		$('#controls').fadeIn();
+		$('#leftnav').toggleClass("openleft closeleft");
+	}).start();
+	new TWEEN.Tween( controls.center ).to( { x: 0, y: 0, z: 0 }, 1500 ).easing( TWEEN.Easing.Quadratic.InOut).start();
 });

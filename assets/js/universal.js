@@ -46,6 +46,8 @@ function searchResult(searchvalue) {
  	
 	var foo = searchvalue.searchString.value;
 	if(jQuery.inArray( foo, buildings ) != -1){
+		$('#searchBox').css('color','#666');
+		$('.search-error').hide();
 		var dashes = foo.replace(/\s/g, '_');
 		
 		var room = $(xml).find('room:contains('+foo+')');
@@ -68,8 +70,13 @@ function searchResult(searchvalue) {
 			placeMarker(modal);
 		}
 	}else{
-		$.modal("<div class='arrow-down'></div><div>No search results match: "+foo+"</div>", {overlayClose: true});
+		$('#searchBox').css('color','#e83333');
+		$('.search-error').show();
 	}
 	
 	return false;
 }
+$( "#search-toggle a" ).click(function() {
+	$('#search').toggle( 300, "easeInOutQuint" );
+	$(this).toggleClass( "active" );
+});

@@ -1,8 +1,15 @@
-<?php require 'header.php'; ?>
+<?php
+session_start();
+if(!file_exists('users/' . $_SESSION['username'] . '.xml')){
+	header('Location: login.php');
+	die;
+}
+header('Location: edit_building.php?building='.$_GET["building"].'&saved=true');
+require 'header.php'; ?>
 <?php 
 	global $delete, $title, $roomname;
 	
-	$xml=simplexml_load_file("../assets/buildings2.xml");
+	$xml=simplexml_load_file("../assets/buildings.xml");
 	$name = $_GET["building"];
 	$room = $_GET["room"];
 	
@@ -14,7 +21,7 @@
 		unset($delete[0][0]);
 	}
 	
-	$xml->asXml('../assets/buildings2.xml'); 
+	$xml->asXml('../assets/buildings.xml'); 
 ?>
 <div class="container">
     <div class="grid">

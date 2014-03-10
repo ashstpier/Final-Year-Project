@@ -1,4 +1,11 @@
-<?php require 'header.php'; ?>
+<?php
+session_start();
+if(!file_exists('users/' . $_SESSION['username'] . '.xml')){
+	header('Location: login.php');
+	die;
+}
+header('Location: edit_building.php?building='.$_GET["building"].'&saved=true');
+require 'header.php'; ?>
 <?php
 $name = $_GET["building"];		
 

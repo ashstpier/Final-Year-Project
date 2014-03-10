@@ -156,7 +156,7 @@
 	</building>
     <building label="Cornwallis_South_East">
 		<type>Teaching</type>
-		<description>Cornwallis South East contains many computer facilities along with two large lecture rooms.</description>
+		<description>Cornwallis South East contains many computer facilities for the School of Mathematics, along with two large lecture rooms.</description>
 		<rooms>
 			<room value="CC02">CC02</room>
 			<room value="COLT2">COLT2</room>
@@ -322,7 +322,7 @@
 	</building>
     <building label="Grimond">
 		<type>Teaching</type>
-		<description>this is the brief description.</description>
+		<description>Grimmond is a large teaching complex which includes 8 seminar rooms and 3 large lecture theatres. Grimmond is multipurpose and is used by various different schools.</description>
 		<rooms>
 			<room value="GRIMOND_FO">Grimond Foyer</room>
 			<room value="GLT1">GLT1</room>
@@ -402,7 +402,7 @@
 	</building>
     <building label="Ingram">
 		<type>Teaching</type>
-		<description>Ingram is home to the Physics department and houses four large lab spaces as well as a lecture theatre and several classrooms.</description>
+		<description>Ingram is home to the School of Physics and houses four large lab spaces as well as a lecture theatre and several classrooms.</description>
 		<rooms>
 			<room value="Ingram_Foy">Ingram Foyer</room>
 			<room value="I316">I316</room>
@@ -497,7 +497,7 @@
 	</building>
 	<building label="Kent_Business_School">
 		<type>Teaching</type>
-		<description>The Kent Business School contains five seminar rooms, an IT suite, a lecture theatre and a large symposium room.</description>
+		<description>The Kent Business School contains five seminar rooms, an IT suite, a lecture theatre and a large symposium room. The school also has a large extension which adds 6 more rooms.</description>
 		<rooms>
 			<room value="KBS_Foy">KBS Lower Foyer</room>
 			<room value="KBS_UF">KBS Upper Foyer</room>
@@ -645,8 +645,7 @@
 	</building>
     <building label="Mandela_Building">
 		<type>Admin</type>
-		<description>Mandela Building is home to Kent Union and more specifically the Jobshop, where staff handle general enquiries and suggestions.</description>
-		<area><![CDATA[<i class="fa fa-info"></i>Student Union]]></area>
+		<description>Mandela Building is home to Kent Union and more specifically the Jobshop, where staff handle general enquiries and give advice on a daily basis.</description>
 	</building>
     <building label="Marley_Court">
 		<type>Accommodation</type>
@@ -663,7 +662,7 @@
 		</datalist>
 	</building>
 	<building label="Marlowe">
-		<description>Marlowe contains Several large studio spaces and lecture theatres for the School of Architecture and the School of Anthropology.</description>
+		<description>Marlowe contains several large studio spaces and lecture theatres for the School of Architecture and the Schools of Anthropology and Archaeology.</description>
 		<rooms>
 			<room value="MAR_FOYER">Marlowe Foyer</room>
 			<room value="Mar_Ant_Re">Anthropology Reception</room>
@@ -693,51 +692,56 @@
 			<data type="subjectsatisfaction">86</data>
 			<data type="entrypoints">437</data>
 		</datalist>
-	</building>
+	<type>Teaching</type></building>
 	<building label="Missing_Link">
-		<description>this is the brief description.</description>
+		<description>Missing Link is an extension to Darwin College which contains several extra seminar rooms.</description>
 		<rooms>
 			<room value="DS8">DS8</room>
 			<room value="DS9">DS9</room>
 			<room value="DS10">DS10</room>
 		</rooms>
-	</building>
+	<type>Teaching</type></building>
     <building label="Nickle_Court">
-		<description>this is the brief description.</description>
+		<description>As one of the Parkwood Flats, Nickle Court offers spacious en-suite rooms and a shared kitchen.</description>
 		<datalist>
 			<data type="roomprice">5621</data>
 			<data type="population">170</data>
 			<data type="roomsize">11</data>
 		</datalist>
-	</building>
+		<list>
+			<listitem>En-suite</listitem>
+			<listitem>Self catering</listitem>
+			<listitem>£5,621 p.a.</listitem>
+		</list>
+	<type>Accommodation</type></building>
 	<building label="Oaks_Day_Nursery">
-		<description>this is the brief description.</description>
-		<area><![CDATA[<i class="fa fa-smile-o"></i>Nursery]]></area>
-	</building>
+		<description>Oaks Day Nursery provides childcare services for parents on the campus. This includes both students and staff.</description>
+	<type>Community</type></building>
 	<building label="Olive_Cottages">
-		<description>this is the brief description.</description>
-		<area><![CDATA[<i class="fa fa-users"></i>Psychology]]></area>
-	</building>
+		<description>The Olive Cottages are used by the Chool of Psychology as an additional teaching space.</description>
+	<type>Teaching</type></building>
     <building label="Parkwood_Administration">
-		<description>this is the brief description.</description>
-		<area><![CDATA[<i class="fa fa-info"></i>Admin]]></area>
-	</building>
+		<description>Parkwood Administration deals with the daily running of the Parkwood student village and also houses the laundrette services.</description>
+	<type>Admin</type></building>
     <building label="Parkwood_Shop">
-		<description>this is the brief description.</description>
-		<area><![CDATA[<i class="fa fa-shopping-cart"></i>Shops]]></area>
-	</building>
+		<description>Parkwood Essentials provides grocery and shopping services to the whole of Parkwood.</description>
+	<type>Community</type></building>
     <building label="Purchas_Court">
-		<description>this is the brief description.</description>
+		<description>Purchas Court houses have shower and toilet facilities upstairs, with an additional downstairs toilet. The kitchen/diner has an oven and hob, fridge/freezer and microwave.</description>
 		<datalist>
 			<data type="roomprice">4376</data>
 			<data type="population">160</data>
 			<data type="roomsize">11</data>
 		</datalist>
-	</building>
+		<list>
+			<listitem>Shared facilities</listitem>
+			<listitem>Self catering</listitem>
+			<listitem>£4,376 p.a.</listitem>
+		</list>
+	<type>Accommodation</type></building>
     <building label="Registry">
-		<description>this is the brief description.</description>
-		<area><![CDATA[<i class="fa fa-info"></i>Admin]]></area>
-	</building>
+		<description>The Registry is the main administration building for the University of Kent. it contains the Student Records and Examinations Office and the Finance Department.</description>
+	<type>Admin</type></building>
     <building label="Research_and_Development_Centre">
 		<description>this is the brief description.</description>
 		<rooms>
@@ -748,16 +752,15 @@
 			<room value="RDC-G22">RDC G22</room>
 			<room value="RDC-G23">RDC G23</room>
 		</rooms>
-	</building>
+	<type>Admin</type></building>
     <building label="Rothford">
-		<description>this is the brief description.</description>
-		<area><![CDATA[<i class="fa fa-gbp"></i>Business]]></area>
-	</building>
+		<description>Rothford contains the Kent Innovation and Enterprise offices which help students to start their own businesses.</description>
+	<type>Admin</type></building>
 	<building label="Rutherford_Annexe">
-		<description>this is the brief description.</description>
-	</building>
+		<description>The Rutherford Annexe contains the Development Office which is responsible for alumni relations, fundraising, corporate events and the University's degree congregations.</description>
+	<type>Teaching</type></building>
     <building label="Rutherford_College">
-		<description>this is the brief description.</description>
+		<description>Rutherford College is the second oldest college of the University of Kent. It is very similar in design to Eliot College and shares the same unique shape. It also contains the very popular Rutherford Bar.</description>
 		<rooms>
 			<room value="R_Foy">Rutherford Foyer</room>
 			<room value="R.Cl.15">Rutherford Cl 15</room>
@@ -789,9 +792,9 @@
 			<data type="population">481</data>
 			<data type="roomsize">12</data>
 		</datalist>
-	</building>
+	<type>College</type></building>
 	<building label="Rutherford_Extension">
-		<description>this is the brief description.</description>
+		<description>The School of English resides in the Rutherford extension which has several large teaching rooms separate from Rutherford College.</description>
 		<rooms>
 			<room value="EN_Foy">School of English Foyer</room>
 			<room value="RX_NC8">Rutherford Extension NC8</room>
@@ -803,29 +806,28 @@
 			<data type="subjectsatisfaction">94</data>
 			<data type="entrypoints">409</data>
 		</datalist>
-	</building>
+	<type>Teaching</type></building>
     <building label="Senate">
-		<description>this is the brief description.</description>
+		<description>The Senate is "responsible for the academic work of the University". Its principal committees include the Learning and Teaching Board, the Board for Research and Enterprise, the Graduate School Board, the Student Experience Committee and the Information Services Committee.</description>
 		<rooms>
 			<room value="SChb">Senate Chamber Silent Study Hub</room>
 			<room value="Sen_CR1">Senate Commitee Room 1</room>
 			<room value="Sen_CR2">Senate Commitee Room 2</room>
 		</rooms>
-	</building>
+	<type>Admin</type></building>
     <building label="Sports_Centre">
-		<description>this is the brief description.</description>
+		<description>Kent Sport, the University of Kent's, Department of Sport, Physical Activity and Recreation, is situated at the Sports Centre on the Canterbury campus and oversees the University's recreational facilities and development of sport at Kent.</description>
 		<datalist>
 			<data type="subjectscore">86</data>
 			<data type="subjectsatisfaction">92</data>
 			<data type="entrypoints">332</data>
 		</datalist>
-	</building>
+	<type>Community</type></building>
     <building label="Sports_Pavillion">
-		<description>this is the brief description.</description>
-		<area><![CDATA[<i class="fa fa-trophy"></i>Sport]]></area>
-	</building>
+		<description>The Sports Pavillion contains the Pavilion Café Bar and social area situated on the first floor. With vending machines and viewing balconies overlooking both grass and artificial pitches, it is a great place to socialise and relax.</description>
+	<type>Community</type></building>
     <building label="Stacey">
-		<description>this is the brief description.</description>
+		<description>The School of Biosciences is named after its founder Professor Ken Stacey. It contains several large laboratories and lecture theatres.</description>
 		<rooms>
 			<room value="BI_Foyer">Biosciences Foyer</room>
 			<room value="Biol_Lab_1">Biosciences Teaching Lab 1</room>
@@ -841,39 +843,58 @@
 			<data type="subjectsatisfaction">93</data>
 			<data type="entrypoints">383</data>
 		</datalist>
-	</building>
+	<type>Teaching</type></building>
     <building label="Stock_Court">
-		<description>this is the brief description.</description>
+		<description>As one of the Parkwood Flats, Stock Court offers spacious en-suite rooms and a shared kitchen.</description>
 		<datalist>
 			<data type="roomprice">5621</data>
 			<data type="population">90</data>
 			<data type="roomsize">11</data>
 		</datalist>
-	</building>
+		<list>
+			<listitem>En-suite</listitem>
+			<listitem>Self catering</listitem>
+			<listitem>£5,621 p.a.</listitem>
+		</list>
+	<type>Accommodation</type></building>
     <building label="Tanglewood">
-		<description>this is the brief description.</description>
-		<area><![CDATA[<i class="fa fa-home"></i>Hospitality]]></area>
-	</building>
+		<description>The Accommodation Office is situated in Tanglewood near Keynes College. The student accommodation service provides information and advice for students and staff looking for housing at Canterbury.</description>
+	<type>Teaching</type></building>
+	<building label="Templeman_Extension">
+		<description>This development will see the addition of study space, along with the creation of a new purpose built lecture theatre. Additionally, the Library facade will undergo major renovation; creating a new and fresh innovative look.</description>
+	<type>Community</type></building>
     <building label="Templeman_Library">
-		<description>this is the brief description.</description>
-		<area><![CDATA[<i class="fa fa-book"></i>Library]]></area>
-	</building>
+		<description>The Templeman Library contains over a million items in stock including books, journals, videos, DVDs, and archive materials. It has a materials fund of approximately £1million a year, and adds 12,000 items every year. It is open every day in term time.</description>
+	<type>Community</type></building>
     <building label="Thornden_Court">
-		<description>this is the brief description.</description>
+		<description>Thornden Court houses have shower and toilet facilities upstairs, with an additional downstairs toilet. The kitchen/diner has an oven and hob, fridge/freezer and microwave.</description>
 		<datalist>
 			<data type="roomprice">3955</data>
 			<data type="population">80</data>
 			<data type="roomsize">10</data>
 		</datalist>
-	</building>
+		<list>
+			<listitem>Shared facilities</listitem>
+			<listitem>Self catering</listitem>
+			<listitem>£4376 p.a.</listitem>
+		</list>
+	<type>Accommodation</type></building>
     <building label="Tudor_Court">
-		<description>this is the brief description.</description>
+		<description>Tudor Court houses have shower and toilet facilities upstairs, with an additional downstairs toilet. The kitchen/diner has an oven and hob, fridge/freezer and microwave.</description>
 		<datalist>
 			<data type="roomprice">3955</data>
 			<data type="population">80</data>
 			<data type="roomsize">10</data>
 		</datalist>
-	</building>
+		<list>
+			<listitem>Shared facilities</listitem>
+			<listitem>Self catering</listitem>
+			<listitem>£3,995 p.a.</listitem>
+		</list>
+	<type>Accommodation</type></building>
+	<building label="Turing_College">
+		<description>The Turing College development consists of the design, construction and operation of new student accommodation comprising of 801 student rooms and a 'Hub' building.</description>
+	<type>College</type></building>
 	<building label="Tyler_Court_A">
 		<description>this is the brief description.</description>
 		<datalist>
@@ -881,7 +902,12 @@
 			<data type="population">189</data>
 			<data type="roomsize">10</data>
 		</datalist>
-	</building>
+		<list>
+			<listitem>En-suite</listitem>
+			<listitem>Self catering</listitem>
+			<listitem>£5,353 p.a.</listitem>
+		</list>
+	<type>Accommodation</type></building>
 	<building label="Tyler_Court_B">
 		<description>this is the brief description.</description>
 		<datalist>
@@ -889,7 +915,12 @@
 			<data type="population">339</data>
 			<data type="roomsize">13</data>
 		</datalist>
-	</building>
+		<list>
+			<listitem>En-suite</listitem>
+			<listitem>Self catering</listitem>
+			<listitem>£5,872 p.a.</listitem>
+		</list>
+	<type>Accommodation</type></building>
 	<building label="Tyler_Court_C">
 		<description>this is the brief description.</description>
 		<datalist>
@@ -897,19 +928,21 @@
 			<data type="population">339</data>
 			<data type="roomsize">13</data>
 		</datalist>
-	</building>
+		<list>
+			<listitem>En-suite</listitem>
+			<listitem>Self catering</listitem>
+			<listitem>£5,872 p.a.</listitem>
+		</list>
+	<type>Accommodation</type></building>
 	<building label="UELT">
 		<description>this is the brief description.</description>
-		<area><![CDATA[<i class="fa fa-info"></i>Admin]]></area>
-	</building>
+	<type>Admin</type></building>
 	<building label="University_Medical_Centre">
 		<description>this is the brief description.</description>
-		<area><![CDATA[<i class="fa fa-medkit"></i>Medical]]></area>
-	</building>
+	<type>Maintenance</type></building>
     <building label="Venue">
 		<description>test</description>
-		<area><![CDATA[<i class="fa fa-music"></i>Music]]></area>
-	</building>
+	<type>Community</type></building>
     <building label="Willows_Court">
 		<description>this is the brief description.</description>
 		<datalist>
@@ -917,15 +950,18 @@
 			<data type="population">80</data>
 			<data type="roomsize">10</data>
 		</datalist>
-	</building>
+		<list>
+			<listitem>Shared facilities</listitem>
+			<listitem>Self catering</listitem>
+			<listitem>£3,995 p.a.</listitem>
+		</list>
+	<type>Accommodation</type></building>
     <building label="Woodlands">
 		<description>this is the brief description.</description>
-		<area><![CDATA[<i class="fa fa-users"></i>Sociology]]></area>
-	</building>
+	<type>Teaching</type></building>
     <building label="Woodys">
 		<description>this is the brief description.</description>
-		<area><![CDATA[<i class="fa fa-cutlery"></i>Food and Drink]]></area>
-	</building>
+	<type>Community</type></building>
     <building label="Woolf_Blocks">
 		<description>this is the brief description.</description>
 		<datalist>
@@ -933,7 +969,12 @@
 			<data type="population">503</data>
 			<data type="roomsize">12</data>
 		</datalist>
-	</building>
+		<list>
+			<listitem>En-suite</listitem>
+			<listitem>Self catering</listitem>
+			<listitem>£5,846 p.a.</listitem>
+		</list>
+	<type>Accommodation</type></building>
     <building label="Woolf_College">
 		<description>this is the brief description.</description>
 		<rooms>
@@ -948,11 +989,10 @@
 			<room value="W-LT">WLT</room>
 			<room value="W_CR">Woolf Common Room</room>
 		</rooms>
-	</building>
+	<type>College</type></building>
 	<building label="Woolf_Pavillion">
 		<description>this is the brief description.</description>
-		<area><![CDATA[<i class="fa fa-home"></i>Accomodation]]></area>
-	</building>
+	<type>Community</type></building>
     <building label="Woolf_Residential">
 		<description>this is the brief description.</description>
 		<datalist>
@@ -960,5 +1000,10 @@
 			<data type="population">41</data>
 			<data type="roomsize">17</data>
 		</datalist>
-	</building>
+		<list>
+			<listitem>En-suite</listitem>
+			<listitem>Self catering</listitem>
+			<listitem>£6,823 p.a.</listitem>
+		</list>
+	<type>Accommodation</type></building>
 </buildings>

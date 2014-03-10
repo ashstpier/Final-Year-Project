@@ -1,13 +1,13 @@
 function makeTextSprite( message, name ){
 	var fontface = "Arial";
-	var fontsize = 16;
+	var fontsize = 14;
 	var spriteAlignment = THREE.SpriteAlignment.topLeft;
 	var canvas = document.createElement('canvas');
 	var context = canvas.getContext('2d');
 	context.font = "Normal " + fontsize + "px " + fontface;
 	var metrics = context.measureText( message );
 	var textWidth = metrics.width;
-	context.fillStyle   = "rgba(255,255,255,0.8)";
+	context.fillStyle   = "rgba(255,255,255,1)";
 	context.strokeStyle = "rgba(255,255,255,0)";
 
 	context.lineWidth = 5;
@@ -35,6 +35,19 @@ function makeTextSprite( message, name ){
 	sprite.material.opacity = 0;
 	sprites.push( sprite );
 	group.add( sprite );
+}
+
+function makeZoomSprite( image ){
+
+	var spriteMaterial = new THREE.SpriteMaterial( { map: THREE.ImageUtils.loadTexture( image ), useScreenCoordinates: false, alignment: THREE.SpriteAlignment.topCenter, transparent: true } );
+	var sprite = new THREE.Sprite( spriteMaterial );
+	
+	sprite.scale.set(7,7,1.0);
+	group.add( sprite );
+	zoomArray.push(sprite);
+	sprite.visible = false;
+	
+	return sprite;
 }
 
 // function for drawing rounded rectangles
@@ -213,7 +226,7 @@ function makeIcon(mesh) {
 			createArrays(teachingIcons, mesh);
 			break;
 		case "Cornwallis_George_Allen_Wing":
-			createArrays(communityIcons, mesh);
+			createArrays(teachingIcons, mesh);
 			break;
 		case "Cornwallis_Mathematics_Institute":
 			createArrays(teachingIcons, mesh);
@@ -325,9 +338,6 @@ function makeIcon(mesh) {
 		case "Gulbenkian":
 			createArrays(communityIcons, mesh);
 			break;
-		case "Senate":
-			createArrays(teachingIcons, mesh);
-			break;
 		case "Sports_Centre":
 			createArrays(communityIcons, mesh);
 			break;
@@ -391,6 +401,9 @@ function makeIcon(mesh) {
 		case "Research_and_Development_Centre":
 			createArrays(adminIcons, mesh);
 			break;
+		case "Senate":
+			createArrays(teachingIcons, mesh);
+			break;
 		case "UELT":
 			createArrays(adminIcons, mesh);
 			break;
@@ -446,6 +459,7 @@ function tweetIcon(mesh) {
 		
 		icon.name = "tweet-" + mesh.name;
 		icon.position.set( position.x, boundingBox.max.y + 20, position.z );
+		icon.visible = false;
 		group.add( icon);
 		clickobjects.push( icon );
 		tweetIcons.push( icon );
@@ -675,6 +689,70 @@ function makeParkingOverlay(){
 		mesh.visible = false;
     } );
 }
+function makeDevelopments(){
+	var loader = new THREE.JSONLoader();
+	loader.load( "assets/models/Templeman_Extension.js", function( geometry, materials ) {
+        mesh = new THREE.Mesh( geometry, new THREE.MeshPhongMaterial( { color: 0xc98c3c, specular: 0x555555, ambient: 0x222222, wrapAround: true, transparent: true } ));
+        mesh.position.y = -99999;
+		group.add( mesh );
+		clickobjects.push( mesh );
+		mesh.castShadow = true;
+		mesh.name = "Templeman_Extension";
+		mesh.visible = false;
+    } );
+	loader.load( "assets/models/Turing_College.js", function( geometry, materials ) {
+        mesh = new THREE.Mesh( geometry, new THREE.MeshPhongMaterial( { color: 0xc98c3c, specular: 0x555555, ambient: 0x222222, wrapAround: true, transparent: true } ));
+        mesh.position.y = -99999;
+		group.add( mesh );
+		clickobjects.push( mesh );
+		mesh.castShadow = true;
+		mesh.name = "Turing_College";
+		mesh.visible = false;
+    } );
+}
+function makeClouds(){
+	var material = new THREE.MeshBasicMaterial( { color: 0xffffff, wrapAround: true, transparent: true, opacity: 0.3 } )
+	var loader = new THREE.JSONLoader();
+	loader.load( "assets/models/cloud.js", function( geometry, materials ) {
+        mesh = new THREE.Mesh( geometry, material);
+        mesh.scale.set( 1, 1, 1 );
+		mesh.position.set(0,70,200);
+		group.add( mesh );
+		mesh = new THREE.Mesh( geometry, material);
+        mesh.scale.set( 1, 1, 1 );
+		mesh.position.set(-250,80,-200);
+		group.add( mesh );
+		mesh = new THREE.Mesh( geometry, material);
+        mesh.scale.set( 1, 1, 1 );
+		mesh.position.set(500,70,-150);
+		group.add( mesh );
+    } );
+	loader.load( "assets/models/cloud_2.js", function( geometry, materials ) {
+        mesh = new THREE.Mesh( geometry, material);
+        mesh.scale.set( 1, 1, 1 );
+		mesh.position.set(0,90,0);
+		group.add( mesh );
+		mesh = new THREE.Mesh( geometry, material);
+        mesh.scale.set( 1, 1, 1 );
+		mesh.position.set(-200,70,-50);
+		group.add( mesh );
+    } );
+	loader.load( "assets/models/cloud_3.js", function( geometry, materials ) {
+        mesh = new THREE.Mesh( geometry, material);
+        mesh.scale.set( 1, 1, 1 );
+		mesh.position.set(0,90,-200);
+		group.add( mesh );
+		mesh = new THREE.Mesh( geometry, material);
+        mesh.scale.set( 1, 1, 1 );
+		mesh.position.set(-400,80,300);
+		group.add( mesh );
+		mesh = new THREE.Mesh( geometry, material);
+        mesh.scale.set( 1, 1, 1 );
+		mesh.position.set(200,70,100);
+		group.add( mesh );
+    } );
+}
+
 function cycleIcon(iconArray, size){
 	var color;
 	if (iconArray == cycleArray){
@@ -857,8 +935,8 @@ function makeRoadName( message ){
 	context.font = "Normal " + fontsize + "px " + fontface;
 	var metrics = context.measureText( message );
 	var textWidth = metrics.width;
-	context.fillStyle   = "#ed7b5f";
-	context.strokeStyle = "#ed7b5f";
+	context.fillStyle   = "#666666";
+	context.strokeStyle = "#666666";
 
 	context.lineWidth = 5;
 	roundRect(context, 5/2, 5/2, textWidth + 5, fontsize * 1.4 + 5, 1);
@@ -869,11 +947,10 @@ function makeRoadName( message ){
 	texture.needsUpdate = true;
 
 	var spriteMaterial = new THREE.SpriteMaterial( 
-		{ map: texture, useScreenCoordinates: false, alignment: spriteAlignment, transparent: true } );
+		{ map: texture, useScreenCoordinates: false, alignment: spriteAlignment, transparent: true, opacity: 0 } );
 	var sprite = new THREE.Sprite( spriteMaterial );
 	
 	sprite.scale.set(60,30,1.0);
-	sprite.material.opacity = 1;
 	group.add(sprite);
 	roadArray.push( sprite );
 	return sprite;	
@@ -889,9 +966,42 @@ function makeRoads(){
 	makeRoadName("University Road").position.set(156,7,75);
 	makeRoadName("University Road").position.set(148,7,289);
 }
+function makeZoom(){
+	material = new THREE.MeshLambertMaterial({color: 0xff9900, transparent: true })
+	var icon = new THREE.Mesh( new THREE.CubeGeometry( 6, 6, 6 ), material );
+	icon.position.set(335,10,-51);
+	icon.name = "zoom_library"
+	clickobjects.push(icon);
+	zoomobjects.push(icon);
+	group.add(icon);
+	
+	var icon = new THREE.Mesh( new THREE.CubeGeometry( 6, 6, 6 ), material );
+	icon.position.set(153,10,27);
+	icon.name = "zoom_venue"
+	clickobjects.push(icon);
+	zoomobjects.push(icon);
+	group.add(icon);
+	
+	var icon = new THREE.Mesh( new THREE.CubeGeometry( 6, 6, 6 ), material );
+	icon.position.set(47,10,-155);
+	icon.name = "zoom_sport"
+	clickobjects.push(icon);
+	zoomobjects.push(icon);
+	group.add(icon);
+	
+	var icon = new THREE.Mesh( new THREE.CubeGeometry( 6, 6, 6 ), material );
+	icon.position.set(251,10,-241);
+	icon.name = "zoom"
+	clickobjects.push(icon);
+	zoomobjects.push(icon);
+	group.add(icon);
+}
 function onWindowResize() {
 	camera.aspect = window.innerWidth / window.innerHeight;
 	camera.updateProjectionMatrix();
 	renderer.setSize( window.innerWidth, window.innerHeight );
 	positionTrackingOverlay();
+	if($(window).width() > 676){
+		$('#search').show();
+	}
 }

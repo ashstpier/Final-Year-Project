@@ -1,8 +1,15 @@
-<?php require 'header.php'; ?>
+<?php
+session_start();
+if(!file_exists('users/' . $_SESSION['username'] . '.xml')){
+	header('Location: login.php');
+	die;
+}
+header('Location: edit_accommodation.php?building='.$_GET["building"].'&saved=true');
+require 'header.php'; ?>
 <?php 
 	global $description, $type, $title, $table_string;
 	
-	$xml=simplexml_load_file("../assets/buildings2.xml");
+	$xml=simplexml_load_file("../assets/buildings.xml");
 	$name = $_GET["building"];
 	
 	$table_string = "<table cellpadding='0' cellspacing='0'><thead><tr><th>Image</th><th>Building</th><th>Type</th><th>Description</th></tr></thead><tbody>";
@@ -30,7 +37,7 @@
 	}
 	$table_string .= "</tbody></table>";
 	
-	$xml->asXml('../assets/buildings2.xml'); 
+	$xml->asXml('../assets/buildings.xml'); 
 ?>
 <div class="container">
     <div class="grid">

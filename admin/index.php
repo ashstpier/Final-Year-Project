@@ -1,15 +1,21 @@
-<?php require 'header.php'; ?>
+<?php
+session_start();
+if(!file_exists('users/' . $_SESSION['username'] . '.xml')){
+	header('Location: login.php');
+	die;
+}
+require 'header.php'; ?>
 <?php
 $last_mod = filemtime("../assets/buildings.xml");
 $xml=simplexml_load_file("../assets/buildings.xml");
 global $table_string;
-$table_string = "<table cellpadding='0' cellspacing='0'><thead><tr><th>Image</th><th>Building</th><th>Type</th><th></th></tr></thead><tbody>";
+$table_string = "<table cellpadding='0' cellspacing='0'><thead><tr><th>Image</th><th>Building</th><th class='type'>Type</th><th></th></tr></thead><tbody>";
 foreach ($xml->building as $building) {
 	$titleraw = $building->attributes();
 	$title = str_replace('_', ' ', $titleraw);
 	$description = $building->description;
 	$type = $building->type;
-	$table_string .= "<tr><td><img src='../assets/images/buildings/".$titleraw.".jpg' /></td><td>".$title."</td><td>".$type."</td><td><form action='edit_building.php?building=".$titleraw."' method='post'><button type='submit' title='Edit'><i class='fa fa-pencil-square-o'></i></button></form></td></tr>";
+	$table_string .= "<tr><td><img src='../assets/images/buildings/".$titleraw.".jpg' /></td><td>".$title."</td><td class='type'>".$type."</td><td><form action='edit_building.php?building=".$titleraw."' method='post'><button type='submit' title='Edit'><i class='fa fa-pencil-square-o'></i></button></form></td></tr>";
 }
 $table_string .= "</tbody></table>";
 ?>

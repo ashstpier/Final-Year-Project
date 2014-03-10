@@ -1,8 +1,14 @@
-<?php require 'header.php'; ?>
+<?php
+session_start();
+if(!file_exists('users/' . $_SESSION['username'] . '.xml')){
+	header('Location: login.php');
+	die;
+}
+require 'header.php'; ?>
 <?php 
 	global $delete, $title, $roomname, $roomlink;
 	
-	$xml=simplexml_load_file("../assets/buildings2.xml");
+	$xml=simplexml_load_file("../assets/buildings.xml");
 	$name = $_GET["building"];
 	$roomname = $_POST["roomname"];
 	$roomlink = $_POST["roomlink"];
@@ -16,7 +22,7 @@
 		$newroom->addAttribute('value', $roomlink);
 	}
 	
-	$xml->asXml('../assets/buildings2.xml'); 
+	$xml->asXml('../assets/buildings.xml'); 
 ?>
 <div class="container">
     <div class="grid">

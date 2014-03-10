@@ -1,6 +1,6 @@
 var container, stats, camera, scene, renderer, composer, projector, controls, ground, particleSystem, group = new THREE.Object3D(), group = new THREE.Object3D();
-var depthMaterial, depthTarget, composer;
-var clickobjects = [], tweetobjects = [], sprites = [], locationIcons = [], teachingIcons = [], communityIcons = [], tweetIcons = [], visitorParking = [], permitParking = [], cycleArray = [], busArray = [], maintenanceIcons = [], adminIcons = [], rotate = [], investmentArray = [], developmentArray = [], roompriceArray = [], populationArray = [], subjectscoreArray = [], subjectsatisfactionArray = [], entrypointsArray = [], sizeArray = [], buildings = [], roadArray = [], darwinRoute = [], keynesRoute = [], parkwoodRoute = [], cycleRoute = [];
+var depthMaterial, depthTarget;
+var clickobjects = [], tweetobjects = [], zoomobjects = [], sprites = [], locationIcons = [], teachingIcons = [], communityIcons = [], tweetIcons = [], visitorParking = [], permitParking = [], cycleArray = [], busArray = [], maintenanceIcons = [], adminIcons = [], rotate = [], investmentArray = [], developmentArray = [], roompriceArray = [], populationArray = [], subjectscoreArray = [], subjectsatisfactionArray = [], entrypointsArray = [], sizeArray = [], buildings = [], roadArray = [], darwinRoute = [], keynesRoute = [], parkwoodRoute = [], cycleRoute = [], zoomArray = [];
 var jsonFileNames = [
 	'assets/models/Aphra_and_Lumley_Theatre.js',
 	'assets/models/Becket_Court.js',
@@ -101,9 +101,7 @@ animate();
 
 function init() {
 	
-	container = document.createElement( 'div' );
-	container.id = 'app';
-	document.getElementById("mapwrapper").appendChild( container );
+	container = document.getElementById("app");
 	
 	camera = new THREE.PerspectiveCamera( 40, window.innerWidth / window.innerHeight, 10, 2000 );
 	camera.position.z = 0;
@@ -114,7 +112,7 @@ function init() {
 	controls = new THREE.OrbitControls( camera );
 	controls.addEventListener( 'change', render );
 	controls.maxPolarAngle = Math.PI/2.25; 
-	controls.minDistance = 160;
+	controls.minDistance = 300;
 	controls.maxDistance = 700;
 	controls.enabled = true;
 	controls.center.set(0,-10,0);
@@ -146,7 +144,7 @@ function init() {
 	
 	/////////// LIGHTS ////////////
 	
-	var directionalLight = new THREE.DirectionalLight( 0xffffff ,0.9 );
+	var directionalLight = new THREE.DirectionalLight( 0xcccccc ,0.5 );
 	directionalLight.position.set( 700, 1600, 200 )
 	directionalLight.castShadow = true;
 	directionalLight.shadowDarkness = 0.4;
@@ -158,28 +156,34 @@ function init() {
 	directionalLight.shadowCameraFov = 50;
 	scene.add( directionalLight );
 	
-	var hemiLight = new THREE.HemisphereLight( 0xdddddd, 0x555555, 0.8 ); 
+	var hemiLight = new THREE.HemisphereLight( 0xffffff, 0x999999, 1 ); 
 	scene.add( hemiLight );
 	
-
 	/////////// GEOMETRY /////////////
-	
-	/*
-	texture = THREE.ImageUtils.loadTexture('assets/images/map.jpg', {}, function() {
-		renderer.render(scene);
-	})
-	mapmaterial = new THREE.MeshBasicMaterial({map: texture})
-	ground = new THREE.Mesh( new THREE.PlaneGeometry( 1200, 960, 8, 8 ), mapmaterial );
-	ground.rotation.x += 270 * Math.PI / 180;
-	ground.material.needsUpdate = true;
-	scene.add( ground );
-	group.add( ground );
-	*/
 	
 	busRoutes();
 	makeParkingOverlay();
 	makeCycleRacks();
 	makeRoads();
+	makeDevelopments();
+	makeZoom();
+	//makeClouds();
+	
+	var sprite = makeZoomSprite("assets/images/icons/ico_keynestock.png");
+	sprite.position.set(137,10,34);
+	var sprite = makeZoomSprite("assets/images/icons/ico_freshers_fayre.png");
+	sprite.position.set(168,10,18);
+	var sprite = makeZoomSprite("assets/images/icons/ico_venue.png");
+	sprite.position.set(170,10,32);
+	
+	var sprite = makeZoomSprite("assets/images/icons/ico_worldfest.png");
+	sprite.position.set(320,10,-58);
+	var sprite = makeZoomSprite("assets/images/icons/ico_library.png");
+	sprite.position.set(330,10,-67);
+	var sprite = makeZoomSprite("assets/images/icons/ico_field.png");
+	sprite.position.set(346,10,-37);
+	var sprite = makeZoomSprite("assets/images/icons/ico_rutherford.png");
+	sprite.position.set(352,10,-55);
 	
 	plane = new THREE.Mesh( new THREE.PlaneGeometry( 1200, 960, 8, 8 ), new THREE.MeshBasicMaterial( { transparent: true, wireframe: true } ) );
 	plane.visible = false;
@@ -189,31 +193,30 @@ function init() {
 	var loader = new THREE.JSONLoader();
 	
 	
-	loader.load( "assets/models/trees.js", function( geometry, materials ) {
+	loader.load( "assets/models/trees2.js", function( geometry, materials ) {
         mesh = new THREE.Mesh( geometry, new THREE.MeshFaceMaterial(materials) );
         mesh.scale.set( 1, 1, 1 );
 		mesh.castShadow = true;
 		group.add( mesh );
     } );
 	
+	/*
 	loader.load( "assets/models/forest.js", function( geometry, materials ) {
 		mesh = new THREE.Mesh( geometry, new THREE.MeshFaceMaterial(materials) );
         mesh.scale.set( 1, 1, 1 );
+		mesh.position.set( 0, -1, 0 );
+		mesh.castShadow = true;
 		group.add( mesh );
-		
-        mesh = new THREE.Mesh( geometry, new THREE.MeshFaceMaterial(materials) );
-        mesh.scale.set( 1, 1, 1 );
-		mesh.position.set( 0, 4, 0 );
+    } );
+	*/
+	
+	loader.load( "assets/models/walls.js", function( geometry, materials ) {
+        mesh = new THREE.Mesh( geometry, new THREE.MeshLambertMaterial({ color: maincolour, wrapAround: true }) );
+        mesh.position.set( 0, -1, 0 );
 		mesh.castShadow = true;
 		group.add( mesh );
     } );
 	
-	loader.load( "assets/models/walls.js", function( geometry, materials ) {
-        mesh = new THREE.Mesh( geometry, new THREE.MeshLambertMaterial({ color: maincolour, wrapAround: true }) );
-        mesh.scale.set( 1, 1, 1 );
-		mesh.castShadow = true;
-		group.add( mesh );
-    } );
 	
 	loader.load( "assets/models/cars.js", function( geometry, materials ) {
         mesh = new THREE.Mesh( geometry, new THREE.MeshFaceMaterial(materials) );
@@ -221,6 +224,7 @@ function init() {
 		mesh.castShadow = true;
 		group.add( mesh );
     } );
+	
 	
 	loader.load( "assets/models/map.js", function( geometry, materials ) {
         mesh = new THREE.Mesh( geometry, new THREE.MeshFaceMaterial(materials) );
@@ -238,7 +242,7 @@ function init() {
 	
 	function makeHandler(meshName) {
 		return function(geometry, materials) {
-			var material = new THREE.MeshPhongMaterial( { color: maincolour, specular: 0x555555, ambient: 0x222222, wrapAround: true, transparent: true } )
+			var material = new THREE.MeshPhongMaterial( { color: maincolour, specular: 0x3333333, ambient: 0x222222, wrapAround: true, transparent: true } );
 			mesh = new THREE.Mesh( geometry, material );
 			mesh.scale.set( 1, 1, 1 );
 			mesh.position.set( 0, -0.1, 0 );
@@ -263,10 +267,17 @@ function init() {
 	scene.add( group );
 	
 	projector = new THREE.Projector();
-
-	renderer = new THREE.WebGLRenderer();
+	
+	var canvas = document.getElementById("canvas");
+	if( Detector.webgl ){
+		renderer = new THREE.WebGLRenderer({canvas:canvas, alpha: true});
+	}else{
+		Detector.addGetWebGLMessage();
+		return true;
+	}
 	renderer.setSize( window.innerWidth, window.innerHeight );
-	renderer.shadowMapEnabled = true;
+	renderer.setClearColor( 0x9acbfc, 1);
+	renderer.shadowMapEnabled = false;
 	renderer.shadowMapSoft = true;
 	renderer.shadowMapType = THREE.PCFSoftShadowMap;
 
@@ -276,12 +287,19 @@ function init() {
 	document.getElementById("mapwrapper").addEventListener( 'mousemove', onDocumentMouseMove, false );
 	document.getElementById("app").addEventListener( 'mousedown', onDocumentMouseDown, false );
 	document.getElementById("app").addEventListener( 'mouseup', onDocumentMouseUp, false );
-
-	//
+	document.getElementById("canvas").addEventListener("webglcontextlost", function(event) {
+		event.preventDefault();
+		alert("WebGL has crashed because of a hardware problem. Please reload WebGL and refresh the page.");
+	}, false);
+	document.getElementById("canvas").addEventListener("webglcontextrestored", function(event) {
+	  	init();
+		animate();
+	}, false);
 
 	window.addEventListener( 'resize', onWindowResize, false );
 
-	/*		
+/*
+	
 	///////////// DEPTH //////////////
 	
 	var depthShader = THREE.ShaderLib[ "depthRGBA" ];
@@ -297,41 +315,29 @@ function init() {
 
 	depthTarget = new THREE.WebGLRenderTarget( window.innerWidth, window.innerHeight, { minFilter: THREE.NearestFilter, magFilter: THREE.NearestFilter, format: THREE.RGBAFormat } );
 	
+	var tiltH = new THREE.ShaderPass( THREE.HorizontalTiltShiftShader );
+	tiltH.uniforms[ 'h' ].value = 1 / window.innerWidth;
+	tiltH.uniforms[ 'r' ].value = 0.5;
+	composer.addPass( tiltH );
+	
+	var tiltV = new THREE.ShaderPass( THREE.VerticalTiltShiftShader );
+	tiltV.uniforms[ 'v' ].value = 1 / window.innerHeight;
+	tiltV.uniforms[ 'r' ].value = 0.5;
+	composer.addPass( tiltV );
+	
+	var vignette = new THREE.ShaderPass( THREE.VignetteShader );
+	vignette.uniforms[ 'darkness' ].value = 0;
+	vignette.uniforms[ 'offset' ].value = 1;
+	composer.addPass( vignette );
+	
 	var effect = new THREE.ShaderPass( THREE.SSAOShader );
 	effect.uniforms[ 'tDepth' ].value = depthTarget;
-	effect.uniforms[ 'size' ].value.set( window.innerWidth, window.innerHeight );
+	effect.uniforms[ 'size' ].value.set( window.innerWidth * 1, window.innerHeight * 1 );
 	effect.uniforms[ 'cameraNear' ].value = camera.near;
 	effect.uniforms[ 'cameraFar' ].value = camera.far;
 	effect.renderToScreen = true;
 	composer.addPass( effect );
-	*/
-	
-	/*
-	composer = new THREE.EffectComposer( renderer );
-	composer.setSize(window.innerWidth, window.innerHeight);
-	composer.addPass( new THREE.RenderPass( scene, camera ) );
-	
-	var vignette = new THREE.ShaderPass( THREE.VignetteShader );
-	vignette.uniforms[ 'darkness' ].value = 1.5;
-	vignette.uniforms[ 'offset' ].value = 1;
-	vignette.renderToScreen = true;
-	composer.addPass( vignette );
-	
-	var tiltH = new THREE.ShaderPass( THREE.HorizontalTiltShiftShader );
-	tiltH.uniforms[ 'h' ].value = 2 / window.innerWidth;
-	tiltH.uniforms[ 'r' ].value = 0.5;
-	//composer.addPass( tiltH );
-	
-	var tiltV = new THREE.ShaderPass( THREE.VerticalTiltShiftShader );
-	tiltV.uniforms[ 'v' ].value = 2 / window.innerHeight;
-	tiltV.uniforms[ 'r' ].value = 0.5;
-	
-	//composer.addPass( tiltV );
-	
-	tiltH.material.transparent = true;
-	tiltV.material.transparent = true;
-	vignette.material.transparent = true;
-	*/
+*/
 	
 	
 	/*
@@ -393,12 +399,21 @@ function positionTrackingOverlay()
 		left = percX * WIDTH;
 		top = percY * HEIGHT;
 		
-		widthPercentage = (left - $("#modalpanel").width() / 2) / WIDTH * 100;
-		heightPercentage = (top - $("#modalpanel").height()) / HEIGHT * 100;
-		
-		$("#modalpanel")
-				.css('left', widthPercentage + '%')
-				.css('top', heightPercentage + '%');
+		if($(window).height() < 600){
+			widthPercentage = (left - $("#modalpanel").width() / 2) / WIDTH * 100;
+			heightPercentage = (top - $("#modalpanel").height()) / HEIGHT * 120;
+			
+			$("#modalpanel")
+					.css('left', widthPercentage + '%')
+					.css('top', heightPercentage + '%');	
+		}else{
+			widthPercentage = (left - $("#modalpanel").width() / 2) / WIDTH * 100;
+			heightPercentage = (top - $("#modalpanel").height()) / HEIGHT * 100;
+			
+			$("#modalpanel")
+					.css('left', widthPercentage + '%')
+					.css('top', heightPercentage + '%');
+		}
 				
 	}if(tweetmodal != null){
 		
@@ -430,6 +445,7 @@ function positionTrackingOverlay()
 }
 
 function animate() {
+	requestAnimationFrame( animate );
 	TWEEN.update();
 	controls.update();
 	positionTrackingOverlay();
@@ -475,11 +491,9 @@ function animate() {
 		}
 	}
 	render();
-	requestAnimationFrame( animate );
 	//scene.overrideMaterial = null;
 	//composer.render();
 }
 function render() {
-	renderer.render(scene, camera);
-	//composer.render();
+	renderer.render(scene, camera/*, depthTarget*/);
 }

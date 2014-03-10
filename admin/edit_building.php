@@ -1,7 +1,12 @@
-<?php require 'header.php'; ?>
-<?
+<?php
+session_start();
+if(!file_exists('users/' . $_SESSION['username'] . '.xml')){
+	header('Location: login.php');
+	die;
+}
+require 'header.php'; 
 $name = $_GET["building"];
-$xml=simplexml_load_file("../assets/buildings2.xml");
+$xml=simplexml_load_file("../assets/buildings.xml");
 
 global $description, $type, $list, $title, $titleraw, $toilet, $catering, $price, $roomlist, $rooms;
 
@@ -60,7 +65,7 @@ foreach ($query as $building) {
 				<h2><i class='fa fa-pencil-square-o'></i> Rooms</h2>
 			<?php echo $roomlist; ?>
                 <form action='add_room.php?building=<?php echo $name ?>' method='post' id="addform">
-                    <table cellpadding='0' cellspacing='0'>
+                    <table class="roomtable" cellpadding='0' cellspacing='0'>
                     <colgroup><col width='45%'><col width='45%'><col width='10%'></colgroup>
                     <tbody>
                     <tr>

@@ -18,6 +18,7 @@
 <body>
 <div id="preloader">
 	<div id="preloader-content">
+    	<h2>Loading the University of Kent<br/> campus map.</h2>
         <img src="assets/images/splash.gif" alt="University of Kent logo" />
         <div id="percent">0%</div>
         <nav class="cl-effect-2">
@@ -28,11 +29,10 @@
 <div id="navbar" class="fold close">
 	<div id="logo"><a href="http://www.kent.ac.uk/" target="_blank"><img src="assets/images/logo.png" alt="University of Kent logo" /></a><h1>Explore the campus!</h1></div>
     <ul id="nav">
-    	<!--<li><a href="#"><i class="fa fa-reply"></i> Back</a></li>
-    	<li><a href="index.php" class="active">Explore</a></li>
-    	<li><a href="facts.html">10 Facts</a></li>-->
-        <li><a href="index.php" class="active"><i class="fa fa-compass"></i>&nbsp;&nbsp;Explore</a></li>
-        <li><a href="social.php"><i class="fa fa-users"></i>&nbsp;&nbsp;Social</a></li>
+        <li id="search-toggle"><a href="#"><i class="fa fa-search"></i></a></li>
+        <li><a href="index.php" class="active">Explore</a></li>
+        <li><a href="facts.html">10 Facts</a></li>
+        <li><a href="social.php">Social</a></li>
         <li id="share"><a href="#"><i class="fa fa-heart-o"></i></a></li>
     </ul>
     <div id="sharebox">
@@ -45,29 +45,19 @@
     </div>
 </div>
 <div id="leftnav" class="foldleft closeleft">
-    <button id="label-button" class="slide" type="button"><i class="fa fa-map-marker"></i></button>
-    <button id="overlay-button" class="slide" type="button"><i class="fa fa-location-arrow"></i></button>
-    <button id="investment-button" class="slide" type="button"><i class="fa fa-bar-chart-o"></i></button>
-    <button id="event-button" class="slide" type="button"><i class="fa fa-calendar"></i></button>
+    <button id="label-button" class="slide" type="button" title="Markers"><i class="fa fa-map-marker"></i></button>
+    <button id="overlay-button" class="slide" type="button" title="Transport"><i class="fa fa-location-arrow"></i></button>
+    <button id="investment-button" class="slide" type="button" title="Data"><i class="fa fa-bar-chart-o"></i></button>
+    <button id="event-button" class="slide" type="button" title="Events"><i class="fa fa-calendar"></i></button>
     <div id="leftnav-footer">
-    	<button id="info-button" class="slide" type="button"><i class="fa fa-cogs"></i></button>
+    	<button id="info-button" class="slide" type="button" title="Info"><i class="fa fa-cogs"></i></button>
     </div>
 </div>
-<!--<div id="leftdrawer">
-	<h2>Markers</h2>
-    <ul>
-    	<li><a href="#" class="unchecked" id="labeltoggle"><i class="fa fa-map-marker"></i>Locations</a></li>
-        <li><a href="#" class="unchecked" id="subjecttoggle"><i class="fa fa-book"></i>Subject Areas</a></li>
-        <li><a href="#" class="unchecked" id="accommodationtoggle"><i class="fa fa-building-o"></i>Accomodation</a></li>
-        <li><a href="#" class="unchecked" id="foodtoggle"><i class="fa fa-cutlery"></i>Food &amp; Drink</a></li>
-        <li><a href="#" class="unchecked" id="parkingtoggle"><i class="fa fa-road"></i>Parking</a></li>
-        <li><a href="#" class="unchecked" id="bustoggle"><i class="fa fa-ticket"></i>Bus routes</a></li>
-    </ul>
-</div>-->
 <div id="search">
     <form name="search_form" id="searchForm" method="GET" onsubmit="return searchResult(this);">
         <label for="searchBox"><i class="fa fa-search"></i> </label>
-        <input type="text" id="searchBox" name="searchString" placeholder="Search for a building..." />
+        <input type="text" id="searchBox" name="searchString" placeholder="Search for a building or room..." />
+        <div class="search-error"><i class="fa fa-lg fa-times"></i></div>
     </form>
 </div>
 <div class="slide-drawer">
@@ -88,37 +78,26 @@
             <li><a href="#" class="toggle" id="admintoggle">Admin</a></li>
             <li><a href="#" class="toggle" id="communitytoggle">Community</a></li>
             <li><a href="#" class="toggle" id="maintenancetoggle">Other services</a></li>
-            <!--<li><a href="#" class="toggled" id="tweettoggle">Tweets</a></li>-->
+            <li><a href="#" class="toggle" id="developmenttoggle">New developments</a></li>
         </ul>
-        <!--<h3>New developments</h3>
-        <a href="#" class="event">
-         	<img src="assets/images/libraryextension.png" alt="Library Extension" />
-            <h3>Templeman Library</h3>
-            <p>Extension</p>
-        </a>
-        <a href="#" class="event">
-         	<img src="assets/images/libraryextension.png" alt="Turing College" />
-            <h3>Turing College</h3>
-            <p>New development</p>
-        </a>-->
     </div>
     <div id="overlay-panel" class="slidepanel">
     	<h2>Travel</h2>
         <p>Use the controls below to display transport information and bus routes:</p>
-        <h3>Transport</h3>
-        <ul>
-        	<!--<li><a href="#" class="toggle" id="roadnames">Road Names</a></li>-->
-        	<li><a href="#" class="toggle" id="visitorparking">Visitor parking</a></li>
-            <li><a href="#" class="toggle" id="permitparking">Permit holder parking</a></li>
-            <li><a href="#" class="toggle" id="busstops">Bus stops</a></li>
-            <li><a href="#" class="toggle" id="bikeracks">Bike racks</a></li>
-        </ul>
         <h3>Routes</h3>
         <ul>
             <li><a href="#" class="toggle" id="keynesbus">Keynes bus</a></li>
             <li><a href="#" class="toggle" id="darwinbus">Darwin bus</a></li>
             <li><a href="#" class="toggle" id="parkwoodbus">Parkwood bus</a></li>
             <li><a href="#" class="toggle" id="cycleroutes">Cycle routes</a></li>
+        </ul>
+        <h3>Transport</h3>
+        <ul>
+        	<li><a href="#" class="toggle" id="roadnames">Road Names</a></li>
+        	<li><a href="#" class="toggle" id="visitorparking">Visitor parking</a></li>
+            <li><a href="#" class="toggle" id="permitparking">Permit holder parking</a></li>
+            <li><a href="#" class="toggle" id="busstops">Bus stops</a></li>
+            <li><a href="#" class="toggle" id="bikeracks">Bike racks</a></li>
         </ul>
         <a href="#" class="external">Bus timetables</a>
     </div>
@@ -179,12 +158,12 @@
     <div id="info-panel" class="slidepanel">
         <h2>Info</h2>
         <ul>
-         	<li><a href="#">Help</a></li>
-            <li><a href="#">About</a></li>
+         	<li><a href="pages/help.php">Help</a></li>
+            <li><a href="pages/about.php">About</a></li>
             <li><a href="#">Case studies</a></li>
-            <li><a href="#">Disclaimer</a></li>
-            <li><a href="#">Credits</a></li>
-            <li><a href="#">UKC website</a></li>
+            <li><a href="pages/disclaimer.php">Disclaimer</a></li>
+            <li><a href="pages/credits.php">Credits</a></li>
+            <li><a href="http://www.kent.ac.uk/">UKC website</a></li>
         </ul>
     </div>
 </div>
@@ -196,6 +175,9 @@
         	<div id="modalback" class="face back"></div>
         </div>
     </div>
+    <nav class="cl-effect-2" id="exitzoom">
+    	<a href="#"><span data-hover="Exit view" class="external">Exit view</span></a>
+    </nav>
     
     <div id="tweet_kentunion" class="tweetpanel animated">
 		<?php display_tweet('kentunion','time_since', 1, 30); ?>
@@ -220,6 +202,9 @@
         <button id="twod" type="button" onclick="tiltView()"><i class="fa fa-th-large"></i></button>
         <button id="rotateright" type="button"><i class="fa fa-chevron-right"></i></button>
     </div>
+    <div id="app">
+    	<canvas id="canvas" width="100%" height="100%">
+    </div>
 </div>
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
@@ -238,8 +223,6 @@ $.ajax({
 });
 </script>
 
-<script src="assets/js/jquery.simplemodal.1.4.4.min.js"></script>
-
 <script src="assets/js/three_r62.min.js"></script> 
 <script src="assets/js/controls/OrbitControls_r62.js"></script> 
 
@@ -251,6 +234,8 @@ $.ajax({
 <script src="assets/js/postprocessing/RenderPass.js"></script>
 <script src="assets/js/postprocessing/MaskPass.js"></script>
 <script src="assets/js/postprocessing/ShaderPass.js"></script>
+
+<script src="http://mrdoob.github.com/three.js/examples/js/shaders/FXAAShader.js"></script>
 
 <script src="assets/js/shaders/CopyShader.js"></script>
 <script src="assets/js/shaders/SSAOShader.js"></script>
@@ -283,6 +268,8 @@ $.ajax({
 				});	
 			}
 		});
+		
+		$( '#leftnav button' ).tooltip({ position: { my: "right top", at: "left top" }, show: { effect: "slide", duration: 250 }, easing: "easeInOutQuad" });
 	
 
 	/////// SEARCH ///////

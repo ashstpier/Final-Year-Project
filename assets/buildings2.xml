@@ -38,7 +38,7 @@
 		</datalist>
     </building>
     <building label="Boiler_House">
-		<type>Teaching</type>
+		<type>Maintenance</type>
 		<description>The Boiler House is a large workshop run by the School of Arts, ideal for large-scale 3D work.</description>
     </building>
     <building label="Bossenden_Court">
@@ -254,7 +254,7 @@
 		</datalist>
 	</building>
 	<building label="Eliot_College">
-		<type><![CDATA[<i class="fa-bell fa"></i> College]]></type>
+		<type>College</type>
 		<description>Eliot College is the oldest of the Kent colleges. Consisting of accommodation alongside large multipurpose rooms, it is situated right in the heart of the campus.</description>
 		<rooms>
 			<room value="Erecep">Eliot College Reception</room>
@@ -401,7 +401,7 @@
 		</datalist>
 	</building>
     <building label="Ingram">
-		<type><![CDATA[<i class="fa-book fa"></i> School of Physical Sciences]]></type>
+		<type>Teaching</type>
 		<description>Ingram is home to the Physics department and houses four large lab spaces as well as a lecture theatre and several classrooms.</description>
 		<rooms>
 			<room value="Ingram_Foy">Ingram Foyer</room>
@@ -526,7 +526,7 @@
 		</datalist>
 	</building>
     <building label="Kent_Enterprise_Hub">
-		<type><![CDATA[<i class="fa-book fa"></i> Admin]]></type>
+		<type>Admin</type>
 		<description>The Kent Enterprise business incubation and support unit is devoted to helping student, graduate and staff start-up ventures and early stage companies to increase survival rates.</description>
 	</building>
     <building label="Kent_Law_School">
@@ -548,7 +548,7 @@
 		</datalist>
 	</building>
     <building label="Keynes_College">
-		<type><![CDATA[<i class="fa-bell fa"></i> College]]></type>
+		<type>College</type>
 		<description>Keynes College is now one of the biggest colleges on the Canterbury Campus and has rooms for catered and self-catered students. Keynes College boast an expanded Dolche Vita where catered students are provided with breakfast and dinner.</description>
 		<rooms>
 			<room value="Krecep">Keynes College Reception</room>
@@ -626,7 +626,7 @@
 		</datalist>
 	</building>
     <building label="Locke">
-		<type><![CDATA[<i class="fa-shopping-cart fa"></i> Shops]]></type>
+		<type>Community</type>
 		<description>Locke is the main shopping complex on the campus. Essentials provides general groceries along with Blackwells Bookshop and Unique Clothing. The Sports &amp; Societies section of Kent Union are also situated upstairs.</description>
 	</building>
     <building label="Lypeatt_Court">
@@ -646,7 +646,6 @@
     <building label="Mandela_Building">
 		<type>Admin</type>
 		<description>Mandela Building is home to Kent Union and more specifically the Jobshop, where staff handle general enquiries and suggestions.</description>
-		<area><![CDATA[<i class="fa fa-info"></i>Student Union]]></area>
 	</building>
     <building label="Marley_Court">
 		<type>Accommodation</type>
@@ -712,19 +711,15 @@
 	</building>
 	<building label="Oaks_Day_Nursery">
 		<description>this is the brief description.</description>
-		<area><![CDATA[<i class="fa fa-smile-o"></i>Nursery]]></area>
 	</building>
 	<building label="Olive_Cottages">
 		<description>this is the brief description.</description>
-		<area><![CDATA[<i class="fa fa-users"></i>Psychology]]></area>
 	</building>
     <building label="Parkwood_Administration">
 		<description>this is the brief description.</description>
-		<area><![CDATA[<i class="fa fa-info"></i>Admin]]></area>
 	</building>
     <building label="Parkwood_Shop">
 		<description>this is the brief description.</description>
-		<area><![CDATA[<i class="fa fa-shopping-cart"></i>Shops]]></area>
 	</building>
     <building label="Purchas_Court">
 		<description>this is the brief description.</description>
@@ -736,7 +731,6 @@
 	</building>
     <building label="Registry">
 		<description>this is the brief description.</description>
-		<area><![CDATA[<i class="fa fa-info"></i>Admin]]></area>
 	</building>
     <building label="Research_and_Development_Centre">
 		<description>this is the brief description.</description>
@@ -751,7 +745,6 @@
 	</building>
     <building label="Rothford">
 		<description>this is the brief description.</description>
-		<area><![CDATA[<i class="fa fa-gbp"></i>Business]]></area>
 	</building>
 	<building label="Rutherford_Annexe">
 		<description>this is the brief description.</description>
@@ -822,7 +815,6 @@
 	</building>
     <building label="Sports_Pavillion">
 		<description>this is the brief description.</description>
-		<area><![CDATA[<i class="fa fa-trophy"></i>Sport]]></area>
 	</building>
     <building label="Stacey">
 		<description>this is the brief description.</description>
@@ -852,11 +844,12 @@
 	</building>
     <building label="Tanglewood">
 		<description>this is the brief description.</description>
-		<area><![CDATA[<i class="fa fa-home"></i>Hospitality]]></area>
+	</building>
+	<building label="Templeman_Extension">
+		<description>this is the brief description.</description>
 	</building>
     <building label="Templeman_Library">
 		<description>this is the brief description.</description>
-		<area><![CDATA[<i class="fa fa-book"></i>Library]]></area>
 	</building>
     <building label="Thornden_Court">
 		<description>this is the brief description.</description>
@@ -873,6 +866,9 @@
 			<data type="population">80</data>
 			<data type="roomsize">10</data>
 		</datalist>
+	</building>
+	<building label="Turing_College">
+		<description>this is the brief description.</description>
 	</building>
 	<building label="Tyler_Court_A">
 		<description>this is the brief description.</description>
@@ -900,15 +896,12 @@
 	</building>
 	<building label="UELT">
 		<description>this is the brief description.</description>
-		<area><![CDATA[<i class="fa fa-info"></i>Admin]]></area>
 	</building>
 	<building label="University_Medical_Centre">
 		<description>this is the brief description.</description>
-		<area><![CDATA[<i class="fa fa-medkit"></i>Medical]]></area>
 	</building>
     <building label="Venue">
 		<description>test</description>
-		<area><![CDATA[<i class="fa fa-music"></i>Music]]></area>
 	</building>
     <building label="Willows_Court">
 		<description>this is the brief description.</description>
@@ -920,11 +913,9 @@
 	</building>
     <building label="Woodlands">
 		<description>this is the brief description.</description>
-		<area><![CDATA[<i class="fa fa-users"></i>Sociology]]></area>
 	</building>
     <building label="Woodys">
 		<description>this is the brief description.</description>
-		<area><![CDATA[<i class="fa fa-cutlery"></i>Food and Drink]]></area>
 	</building>
     <building label="Woolf_Blocks">
 		<description>this is the brief description.</description>
@@ -951,7 +942,6 @@
 	</building>
 	<building label="Woolf_Pavillion">
 		<description>this is the brief description.</description>
-		<area><![CDATA[<i class="fa fa-home"></i>Accomodation]]></area>
 	</building>
     <building label="Woolf_Residential">
 		<description>this is the brief description.</description>

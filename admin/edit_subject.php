@@ -1,7 +1,13 @@
-<?php require 'header.php'; ?>
+<?php
+session_start();
+if(!file_exists('users/' . $_SESSION['username'] . '.xml')){
+	header('Location: login.php');
+	die;
+}
+require 'header.php'; ?>
 <?
 $name = $_GET["building"];
-$xml=simplexml_load_file("../assets/buildings2.xml");
+$xml=simplexml_load_file("../assets/buildings.xml");
 
 global $description, $type, $title, $titleraw, $subjectscore, $subjectsatisfaction, $entrypoints;
 

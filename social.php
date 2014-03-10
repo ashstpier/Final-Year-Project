@@ -12,32 +12,16 @@
         <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
         <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700,400,300' rel='stylesheet' type='text/css'>
 </head>
-<body>
-<div id="preloader">
-    <div class="loading">
-    <!-- We make this div spin -->
-        <div class="spinner">
-            <!-- Mask of the quarter of circle -->
-            <div class="mask">
-                <!-- Inner masked circle -->
-                <div class="maskedCircle"></div>
-            </div>
-        </div>
-    </div>
-</div>
+
+
 <div id="navbar">
-	<div id="logo"><a href="http://www.kent.ac.uk/" target="_blank"><img src="assets/images/logo.png" alt="University of Kent logo" /></a><h1>Explore the UKC campus!</h1></div>
+	<div id="logo"><a href="http://www.kent.ac.uk/" target="_blank"><img src="assets/images/logo.png" alt="University of Kent logo" /></a><h1>Sharing your ideas!</h1></div>
     <ul id="nav">
-    	<!--<li><a href="#"><i class="fa fa-reply"></i> Back</a></li>
-    	<li><a href="index.php" class="active">Explore</a></li>
-    	<li><a href="facts.html">10 Facts</a></li>
-        <li><a href="social.php">Social</a></li>
-        <li id="twitter"><a href="#"><i class="fa fa-twitter"></i> Twitter</a></li>
-        <li id="facebook"><a href="#"><i class="fa fa-facebook"></i> Facebook</a></li>
-        <li id="github"><a href="#"><i class="fa fa-github-alt"></i> Github</a></li>-->
+        <li id="search-toggle"><a href="#"><i class="fa fa-search"></i></a></li>
         <li><a href="index.php"><i class="fa fa-compass"></i>&nbsp;&nbsp;Explore</a></li>
+        <li><a href="facts.html">10 Facts</a></li>
         <li><a href="social.php" class="active"><i class="fa fa-users"></i>&nbsp;&nbsp;Social</a></li>
-        <li id="share"><a href="#"><i class="fa fa-share"></i></a></li>
+        <li id="share"><a href="#"><i class="fa fa-heart-o"></i></a></li>
     </ul>
     <div id="sharebox">
     	<div class="arrow-down"></div>
