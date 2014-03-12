@@ -1,6 +1,6 @@
 var container, stats, camera, scene, renderer, composer, projector, controls, ground, particleSystem, group = new THREE.Object3D(), group = new THREE.Object3D();
 var depthMaterial, depthTarget;
-var clickobjects = [], tweetobjects = [], zoomobjects = [], sprites = [], locationIcons = [], teachingIcons = [], communityIcons = [], tweetIcons = [], visitorParking = [], permitParking = [], cycleArray = [], busArray = [], maintenanceIcons = [], adminIcons = [], rotate = [], investmentArray = [], developmentArray = [], roompriceArray = [], populationArray = [], subjectscoreArray = [], subjectsatisfactionArray = [], entrypointsArray = [], sizeArray = [], buildings = [], roadArray = [], darwinRoute = [], keynesRoute = [], parkwoodRoute = [], cycleRoute = [], zoomArray = [];
+var clickobjects = [], tweetobjects = [], zoomobjects = [], sprites = [], locationIcons = [], teachingIcons = [], communityIcons = [], tweetIcons = [], visitorParking = [], permitParking = [], cycleArray = [], busArray = [], maintenanceIcons = [], adminIcons = [], rotate = [], investmentArray = [], developmentArray = [], roompriceArray = [], populationArray = [], subjectscoreArray = [], subjectsatisfactionArray = [], entrypointsArray = [], sizeArray = [], buildings = [], roadArray = [], darwinRoute = [], keynesRoute = [], parkwoodRoute = [], cycleRoute = [], zoomArray = [], textlookat = [];
 var jsonFileNames = [
 	'assets/models/Aphra_and_Lumley_Theatre.js',
 	'assets/models/Becket_Court.js',
@@ -167,23 +167,26 @@ function init() {
 	makeRoads();
 	makeDevelopments();
 	makeZoom();
+	makeBusstops();
 	//makeClouds();
 	
 	var sprite = makeZoomSprite("assets/images/icons/ico_keynestock.png");
-	sprite.position.set(137,10,34);
+	sprite.position.set(136,11,32);
+	var sprite = makeZoomSprite("assets/images/icons/ico_dolche.png");
+	sprite.position.set(140,12,39);
 	var sprite = makeZoomSprite("assets/images/icons/ico_freshers_fayre.png");
 	sprite.position.set(168,10,18);
 	var sprite = makeZoomSprite("assets/images/icons/ico_venue.png");
-	sprite.position.set(170,10,32);
+	sprite.position.set(170,11,32);
 	
 	var sprite = makeZoomSprite("assets/images/icons/ico_worldfest.png");
-	sprite.position.set(320,10,-58);
+	sprite.position.set(320,12,-58);
 	var sprite = makeZoomSprite("assets/images/icons/ico_library.png");
-	sprite.position.set(330,10,-67);
+	sprite.position.set(330,11,-67);
 	var sprite = makeZoomSprite("assets/images/icons/ico_field.png");
-	sprite.position.set(346,10,-37);
-	var sprite = makeZoomSprite("assets/images/icons/ico_rutherford.png");
-	sprite.position.set(352,10,-55);
+	sprite.position.set(346,12,-37);
+	var sprite = makeZoomSprite("assets/images/icons/ico_mungos.png");
+	sprite.position.set(328,11,-35);
 	
 	plane = new THREE.Mesh( new THREE.PlaneGeometry( 1200, 960, 8, 8 ), new THREE.MeshBasicMaterial( { transparent: true, wireframe: true } ) );
 	plane.visible = false;
@@ -200,19 +203,9 @@ function init() {
 		group.add( mesh );
     } );
 	
-	/*
-	loader.load( "assets/models/forest.js", function( geometry, materials ) {
-		mesh = new THREE.Mesh( geometry, new THREE.MeshFaceMaterial(materials) );
-        mesh.scale.set( 1, 1, 1 );
-		mesh.position.set( 0, -1, 0 );
-		mesh.castShadow = true;
-		group.add( mesh );
-    } );
-	*/
-	
 	loader.load( "assets/models/walls.js", function( geometry, materials ) {
-        mesh = new THREE.Mesh( geometry, new THREE.MeshLambertMaterial({ color: maincolour, wrapAround: true }) );
-        mesh.position.set( 0, -1, 0 );
+        mesh = new THREE.Mesh( geometry, new THREE.MeshLambertMaterial({ color: 0x999999, wrapAround: true }) );
+        mesh.position.set( 0, 0, 0 );
 		mesh.castShadow = true;
 		group.add( mesh );
     } );
@@ -245,7 +238,7 @@ function init() {
 			var material = new THREE.MeshPhongMaterial( { color: maincolour, specular: 0x3333333, ambient: 0x222222, wrapAround: true, transparent: true } );
 			mesh = new THREE.Mesh( geometry, material );
 			mesh.scale.set( 1, 1, 1 );
-			mesh.position.set( 0, -0.1, 0 );
+			mesh.position.set( 0, -0.001, 0 );
 			clickobjects.push( mesh );
 			mesh.castShadow = true;
 			group.add( mesh );
@@ -489,6 +482,12 @@ function animate() {
 		for (var i=0, tot=sizeArray.length; i < tot; i++) {
 			sizeArray[i].rotation.y = 0;
 		}
+	}
+	for (var i=0, tot=zoomobjects.length; i < tot; i++) {
+		zoomobjects[i].lookAt(camera.position);
+	}
+	for (var i=0, tot=textlookat.length; i < tot; i++) {
+		textlookat[i].lookAt(camera.position);
 	}
 	render();
 	//scene.overrideMaterial = null;

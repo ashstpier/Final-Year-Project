@@ -42,7 +42,7 @@ function makeZoomSprite( image ){
 	var spriteMaterial = new THREE.SpriteMaterial( { map: THREE.ImageUtils.loadTexture( image ), useScreenCoordinates: false, alignment: THREE.SpriteAlignment.topCenter, transparent: true } );
 	var sprite = new THREE.Sprite( spriteMaterial );
 	
-	sprite.scale.set(7,7,1.0);
+	sprite.scale.set(7.5,7.5,1.0);
 	group.add( sprite );
 	zoomArray.push(sprite);
 	sprite.visible = false;
@@ -459,7 +459,6 @@ function tweetIcon(mesh) {
 		
 		icon.name = "tweet-" + mesh.name;
 		icon.position.set( position.x, boundingBox.max.y + 20, position.z );
-		icon.visible = false;
 		group.add( icon);
 		clickobjects.push( icon );
 		tweetIcons.push( icon );
@@ -805,34 +804,21 @@ function makeCycleRacks(){
 	cycleIcon(cycleArray, 3).position.set(283,1,-144);
 	cycleIcon(cycleArray, 3).position.set(390,1,-209);
 	cycleIcon(cycleArray, 3).position.set(412,1,-212);
-	
-	cycleIcon(busArray, 5).position.set(125,2,148);
-	cycleIcon(busArray, 5).position.set(170,0,-92);
-	cycleIcon(busArray, 5).position.set(165,2,-146);
-	cycleIcon(busArray, 5).position.set(-331,0,-161);
-	cycleIcon(busArray, 5).position.set(-116,2,-238);
-	cycleIcon(busArray, 5).position.set(121,-3,363);
-	cycleIcon(busArray, 5).position.set(132,-3,372);
-	cycleIcon(busArray, 5).position.set(-133,2,-238);
-	cycleIcon(busArray, 5).position.set(-341,0,-215);
-	cycleIcon(busArray, 5).position.set(56,0,-237);
-	cycleIcon(busArray, 5).position.set(0,0,-264);
-	cycleIcon(busArray, 5).position.set(282,0,-240);
-	cycleIcon(busArray, 5).position.set(124,2,160);
-	cycleIcon(busArray, 5).position.set(423,0,-261);
 }
 
 function make3DText(message, color, mesh){
 	var text3d = new THREE.TextGeometry( message, {
-		size: 6,
+		size: 7,
 		height: 1,
 		curveSegments: 2,
 		font: "helvetiker"
-	});		
+	});	
+	text3d.applyMatrix( new THREE.Matrix4().makeTranslation( -12, 0, 0 ) );
+	
 	var textMaterial = new THREE.MeshBasicMaterial( { color: color, overdraw: true, transparent: true, opacity: 0.7, alphaTest: 0.5 } );
 	var text = new THREE.Mesh( text3d, textMaterial );
-	text.rotation.z = 270 * Math.PI / 60;
 	group.add( text );
+	textlookat.push(text);
 	text.visible = false;
 	return text;
 }
@@ -922,7 +908,7 @@ function makeData(mesh, height, dataArray)
 	bar.visible = false;
 	
 	var text = make3DText(prefix+height+suffix, color, mesh);
-	text.position.set( position.x + 3, boundingBox.max.y + ((percent / 2) + 5), position.z );	
+	text.position.set( position.x + 3, boundingBox.max.y + ((percent / 2) + 10), position.z );	
 	
 	dataArray.push( text, bar );
 }
@@ -967,40 +953,113 @@ function makeRoads(){
 	makeRoadName("University Road").position.set(148,7,289);
 }
 function makeZoom(){
-	material = new THREE.MeshLambertMaterial({color: 0xff9900, transparent: true })
-	var icon = new THREE.Mesh( new THREE.CubeGeometry( 6, 6, 6 ), material );
-	icon.position.set(335,10,-51);
-	icon.name = "zoom_library"
-	clickobjects.push(icon);
-	zoomobjects.push(icon);
-	group.add(icon);
+	var loader = new THREE.JSONLoader();
+	loader.load( "assets/models/zoom.js", function( geometry, materials ) {
+		var material = new THREE.MeshBasicMaterial({ color: 0x0066cc, wrapAround: true });
+        icon = new THREE.Mesh( geometry, material );
+		icon.position.set(335,10,-51);
+		icon.scale.set(0.5,0.5,0.5);
+		clickobjects.push(icon);
+		zoomobjects.push(icon);
+		group.add(icon);
 	
-	var icon = new THREE.Mesh( new THREE.CubeGeometry( 6, 6, 6 ), material );
-	icon.position.set(153,10,27);
-	icon.name = "zoom_venue"
-	clickobjects.push(icon);
-	zoomobjects.push(icon);
-	group.add(icon);
+		icon = new THREE.Mesh( geometry, material );
+		icon.position.set(153,10,27);
+		icon.scale.set(0.5,0.5,0.5);
+		clickobjects.push(icon);
+		zoomobjects.push(icon);
+		group.add(icon);
+		
+		icon = new THREE.Mesh( geometry, material );
+		icon.position.set(47,10,-155);
+		icon.scale.set(0.5,0.5,0.5);
+		zoomobjects.push(icon);
+		group.add(icon);
+		
+		icon = new THREE.Mesh( geometry, material );
+		icon.position.set(251,10,-241);
+		icon.scale.set(0.5,0.5,0.5);
+		icon.name = "zoom"
+		clickobjects.push(icon);
+		zoomobjects.push(icon);
+		group.add(icon);
+	} );
 	
-	var icon = new THREE.Mesh( new THREE.CubeGeometry( 6, 6, 6 ), material );
-	icon.position.set(47,10,-155);
-	icon.name = "zoom_sport"
-	clickobjects.push(icon);
-	zoomobjects.push(icon);
-	group.add(icon);
+	var material = new THREE.MeshBasicMaterial({ color: 0x629ad1, wrapAround: true });
+	var cube = new THREE.Mesh( new THREE.CubeGeometry( 12, 12, 6 ), material );
+	cube.position.set(335,10,-51);
+	cube.visible = false;
+	cube.name = "zoom_library"
+	clickobjects.push(cube);
+	group.add(cube);
 	
-	var icon = new THREE.Mesh( new THREE.CubeGeometry( 6, 6, 6 ), material );
-	icon.position.set(251,10,-241);
-	icon.name = "zoom"
-	clickobjects.push(icon);
-	zoomobjects.push(icon);
-	group.add(icon);
+	cube = new THREE.Mesh( new THREE.CubeGeometry( 12, 12, 6 ), material );
+	cube.position.set(153,10,27);
+	cube.name = "zoom_venue"
+	cube.visible = false;
+	clickobjects.push(cube);
+	group.add(cube);
+}
+function makeBusstops(){
+	var loader = new THREE.JSONLoader();
+	loader.load( "assets/models/zoom.js", function( geometry, materials ) {
+		var material = new THREE.MeshBasicMaterial({ color: 0x333333, wrapAround: true });
+		
+		// keynes
+        bus = new THREE.Mesh( geometry, material );
+		bus.position.set(125,10,150);
+		bus.scale.set(0.5,0.5,0.5);
+		clickobjects.push(bus);
+		group.add(bus);
+		
+		// giles lane
+		bus = new THREE.Mesh( geometry, material );
+		bus.position.set(170,10,-92);
+		bus.scale.set(0.5,0.5,0.5);
+		clickobjects.push(bus);
+		group.add(bus);
+		
+		// parkwood
+		bus = new THREE.Mesh( geometry, material );
+		bus.position.set(-331,10,-161);
+		bus.scale.set(0.5,0.5,0.5);
+		clickobjects.push(bus);
+		group.add(bus);
+		
+		// darwin
+		bus = new THREE.Mesh( geometry, material );
+		bus.position.set(423,10,-261);
+		bus.scale.set(0.5,0.5,0.5);
+		clickobjects.push(bus);
+		group.add(bus);
+		
+		// innovation centre
+		bus = new THREE.Mesh( geometry, material );
+		bus.position.set(132,7,372);
+		bus.scale.set(0.5,0.5,0.5);
+		clickobjects.push(bus);
+		group.add(bus);
+	} );
+	
+	cycleIcon(busArray, 5).position.set(125,2,148);
+	cycleIcon(busArray, 5).position.set(170,0,-92);
+	cycleIcon(busArray, 5).position.set(165,2,-146);
+	cycleIcon(busArray, 5).position.set(-331,0,-161);
+	cycleIcon(busArray, 5).position.set(-116,2,-238);
+	cycleIcon(busArray, 5).position.set(121,-3,363);
+	cycleIcon(busArray, 5).position.set(132,-3,372);
+	cycleIcon(busArray, 5).position.set(-133,2,-238);
+	cycleIcon(busArray, 5).position.set(-341,0,-215);
+	cycleIcon(busArray, 5).position.set(56,0,-237);
+	cycleIcon(busArray, 5).position.set(0,0,-264);
+	cycleIcon(busArray, 5).position.set(282,0,-240);
+	cycleIcon(busArray, 5).position.set(124,2,160);
+	cycleIcon(busArray, 5).position.set(423,0,-261);
 }
 function onWindowResize() {
 	camera.aspect = window.innerWidth / window.innerHeight;
 	camera.updateProjectionMatrix();
 	renderer.setSize( window.innerWidth, window.innerHeight );
-	positionTrackingOverlay();
 	if($(window).width() > 676){
 		$('#search').show();
 	}

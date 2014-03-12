@@ -1,4 +1,43 @@
-<?php include_once 'twitter/display-tweet.php'; ?>
+<?php include_once 'twitter/display-tweet.php';
+
+$html = file_get_contents('http://www.kent.ac.uk/calendar/'); //get the html returned from the following url
+
+$kent_doc = new DOMDocument();
+
+libxml_use_internal_errors(TRUE); //disable libxml errors
+
+if(!empty($html)){ //if any html is actually returned
+
+  $kent_doc->loadHTML($html);
+  libxml_clear_errors(); //remove errors for yucky html
+  
+  $kent_xpath = new DOMXPath($kent_doc);
+
+  //get all the h2's with an id
+  $event = $kent_xpath->query('//div[contains(concat(" ", normalize-space(@class), " "), " event ")]');
+
+$event_string = "<ul id='eventlist'>";
+$i = 0;
+
+  if($event->length > 0){
+      foreach($event as $row){
+		  $titlepath = $kent_xpath->query('.//div[@class="title"]', $row);
+		  $title = $titlepath->item(0)->nodeValue;
+		  $timepath = $kent_xpath->query('.//div[@class="time"]', $row);
+		  $time = $timepath->item(0)->nodeValue;
+		  $linkpath = $kent_xpath->query('.//div[@class="title"]/a/@href', $row);
+		  $link = $linkpath->item(0)->nodeValue;
+		  $linktitlepath = $kent_xpath->query('.//div[@class="categories"]/a', $row);
+		  $linktitle = $linktitlepath->item(0)->nodeValue;
+		  
+		  $event_string .= '<li><h3><a href="http://www.kent.ac.uk/calendar/'.$link.'" target="_blank">'.$title.'</a></h3><span class="category"><a href="http://www.kent.ac.uk/calendar/?view_by=month&date=20140312&category='.$linktitle.'" target="_blank">'.$linktitle.'</a></span><span class="time">'.$time.'</span></li>';
+		  
+		  if (++$i == 15) break;
+      }
+  }
+  $event_string .= "</ul>";
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -67,7 +106,7 @@
         <h3>Labels</h3>
         <ul>
         	<li><a href="#" class="toggle" id="labeltoggle">Names</a></li>
-            <li><a href="#" class="toggle" id="eventtoggle">Events</a></li>
+            <!--<li><a href="#" class="toggle" id="eventtoggle">Events</a></li>-->
             <li><a href="#" class="toggle" id="tweettoggle">Tweets</a></li>
         </ul>
         <h3>Buildings</h3>
@@ -96,7 +135,7 @@
         	<li><a href="#" class="toggle" id="roadnames">Road Names</a></li>
         	<li><a href="#" class="toggle" id="visitorparking">Visitor parking</a></li>
             <li><a href="#" class="toggle" id="permitparking">Permit holder parking</a></li>
-            <li><a href="#" class="toggle" id="busstops">Bus stops</a></li>
+            <!--<li><a href="#" class="toggle" id="busstops">Bus stops</a></li>-->
             <li><a href="#" class="toggle" id="bikeracks">Bike racks</a></li>
         </ul>
         <a href="#" class="external">Bus timetables</a>
@@ -123,37 +162,9 @@
     </div>
     <div id="event-panel" class="slidepanel">
         <h2>Events</h2>
-        <h3>Recently Added</h3>
-        <ul id="eventlist"></ul>
-        <a href="" class="external">More events</a>
-        <!--<a href="#" class="event">
-         	<img src="assets/images/summerball.png" alt="Summer Ball" />
-            <h3>Summer Ball</h3>
-            <p>29 Jun 2014</p>
-        </a>
-        <a href="#" class="event">
-         	<img src="assets/images/keynestock.png" alt="Keynestock" />
-            <h3>Keynestock</h3>
-            <p>15 Apr 2014</p>
-        </a>
-        <a href="#" class="event">
-         	<img src="assets/images/freshersfayre.png" alt="freshersfayre" />
-            <h3>Freshers Fayre</h3>
-            <p>22 Sep 2014</p>
-        </a>
-        <h3>Talks</h3>
-        <a href="#" class="event">
-            <h3>Guillem Anglada - Doppler detection of low-mass</h3>
-            <p>ILT - 14 Jun 2014</p>
-        </a>
-        <a href="#" class="event">
-            <h3>COALAS - Designing the COgnitive Assisted Living Ambient System framework</h3>
-            <p>KLT2 - 28 Jul 2014</p>
-        </a>
-        <a href="#" class="event">
-            <h3>Everysense Everywhere Human Communication</h3>
-            <p>Gulbenkian - 7 Jan 2014</p>
-        </a>-->
+        <h3>Todays events</h3>
+        <?php echo $event_string ?>
+        <a href="http://www.kent.ac.uk/calendar/?view_by=day&date=20140312&category=&tag=" class="external" target="_blank">More events</a>
     </div>
     <div id="info-panel" class="slidepanel">
         <h2>Info</h2>
@@ -252,22 +263,6 @@ $.ajax({
 <script>
 	/////// EVENTS ///////
 	$(document).ready(function() {
-		$.ajax({
-			type: "GET",
-			url: "assets/events.xml", // change to full path of file on server
-			dataType: "xml",
-			success: function(xml) {
-				$(xml).find("event").each(function()
-				{
-					var title = $(this).find('title').text();
-					var day = $(this).find('day').text();
-					var month = $(this).find('month').text();
-					var location = $(this).find('location').text();
-					
-					$('<li></li>').html('<div class="left"><div class="date"><span class="day">'+day+'</span><span class="month">'+month+'</span></div></div><div class="content"><h3>'+title+'</h3><a class="location"><i class="fa fa-map-marker"></i>'+location+'</a></div>').appendTo('ul#eventlist');
-				});	
-			}
-		});
 		
 		$( '#leftnav button' ).tooltip({ position: { my: "right top", at: "left top" }, show: { effect: "slide", duration: 250 }, easing: "easeInOutQuad" });
 	

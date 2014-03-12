@@ -29,111 +29,15 @@ function onDocumentMouseUp( event ) {
 		
 		if ( intersects[0].object.name == "zoom_venue" ) {
 			var object = intersects[0].object;
-			object.geometry.computeBoundingBox();
-			var boundingBox = object.geometry.boundingBox;
-			var position = new THREE.Vector3();
-			position.subVectors( boundingBox.max, boundingBox.min );
-			position.multiplyScalar( 0.5 );
-			position.add( boundingBox.min );
-			position.applyMatrix4( object.matrixWorld );
-			
-			controls.minDistance = 0;
-			
-			object.visible = false;
-			new TWEEN.Tween( controls.center ).to( { x: position.x, y: 6, z: position.z }, 1500 ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {
-				controls.minPolarAngle = Math.PI/2.25; 
-				controls.maxPolarAngle = Math.PI/1.5; 
-				controls.maxDistance = 1;
-				controls.noZoom = true;
-				$('#controls').fadeOut();
-				$('#exitzoom').fadeIn();
-				$('#exitzoom a').css('display','inline-block');
-				for (var i=0, tot=zoomobjects.length; i < tot; i++) {
-					zoomobjects[i].visible = false;
-				}
-				for (var i=0, tot=zoomArray.length; i < tot; i++) {
-					zoomArray[i].visible = true;
-				}
-				closeModal();
-			}).start();
-			new TWEEN.Tween( camera.position ).to( { x: position.x - 1, y: 6, z: position.z + 0.5 }, 1500 ).easing( TWEEN.Easing.Sinusoidal.InOut).start();
-			document.getElementById("mapwrapper").removeEventListener( 'mousemove', onDocumentMouseMove, false );
-			document.getElementById("app").removeEventListener( 'mousedown', onDocumentMouseDown, false );
-			document.getElementById("app").removeEventListener( 'mouseup', onDocumentMouseUp, false );
-			$('#controls').fadeOut();
-			$('#leftnav').toggleClass("closeleft openleft");
+			zoomFunction(object, -1, 0.5);
 		}
 		else if ( intersects[0].object.name == "zoom_library" ) {
 			var object = intersects[0].object;
-			object.geometry.computeBoundingBox();
-			var boundingBox = object.geometry.boundingBox;
-			var position = new THREE.Vector3();
-			position.subVectors( boundingBox.max, boundingBox.min );
-			position.multiplyScalar( 0.5 );
-			position.add( boundingBox.min );
-			position.applyMatrix4( object.matrixWorld );
-			
-			controls.minDistance = 0;
-			
-			object.visible = false;
-			new TWEEN.Tween( controls.center ).to( { x: position.x, y: 6, z: position.z }, 1500 ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {
-				controls.minPolarAngle = Math.PI/2.25; 
-				controls.maxPolarAngle = Math.PI/1.5; 
-				controls.maxDistance = 1;
-				controls.noZoom = true;
-				$('#controls').fadeOut();
-				$('#exitzoom').fadeIn();
-				$('#exitzoom a').css('display','inline-block');
-				for (var i=0, tot=zoomobjects.length; i < tot; i++) {
-					zoomobjects[i].visible = false;
-				}
-				for (var i=0, tot=zoomArray.length; i < tot; i++) {
-					zoomArray[i].visible = true;
-				}
-				closeModal();
-			}).start();
-			new TWEEN.Tween( camera.position ).to( { x: position.x + 0.8, y: 6, z: position.z + 1 }, 1500 ).easing( TWEEN.Easing.Sinusoidal.InOut).start();
-			document.getElementById("mapwrapper").removeEventListener( 'mousemove', onDocumentMouseMove, false );
-			document.getElementById("app").removeEventListener( 'mousedown', onDocumentMouseDown, false );
-			document.getElementById("app").removeEventListener( 'mouseup', onDocumentMouseUp, false );
-			$('#controls').fadeOut();
-			$('#leftnav').toggleClass("closeleft openleft");
+			zoomFunction(object, 0.5, 1);
 		}
 		else if ( intersects[0].object.name == "zoom_sport" ) {
 			var object = intersects[0].object;
-			object.geometry.computeBoundingBox();
-			var boundingBox = object.geometry.boundingBox;
-			var position = new THREE.Vector3();
-			position.subVectors( boundingBox.max, boundingBox.min );
-			position.multiplyScalar( 0.5 );
-			position.add( boundingBox.min );
-			position.applyMatrix4( object.matrixWorld );
-			
-			controls.minDistance = 0;
-			
-			object.visible = false;
-			new TWEEN.Tween( controls.center ).to( { x: position.x, y: 6, z: position.z }, 1500 ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {
-				controls.minPolarAngle = Math.PI/2.25; 
-				controls.maxPolarAngle = Math.PI/1.5; 
-				controls.maxDistance = 1;
-				controls.noZoom = true;
-				$('#controls').fadeOut();
-				$('#exitzoom').fadeIn();
-				$('#exitzoom a').css('display','inline-block');
-				for (var i=0, tot=zoomobjects.length; i < tot; i++) {
-					zoomobjects[i].visible = false;
-				}
-				for (var i=0, tot=zoomArray.length; i < tot; i++) {
-					zoomArray[i].visible = true;
-				}
-				closeModal();
-			}).start();
-			new TWEEN.Tween( camera.position ).to( { x: position.x - 0.3, y: 6, z: position.z - 1 }, 1500 ).easing( TWEEN.Easing.Sinusoidal.InOut).start();
-			document.getElementById("mapwrapper").removeEventListener( 'mousemove', onDocumentMouseMove, false );
-			document.getElementById("app").removeEventListener( 'mousedown', onDocumentMouseDown, false );
-			document.getElementById("app").removeEventListener( 'mouseup', onDocumentMouseUp, false );
-			$('#controls').fadeOut();
-			$('#leftnav').toggleClass("closeleft openleft");
+			zoomFunction(object, -0.3, -1);
 		}
 		else if ( intersects[0].object.name == "tweet-Jennison" ) {
 			var tweetcontainer = "#tweet_edakent";
@@ -178,6 +82,125 @@ function onDocumentMouseUp( event ) {
 	}
 	container.style.cursor = 'move';
 	controls.enabled = true;
+}
+
+function zoomFunction(object, xoffset, yoffset){
+	object.geometry.computeBoundingBox();
+	var boundingBox = object.geometry.boundingBox;
+	var position = new THREE.Vector3();
+	position.subVectors( boundingBox.max, boundingBox.min );
+	position.multiplyScalar( 0.5 );
+	position.add( boundingBox.min );
+	position.applyMatrix4( object.matrixWorld );
+	
+	controls.minDistance = 0;
+	
+	object.visible = false;
+	new TWEEN.Tween( controls.center ).to( { x: position.x, y: 7, z: position.z }, 1500 ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {
+		controls.minPolarAngle = Math.PI/2.25; 
+		controls.maxPolarAngle = Math.PI/1.5; 
+		controls.maxDistance = 1;
+		controls.noZoom = true;
+		$('#controls').fadeOut();
+		$('#exitzoom').fadeIn();
+		$('#exitzoom a').css('display','inline-block');
+		for (var i=0, tot=zoomobjects.length; i < tot; i++) {
+			zoomobjects[i].visible = false;
+		}
+		for (var i=0, tot=zoomArray.length; i < tot; i++) {
+			zoomArray[i].visible = true;
+		}
+		for (var i=0, tot=tweetIcons.length; i < tot; i++) {
+			tweetIcons[i].visible = false;
+		}
+	}).start();
+	new TWEEN.Tween( camera.position ).to( { x: position.x + xoffset, y: 7, z: position.z + yoffset }, 1500 ).easing( TWEEN.Easing.Sinusoidal.InOut).start();
+	document.getElementById("mapwrapper").removeEventListener( 'mousemove', onDocumentMouseMove, false );
+	document.getElementById("app").removeEventListener( 'mousedown', onDocumentMouseDown, false );
+	document.getElementById("app").removeEventListener( 'mouseup', onDocumentMouseUp, false );
+	closeModal();
+	$('#controls').fadeOut();
+	$('#leftnav').toggleClass("closeleft openleft");
+	$('.slide-drawer').hide();
+	$('#search').fadeOut();
+	$('#leftnav button').removeClass('active');
+	$(".slide-drawer a").removeClass( "checked" );
+	$(".slide-drawer .slidepanel").hide();
+	for (var i=0, tot=sprites.length; i < tot; i++) {
+		new TWEEN.Tween( sprites[i].material ).to( { opacity: 0 }, 500 ).easing( TWEEN.Easing.Quadratic.InOut).start();
+	}
+	for (var i=0, tot=locationIcons.length; i < tot; i++) {
+		locationIcons[i].material.color.setHex(maincolour);
+	}
+	for (var i=0, tot=teachingIcons.length; i < tot; i++) {
+		teachingIcons[i].material.color.setHex(maincolour);
+	}
+	for (var i=0, tot=communityIcons.length; i < tot; i++) {
+		communityIcons[i].material.color.setHex(maincolour);
+	}
+	for (var i=0, tot=maintenanceIcons.length; i < tot; i++) {
+		maintenanceIcons[i].material.color.setHex(maincolour);
+	}
+	for (var i=0, tot=adminIcons.length; i < tot; i++) {
+		adminIcons[i].material.color.setHex(maincolour);
+	}
+	for (var i=0, tot=darwinRoute.length; i < tot; i++) {
+		darwinRoute[i].visible = false;
+	}
+	for (var i=0, tot=parkwoodRoute.length; i < tot; i++) {
+		parkwoodRoute[i].visible = false;
+	}
+	for (var i=0, tot=keynesRoute.length; i < tot; i++) {
+		keynesRoute[i].visible = false;
+	}
+	for (var i=0, tot=cycleRoute.length; i < tot; i++) {
+		cycleRoute[i].visible = false;
+	}
+	for (var i=0, tot=cycleArray.length; i < tot; i++) {
+		cycleArray[i].visible = false;
+	}
+	for (var i=0, tot=busArray.length; i < tot; i++) {
+		busArray[i].visible = false;
+	}
+	for (var i=0, tot=roadArray.length; i < tot; i++) {
+		new TWEEN.Tween( roadArray[i].material ).to( { opacity: 0 }, 500 ).easing( TWEEN.Easing.Quadratic.InOut).start();
+	}
+	var parking = scene.getObjectByName( "Visitor_Parking", true );
+	parking.visible = false;
+	parking = scene.getObjectByName( "Permit_Parking", true );
+	parking.visible = false;
+	var development = scene.getObjectByName( "Templeman_Extension", true );
+	var development2 = scene.getObjectByName( "Turing_College", true );
+	development.visible = false;
+	development.position.y = -99999;
+	development2.visible = false;
+	development2.position.y = -99999;
+	for (var i=0, tot=investmentArray.length; i < tot; i++) {
+		investmentArray[i].visible = false;
+	}
+	for (var i=0, tot=developmentArray.length; i < tot; i++) {
+		developmentArray[i].visible = false;
+	}
+	for (var i=0, tot=populationArray.length; i < tot; i++) {
+		populationArray[i].visible = false;
+	}
+	for (var i=0, tot=roompriceArray.length; i < tot; i++) {
+		roompriceArray[i].visible = false;
+	}
+	for (var i=0, tot=subjectscoreArray.length; i < tot; i++) {
+		subjectscoreArray[i].visible = false;
+	}
+	for (var i=0, tot=subjectsatisfactionArray.length; i < tot; i++) {
+		subjectsatisfactionArray[i].visible = false;
+	}
+	for (var i=0, tot=entrypointsArray.length; i < tot; i++) {
+		entrypointsArray[i].visible = false;
+	}
+	for (var i=0, tot=sizeArray.length; i < tot; i++) {
+		sizeArray[i].visible = false;
+	}
+	$("#label-panel a, #overlay-panel a, #investment-panel a").removeClass( "toggled" );
+	$("#label-panel a, #overlay-panel a, #investment-panel a").addClass( "toggle" );
 }
 
 function placeMarker(modal){
@@ -754,7 +777,7 @@ $( "#bikeracks" ).click(function() {
 		}
 	}
 });
-$( "#busstops" ).click(function() {
+/*$( "#busstops" ).click(function() {
 	if ($(this).hasClass( "toggle" )) {
 		for (var i=0, tot=busArray.length; i < tot; i++) {
 			busArray[i].visible = true;
@@ -764,7 +787,7 @@ $( "#busstops" ).click(function() {
 			busArray[i].visible = false;
 		}
 	}
-});
+});*/
 $( "#visitorparking" ).click(function() {
 	var parking = scene.getObjectByName( "Visitor_Parking", true );
 	if ($(this).hasClass( "toggle" )) {
@@ -1006,8 +1029,12 @@ $("#exitzoom").click(function() {
 	document.getElementById("app").addEventListener( 'mousedown', onDocumentMouseDown, false );
 	document.getElementById("app").addEventListener( 'mouseup', onDocumentMouseUp, false );
 	$(this).fadeOut();
+	$('#search').fadeIn();
 	for (var i=0, tot=zoomArray.length; i < tot; i++) {
 		zoomArray[i].visible = false;
+	}
+	for (var i=0, tot=tweetIcons.length; i < tot; i++) {
+		tweetIcons[i].visible = true;
 	}
 	new TWEEN.Tween( camera.position ).to( { x: 0, y: 350, z: 500 }, 1500 ).easing( TWEEN.Easing.Quadratic.InOut).onComplete(function () {
 		controls.minDistance = 120;

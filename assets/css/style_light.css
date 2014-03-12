@@ -400,96 +400,49 @@ body {
 #eventlist {
 	padding-top: 10px;
 }
+#eventlist h3 {
+	margin: 0 0 5px 0;
+	font-size: 100%;
+	border: none;
+	padding: 0;
+}
+#eventlist h3 a {
+	margin: 0;
+	font-size: 100%;
+	border: none;
+	background-color: transparent;
+	padding: 0;
+	font-weight: normal;
+	text-transform:none;
+	color: #629ad1;
+	text-decoration: underline;
+}
+#eventlist h3 a:hover {
+	text-decoration: none;
+}
 #eventlist li {
 	padding: 0 0 20px;
 	margin: 0 30px;
 	display:table;
 }
-#eventlist li .left {
-	display: table-cell;
-	margin-right: 20px;
-}
-#eventlist li .date {
-	width: 50px;
-	height: 50px;
-	padding: 5px;
-	text-align:center;
-	border: 2px solid #ccc;
-	border-radius: 50%;
-}
-#eventlist li .date .day {
-	font-size: 100%;
-	letter-spacing: 2px;
-	font-weight: bold;
-	line-height: 90%;
+#eventlist li .time {
 	color: #999;
-}
-#eventlist li .date .month {
-	display: block;
-	font-weight: 400;
-	text-transform: uppercase;
-	font-size: 80%;
-	color: #999;
-}
-#eventlist li .content {
-	display: table-cell;
-	vertical-align:middle;
-	padding-left: 15px;
-}
-#eventlist li .content h3 {
-	border: none;
-	padding: 0 0 5px;
-	color: #666;
-	font-weight: 400;
-	text-transform: none;
-	font-size: 100%;
-	margin: 0;
-}
-#eventlist li .content i {
-	float: none;
-	padding-right: 5px;
-}
-#eventlist li .content a {
-	margin: 0;
-	padding: 0;
-	background-color: transparent;
-	border: none;
 	font-size: 90%;
-	color: #629ad1;
 }
-#eventlist li .content a:hover {
-	border: none!important;
-	cursor: pointer;
-	text-decoration:underline;
-}
-.slide-drawer .event {
-	padding: 15px 30px;
-	display: inherit!important;
-}
-.slide-drawer .event:hover {
-	background: #f3f3f3;
-	color: #333;
-}
-.slide-drawer .event img {
-	float: left;
-	padding-right: 10px;
-}
-.slide-drawer .event h3 {
-	font-weight: normal;
-	letter-spacing: 0;
-	text-transform: none;
-	display: inline-block;
-	margin: 0;
-	padding:0 0 5px 0;
-	color: #666;
-	border-bottom: none;
-}
-.slide-drawer .event p {
-	display: block;
-	margin:0;
-	padding:0 0 8px 0;
+#eventlist li .category a {
 	color: #999;
-	font-size: 95%;
+	font-size: 90%;
+	font-weight: normal;
+	display:block;
+	padding: 0;
+}
+#eventlist li .category a i {
+	float: none;
+	padding-right: 8px;
+}
+#eventlist li .category a:hover {
+	background-color: transparent;
+	color: #666;
 }
 #modalpanel {
 	position: absolute;
