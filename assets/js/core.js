@@ -1,4 +1,4 @@
-var container, stats, camera, scene, renderer, composer, projector, controls, ground, particleSystem, group = new THREE.Object3D(), group = new THREE.Object3D();
+var container, stats, camera, scene, renderer, composer, projector, controls, ground, particleSystem, group = new THREE.Object3D();
 var depthMaterial, depthTarget;
 var clickobjects = [], tweetobjects = [], zoomobjects = [], sprites = [], locationIcons = [], teachingIcons = [], communityIcons = [], tweetIcons = [], visitorParking = [], permitParking = [], cycleArray = [], busArray = [], maintenanceIcons = [], adminIcons = [], rotate = [], investmentArray = [], developmentArray = [], roompriceArray = [], populationArray = [], subjectscoreArray = [], subjectsatisfactionArray = [], entrypointsArray = [], sizeArray = [], buildings = [], roadArray = [], darwinRoute = [], keynesRoute = [], parkwoodRoute = [], cycleRoute = [], zoomArray = [], textlookat = [];
 var jsonFileNames = [
@@ -171,7 +171,7 @@ function init() {
 	//makeClouds();
 	
 	var sprite = makeZoomSprite("assets/images/icons/ico_keynestock.png");
-	sprite.position.set(136,11,32);
+	sprite.position.set(136,11,29);
 	var sprite = makeZoomSprite("assets/images/icons/ico_dolche.png");
 	sprite.position.set(140,12,39);
 	var sprite = makeZoomSprite("assets/images/icons/ico_freshers_fayre.png");
@@ -187,6 +187,11 @@ function init() {
 	sprite.position.set(346,12,-37);
 	var sprite = makeZoomSprite("assets/images/icons/ico_mungos.png");
 	sprite.position.set(328,11,-35);
+	
+	var sprite = makeZoomSprite("assets/images/icons/ico_sport.png");
+	sprite.position.set(45,11,-139);
+	var sprite = makeZoomSprite("assets/images/icons/ico_hub.png");
+	sprite.position.set(57,11,-142);
 	
 	plane = new THREE.Mesh( new THREE.PlaneGeometry( 1200, 960, 8, 8 ), new THREE.MeshBasicMaterial( { transparent: true, wireframe: true } ) );
 	plane.visible = false;
@@ -262,14 +267,9 @@ function init() {
 	projector = new THREE.Projector();
 	
 	var canvas = document.getElementById("canvas");
-	if( Detector.webgl ){
-		renderer = new THREE.WebGLRenderer({canvas:canvas, alpha: true});
-	}else{
-		Detector.addGetWebGLMessage();
-		return true;
-	}
+	renderer = new THREE.WebGLRenderer({canvas:canvas, alpha: true});
 	renderer.setSize( window.innerWidth, window.innerHeight );
-	renderer.setClearColor( 0x9acbfc, 1);
+	//renderer.setClearColor( 0x9acbfc, 1);
 	renderer.shadowMapEnabled = false;
 	renderer.shadowMapSoft = true;
 	renderer.shadowMapType = THREE.PCFSoftShadowMap;
@@ -280,6 +280,9 @@ function init() {
 	document.getElementById("mapwrapper").addEventListener( 'mousemove', onDocumentMouseMove, false );
 	document.getElementById("app").addEventListener( 'mousedown', onDocumentMouseDown, false );
 	document.getElementById("app").addEventListener( 'mouseup', onDocumentMouseUp, false );
+	document.getElementById("app").addEventListener( 'touchstart', dragStart, false );
+	document.getElementById("app").addEventListener( 'touchend', dragEnd, false );
+	document.getElementById("mapwrapper").addEventListener( 'touchmove', dragMove, false );
 	document.getElementById("canvas").addEventListener("webglcontextlost", function(event) {
 		event.preventDefault();
 		alert("WebGL has crashed because of a hardware problem. Please reload WebGL and refresh the page.");
@@ -366,7 +369,7 @@ function init() {
 	
 }
 
-var modal, tweetmodal;
+var modal, tweetmodal, busmodal;
 
 function positionTrackingOverlay()
 {
@@ -433,6 +436,33 @@ function positionTrackingOverlay()
 		
 		$(".tweetpanel")
 				.css('left', widthPercentage + '%')
+				.css('top', heightPercentage + '%');
+					
+	}if(busmodal != null){
+		
+		var visibleWidth, visibleHeight, p, v, percX, percY, left, top;
+		
+		busmodal.geometry.computeBoundingBox();
+		var boundingBox = busmodal.geometry.boundingBox;
+		var position = new THREE.Vector3();
+		position.subVectors( boundingBox.max, boundingBox.min );
+		position.multiplyScalar( 0.5 );
+		position.add( boundingBox.min );
+		position.applyMatrix4( busmodal.matrixWorld );
+		
+		p = position.clone();
+		v = projector.projectVector(p, camera);
+		percX = (v.x + 1) / 2;
+		percY = (-v.y + 1) / 2;
+
+		left = percX * WIDTH;
+		top = percY * HEIGHT;
+				
+		widthPercentage = (left - $(".busmodal").width() / 2) / WIDTH * 100;
+		heightPercentage = (top - $(".busmodal").height()) / HEIGHT * 100;
+		
+		$(".busmodal")
+				.css('left', widthPercentage + '%')
 				.css('top', heightPercentage + '%');	
 	}
 }
@@ -444,50 +474,11 @@ function animate() {
 	positionTrackingOverlay();
 	//scene.overrideMaterial = depthMaterial;
 	//particleSystem.rotation.y += 0.001;
-	if(camera.position.z < 0){
-		for (var i=0, tot=roompriceArray.length; i < tot; i++) {
-			roompriceArray[i].rotation.y = 270 * Math.PI / 90;
-		}
-		for (var i=0, tot=populationArray.length; i < tot; i++) {
-			populationArray[i].rotation.y = 270 * Math.PI / 90;
-		}
-		for (var i=0, tot=subjectscoreArray.length; i < tot; i++) {
-			subjectscoreArray[i].rotation.y = 270 * Math.PI / 90;
-		}
-		for (var i=0, tot=subjectsatisfactionArray.length; i < tot; i++) {
-			subjectsatisfactionArray[i].rotation.y = 270 * Math.PI / 90;
-		}
-		for (var i=0, tot=entrypointsArray.length; i < tot; i++) {
-			entrypointsArray[i].rotation.y = 270 * Math.PI / 90;
-		}
-		for (var i=0, tot=sizeArray.length; i < tot; i++) {
-			sizeArray[i].rotation.y = 270 * Math.PI / 90;
-		}
-	}else{
-		for (var i=0, tot=roompriceArray.length; i < tot; i++) {
-			roompriceArray[i].rotation.y = 0;
-		}
-		for (var i=0, tot=populationArray.length; i < tot; i++) {
-			populationArray[i].rotation.y = 0;
-		}
-		for (var i=0, tot=subjectscoreArray.length; i < tot; i++) {
-			subjectscoreArray[i].rotation.y = 0;
-		}
-		for (var i=0, tot=subjectsatisfactionArray.length; i < tot; i++) {
-			subjectsatisfactionArray[i].rotation.y = 0;
-		}
-		for (var i=0, tot=entrypointsArray.length; i < tot; i++) {
-			entrypointsArray[i].rotation.y = 0;
-		}
-		for (var i=0, tot=sizeArray.length; i < tot; i++) {
-			sizeArray[i].rotation.y = 0;
-		}
-	}
-	for (var i=0, tot=zoomobjects.length; i < tot; i++) {
-		zoomobjects[i].lookAt(camera.position);
-	}
 	for (var i=0, tot=textlookat.length; i < tot; i++) {
-		textlookat[i].lookAt(camera.position);
+		textlookat[i].lookAt(new THREE.Vector3(camera.position.x - group.position.x,camera.position.y,camera.position.z - group.position.z));
+		textlookat[i].rotation.x = camera.rotation.x; 
+		textlookat[i].rotation.y = camera.rotation.y;
+		textlookat[i].rotation.z = camera.rotation.z;
 	}
 	render();
 	//scene.overrideMaterial = null;

@@ -42,7 +42,7 @@ function makeZoomSprite( image ){
 	var spriteMaterial = new THREE.SpriteMaterial( { map: THREE.ImageUtils.loadTexture( image ), useScreenCoordinates: false, alignment: THREE.SpriteAlignment.topCenter, transparent: true } );
 	var sprite = new THREE.Sprite( spriteMaterial );
 	
-	sprite.scale.set(7.5,7.5,1.0);
+	sprite.scale.set(8,8,1.0);
 	group.add( sprite );
 	zoomArray.push(sprite);
 	sprite.visible = false;
@@ -438,38 +438,41 @@ function buildIcon(iconArray, iconPicture) {
 function tweetIcon(mesh) {
 	if (
 	mesh.name == "Jennison" ||
-	mesh.name == "Locke" || 
+	mesh.name == "Mandela_Building" || 
 	mesh.name == "Careers_Employability_Service" || 
 	mesh.name == "Registry" ||
 	mesh.name == "Colyer_Fergusson" ||
 	mesh.name == "Parkwood_Administration"
 	){
-		texture = THREE.ImageUtils.loadTexture('assets/images/icons/ico_twitter.png', {}, function() {
-			renderer.render(scene);
-		})
-		material = new THREE.MeshLambertMaterial({map: texture, transparent: true })
-		var icon = new THREE.Mesh( new THREE.CubeGeometry( 6, 6, 6 ), material );
-		mesh.geometry.computeBoundingBox();
-		var boundingBox = mesh.geometry.boundingBox;
-		var position = new THREE.Vector3();
-		position.subVectors( boundingBox.max, boundingBox.min );
-		position.multiplyScalar( 0.5 );
-		position.add( boundingBox.min );
-		position.applyMatrix4( mesh.matrixWorld );
-		
-		icon.name = "tweet-" + mesh.name;
-		icon.position.set( position.x, boundingBox.max.y + 20, position.z );
-		group.add( icon);
-		clickobjects.push( icon );
-		tweetIcons.push( icon );
-		
-		var tweenOne = new TWEEN.Tween( icon.position ).to( { y: boundingBox.max.y + 17 }, 1000 ).easing( TWEEN.Easing.Sinusoidal.InOut);
-		var tweenTwo = new TWEEN.Tween( icon.position ).to( { y: boundingBox.max.y + 15 }, 1000 ).easing( TWEEN.Easing.Sinusoidal.InOut);
-		
-		tweenOne.chain(tweenTwo);
-		tweenTwo.chain(tweenOne);
-		
-		tweenOne.start();
+		var loader = new THREE.JSONLoader();
+		loader.load( "assets/models/twitter.js", function( geometry, materials ) {
+			var material = new THREE.MeshLambertMaterial({ color: 0x316f9e, wrapAround: true });
+			icon = new THREE.Mesh( geometry, material );
+			icon.scale.set(0.18,0.18,0.18);
+			textlookat.push(icon);
+			
+			mesh.geometry.computeBoundingBox();
+			var boundingBox = mesh.geometry.boundingBox;
+			var position = new THREE.Vector3();
+			position.subVectors( boundingBox.max, boundingBox.min );
+			position.multiplyScalar( 0.5 );
+			position.add( boundingBox.min );
+			position.applyMatrix4( mesh.matrixWorld );
+			
+			icon.name = "tweet-" + mesh.name;
+			icon.position.set( position.x, boundingBox.max.y + 20, position.z );
+			group.add( icon);
+			clickobjects.push( icon );
+			tweetIcons.push( icon );
+			
+			var tweenOne = new TWEEN.Tween( icon.position ).to( { y: boundingBox.max.y + 17 }, 1000 ).easing( TWEEN.Easing.Sinusoidal.InOut);
+			var tweenTwo = new TWEEN.Tween( icon.position ).to( { y: boundingBox.max.y + 15 }, 1000 ).easing( TWEEN.Easing.Sinusoidal.InOut);
+			
+			tweenOne.chain(tweenTwo);
+			tweenTwo.chain(tweenOne);
+			
+			tweenOne.start();
+		});
 	}
 }
 
@@ -813,7 +816,7 @@ function make3DText(message, color, mesh){
 		curveSegments: 2,
 		font: "helvetiker"
 	});	
-	text3d.applyMatrix( new THREE.Matrix4().makeTranslation( -12, 0, 0 ) );
+	THREE.GeometryUtils.center( text3d );
 	
 	var textMaterial = new THREE.MeshBasicMaterial( { color: color, overdraw: true, transparent: true, opacity: 0.7, alphaTest: 0.5 } );
 	var text = new THREE.Mesh( text3d, textMaterial );
@@ -908,7 +911,7 @@ function makeData(mesh, height, dataArray)
 	bar.visible = false;
 	
 	var text = make3DText(prefix+height+suffix, color, mesh);
-	text.position.set( position.x + 3, boundingBox.max.y + ((percent / 2) + 10), position.z );	
+	text.position.set( position.x, boundingBox.max.y + ((percent / 2) + 10), position.z );	
 	
 	dataArray.push( text, bar );
 }
@@ -955,12 +958,13 @@ function makeRoads(){
 function makeZoom(){
 	var loader = new THREE.JSONLoader();
 	loader.load( "assets/models/zoom.js", function( geometry, materials ) {
-		var material = new THREE.MeshBasicMaterial({ color: 0x0066cc, wrapAround: true });
+		var material = new THREE.MeshLambertMaterial({ color: 0x333333, wrapAround: true });
         icon = new THREE.Mesh( geometry, material );
 		icon.position.set(335,10,-51);
 		icon.scale.set(0.5,0.5,0.5);
 		clickobjects.push(icon);
 		zoomobjects.push(icon);
+		textlookat.push(icon);
 		group.add(icon);
 	
 		icon = new THREE.Mesh( geometry, material );
@@ -968,24 +972,18 @@ function makeZoom(){
 		icon.scale.set(0.5,0.5,0.5);
 		clickobjects.push(icon);
 		zoomobjects.push(icon);
+		textlookat.push(icon);
 		group.add(icon);
 		
 		icon = new THREE.Mesh( geometry, material );
 		icon.position.set(47,10,-155);
 		icon.scale.set(0.5,0.5,0.5);
 		zoomobjects.push(icon);
-		group.add(icon);
-		
-		icon = new THREE.Mesh( geometry, material );
-		icon.position.set(251,10,-241);
-		icon.scale.set(0.5,0.5,0.5);
-		icon.name = "zoom"
-		clickobjects.push(icon);
-		zoomobjects.push(icon);
+		textlookat.push(icon);
 		group.add(icon);
 	} );
 	
-	var material = new THREE.MeshBasicMaterial({ color: 0x629ad1, wrapAround: true });
+	var material = new THREE.MeshBasicMaterial({ color: 0xed7b5f, wrapAround: true });
 	var cube = new THREE.Mesh( new THREE.CubeGeometry( 12, 12, 6 ), material );
 	cube.position.set(335,10,-51);
 	cube.visible = false;
@@ -999,62 +997,64 @@ function makeZoom(){
 	cube.visible = false;
 	clickobjects.push(cube);
 	group.add(cube);
+	
+	cube = new THREE.Mesh( new THREE.CubeGeometry( 12, 12, 6 ), material );
+	cube.position.set(47,10,-155);
+	cube.name = "zoom_sport"
+	cube.visible = false;
+	clickobjects.push(cube);
+	group.add(cube);
 }
 function makeBusstops(){
 	var loader = new THREE.JSONLoader();
-	loader.load( "assets/models/zoom.js", function( geometry, materials ) {
-		var material = new THREE.MeshBasicMaterial({ color: 0x333333, wrapAround: true });
+	loader.load( "assets/models/bus.js", function( geometry, materials ) {
+		var material = new THREE.MeshLambertMaterial({ color: 0xa34129, wrapAround: true });
 		
 		// keynes
         bus = new THREE.Mesh( geometry, material );
 		bus.position.set(125,10,150);
-		bus.scale.set(0.5,0.5,0.5);
-		clickobjects.push(bus);
-		group.add(bus);
-		
-		// giles lane
-		bus = new THREE.Mesh( geometry, material );
-		bus.position.set(170,10,-92);
-		bus.scale.set(0.5,0.5,0.5);
-		clickobjects.push(bus);
+		bus.scale.set(0.12,0.12,0.05);
+		textlookat.push(bus);
+		zoomobjects.push(bus);
 		group.add(bus);
 		
 		// parkwood
 		bus = new THREE.Mesh( geometry, material );
 		bus.position.set(-331,10,-161);
-		bus.scale.set(0.5,0.5,0.5);
-		clickobjects.push(bus);
+		bus.scale.set(0.12,0.12,0.05);
+		textlookat.push(bus);
+		zoomobjects.push(bus);
 		group.add(bus);
 		
 		// darwin
 		bus = new THREE.Mesh( geometry, material );
 		bus.position.set(423,10,-261);
-		bus.scale.set(0.5,0.5,0.5);
-		clickobjects.push(bus);
-		group.add(bus);
-		
-		// innovation centre
-		bus = new THREE.Mesh( geometry, material );
-		bus.position.set(132,7,372);
-		bus.scale.set(0.5,0.5,0.5);
-		clickobjects.push(bus);
+		bus.scale.set(0.12,0.12,0.05);
+		textlookat.push(bus);
+		zoomobjects.push(bus);
 		group.add(bus);
 	} );
+	var material = new THREE.MeshBasicMaterial({ color: 0xed7b5f, wrapAround: true });
+	var cube = new THREE.Mesh( new THREE.CubeGeometry( 12, 12, 6 ), material );
+	cube.position.set(125,10,150);
+	cube.visible = false;
+	cube.name = "keynes_bus"
+	clickobjects.push(cube);
+	group.add(cube);
 	
-	cycleIcon(busArray, 5).position.set(125,2,148);
-	cycleIcon(busArray, 5).position.set(170,0,-92);
-	cycleIcon(busArray, 5).position.set(165,2,-146);
-	cycleIcon(busArray, 5).position.set(-331,0,-161);
-	cycleIcon(busArray, 5).position.set(-116,2,-238);
-	cycleIcon(busArray, 5).position.set(121,-3,363);
-	cycleIcon(busArray, 5).position.set(132,-3,372);
-	cycleIcon(busArray, 5).position.set(-133,2,-238);
-	cycleIcon(busArray, 5).position.set(-341,0,-215);
-	cycleIcon(busArray, 5).position.set(56,0,-237);
-	cycleIcon(busArray, 5).position.set(0,0,-264);
-	cycleIcon(busArray, 5).position.set(282,0,-240);
-	cycleIcon(busArray, 5).position.set(124,2,160);
-	cycleIcon(busArray, 5).position.set(423,0,-261);
+	cube = new THREE.Mesh( new THREE.CubeGeometry( 12, 12, 6 ), material );
+	cube.position.set(-331,10,-161);
+	cube.name = "parkwood_bus"
+	cube.visible = false;
+	clickobjects.push(cube);
+	group.add(cube);
+	
+	cube = new THREE.Mesh( new THREE.CubeGeometry( 12, 12, 6 ), material );
+	cube.position.set(423,10,-261);
+	cube.name = "darwin_bus"
+	cube.visible = false;
+	clickobjects.push(cube);
+	group.add(cube);
 }
 function onWindowResize() {
 	camera.aspect = window.innerWidth / window.innerHeight;
@@ -1062,5 +1062,20 @@ function onWindowResize() {
 	renderer.setSize( window.innerWidth, window.innerHeight );
 	if($(window).width() > 676){
 		$('#search').show();
+	}
+	if($(window).height() < 600){
+		for (var i=0, tot=zoomArray.length; i < tot; i++) {
+			zoomArray[i].scale.set(10,10,1.0);
+			zoomArray[i].position.y = 12;
+		}
+	}else{
+		for (var i=0, tot=zoomArray.length; i < tot; i++) {
+			zoomArray[i].scale.set(8,8,1.0);
+		}
+	}if($(window).height() < 400){
+		for (var i=0, tot=zoomArray.length; i < tot; i++) {
+			zoomArray[i].scale.set(14,14,1.0);
+			zoomArray[i].position.y = 15;
+		}
 	}
 }

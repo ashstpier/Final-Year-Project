@@ -79,7 +79,7 @@
 .tweet-modal {
 	width: 360px;
 	overflow: hidden;
-	background: #55ACEE;
+	background: #629ad1;
 	color: #fff;
 	padding: 10px;
 }
@@ -107,7 +107,7 @@
 	text-align:center;
 }
 .tweet-modal .tweet_img {
-	display: block;
+	display: none;
 	margin: 0 auto 10px;
 	float: none;
 	border: 1px solid #fff;
@@ -188,4 +188,9 @@
       -ms-transition-duration: 0s;
        -o-transition-duration: 0s;
           transition-duration: 0s;
+}
+@media all and (max-width: 500px){
+.item {
+	width: 260px;
+}
 }

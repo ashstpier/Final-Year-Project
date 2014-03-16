@@ -2,8 +2,7 @@
 // Client ID for Instagram API
 $instagramClientID = '2e97330eee8a4b0e9fa1c5f7d656050a';
 
-$api = 'https://api.instagram.com/v1/tags/kentuni/media/recent?client_id=' .$instagramClientID. '&amp;count=20';
-$api2 = 'https://api.instagram.com/v1/tags/kentunion/media/recent?client_id=' .$instagramClientID. '&amp;count=20'; //api request (edit this to reflect tags)
+$api = 'https://api.instagram.com/v1/tags/kentuni/media/recent?client_id=' .$instagramClientID. '&amp;count=40';
 $cache = 'cache/instagram.json';
 
 if(file_exists($cache) && filemtime($cache) > time() - 60*60){
@@ -14,7 +13,6 @@ else{
     // Make an API request and create the cache file
     // For example, gets the 32 most popular images on Instagram
     $response = get_curl($api); //change request path to pull different photos
-	$response2 = get_curl($api2);
 	
     $images = array();
 
@@ -26,24 +24,6 @@ else{
             $src = $item->images->standard_resolution->url;
 			$date = (isset($item->created_time))?$item->created_time:null;
 			$class = "kentuni";
-			
-            $images[] = array(
-            "title" => htmlspecialchars($title),
-            "src" => htmlspecialchars($src),
-			"date" => date('j M Y', $date),
-			"class" => $class
-            );
-        }
-        file_put_contents($cache,json_encode($images)); //Save as json
-    }
-	if($response2){
-        // Decode the response and build an array
-        foreach(json_decode($response2)->data as $item){
-
-            $title = (isset($item->caption))?mb_substr($item->caption->text,0,70,"utf8"):null;
-            $src = $item->images->standard_resolution->url;
-			$date = (isset($item->created_time))?$item->created_time:null;
-			$class = "kentunion";
 			
             $images[] = array(
             "title" => htmlspecialchars($title),

@@ -30,7 +30,7 @@ $i = 0;
 		  $linktitlepath = $kent_xpath->query('.//div[@class="categories"]/a', $row);
 		  $linktitle = $linktitlepath->item(0)->nodeValue;
 		  
-		  $event_string .= '<li><h3><a href="http://www.kent.ac.uk/calendar/'.$link.'" target="_blank">'.$title.'</a></h3><span class="category"><a href="http://www.kent.ac.uk/calendar/?view_by=month&date=20140312&category='.$linktitle.'" target="_blank">'.$linktitle.'</a></span><span class="time">'.$time.'</span></li>';
+		  $event_string .= '<li><h3><a href="http://www.kent.ac.uk/calendar/'.$link.'" target="_blank">'.$title.'</a></h3><span class="category"><a href="http://www.kent.ac.uk/calendar/?view_by=category='.$linktitle.'" target="_blank">'.$linktitle.'</a></span><span class="time">'.$time.'</span></li>';
 		  
 		  if (++$i == 15) break;
       }
@@ -51,8 +51,9 @@ $i = 0;
     <link href="assets/css/3dbuttons.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="assets/css/animate.css">
     <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700,400,300' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,700,400,300' rel='stylesheet' type='text/css'>
     <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>
+    <script src="assets/js/utils/modernizr.js"></script>
 </head>
 <body>
 <div id="preloader">
@@ -107,7 +108,7 @@ $i = 0;
         <ul>
         	<li><a href="#" class="toggle" id="labeltoggle">Names</a></li>
             <!--<li><a href="#" class="toggle" id="eventtoggle">Events</a></li>-->
-            <li><a href="#" class="toggle" id="tweettoggle">Tweets</a></li>
+            <li><a href="#" class="toggled" id="tweettoggle">Tweets</a></li>
         </ul>
         <h3>Buildings</h3>
         <ul>
@@ -164,7 +165,7 @@ $i = 0;
         <h2>Events</h2>
         <h3>Todays events</h3>
         <?php echo $event_string ?>
-        <a href="http://www.kent.ac.uk/calendar/?view_by=day&date=20140312&category=&tag=" class="external" target="_blank">More events</a>
+        <a href="http://www.kent.ac.uk/calendar/" class="external" target="_blank">More events</a>
     </div>
     <div id="info-panel" class="slidepanel">
         <h2>Info</h2>
@@ -179,6 +180,7 @@ $i = 0;
     </div>
 </div>
 <div class="controls-modal"><a href="#" class="controls-close"><i class="fa-times fa fa-lg"></i></a><h2>Welcome to the University of Kent Campus map!</h2><p>You can control the map by clicking and dragging with your mouse. Click on individual buildings to reveal information about them.</p><br/><p>Use the buttons below to rotate the map and change perspective.</p><div class="arrow-down"></div></div>
+<div id="zoom" class="controls-modal"><a href="#" class="controls-close"><i class="fa-times fa fa-lg"></i></a><h2>Welcome to the University of Kent Campus map!</h2><p>You can control the map by clicking and dragging with your mouse. Click on individual buildings to reveal information about them.</p><br/><p>Use the buttons below to rotate the map and change perspective.</p><div class="arrow-down"></div></div>
 <div id="mapwrapper">
     <div id="modalpanel" class="animated flipcard">
     	<div class="card">
@@ -208,6 +210,37 @@ $i = 0;
     <div id="tweet_parkwoodsc" class="tweetpanel animated">
 		<?php display_tweet('parkwoodsc','time_since', 1, 30); ?>
     </div>
+    
+    <div id="keynes_bus" class="busmodal animated">
+    	<div class="header">
+        	<h2>UniBus Keynes Timetable</h2>
+            <a href="#" class="closebus" onclick="closeBus()"><i class="fa fa-times fa-lg"></i></a>
+        </div>
+		<div class="content">
+        	<?php include_once 'assets/keynes_table.php' ?>
+        </div>
+        <div class="arrow-down"></div>
+    </div>
+    <div id="parkwood_bus" class="busmodal animated">
+		<div class="header">
+        	<h2>UniBus Parkwood Timetable</h2>
+            <a href="#" class="closebus" onclick="closeBus()"><i class="fa fa-times fa-lg"></i></a>
+        </div>
+		<div class="content">
+        	<?php include_once 'assets/parkwood_table.php' ?>
+        </div>
+        <div class="arrow-down"></div>
+    </div>
+    <div id="darwin_bus" class="busmodal animated">
+		<div class="header">
+        	<h2>UniBus Darwin Timetable</h2>
+            <a href="#" class="closebus" onclick="closeBus()"><i class="fa fa-times fa-lg"></i></a>
+        </div>
+		<div class="content">
+        	<?php include_once 'assets/darwin_table.php' ?>
+        </div>
+        <div class="arrow-down"></div>
+    </div>
     <div id="controls">
         <button id="rotateleft" type="button"><i class="fa fa-chevron-left"></i></button>
         <button id="twod" type="button" onclick="tiltView()"><i class="fa fa-th-large"></i></button>
@@ -224,6 +257,59 @@ $i = 0;
 <script src="http://code.createjs.com/preloadjs-0.4.1.min.js"></script>
 
 <script>
+Modernizr.addValueTest = function(property,value){
+    var testName= (property+value).replace(/-/g,'');
+    Modernizr.addTest(testName , function () {
+        var element = document.createElement('link');
+        var body = document.getElementsByTagName('HEAD')[0];
+        var properties = [];
+        var upcaseProp = property.replace(/(^|-)([a-z])/g, function(a, b, c){ return c.toUpperCase(); });
+        properties[property] = property;
+        properties['Webkit'+upcaseProp] ='-webkit-'+property;
+        properties['Moz'+upcaseProp] ='-moz-'+property;
+        properties['ms'+upcaseProp] ='-ms-'+property;
+
+        body.insertBefore(element, null);
+        for (var i in properties) {
+            if (element.style[i] !== undefined) {
+                element.style[i] = value;
+            }
+        }
+        //ie7,ie8 doesnt support getComputedStyle
+        //so this is the implementation
+        if(!window.getComputedStyle) {
+            window.getComputedStyle = function(el, pseudo) {
+                this.el = el;
+                this.getPropertyValue = function(prop) {
+                    var re = /(\-([a-z]){1})/g;
+                    if (prop == 'float') prop = 'styleFloat';
+                    if (re.test(prop)) {
+                        prop = prop.replace(re, function () {
+                            return arguments[2].toUpperCase();
+                        });
+                    }
+                    return el.currentStyle[prop] ? el.currentStyle[prop] : null;
+                };
+                return this;
+            };
+        }
+
+        var st = window.getComputedStyle(element, null),
+            currentValue = st.getPropertyValue("-webkit-"+property) ||
+                st.getPropertyValue("-moz-"+property) ||
+                st.getPropertyValue("-ms-"+property) ||
+                st.getPropertyValue(property);
+
+        if(currentValue!== value){
+            element.parentNode.removeChild(element);
+            return false;
+        }
+        element.parentNode.removeChild(element);
+        return true;
+    });
+}
+Modernizr.addValueTest('transform-style','preserve-3d');
+
 var xml;
 
 $.ajax({
@@ -237,7 +323,14 @@ $.ajax({
 <script src="assets/js/three_r62.min.js"></script> 
 <script src="assets/js/controls/OrbitControls_r62.js"></script> 
 
-<script src="assets/js/utils/Detector.js"></script> 
+<script src="assets/js/utils/Detector.js"></script>
+<script>
+if( Detector.webgl ){
+		
+}else{
+	 alert('Your browser or graphics card does not seem to support WebGL. Please switch to a modern browser like Google Chrome to be able to experience this application.');
+}
+</script> 
 <script src="assets/js/utils/stats.min.js"></script> 
 <script src="assets/js/utils/tween.min.js"></script> 
 

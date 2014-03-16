@@ -4,13 +4,34 @@
     left:0;
     right:0;
     bottom:0;
-    background-image: -ms-radial-gradient(center, ellipse farthest-corner, #aaf7f7 0%, #0c3d4d 100%);
-	background-image: -moz-radial-gradient(center, ellipse farthest-corner, #aaf7f7 0%, #0c3d4d 100%);
-	background-image: -o-radial-gradient(center, ellipse farthest-corner, #aaf7f7 0%, #0c3d4d 100%);
-	background-image: -webkit-gradient(radial, center center, 0, center center, 497, color-stop(0, #aaf7f7), color-stop(1, #0c3d4d));
-	background-image: -webkit-radial-gradient(center, ellipse farthest-corner, #aaf7f7 0%, #0c3d4d 100%);
-	background-image: radial-gradient(ellipse farthest-corner at center, #aaf7f7 0%, #0c3d4d 100%);
+	background-color: #CAF7F7;
+    background-image: -webkit-gradient(
+	linear,
+	left top,
+	left bottom,
+	color-stop(0, #549FB8),
+	color-stop(1, #CAF7F7)
+);
+background-image: -o-linear-gradient(bottom, #549FB8 0%, #CAF7F7 100%);
+background-image: -moz-linear-gradient(bottom, #549FB8 0%, #CAF7F7 100%);
+background-image: -webkit-linear-gradient(bottom, #549FB8 0%, #CAF7F7 100%);
+background-image: -ms-linear-gradient(bottom, #549FB8 0%, #CAF7F7 100%);
+background-image: linear-gradient(to bottom, #549FB8 0%, #CAF7F7 100%);
     z-index:99999999;
+	text-align: center;
+	display: table;
+	width: 100%;
+	height: 100%;
+	color:#fff;
+}
+#social-preloader {
+    position:fixed;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    z-index:999;
+	background: #374047;
 	text-align: center;
 	display: table;
 	width: 100%;
@@ -45,7 +66,7 @@ to { transform: rotate(360deg); }
     width: 50px;
     height: 50px;
     border-radius: 24px;
-    border: 5px solid #999;
+    border: 5px solid #eee;
 }
  
 /* Spinning circle mask */

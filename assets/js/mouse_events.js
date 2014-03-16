@@ -1,6 +1,5 @@
 function onDocumentMouseDown( event ) {
 	event.preventDefault();
-	controls.autoRotate = false;
 	var vector = new THREE.Vector3( mouse.x, mouse.y, 1 );
 	projector.unprojectVector( vector, camera );
 	var raycaster = new THREE.Raycaster( camera.position, vector.sub( camera.position ).normalize() );
@@ -8,10 +7,26 @@ function onDocumentMouseDown( event ) {
 	var intersects = raycaster.intersectObjects( objects, true );
 
 	if ( intersects.length > 0 ) {
+		controls.enabled = false;
 		SELECTED = intersects[ 0 ].object.parent;
 		var intersects = raycaster.intersectObject( plane );
 		offset.copy( intersects[ 0 ].point ).sub( plane.position );
+		container.style.cursor = 'move';
+	}
+}
+function dragStart( event ) {
+	event.preventDefault();
+	var vector = new THREE.Vector3( mouse.x, mouse.y, 1 );
+	projector.unprojectVector( vector, camera );
+	var raycaster = new THREE.Raycaster( camera.position, vector.sub( camera.position ).normalize() );
+
+	var intersects = raycaster.intersectObjects( objects, true );
+
+	if ( intersects.length > 0 ) {
 		controls.enabled = false;
+		SELECTED = intersects[ 0 ].object.parent;
+		var intersects = raycaster.intersectObject( plane );
+		offset.copy( intersects[ 0 ].point ).sub( plane.position );
 		container.style.cursor = 'move';
 	}
 }
@@ -43,7 +58,7 @@ function onDocumentMouseUp( event ) {
 			var tweetcontainer = "#tweet_edakent";
 			twitterMap(intersects, tweetcontainer);
 		} 
-		else if ( intersects[0].object.name == "tweet-Locke" ) {
+		else if ( intersects[0].object.name == "tweet-Mandela_Building" ) {
 			var tweetcontainer = "#tweet_kentunion";
 			twitterMap(intersects, tweetcontainer);
 		} 
@@ -63,12 +78,25 @@ function onDocumentMouseUp( event ) {
 			var tweetcontainer = "#tweet_parkwoodsc";
 			twitterMap(intersects, tweetcontainer);
 		} 
+		else if ( intersects[0].object.name == "keynes_bus" ) {
+			var object = intersects[0].object;
+			busFunction(object);
+		}
+		else if ( intersects[0].object.name == "parkwood_bus" ) {
+			var object = intersects[0].object;
+			busFunction(object);
+		}
+		else if ( intersects[0].object.name == "darwin_bus" ) {
+			var object = intersects[0].object;
+			busFunction(object);
+		}
 		else {
 		
 			$('#modalfront, #modalback').empty();
 			$("#modalpanel").removeClass('fadeOutUp fadeInDown opaque');
 			$(".card").removeClass('flipped');
 			closeTweet();
+			closeBus();
 			
 			modal = intersects[0].object;
 			placeMarker(modal);
@@ -82,6 +110,116 @@ function onDocumentMouseUp( event ) {
 	}
 	container.style.cursor = 'move';
 	controls.enabled = true;
+}
+function dragEnd( event ) {
+	event.preventDefault();
+	var vector = new THREE.Vector3( ( event.changedTouches[0].clientX / window.innerWidth ) * 2 - 1, - ( event.changedTouches[0].clientY / window.innerHeight ) * 2 + 1, 0.5 );
+	projector.unprojectVector( vector, camera );
+	var raycaster = new THREE.Raycaster( camera.position, vector.sub( camera.position ).normalize() );
+	
+	var intersects = raycaster.intersectObjects( clickobjects, true );
+
+	if ( intersects.length > 0 ) {
+		
+		if ( intersects[0].object.name == "zoom_venue" ) {
+			var object = intersects[0].object;
+			zoomFunction(object, -1, 0.5);
+		}
+		else if ( intersects[0].object.name == "zoom_library" ) {
+			var object = intersects[0].object;
+			zoomFunction(object, 0.5, 1);
+		}
+		else if ( intersects[0].object.name == "zoom_sport" ) {
+			var object = intersects[0].object;
+			zoomFunction(object, -0.3, -1);
+		}
+		else if ( intersects[0].object.name == "tweet-Jennison" ) {
+			var tweetcontainer = "#tweet_edakent";
+			twitterMap(intersects, tweetcontainer);
+		} 
+		else if ( intersects[0].object.name == "tweet-Mandela_Building" ) {
+			var tweetcontainer = "#tweet_kentunion";
+			twitterMap(intersects, tweetcontainer);
+		} 
+		else if ( intersects[0].object.name == "tweet-Registry" ) {
+			var tweetcontainer = "#tweet_unikent";
+			twitterMap(intersects, tweetcontainer);
+		} 
+		else if ( intersects[0].object.name == "tweet-Careers_Employability_Service" ) {
+			var tweetcontainer = "#tweet_unikentemploy";
+			twitterMap(intersects, tweetcontainer);
+		} 
+		else if ( intersects[0].object.name == "tweet-Colyer_Fergusson" ) {
+			var tweetcontainer = "#tweet_unikent_music";
+			twitterMap(intersects, tweetcontainer);
+		}
+		else if ( intersects[0].object.name == "tweet-Parkwood_Administration" ) {
+			var tweetcontainer = "#tweet_parkwoodsc";
+			twitterMap(intersects, tweetcontainer);
+		} 
+		else if ( intersects[0].object.name == "keynes_bus" ) {
+			var object = intersects[0].object;
+			busFunction(object);
+		}
+		else if ( intersects[0].object.name == "parkwood_bus" ) {
+			var object = intersects[0].object;
+			busFunction(object);
+		}
+		else if ( intersects[0].object.name == "darwin_bus" ) {
+			var object = intersects[0].object;
+			busFunction(object);
+		}
+		else {
+		
+			$('#modalfront, #modalback').empty();
+			$("#modalpanel").removeClass('fadeOutUp fadeInDown opaque');
+			$(".card").removeClass('flipped');
+			closeTweet();
+			closeBus();
+			
+			modal = intersects[0].object;
+			placeMarker(modal);
+		}
+		
+	}
+	
+	if ( INTERSECTED ) {
+		plane.position.copy( INTERSECTED.position );
+		SELECTED = null;
+	}
+	container.style.cursor = 'move';
+	controls.enabled = true;
+}
+function busFunction(modal){
+	$(".busmodal").removeClass('fadeOutUp fadeInDown opaque');
+	$("#modalpanel").removeClass('fadeOutUp fadeInDown opaque');
+	$(".card").removeClass('flipped');
+	closeTweet();
+	busmodal = modal;
+	var time = 1000;
+	modal.geometry.computeBoundingBox();
+	var boundingBox = modal.geometry.boundingBox;
+	var position = new THREE.Vector3();
+	position.subVectors( boundingBox.max, boundingBox.min );
+	position.multiplyScalar( 0.5 );
+	position.add( boundingBox.min );
+	position.applyMatrix4( modal.matrixWorld );
+		
+	if (camera.position.z >= position.z && controls.center.z <= camera.position.z){
+		new TWEEN.Tween( camera.position ).to( { x: 0, y: 150, z: 250 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {$("#"+modal.name).addClass('fadeInDown opaque');}).start();
+		new TWEEN.Tween( group.position ).to( { x: group.position.x - position.x, y: 0, z: group.position.z - position.z +50 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).start();
+	}else if (camera.position.z >= position.z && controls.center.z >= camera.position.z) {
+		new TWEEN.Tween( camera.position ).to( { x: 0, y: 150, z: - 250 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {$("#"+modal.name).addClass('fadeInDown opaque');}).start();
+		new TWEEN.Tween( group.position ).to( { x: group.position.x - position.x, y: 0, z: group.position.z - position.z -50 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).start();
+	}
+	else if (camera.position.z <= position.z && controls.center.z <= camera.position.z) {
+		new TWEEN.Tween( camera.position ).to( { x: 0, y: 150, z: 250 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {$("#"+modal.name).addClass('fadeInDown opaque');}).start();
+		new TWEEN.Tween( group.position ).to( { x: group.position.x - position.x, y: 0, z: group.position.z - position.z +50 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).start();
+	}
+	else {
+		new TWEEN.Tween( camera.position ).to( { x: 0, y: 150, z: - 250 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {$("#"+modal.name).addClass('fadeInDown opaque');}).start();
+		new TWEEN.Tween( group.position ).to( { x: group.position.x - position.x, y: 0, z: group.position.z - position.z -50 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).start();
+	}
 }
 
 function zoomFunction(object, xoffset, yoffset){
@@ -113,11 +251,23 @@ function zoomFunction(object, xoffset, yoffset){
 		for (var i=0, tot=tweetIcons.length; i < tot; i++) {
 			tweetIcons[i].visible = false;
 		}
+		var visited = $.cookie('zoom')
+		if (visited == null) {
+			$('#zoom.controls-modal').slideDown(500);
+			$('.modal-overlay').show();
+		}
+		$.cookie('zoom', 'yes_zoom', {
+			expires: 1,
+			path: '/'
+		});
 	}).start();
 	new TWEEN.Tween( camera.position ).to( { x: position.x + xoffset, y: 7, z: position.z + yoffset }, 1500 ).easing( TWEEN.Easing.Sinusoidal.InOut).start();
 	document.getElementById("mapwrapper").removeEventListener( 'mousemove', onDocumentMouseMove, false );
 	document.getElementById("app").removeEventListener( 'mousedown', onDocumentMouseDown, false );
 	document.getElementById("app").removeEventListener( 'mouseup', onDocumentMouseUp, false );
+	document.getElementById("app").removeEventListener( 'touchstart', dragStart, false );
+	document.getElementById("app").removeEventListener( 'touchend', dragEnd, false );
+	document.getElementById("mapwrapper").removeEventListener( 'touchmove', dragMove, false );
 	closeModal();
 	$('#controls').fadeOut();
 	$('#leftnav').toggleClass("closeleft openleft");
@@ -299,7 +449,8 @@ function placeMarker(modal){
 function twitterMap(intersects, tweetcontainer){
 	$("#modalpanel").removeClass('fadeOutUp fadeInDown opaque');
 	$(".card").removeClass('flipped');
-	$(".tweetpanel").removeClass('fadeOutUp fadeInDown opaque');
+	$(".tweetpanel").removeClass('flipInY flipOutY opaque');
+	closeBus();
 	var time = 1000;
 			
 	var string = intersects[0].object.name;
@@ -318,18 +469,18 @@ function twitterMap(intersects, tweetcontainer){
 		
 	if (camera.position.z >= position.z && controls.center.z <= camera.position.z){
 		new TWEEN.Tween( camera.position ).to( { x: 0, y: 150, z: 250 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {$(tweetcontainer).addClass('flipInY opaque');}).start();
-		new TWEEN.Tween( group.position ).to( { x: group.position.x - position.x, y: -10, z: group.position.z - position.z +50 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).start();
+		new TWEEN.Tween( group.position ).to( { x: group.position.x - position.x, z: group.position.z - position.z +50 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).start();
 	}else if (camera.position.z >= position.z && controls.center.z >= camera.position.z) {
 		new TWEEN.Tween( camera.position ).to( { x: 0, y: 150, z: -250 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {$(tweetcontainer).addClass('flipInY opaque');}).start();
-		new TWEEN.Tween( group.position ).to( { x: group.position.x - position.x, y: -10, z: group.position.z - position.z -50 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).start();
+		new TWEEN.Tween( group.position ).to( { x: group.position.x - position.x, z: group.position.z - position.z -50 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).start();
 	}
 	else if (camera.position.z <= position.z && controls.center.z <= camera.position.z) {
 		new TWEEN.Tween( camera.position ).to( { x: 0, y: 150, z: 250 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {$(tweetcontainer).addClass('flipInY opaque');}).start();
-		new TWEEN.Tween( group.position ).to( { x: group.position.x - position.x, y: -10, z: group.position.z - position.z +50 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).start();
+		new TWEEN.Tween( group.position ).to( { x: group.position.x - position.x, z: group.position.z - position.z +50 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).start();
 	}
 	else {
 		new TWEEN.Tween( camera.position ).to( { x: 0, y: 150, z: -250 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {$(tweetcontainer).addClass('flipInY opaque');}).start();
-		new TWEEN.Tween( group.position ).to( { x: group.position.x - position.x, y: -10, z: group.position.z - position.z +50 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).start();
+		new TWEEN.Tween( group.position ).to( { x: group.position.x - position.x, z: group.position.z - position.z +50 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).start();
 	}
 }
 
@@ -377,8 +528,7 @@ function onDocumentMouseMove( event ) {
 		container.style.cursor = 'pointer';	
 	}
 	
-	
-	
+	/*
 	var vector = new THREE.Vector3(
     ( event.clientX / window.innerWidth ) * 2 - 1,
     - ( event.clientY / window.innerHeight ) * 2 + 1,
@@ -393,8 +543,31 @@ function onDocumentMouseMove( event ) {
 	var pos = camera.position.clone().add( dir.multiplyScalar( distance ) );
 	
 	console.log(pos);
+	*/
+}
+function dragMove( event ) {
+	event.preventDefault();
+	mouse.x = ( event.changedTouches[0].clientX / window.innerWidth ) * 2 - 1;
+	mouse.y = - ( event.changedTouches[0].clientY / window.innerHeight ) * 2 + 1;
+	var vector = new THREE.Vector3( mouse.x, mouse.y, 0.5 );
+	projector.unprojectVector( vector, camera );
+	var raycaster = new THREE.Raycaster( camera.position, vector.sub( camera.position ).normalize() );
 	
-	
+	if ( SELECTED ) {
+		var intersects = raycaster.intersectObject( plane );
+		SELECTED.position.copy( intersects[ 0 ].point.sub( offset ) );
+		return;
+	}
+
+	var intersect = raycaster.intersectObjects( objects, true );
+
+	if ( intersect.length > 0 ) {
+		if ( INTERSECTED != intersect[ 0 ].object ) {
+			INTERSECTED = intersect[ 0 ].object.parent;
+			plane.position.copy( INTERSECTED.position );
+			container.style.cursor = 'move';
+		}
+	} else { INTERSECTED = null; }
 }
 
 ///////// CONTROLS //////////
@@ -447,10 +620,17 @@ function flipModal() {
 	$(".card").toggleClass("flipped");
 }
 function closeTweet() {
-	$(".tweetpanel").addClass('fadeOutUp');
-	$(".tweetpanel").removeClass('fadeInDown');
+	$(".tweetpanel").addClass('flipOutY');
+	$(".tweetpanel").removeClass('flipInY');
 	setTimeout(function() {
         $(".tweetpanel").removeClass('opaque'); // alternative to menu.style.display = 'none';
+    }, 500)
+}
+function closeBus() {
+	$(".busmodal").addClass('fadeOutUp');
+	$(".busmodal").removeClass('fadeInDown');
+	setTimeout(function() {
+        $(".busmodal").removeClass('opaque'); // alternative to menu.style.display = 'none';
     }, 500)
 }
 
@@ -664,13 +844,17 @@ $( "#developmenttoggle" ).click(function() {
 	}
 });
 $( "#tweettoggle" ).click(function() {
-	if ($(this).hasClass( "toggle" )) {
+	if ($(this).hasClass( "toggled" )) {
 		for (var i=0, tot=tweetIcons.length; i < tot; i++) {
-			tweetIcons[i].visible = true;
+			tweetIcons[i].visible = false;
+			$(this).removeClass( "toggled" );
+			$(this).addClass( "toggle" );
 		}
 	} else {
 		for (var i=0, tot=tweetIcons.length; i < tot; i++) {
-			tweetIcons[i].visible = false;
+			tweetIcons[i].visible = true;
+			$(this).removeClass( "toggle" );
+			$(this).addClass( "toggled" );
 		}
 	}
 });
@@ -1028,7 +1212,12 @@ $("#exitzoom").click(function() {
 	document.getElementById("mapwrapper").addEventListener( 'mousemove', onDocumentMouseMove, false );
 	document.getElementById("app").addEventListener( 'mousedown', onDocumentMouseDown, false );
 	document.getElementById("app").addEventListener( 'mouseup', onDocumentMouseUp, false );
+	document.getElementById("app").addEventListener( 'touchstart', dragStart, false );
+	document.getElementById("app").addEventListener( 'touchend', dragEnd, false );
+	document.getElementById("mapwrapper").addEventListener( 'touchmove', dragMove, false );
 	$(this).fadeOut();
+	$('#zoom.controls-modal').hide();
+	$('.modal-overlay').hide();
 	$('#search').fadeIn();
 	for (var i=0, tot=zoomArray.length; i < tot; i++) {
 		zoomArray[i].visible = false;

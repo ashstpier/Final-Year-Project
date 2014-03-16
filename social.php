@@ -12,15 +12,24 @@
         <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
         <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700,400,300' rel='stylesheet' type='text/css'>
 </head>
-
-
+<div id="social-preloader">
+    <div class="loading">
+    <!-- We make this div spin -->
+        <div class="spinner">
+            <!-- Mask of the quarter of circle -->
+            <div class="mask">
+                <!-- Inner masked circle -->
+                <div class="maskedCircle"></div>
+            </div>
+        </div>
+    </div>
+</div>
 <div id="navbar">
 	<div id="logo"><a href="http://www.kent.ac.uk/" target="_blank"><img src="assets/images/logo.png" alt="University of Kent logo" /></a><h1>Sharing your ideas!</h1></div>
     <ul id="nav">
-        <li id="search-toggle"><a href="#"><i class="fa fa-search"></i></a></li>
-        <li><a href="index.php"><i class="fa fa-compass"></i>&nbsp;&nbsp;Explore</a></li>
+        <li><a href="index.php">Explore</a></li>
         <li><a href="facts.html">10 Facts</a></li>
-        <li><a href="social.php" class="active"><i class="fa fa-users"></i>&nbsp;&nbsp;Social</a></li>
+        <li><a href="social.php" class="active">Social</a></li>
         <li id="share"><a href="#"><i class="fa fa-heart-o"></i></a></li>
     </ul>
     <div id="sharebox">
@@ -33,10 +42,10 @@
     </div>
 </div>
 <div id="leftnav">
-    <button id="twitter-button" class="slide" type="button"><i class="fa fa-bars"></i></button>
-    <button id="social-button" class="slide" type="button"><i class="fa fa-sort-amount-desc"></i></button>
+    <button id="twitter-button" class="slide" type="button" title="Filter"><i class="fa fa-bars"></i></button>
+    <button id="social-button" class="slide" type="button" title="Sort"><i class="fa fa-sort-amount-desc"></i></button>
     <div id="leftnav-footer">
-    	<button id="info-button" class="slide" type="button"><i class="fa fa-cogs"></i></button>
+    	<button id="info-button" class="slide" type="button" title="Info"><i class="fa fa-cogs"></i></button>
     </div>
 </div>
 <div class="slide-drawer">
@@ -129,6 +138,8 @@
 
 // modified Isotope methods for gutters in masonry
 $(window).load(function(){
+	$( '#leftnav button' ).tooltip({ position: { my: "right top", at: "left top" }, show: { effect: "slide", duration: 250 }, easing: "easeInOutQuad" });
+	
 	$.Isotope.prototype._getCenteredMasonryColumns = function() {
     this.width = this.element.width();
     
@@ -333,13 +344,16 @@ $(window).load(function(){
 	);
 	
 });
+$( "#share a" ).click(function() {
+	$('#sharebox').slideToggle( 300, "easeInOutQuint" );
+});
 </script>
 
 <script type="text/javascript">
     //<![CDATA[
         $(window).load(function() { // makes sure the whole site is loaded
             $('#status').fadeOut(1000); // will first fade out the loading animation
-            $('#preloader').delay(350).fadeOut(1000); // will fade out the white DIV that covers the website.
+            $('#social-preloader').delay(350).fadeOut(1000); // will fade out the white DIV that covers the website.
             $('body').delay(350).css({'overflow':'visible'});
         })
     //]]>

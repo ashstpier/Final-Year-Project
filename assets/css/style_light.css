@@ -42,13 +42,19 @@ body {
 	height: 100%;
 	position: relative;
 	overflow: hidden;
-	background: #aaf7f7;
-	background-image: -ms-radial-gradient(center, ellipse farthest-corner, #aaf7f7 0%, #0c3d4d 100%);
-	background-image: -moz-radial-gradient(center, ellipse farthest-corner, #aaf7f7 0%, #0c3d4d 100%);
-	background-image: -o-radial-gradient(center, ellipse farthest-corner, #aaf7f7 0%, #0c3d4d 100%);
-	background-image: -webkit-gradient(radial, center center, 0, center center, 497, color-stop(0, #aaf7f7), color-stop(1, #0c3d4d));
-	background-image: -webkit-radial-gradient(center, ellipse farthest-corner, #aaf7f7 0%, #0c3d4d 100%);
-	background-image: radial-gradient(ellipse farthest-corner at center, #aaf7f7 0%, #0c3d4d 100%);
+	background-color: #aaf7f7;
+	background-image: -webkit-gradient(
+	linear,
+	left top,
+	left bottom,
+	color-stop(0, #549FB8),
+	color-stop(1, #CAF7F7)
+);
+background-image: -o-linear-gradient(bottom, #549FB8 0%, #CAF7F7 100%);
+background-image: -moz-linear-gradient(bottom, #549FB8 0%, #CAF7F7 100%);
+background-image: -webkit-linear-gradient(bottom, #549FB8 0%, #CAF7F7 100%);
+background-image: -ms-linear-gradient(bottom, #549FB8 0%, #CAF7F7 100%);
+background-image: linear-gradient(to bottom, #549FB8 0%, #CAF7F7 100%);
 }
 #navbar {
 	position: fixed;
@@ -566,6 +572,49 @@ body {
 	z-index: 99;
 	display: none;
 }
+.busmodal {
+	position: absolute;
+	z-index: 99;
+	display: none;
+	color:#555;
+	font-weight: 400;
+	width: 360px;
+}
+.busmodal .header {
+	background: #629ad1;
+	color: #fff;
+	padding: 10px 20px;
+}
+.busmodal .header .closebus {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	color: #fff;
+}
+.busmodal .header h2 {
+	margin: 0;
+	font-size: 100%;
+}
+.busmodal .content {
+	background: #f6f6f6;
+	padding: 20px 20px;
+	height: 245px;
+	overflow: auto;
+}
+.busmodal .content th {
+	padding: 0 10px 15px;
+	text-align: center;
+	color: #999;
+	border-bottom: 1px #eee solid;
+	margin-bottom: 10px;
+}
+.busmodal .content .orange {
+	color: #ed7b5f;
+}
+.busmodal .content td {
+	padding: 5px 10px;
+	text-align: center;
+}
 canvas {
 	font-size: 16px;
 }
@@ -811,7 +860,7 @@ a {
 .controls-modal h2 { padding-right: 20px; }
 .controls-modal {
 	display: none;
-	padding: 20px;
+	padding: 25px 30px;
 	background: #629ad1;
 	color: #eee;
 	border-radius: 5px;
@@ -830,8 +879,8 @@ a {
 }
 .controls-close {
 	position: absolute;
-	top:20px;
-	right:20px;
+	top:25px;
+	right:25px;
 	color: #4c80b5;
 }
 .ui-tooltip {
@@ -847,9 +896,22 @@ a {
 	margin:0!important;
 }
 .ui-tooltip-content {
-	padding: 20px!important;
+	font-family: 'Open Sans', sans-serif;
+	padding: 20px 20px 0 20px!important;
 	font-weight: 300!important;
 	margin:0!important;
+	font-size: 15px!important;
+}
+#oldie {
+	position: absolute;
+	top: 100px;
+	left: 50%;
+	margin-left: -200px!important;
+	font-family: 'Open Sans', sans-serif!important;
+	z-index: 999999999;
+}
+#oldie a {
+	color: #ed7b5f;
 }
 @media all and (max-width: 1020px){
 body {

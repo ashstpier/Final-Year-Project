@@ -1,20 +1,14 @@
 function primaryOpen(button, panel){
-	if($(panel).is(":visible")){
-		$(".slide-drawer").toggle("slide", {direction:'left', easing:'easeInOutQuint'}, function(){
-			$(".slide-drawer .slidepanel").hide();
-		});
-		$("#leftnav button").removeClass( "active" );
-		$(".slide-drawer a").removeClass( "checked" );
-	}else if($($('.slidepanel').not(panel)).is(":visible")){
+	if($($('.slidepanel').not(panel)).is(":visible")){
 		$(".slide-drawer .slidepanel").hide();
 		$(panel).fadeIn();
 		$("#leftnav button").removeClass( "active" );
 		$(button).addClass( "active" );
-		$(".slide-drawer a").removeClass( "checked" );
 	}else{
+		$(".slide-drawer .slidepanel").hide();
 		$(panel).show();
 		$(".slide-drawer").toggle("slide", {direction:'left', easing:'easeInOutQuint'});
-		$(button).addClass( "active" );
+		$(button).toggleClass( "active" );
 	}
 }
 
@@ -80,3 +74,11 @@ $( "#search-toggle a" ).click(function() {
 	$('#search').toggle( 300, "easeInOutQuint" );
 	$(this).toggleClass( "active" );
 });
+
+$( "#leftnav button" ).hover(
+  function() {
+	 $(this).tooltip( "option", "disabled", false );
+  }, function() {
+    $(this).tooltip( "option", "disabled", true );
+  }
+);
