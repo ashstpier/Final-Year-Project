@@ -756,13 +756,6 @@ $( "#labeltoggle" ).click(function() {
 		}
 	}
 });
-$( "#eventtoggle" ).click(function() {
-	if ($(this).hasClass( "toggle" )) {
-
-	} else {
-		
-	}
-});
 $( "#accommodationtoggle" ).click(function() {
 	if ($(this).hasClass( "toggle" )) {
 		for (var i=0, tot=locationIcons.length; i < tot; i++) {
@@ -847,15 +840,30 @@ $( "#tweettoggle" ).click(function() {
 	if ($(this).hasClass( "toggled" )) {
 		for (var i=0, tot=tweetIcons.length; i < tot; i++) {
 			tweetIcons[i].visible = false;
-			$(this).removeClass( "toggled" );
-			$(this).addClass( "toggle" );
 		}
+		$(this).removeClass( "toggled" );
+		$(this).addClass( "toggle" );
 	} else {
 		for (var i=0, tot=tweetIcons.length; i < tot; i++) {
 			tweetIcons[i].visible = true;
-			$(this).removeClass( "toggle" );
-			$(this).addClass( "toggled" );
 		}
+		$(this).removeClass( "toggle" );
+		$(this).addClass( "toggled" );
+	}
+});
+$( "#bustoggle" ).click(function() {
+	if ($(this).hasClass( "toggled" )) {
+		for (var i=0, tot=busIcons.length; i < tot; i++) {
+			busIcons[i].visible = false;
+		}
+		$(this).removeClass( "toggled" );
+		$(this).addClass( "toggle" );
+	} else {
+		for (var i=0, tot=busIcons.length; i < tot; i++) {
+			busIcons[i].visible = true;
+		}
+		$(this).removeClass( "toggle" );
+		$(this).addClass( "toggled" );
 	}
 });
 

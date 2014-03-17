@@ -65,16 +65,18 @@ function searchResult(searchvalue) {
 		}
 	}else{
 		$('#searchBox').css('color','#e83333');
-		$('.search-error').show();
+		$('.search-error a').css('color','#e83333');
 	}
 	
 	return false;
 }
+$( ".search-error a" ).click(function() {
+	$('#searchBox').val('');
+});
 $( "#search-toggle a" ).click(function() {
 	$('#search').toggle( 300, "easeInOutQuint" );
 	$(this).toggleClass( "active" );
 });
-
 $( "#leftnav button" ).hover(
   function() {
 	 $(this).tooltip( "option", "disabled", false );

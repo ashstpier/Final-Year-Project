@@ -1,42 +1,6 @@
-<?php include_once 'twitter/display-tweet.php';
-
-$html = file_get_contents('http://www.kent.ac.uk/calendar/'); //get the html returned from the following url
-
-$kent_doc = new DOMDocument();
-
-libxml_use_internal_errors(TRUE); //disable libxml errors
-
-if(!empty($html)){ //if any html is actually returned
-
-  $kent_doc->loadHTML($html);
-  libxml_clear_errors(); //remove errors for yucky html
-  
-  $kent_xpath = new DOMXPath($kent_doc);
-
-  //get all the h2's with an id
-  $event = $kent_xpath->query('//div[contains(concat(" ", normalize-space(@class), " "), " event ")]');
-
-$event_string = "<ul id='eventlist'>";
-$i = 0;
-
-  if($event->length > 0){
-      foreach($event as $row){
-		  $titlepath = $kent_xpath->query('.//div[@class="title"]', $row);
-		  $title = $titlepath->item(0)->nodeValue;
-		  $timepath = $kent_xpath->query('.//div[@class="time"]', $row);
-		  $time = $timepath->item(0)->nodeValue;
-		  $linkpath = $kent_xpath->query('.//div[@class="title"]/a/@href', $row);
-		  $link = $linkpath->item(0)->nodeValue;
-		  $linktitlepath = $kent_xpath->query('.//div[@class="categories"]/a', $row);
-		  $linktitle = $linktitlepath->item(0)->nodeValue;
-		  
-		  $event_string .= '<li><h3><a href="http://www.kent.ac.uk/calendar/'.$link.'" target="_blank">'.$title.'</a></h3><span class="category"><a href="http://www.kent.ac.uk/calendar/?view_by=category='.$linktitle.'" target="_blank">'.$linktitle.'</a></span><span class="time">'.$time.'</span></li>';
-		  
-		  if (++$i == 15) break;
-      }
-  }
-  $event_string .= "</ul>";
-}
+<?php 
+	include_once 'twitter/display-tweet.php';
+	include_once 'assets/php/events.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -97,7 +61,7 @@ $i = 0;
     <form name="search_form" id="searchForm" method="GET" onsubmit="return searchResult(this);">
         <label for="searchBox"><i class="fa fa-search"></i> </label>
         <input type="text" id="searchBox" name="searchString" placeholder="Search for a building or room..." />
-        <div class="search-error"><i class="fa fa-lg fa-times"></i></div>
+        <div class="search-error"><a href="#"><i class="fa fa-lg fa-times"></i></a></div>
     </form>
 </div>
 <div class="slide-drawer">
@@ -107,8 +71,8 @@ $i = 0;
         <h3>Labels</h3>
         <ul>
         	<li><a href="#" class="toggle" id="labeltoggle">Names</a></li>
-            <!--<li><a href="#" class="toggle" id="eventtoggle">Events</a></li>-->
             <li><a href="#" class="toggled" id="tweettoggle">Tweets</a></li>
+            <li><a href="#" class="toggled" id="bustoggle">Bus stops</a></li>
         </ul>
         <h3>Buildings</h3>
         <ul>
@@ -139,7 +103,7 @@ $i = 0;
             <!--<li><a href="#" class="toggle" id="busstops">Bus stops</a></li>-->
             <li><a href="#" class="toggle" id="bikeracks">Bike racks</a></li>
         </ul>
-        <a href="#" class="external">Bus timetables</a>
+        <a href="http://www.stagecoachbus.com/uploads/unibus_wef220913.pdf" class="external" target="_blank">Bus timetables</a>
     </div>
     <div id="investment-panel" class="slidepanel">
         <h2>Data</h2>
@@ -159,7 +123,7 @@ $i = 0;
         	<li><a href="#" class="toggle" id="subjectsatisfaction">Subject satisfaction</a></li>
             <li><a href="#" class="toggle" id="entrypoints">Subject entry points</a></li>
         </ul>
-        <a href="" class="external">More league scores</a>
+        <a href="http://www.thecompleteuniversityguide.co.uk/league-tables/rankings" class="external" target="_blank">More league scores</a>
     </div>
     <div id="event-panel" class="slidepanel">
         <h2>Events</h2>
@@ -213,7 +177,7 @@ $i = 0;
     
     <div id="keynes_bus" class="busmodal animated">
     	<div class="header">
-        	<h2>UniBus Keynes Timetable</h2>
+        	<h2>Keynes UniBus Timetable</h2>
             <a href="#" class="closebus" onclick="closeBus()"><i class="fa fa-times fa-lg"></i></a>
         </div>
 		<div class="content">
@@ -223,7 +187,7 @@ $i = 0;
     </div>
     <div id="parkwood_bus" class="busmodal animated">
 		<div class="header">
-        	<h2>UniBus Parkwood Timetable</h2>
+        	<h2>Parkwood UniBus Timetable</h2>
             <a href="#" class="closebus" onclick="closeBus()"><i class="fa fa-times fa-lg"></i></a>
         </div>
 		<div class="content">
@@ -233,7 +197,7 @@ $i = 0;
     </div>
     <div id="darwin_bus" class="busmodal animated">
 		<div class="header">
-        	<h2>UniBus Darwin Timetable</h2>
+        	<h2>Darwin UniBus Timetable</h2>
             <a href="#" class="closebus" onclick="closeBus()"><i class="fa fa-times fa-lg"></i></a>
         </div>
 		<div class="content">
@@ -357,7 +321,11 @@ if( Detector.webgl ){
 	/////// EVENTS ///////
 	$(document).ready(function() {
 		
-		$( '#leftnav button' ).tooltip({ position: { my: "right top", at: "left top" }, show: { effect: "slide", duration: 250 }, easing: "easeInOutQuad" });
+		if (Modernizr.touch) {   
+    		
+		}else{
+			$( '#leftnav button' ).tooltip({ position: { my: "right top", at: "left top" }, show: { effect: "slide", duration: 250 }, easing: "easeInOutQuad" });	
+		}
 	
 
 	/////// SEARCH ///////

@@ -172,13 +172,14 @@ background-image: linear-gradient(to bottom, #549FB8 0%, #CAF7F7 100%);
 }
 .search-error {
 	font-family: FontAwesome;
-	color: #e83333;
+	color: #999;
 	position: absolute;
-	top: 15px;
+	top: 12px;
 	right: 0;
 	z-index: 9999999;
 	display: none;
 }
+.search-error a { color: #999; }
 ::-webkit-input-placeholder { color: #999; }
 :-moz-placeholder { color: #999; }
 ::-moz-placeholder { color: #999; }
@@ -330,6 +331,9 @@ background-image: linear-gradient(to bottom, #549FB8 0%, #CAF7F7 100%);
 }
 #tweettoggle.toggled:before  {
 	content: "\f099";
+}
+#bustoggle.toggled:before  {
+	content: "\f018";
 }
 #accommodationtoggle.toggled:before {
 	color: #57b1cf;
@@ -789,9 +793,11 @@ a {
 	display: none;
 	position: absolute;
 	bottom: 30px;
-	right: 30px;
+	right: 50%;
+	margin-right: -75px;
 }
 #exitzoom span {
+	width: 150px;
 	padding: 15px 30px;
 	font-weight: 300;
 	text-align: center;
@@ -960,7 +966,7 @@ button {
 	height: 50px;
 }
 .ui-tooltip-content {
-	padding: 18px 18px 0!important;
+	padding: 16px 18px 0!important;
 }
 #search {
 	top: 9px;

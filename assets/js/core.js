@@ -1,6 +1,6 @@
 var container, stats, camera, scene, renderer, composer, projector, controls, ground, particleSystem, group = new THREE.Object3D();
 var depthMaterial, depthTarget;
-var clickobjects = [], tweetobjects = [], zoomobjects = [], sprites = [], locationIcons = [], teachingIcons = [], communityIcons = [], tweetIcons = [], visitorParking = [], permitParking = [], cycleArray = [], busArray = [], maintenanceIcons = [], adminIcons = [], rotate = [], investmentArray = [], developmentArray = [], roompriceArray = [], populationArray = [], subjectscoreArray = [], subjectsatisfactionArray = [], entrypointsArray = [], sizeArray = [], buildings = [], roadArray = [], darwinRoute = [], keynesRoute = [], parkwoodRoute = [], cycleRoute = [], zoomArray = [], textlookat = [];
+var clickobjects = [], tweetobjects = [], zoomobjects = [], sprites = [], locationIcons = [], teachingIcons = [], communityIcons = [], tweetIcons = [], visitorParking = [], permitParking = [], cycleArray = [], busArray = [], maintenanceIcons = [], adminIcons = [], rotate = [], investmentArray = [], developmentArray = [], roompriceArray = [], populationArray = [], subjectscoreArray = [], subjectsatisfactionArray = [], entrypointsArray = [], sizeArray = [], buildings = [], roadArray = [], darwinRoute = [], keynesRoute = [], parkwoodRoute = [], cycleRoute = [], zoomArray = [], textlookat = [], busIcons = [];
 var jsonFileNames = [
 	'assets/models/Aphra_and_Lumley_Theatre.js',
 	'assets/models/Becket_Court.js',
@@ -267,7 +267,7 @@ function init() {
 	projector = new THREE.Projector();
 	
 	var canvas = document.getElementById("canvas");
-	renderer = new THREE.WebGLRenderer({canvas:canvas, alpha: true});
+	renderer = new THREE.WebGLRenderer({canvas:canvas, alpha: true, antialiasing: true});
 	renderer.setSize( window.innerWidth, window.innerHeight );
 	//renderer.setClearColor( 0x9acbfc, 1);
 	renderer.shadowMapEnabled = false;
@@ -479,6 +479,13 @@ function animate() {
 		textlookat[i].rotation.x = camera.rotation.x; 
 		textlookat[i].rotation.y = camera.rotation.y;
 		textlookat[i].rotation.z = camera.rotation.z;
+	}
+	if($('#searchBox').val() != ''){
+		$('.search-error').show();
+	}else{
+		$('.search-error a').css('color','#999');
+		$('#searchBox').css('color','#666');
+		$('.search-error').hide();
 	}
 	render();
 	//scene.overrideMaterial = null;

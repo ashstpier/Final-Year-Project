@@ -818,7 +818,7 @@ function make3DText(message, color, mesh){
 	});	
 	THREE.GeometryUtils.center( text3d );
 	
-	var textMaterial = new THREE.MeshBasicMaterial( { color: color, overdraw: true, transparent: true, opacity: 0.7, alphaTest: 0.5 } );
+	var textMaterial = new THREE.MeshLambertMaterial( { color: color, overdraw: true, transparent: true, opacity: 1, alphaTest: 0.5 } );
 	var text = new THREE.Mesh( text3d, textMaterial );
 	group.add( text );
 	textlookat.push(text);
@@ -834,9 +834,9 @@ function makeData(mesh, height, dataArray)
 	switch(dataArray){
 		case roompriceArray:
 			if (height < 4000){
-				color = 0x3798b8;
-			}else if (height < 5000 && height > 4000){
 				color = 0x0066cc;
+			}else if (height < 5000 && height > 4000){
+				color = 0x1b4985;
 			} else {
 				color = 0x333399;
 			}
@@ -845,9 +845,9 @@ function makeData(mesh, height, dataArray)
 			break;
 		case populationArray:
 			if (height < 200){
-				color = 0x3798b8;
-			}else if (height < 400 && height > 200){
 				color = 0x0066cc;
+			}else if (height < 400 && height > 200){
+				color = 0x1b4985;
 			} else {
 				color = 0x333399;
 			}
@@ -855,9 +855,9 @@ function makeData(mesh, height, dataArray)
 			break;
 		case subjectscoreArray:
 			if (height < 60){
-				color = 0x3798b8;
-			}else if (height < 80 && height > 60){
 				color = 0x0066cc;
+			}else if (height < 80 && height > 60){
+				color = 0x1b4985;
 			} else {
 				color = 0x333399;
 			}
@@ -865,9 +865,9 @@ function makeData(mesh, height, dataArray)
 			break;
 		case subjectsatisfactionArray:
 			if (height < 85){
-				color = 0x3798b8;
-			}else if (height < 92 && height > 85){
 				color = 0x0066cc;
+			}else if (height < 92 && height > 85){
+				color = 0x1b4985;
 			} else {
 				color = 0x333399;
 			}
@@ -876,9 +876,9 @@ function makeData(mesh, height, dataArray)
 			break;
 		case entrypointsArray:
 			if (height < 360){
-				color = 0x3798b8;
-			}else if (height < 380 && height > 360){
 				color = 0x0066cc;
+			}else if (height < 380 && height > 360){
+				color = 0x1b4985;
 			} else {
 				color = 0x333399;
 			}
@@ -886,9 +886,9 @@ function makeData(mesh, height, dataArray)
 			break;
 		case sizeArray:
 			if (height < 11){
-				color = 0x3798b8;
-			}else if (height < 13 && height > 11){
 				color = 0x0066cc;
+			}else if (height < 13 && height > 11){
+				color = 0x1b4985;
 			} else {
 				color = 0x333399;
 			}
@@ -897,7 +897,7 @@ function makeData(mesh, height, dataArray)
 			break;
 	}
 	
-	var bar = new THREE.Mesh( new THREE.CubeGeometry(10, percent, 10), new THREE.MeshLambertMaterial({color: color, transparent: true, opacity: 0.7, alphaTest: 0.5}) );
+	var bar = new THREE.Mesh( new THREE.CubeGeometry(10, percent, 10), new THREE.MeshLambertMaterial({color: color, transparent: true, opacity: 0.8, alphaTest: 0.5}) );
 	mesh.geometry.computeBoundingBox();
 	var boundingBox = mesh.geometry.boundingBox;
 	var position = new THREE.Vector3();
@@ -1016,6 +1016,7 @@ function makeBusstops(){
 		bus.scale.set(0.12,0.12,0.05);
 		textlookat.push(bus);
 		zoomobjects.push(bus);
+		busIcons.push(bus);
 		group.add(bus);
 		
 		// parkwood
@@ -1024,6 +1025,7 @@ function makeBusstops(){
 		bus.scale.set(0.12,0.12,0.05);
 		textlookat.push(bus);
 		zoomobjects.push(bus);
+		busIcons.push(bus);
 		group.add(bus);
 		
 		// darwin
@@ -1032,6 +1034,7 @@ function makeBusstops(){
 		bus.scale.set(0.12,0.12,0.05);
 		textlookat.push(bus);
 		zoomobjects.push(bus);
+		busIcons.push(bus);
 		group.add(bus);
 	} );
 	var material = new THREE.MeshBasicMaterial({ color: 0xed7b5f, wrapAround: true });
