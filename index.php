@@ -37,14 +37,14 @@
         <li><a href="index.php" class="active">Explore</a></li>
         <li><a href="facts.html">10 Facts</a></li>
         <li><a href="social.php">Social</a></li>
-        <li id="share"><a href="#"><i class="fa fa-heart-o"></i></a></li>
+        <li id="share"><a href="#"><i class="fa fa-share"></i></a></li>
     </ul>
     <div id="sharebox">
     	<div class="arrow-down"></div>
     	<ul>
-        	<li><button type="button"><i class="fa fa-twitter"></i></button></li>
-            <li><button type="button"><i class="fa fa-facebook"></i></button></li>
-            <li><button type="button"><i class="fa fa-google-plus"></i></button></li>
+        	<li><a href="http://twitter.com/home?status=Currently reading <?php echo $_SERVER['REQUEST_URI'] ?>" title="Share on Twitter" target="_blank"><i class="fa fa-twitter"></i></a></li>
+            <li><a href="http://www.facebook.com/sharer.php?u=<?php echo $_SERVER['REQUEST_URI'] ?>" title="Share on Facebook" target="blank"><i class="fa fa-facebook"></i></a></li>
+            <li><a href="https://plus.google.com/share?url=<?php echo $_SERVER['REQUEST_URI'] ?>" title="Share on Google Plus" target="blank"><i class="fa fa-google-plus"></i></a></li>
         </ul>
     </div>
 </div>

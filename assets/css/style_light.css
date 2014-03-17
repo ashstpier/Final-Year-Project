@@ -138,14 +138,15 @@ background-image: linear-gradient(to bottom, #549FB8 0%, #CAF7F7 100%);
 	padding: 0;
 	list-style: none;
 }
-#navbar #sharebox ul li button {
+#navbar #sharebox ul li a {
 	padding: 20px;
 	display: block;
 	text-align: center;
 	width: 60px;
 	height: 60px;
+	background: #242B31;
 }
-#navbar #sharebox ul li button:hover {
+#navbar #sharebox ul li a:hover {
 	background: #242B31;
 	color: #fff;
 }

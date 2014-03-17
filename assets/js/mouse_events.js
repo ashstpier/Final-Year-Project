@@ -581,7 +581,11 @@ function tiltView() {
 		}
 		tilt = 1;
 	} else if (tilt == 1){
-		new TWEEN.Tween( camera.position ).to( { x: controls.center.x, y: 600, z: controls.center.z, }, 1000 ).easing( TWEEN.Easing.Sinusoidal.InOut).start();
+		if (camera.position.z >= controls.center.z){
+			new TWEEN.Tween( camera.position ).to( { x: controls.center.x, y: 600, z: controls.center.z - 1, }, 1000 ).easing( TWEEN.Easing.Sinusoidal.InOut).start();
+		}else {
+			new TWEEN.Tween( camera.position ).to( { x: controls.center.x, y: 600, z: controls.center.z + 1, }, 1000 ).easing( TWEEN.Easing.Sinusoidal.InOut).start();
+		}
 		tilt = 2;
 	} else {
 		if (camera.position.z >= controls.center.z){
@@ -593,20 +597,18 @@ function tiltView() {
 	}
 }
 
-$('#rotateleft').mousedown(function() {
-	controls.autoRotateRight = false;
-	controls.autoRotateSpeed = 10;
-    controls.autoRotate = true;
-}).bind('mouseup mouseleave', function() {
-    controls.autoRotate = false;
+var theta = Math.PI/4;
+
+$('#rotateleft').click(function() {
+	var x = camera.position.x;
+	var z = camera.position.z;
+	new TWEEN.Tween( camera.position ).to( { x: x * Math.cos(theta) - z * Math.sin(theta), z: z * Math.cos(theta) + x * Math.sin(theta) }, 1000 ).easing( TWEEN.Easing.Sinusoidal.InOut).start();
 });
 
-$('#rotateright').mousedown(function() {
-	controls.autoRotate = false;
-	controls.autoRotateSpeed = 10;
-    controls.autoRotateRight = true;
-}).bind('mouseup mouseleave', function() {
-    controls.autoRotateRight = false;
+$('#rotateright').click(function() {
+	var x = camera.position.x;
+	var z = camera.position.z;
+	new TWEEN.Tween( camera.position ).to( { x: x * Math.cos(theta) + z * Math.sin(theta), z: z * Math.cos(theta) - x * Math.sin(theta) }, 1000 ).easing( TWEEN.Easing.Sinusoidal.InOut).start();
 });
 
 function closeModal() {
