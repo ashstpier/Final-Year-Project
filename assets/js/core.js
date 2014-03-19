@@ -112,7 +112,7 @@ function init() {
 	controls = new THREE.OrbitControls( camera );
 	controls.addEventListener( 'change', render );
 	controls.maxPolarAngle = Math.PI/2.25; 
-	controls.minDistance = 300;
+	controls.minDistance = 200;
 	controls.maxDistance = 700;
 	controls.enabled = true;
 	controls.center.set(0,-10,0);

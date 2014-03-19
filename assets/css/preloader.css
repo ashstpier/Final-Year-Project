@@ -4,19 +4,7 @@
     left:0;
     right:0;
     bottom:0;
-	background-color: #CAF7F7;
-    background-image: -webkit-gradient(
-	linear,
-	left top,
-	left bottom,
-	color-stop(0, #549FB8),
-	color-stop(1, #CAF7F7)
-);
-background-image: -o-linear-gradient(bottom, #549FB8 0%, #CAF7F7 100%);
-background-image: -moz-linear-gradient(bottom, #549FB8 0%, #CAF7F7 100%);
-background-image: -webkit-linear-gradient(bottom, #549FB8 0%, #CAF7F7 100%);
-background-image: -ms-linear-gradient(bottom, #549FB8 0%, #CAF7F7 100%);
-background-image: linear-gradient(to bottom, #549FB8 0%, #CAF7F7 100%);
+	background-color: #f6f6f6;
     z-index:99999999;
 	text-align: center;
 	display: table;
@@ -40,6 +28,8 @@ background-image: linear-gradient(to bottom, #549FB8 0%, #CAF7F7 100%);
 }
 #preloader h2 {
 	padding-bottom: 20px;
+	color: #666;
+	font-size: 100%;
 }
 @keyframes spin {
     from { transform: rotate(0deg); }
@@ -114,8 +104,8 @@ to { transform: rotate(360deg); }
 	padding: 15px 30px;
 }
 #percent {
-	font-size: 200%;
-	color: #fff;
+	font-size: 120%;
+	color: #666;
 	font-weight: 400;
 	text-align: center;
 	padding-bottom: 30px;

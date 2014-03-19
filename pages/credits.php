@@ -2,21 +2,52 @@
 $pageTitle = 'Credits';
 include 'header.php';
 ?>
-
-<div class="container">
-    <div class="grid">
-    	<div class="unit span-grid">
-            <h1>Credits</h1>
-        </div>
-        <div class="unit one-of-two">
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In id tempor lorem. Sed tortor quam, blandit in sapien ut, aliquet semper nunc. Donec sollicitudin dapibus justo, in sollicitudin dui tempor in. Donec tempus augue at urna luctus consequat. Aliquam erat volutpat. Duis tempus tristique purus, sit amet blandit dolor. Aenean suscipit sit amet eros eu consectetur. Mauris congue leo et neque pharetra, non tristique lectus egestas. Nullam orci nisi, adipiscing ac malesuada accumsan, eleifend quis metus. Curabitur ac suscipit enim.</p>
-			<p>Cras dapibus sem vel mattis bibendum. Ut commodo elit non lorem dapibus tempor quis nec libero. Suspendisse hendrerit aliquam quam. Nam scelerisque dapibus dui sed adipiscing. Aliquam placerat ipsum vel augue porta porta sit amet id sapien. In commodo pharetra posuere. Suspendisse est eros, feugiat sollicitudin pharetra quis, viverra eget lacus. Aliquam erat volutpat.</p>
-        </div>
-        <div class="unit one-of-two">
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In id tempor lorem. Sed tortor quam, blandit in sapien ut, aliquet semper nunc. Donec sollicitudin dapibus justo, in sollicitudin dui tempor in. Duis tempus tristique purus, sit amet blandit dolor. Aenean suscipit sit amet eros eu consectetur. Mauris congue leo et neque pharetra, non tristique lectus egestas. Nullam orci nisi, adipiscing ac malesuada accumsan, eleifend quis metus. Curabitur ac suscipit enim.</p>
-			<p>Cras dapibus sem vel mattis bibendum. Ut commodo elit non lorem dapibus tempor quis nec libero. Suspendisse hendrerit aliquam quam. Nam scelerisque dapibus dui sed adipiscing. Aliquam placerat ipsum vel augue porta porta sit amet id sapien. In commodo pharetra posuere.</p>
-        </div>
-    </div>
+<div class="unit three-of-four">
+	<h2>Credits</h2>
+    <h3>This project was designed and built by Ashley St Pier as his Final Year Project for the Multimedia Technology and Design course at the University of Kent.</h3>
+    <h4>Content data</h4>
+    <ul>
+    	<li>University of Kent</li>
+        <li>Open Street Map</li>
+        <li>Kent Union</li>
+        <li>The Complete University Guide</li>
+        <li>Stagecoach Bus</li>
+    </ul>
+    <h4>API Data</h4>
+    <ul>
+    	<li>Twitter</li>
+        <li>Instagram</li>
+    </ul>
+    <h4>Three.js development</h4>
+    <ul>
+    	<li>Ricardo Cabello a.k.a. Mr Doob</li>
+        <li>AlteredQualia</li>
+        <li>WestLangley</li>
+        <li>Chris Strom</li>
+    </ul>
+    <h4>Fonts</h4>
+    <ul>
+    	<li>Open Sans &ndash; <em>Main font</em></li>
+        <li>Font Awesome &ndash; <em>Icon font</em></li>
+        <li>Helvetiker Regular &ndash; <em>3D font</em></li>
+    </ul>
+    <h4>Javascript Plugins</h4>
+    <ul>
+    	<li>Three.js &ndash; <em>Main javascript library for 3D</em></li>
+    	<li>JQuery &ndash; <em>Main javascript library for UI</em></li>
+        <li>JQueryUI &ndash; <em>Tooltips and interactions</em></li>
+        <li>Modernizr &ndash; <em>Feature detection</em></li>
+    	<li>Cookies.js &ndash; <em>Cookies</em></li>
+        <li>Preload.js &ndash; <em>Preloading 3D assets</em></li>
+        <li>Tween.js &ndash; <em>Animation for Three.js</em></li>
+    </ul>
+    <h4>CSS frameworks</h4>
+    <ul>
+    	<li>Toast.css &ndash; <em>Responsive framework</em></li>
+        <li>Animate.css &ndash; <em>CSS3 animations</em></li>
+    	<li>JQueryUI.css &ndash; <em>Tooltip styling</em></li>
+        <li>3DButtons.css &ndash; <em>CSS3 3D animation</em></li>
+    </ul>
 </div>
 
 <?php include 'footer.php'; ?>

@@ -22,8 +22,6 @@
 \*-----------------------------------*/
 
 * {
-	margin: 0;
-	padding: 0;
 	position: relative;
 	-webkit-box-sizing: border-box;
 	   -moz-box-sizing: border-box;
@@ -36,8 +34,8 @@
 
 .container {
 	/* Whatever you want. They’re your oats. */
-	max-width: 1024px;
-	margin: 0 auto 0;
+	max-width: 960px;
+	margin: 0 auto;
 	padding: 0 30px;
 	padding: 0 1.5rem;
 }
@@ -84,7 +82,7 @@
 .three-of-five { width: 57%; }
 .four-of-five { width: 77%; }
 
-@media screen and (max-width: 1020px) {
+@media screen and (max-width: 650px) {
 	.grid {
 		margin-left: 0;
 		max-width: none;
@@ -95,9 +93,6 @@
 		margin-left: 0;
 		display: block;
 	}
-	.building-image {
-		margin-top: 30px;
-	}
 }
 
 /*-----------------------------------*\
@@ -107,6 +102,7 @@
 	line height @ 20px. Again, change
 	as necessary.
 \*-----------------------------------*/
+
 
 
 /*-----------------------------------*\

@@ -28,7 +28,6 @@
 	<div id="logo"><a href="http://www.kent.ac.uk/" target="_blank"><img src="assets/images/logo.png" alt="University of Kent logo" /></a><h1>Sharing your ideas!</h1></div>
     <ul id="nav">
         <li><a href="index.php">Explore</a></li>
-        <li><a href="facts.html">10 Facts</a></li>
         <li><a href="social.php" class="active">Social</a></li>
         <li id="share"><a href="#"><i class="fa fa-heart-o"></i></a></li>
     </ul>
@@ -85,14 +84,14 @@
     </div>
     <div id="info-panel" class="slidepanel">
         <h2>Info</h2>
-        
         <ul>
-         	<li><a href="#">Help</a></li>
-            <li><a href="#">About</a></li>
-            <li><a href="#">Case studies</a></li>
-            <li><a href="#">Disclaimer</a></li>
-            <li><a href="#">Credits</a></li>
-            <li><a href="#">UKC website</a></li>
+         	<li><a href="pages/help.php">Help</a></li>
+            <li><a href="pages/about.php">About</a></li>
+            <li><a href="pages/disclaimer.php">Disclaimer</a></li>
+            <li><a href="pages/credits.php">Credits</a></li>
+            <li><a href="admin/">Admin</a></li>
+            <li><a href="http://www.kent.ac.uk/">UKC website</a></li>
+            <li><a href="https://github.com/ashstpier/Final-Year-Project">GitHub Repository</a></li>
         </ul>
     </div>
 </div>
@@ -132,13 +131,14 @@
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
 <script src="http://isotope.metafizzy.co/jquery.isotope.min.js"></script>
+<script src="assets/js/universal.js"></script>
 
 <script>
 // code found on this page: http://isotope.metafizzy.co/custom-layout-modes/masonry-gutters.html
 
 // modified Isotope methods for gutters in masonry
 $(window).load(function(){
-	$( '#leftnav button' ).tooltip({ position: { my: "right top", at: "left top" }, show: { effect: "slide", duration: 250 }, easing: "easeInOutQuad" });
+	$( '#leftnav button' ).tooltip({ position: { my: "right top", at: "left top" }, show: { effect: "slide", duration: 200 }, hide: { effect: "slide", duration: 200 }, easing: "easeInOutQuad" });	
 	
 	$.Isotope.prototype._getCenteredMasonryColumns = function() {
     this.width = this.element.width();

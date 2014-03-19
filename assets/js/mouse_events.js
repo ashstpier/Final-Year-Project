@@ -16,7 +16,10 @@ function onDocumentMouseDown( event ) {
 }
 function dragStart( event ) {
 	event.preventDefault();
-	var vector = new THREE.Vector3( mouse.x, mouse.y, 1 );
+	mouse.x = ( event.changedTouches[0].pageX / window.innerWidth ) * 2 - 1;
+	mouse.y = - ( event.changedTouches[0].pageY / window.innerHeight ) * 2 + 1;
+	var vector = new THREE.Vector3( mouse.x, mouse.y, 0.5 );
+	
 	projector.unprojectVector( vector, camera );
 	var raycaster = new THREE.Raycaster( camera.position, vector.sub( camera.position ).normalize() );
 
@@ -26,9 +29,11 @@ function dragStart( event ) {
 		controls.enabled = false;
 		SELECTED = intersects[ 0 ].object.parent;
 		var intersects = raycaster.intersectObject( plane );
-		offset.copy( intersects[ 0 ].point ).sub( plane.position );
+		offset.copy( new THREE.Vector3( intersects[ 0 ].point.x - group.position.x, 0, intersects[ 0 ].point.z - group.position.z ) );
+		console.log(offset);
 		container.style.cursor = 'move';
 	}
+	
 }
 
 ////////// CLICK EVENT ///////////
@@ -113,7 +118,7 @@ function onDocumentMouseUp( event ) {
 }
 function dragEnd( event ) {
 	event.preventDefault();
-	var vector = new THREE.Vector3( ( event.changedTouches[0].clientX / window.innerWidth ) * 2 - 1, - ( event.changedTouches[0].clientY / window.innerHeight ) * 2 + 1, 0.5 );
+	var vector = new THREE.Vector3( ( event.changedTouches[0].pageX / window.innerWidth ) * 2 - 1, - ( event.changedTouches[0].pageY / window.innerHeight ) * 2 + 1, 0.5 );
 	projector.unprojectVector( vector, camera );
 	var raycaster = new THREE.Raycaster( camera.position, vector.sub( camera.position ).normalize() );
 	
@@ -351,6 +356,8 @@ function zoomFunction(object, xoffset, yoffset){
 	}
 	$("#label-panel a, #overlay-panel a, #investment-panel a").removeClass( "toggled" );
 	$("#label-panel a, #overlay-panel a, #investment-panel a").addClass( "toggle" );
+	$("#tweettoggle, #bustoggle").removeClass( "toggle" );
+	$("#tweettoggle, #bustoggle").addClass( "toggled" );
 }
 
 function placeMarker(modal){
@@ -491,6 +498,7 @@ function onDocumentMouseMove( event ) {
 	mouse.x = ( event.clientX / window.innerWidth ) * 2 - 1;
 	mouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
 	var vector = new THREE.Vector3( mouse.x, mouse.y, 0.5 );
+	console.log(vector);
 	projector.unprojectVector( vector, camera );
 	var raycaster = new THREE.Raycaster( camera.position, vector.sub( camera.position ).normalize() );
 	
@@ -547,8 +555,8 @@ function onDocumentMouseMove( event ) {
 }
 function dragMove( event ) {
 	event.preventDefault();
-	mouse.x = ( event.changedTouches[0].clientX / window.innerWidth ) * 2 - 1;
-	mouse.y = - ( event.changedTouches[0].clientY / window.innerHeight ) * 2 + 1;
+	mouse.x = ( event.changedTouches[0].pageX / window.innerWidth ) * 2 - 1;
+	mouse.y = - ( event.changedTouches[0].pageY / window.innerHeight ) * 2 + 1;
 	var vector = new THREE.Vector3( mouse.x, mouse.y, 0.5 );
 	projector.unprojectVector( vector, camera );
 	var raycaster = new THREE.Raycaster( camera.position, vector.sub( camera.position ).normalize() );
@@ -571,29 +579,39 @@ function dragMove( event ) {
 }
 
 ///////// CONTROLS //////////
+var clicked = 0;
 var tilt = 0;
 function tiltView() {
-	if (tilt == 0){
-		if (camera.position.z >= controls.center.z){
-			new TWEEN.Tween( camera.position ).to( { y: 60, z: controls.center.z + 200 }, 1000 ).easing( TWEEN.Easing.Sinusoidal.InOut).start();
-		}else {
-			new TWEEN.Tween( camera.position ).to( { y: 60, z: controls.center.z - 200 }, 1000 ).easing( TWEEN.Easing.Sinusoidal.InOut).start();
+	if(clicked == 0){
+		clicked = 1;
+		if (tilt == 0){
+			if (camera.position.z >= controls.center.z){
+				new TWEEN.Tween( camera.position ).to( { y: 60, z: controls.center.z + 200 }, 1000 ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {
+				clicked = 0;
+			}).start();
+			}else {
+				new TWEEN.Tween( camera.position ).to( { y: 60, z: controls.center.z - 200 }, 1000 ).easing( TWEEN.Easing.Sinusoidal.InOut).start();
+			}
+			tilt = 1;
+		} else if (tilt == 1){
+			if (camera.position.z >= controls.center.z){
+				new TWEEN.Tween( camera.position ).to( { x: controls.center.x, y: 600, z: controls.center.z + 1, }, 1000 ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {
+				clicked = 0;
+			}).start();
+			}else {
+				new TWEEN.Tween( camera.position ).to( { x: controls.center.x, y: 600, z: controls.center.z - 1, }, 1000 ).easing( TWEEN.Easing.Sinusoidal.InOut).start();
+			}
+			tilt = 2;
+		} else {
+			if (camera.position.z >= controls.center.z){
+				new TWEEN.Tween( camera.position ).to( { y: 250, z: controls.center.z + 400 }, 1000 ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {
+				clicked = 0;
+			}).start();
+			}else {
+				new TWEEN.Tween( camera.position ).to( { y: 250, z: controls.center.z - 400 }, 1000 ).easing( TWEEN.Easing.Sinusoidal.InOut).start();
+			}
+			tilt = 0;
 		}
-		tilt = 1;
-	} else if (tilt == 1){
-		if (camera.position.z >= controls.center.z){
-			new TWEEN.Tween( camera.position ).to( { x: controls.center.x, y: 600, z: controls.center.z - 1, }, 1000 ).easing( TWEEN.Easing.Sinusoidal.InOut).start();
-		}else {
-			new TWEEN.Tween( camera.position ).to( { x: controls.center.x, y: 600, z: controls.center.z + 1, }, 1000 ).easing( TWEEN.Easing.Sinusoidal.InOut).start();
-		}
-		tilt = 2;
-	} else {
-		if (camera.position.z >= controls.center.z){
-			new TWEEN.Tween( camera.position ).to( { y: 250, z: controls.center.z + 400 }, 1000 ).easing( TWEEN.Easing.Sinusoidal.InOut).start();
-		}else {
-			new TWEEN.Tween( camera.position ).to( { y: 250, z: controls.center.z - 400 }, 1000 ).easing( TWEEN.Easing.Sinusoidal.InOut).start();
-		}
-		tilt = 0;
 	}
 }
 
@@ -602,13 +620,23 @@ var theta = Math.PI/4;
 $('#rotateleft').click(function() {
 	var x = camera.position.x;
 	var z = camera.position.z;
-	new TWEEN.Tween( camera.position ).to( { x: x * Math.cos(theta) - z * Math.sin(theta), z: z * Math.cos(theta) + x * Math.sin(theta) }, 1000 ).easing( TWEEN.Easing.Sinusoidal.InOut).start();
+	if(clicked == 0){
+		clicked = 1;
+		new TWEEN.Tween( camera.position ).to( { x: x * Math.cos(theta) - z * Math.sin(theta), z: z * Math.cos(theta) + x * Math.sin(theta) }, 1000 ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {
+			clicked = 0;
+		}).start();
+	}
 });
 
 $('#rotateright').click(function() {
 	var x = camera.position.x;
 	var z = camera.position.z;
-	new TWEEN.Tween( camera.position ).to( { x: x * Math.cos(theta) + z * Math.sin(theta), z: z * Math.cos(theta) - x * Math.sin(theta) }, 1000 ).easing( TWEEN.Easing.Sinusoidal.InOut).start();
+	if(clicked == 0){
+		clicked = 1;
+		new TWEEN.Tween( camera.position ).to( { x: x * Math.cos(theta) + z * Math.sin(theta), z: z * Math.cos(theta) - x * Math.sin(theta) }, 1000 ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {
+			clicked = 0;
+		}).start();
+	}
 });
 
 function closeModal() {
@@ -910,8 +938,8 @@ $( "#overlay-panel a" ).click(function() {
 		development.position.y = -99999;
 		development2.visible = false;
 		development2.position.y = -99999;
-		$("#label-panel a, #investment-panel a").removeClass( "toggled" );
-		$("#label-panel a, #investment-panel a").addClass( "toggle" );
+		$("#label-panel a, #investment-panel a").not("#tweettoggle, #bustoggle, #labeltoggle").removeClass( "toggled" );
+		$("#label-panel a, #investment-panel a").not("#tweettoggle, #bustoggle, #labeltoggle").addClass( "toggle" );
 	} else {
 	
 	}
@@ -1082,8 +1110,8 @@ $( "#investment-panel a" ).click(function() {
 		for (var i=0, tot=sizeArray.length; i < tot; i++) {
 			sizeArray[i].visible = false;
 		}
-		$("#label-panel a, #overlay-panel a, #investment-panel a").removeClass( "toggled" );
-		$("#label-panel a, #overlay-panel a, #investment-panel a").addClass( "toggle" );
+		$("#label-panel a, #overlay-panel a, #investment-panel a").not("#tweettoggle, #bustoggle, #labeltoggle").removeClass( "toggled" );
+		$("#label-panel a, #overlay-panel a, #investment-panel a").not("#tweettoggle, #bustoggle, #labeltoggle").addClass( "toggle" );
 	} else {
 	
 	}
@@ -1195,9 +1223,9 @@ $("#start").click(function() {
 	setTimeout(function(){
 		$('#leftnav').toggleClass("openleft closeleft");
 		if($(window).width() > 676){
-			$('#search').fadeIn(1000);
+			$('#search').fadeIn(500);
 		}
-		$('#controls').fadeIn(1000);
+		$('#controls').fadeIn(500);
 		var visited = $.cookie('visited')
 		if (visited == null) {
 			$('.controls-modal').slideDown(500);
@@ -1236,7 +1264,7 @@ $("#exitzoom").click(function() {
 		tweetIcons[i].visible = true;
 	}
 	new TWEEN.Tween( camera.position ).to( { x: 0, y: 350, z: 500 }, 1500 ).easing( TWEEN.Easing.Quadratic.InOut).onComplete(function () {
-		controls.minDistance = 120;
+		controls.minDistance = 200;
 		controls.noZoom = false;
 		$('#controls').fadeIn();
 		$('#leftnav').toggleClass("openleft closeleft");

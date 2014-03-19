@@ -9,6 +9,9 @@
 	width: 360px;
 	float: left;
 	overflow: hidden;
+	border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
 }
 .item.instagram {
 	padding: 0;

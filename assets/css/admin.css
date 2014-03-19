@@ -21,13 +21,7 @@ body {
 	height: 100%;
 }
 body.login {
-	background: #aaf7f7;
-	background-image: -ms-radial-gradient(center, ellipse farthest-corner, #aaf7f7 0%, #0c3d4d 100%);
-	background-image: -moz-radial-gradient(center, ellipse farthest-corner, #aaf7f7 0%, #0c3d4d 100%);
-	background-image: -o-radial-gradient(center, ellipse farthest-corner, #aaf7f7 0%, #0c3d4d 100%);
-	background-image: -webkit-gradient(radial, center center, 0, center center, 497, color-stop(0, #aaf7f7), color-stop(1, #0c3d4d));
-	background-image: -webkit-radial-gradient(center, ellipse farthest-corner, #aaf7f7 0%, #0c3d4d 100%);
-	background-image: radial-gradient(ellipse farthest-corner at center, #aaf7f7 0%, #0c3d4d 100%);
+	background: #242B31;
 }
 #login-container {
 	padding: 30px;
@@ -62,10 +56,10 @@ body.login {
 	top: 0;
 	left: 0;
 	z-index:99999;
-	background: #f6f6f6;
+	background: #f3f3f3;
 	height: 70px;
   	width: 100%;
-	border-bottom: 1px #eee solid;
+	border-bottom: 1px #ddd solid;
 }
 #logo {
 	padding: 0 20px;
@@ -106,14 +100,12 @@ body.login {
 	color: #666;
 	font-weight: 400;
 	text-transform: none;
-	-moz-transition:all 0.2s ease;
-    -webkit-transition:all 0.2s ease;
-    -o-transition:all 0.2s ease;
-    transition:all 0.2s ease;
+	
 }
 
 #navbar ul#nav li a:hover, #navbar ul#nav li a:focus, #navbar ul#nav li a.active {
 	background: #eee;
+	border-bottom: 1px solid #ddd;
 }
 p { margin-bottom: 20px; }
 #toggledrawer {
@@ -397,4 +389,7 @@ td.type, th.type {
 .roomtable {
 	margin-bottom: 20px;
 }
+.building-image {
+		margin-top:10px;
+	}
 }

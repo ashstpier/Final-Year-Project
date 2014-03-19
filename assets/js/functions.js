@@ -1063,9 +1063,6 @@ function onWindowResize() {
 	camera.aspect = window.innerWidth / window.innerHeight;
 	camera.updateProjectionMatrix();
 	renderer.setSize( window.innerWidth, window.innerHeight );
-	if($(window).width() > 676){
-		$('#search').show();
-	}
 	if($(window).height() < 600){
 		for (var i=0, tot=zoomArray.length; i < tot; i++) {
 			zoomArray[i].scale.set(10,10,1.0);

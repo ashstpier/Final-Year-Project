@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-    <title>Final Year Project</title>
+    <title>Explore UKC</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
     <link href="assets/css/style_light.css" rel="stylesheet" type="text/css">
@@ -35,7 +35,6 @@
     <ul id="nav">
         <li id="search-toggle"><a href="#"><i class="fa fa-search"></i></a></li>
         <li><a href="index.php" class="active">Explore</a></li>
-        <li><a href="facts.html">10 Facts</a></li>
         <li><a href="social.php">Social</a></li>
         <li id="share"><a href="#"><i class="fa fa-share"></i></a></li>
     </ul>
@@ -58,6 +57,13 @@
     </div>
 </div>
 <div id="search">
+    <form name="search_form" id="searchForm" method="GET" onsubmit="return searchResult(this);">
+        <label for="searchBox"><i class="fa fa-search"></i> </label>
+        <input type="text" id="searchBox" name="searchString" placeholder="Search for a building or room..." />
+        <div class="search-error"><a href="#"><i class="fa fa-lg fa-times"></i></a></div>
+    </form>
+</div>
+<div id="search2">
     <form name="search_form" id="searchForm" method="GET" onsubmit="return searchResult(this);">
         <label for="searchBox"><i class="fa fa-search"></i> </label>
         <input type="text" id="searchBox" name="searchString" placeholder="Search for a building or room..." />
@@ -136,15 +142,16 @@
         <ul>
          	<li><a href="pages/help.php">Help</a></li>
             <li><a href="pages/about.php">About</a></li>
-            <li><a href="#">Case studies</a></li>
             <li><a href="pages/disclaimer.php">Disclaimer</a></li>
             <li><a href="pages/credits.php">Credits</a></li>
+            <li><a href="admin/">Admin</a></li>
             <li><a href="http://www.kent.ac.uk/">UKC website</a></li>
+            <li><a href="https://github.com/ashstpier/Final-Year-Project">GitHub Repository</a></li>
         </ul>
     </div>
 </div>
 <div class="controls-modal"><a href="#" class="controls-close"><i class="fa-times fa fa-lg"></i></a><h2>Welcome to the University of Kent Campus map!</h2><p>You can control the map by clicking and dragging with your mouse. Click on individual buildings to reveal information about them.</p><br/><p>Use the buttons below to rotate the map and change perspective.</p><div class="arrow-down"></div></div>
-<div id="zoom" class="controls-modal"><a href="#" class="controls-close"><i class="fa-times fa fa-lg"></i></a><h2>Welcome to the University of Kent Campus map!</h2><p>You can control the map by clicking and dragging with your mouse. Click on individual buildings to reveal information about them.</p><br/><p>Use the buttons below to rotate the map and change perspective.</p><div class="arrow-down"></div></div>
+<div id="zoom" class="controls-modal"><a href="#" class="controls-close"><i class="fa-times fa fa-lg"></i></a><h2>UKC points of interest</h2><p>Click and drag to rotate the camera to view some of the University of Kent's most popular events and places.</p><br/><p>Click the button below to exit back to the map view.</p><div class="arrow-down"></div></div>
 <div id="mapwrapper">
     <div id="modalpanel" class="animated flipcard">
     	<div class="card">
@@ -274,6 +281,8 @@ Modernizr.addValueTest = function(property,value){
 }
 Modernizr.addValueTest('transform-style','preserve-3d');
 
+$('#search').hide();
+
 var xml;
 
 $.ajax({
@@ -324,7 +333,7 @@ if( Detector.webgl ){
 		if (Modernizr.touch) {   
     		
 		}else{
-			$( '#leftnav button' ).tooltip({ position: { my: "right top", at: "left top" }, show: { effect: "slide", duration: 250 }, easing: "easeInOutQuad" });	
+			$( '#leftnav button' ).tooltip({ position: { my: "right top", at: "left top" }, show: { effect: "slide", duration: 200 }, hide: { effect: "slide", duration: 200 }, easing: "easeInOutQuad" });	
 		}
 	
 

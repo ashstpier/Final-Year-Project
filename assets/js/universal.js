@@ -74,7 +74,7 @@ $( ".search-error a" ).click(function() {
 	$('#searchBox').val('');
 });
 $( "#search-toggle a" ).click(function() {
-	$('#search').toggle( 300, "easeInOutQuint" );
+	$('#search2').toggle( 300, "easeInOutQuint" );
 	$(this).toggleClass( "active" );
 });
 $( "#leftnav button" ).hover(

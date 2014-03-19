@@ -64,7 +64,7 @@ background-image: linear-gradient(to bottom, #549FB8 0%, #CAF7F7 100%);
 	background: #f6f6f6;
 	height: 70px;
   	width: 100%;
-	border-bottom: #ddd solid 2px;
+	border-bottom: #ddd solid 1px;
 }
 #navbar #logo {
 	padding: 0 20px;
@@ -109,17 +109,13 @@ background-image: linear-gradient(to bottom, #549FB8 0%, #CAF7F7 100%);
 	color: #666;
 	font-weight: 400;
 	text-transform: none;
-	-moz-transition:background 0.2s ease;
-    -webkit-transition:background 0.2s ease;
-    -o-transition:background 0.2s ease;
-    transition:background 0.2s ease;
 }
 #navbar ul#nav li a i {
 	padding-right: 10px;
 }
 #navbar ul#nav li a:hover, #navbar ul#nav li a:focus, #navbar ul#nav li a.active {
 	background: #eee;
-	border-bottom: #ddd solid 2px;
+	border-bottom: #ddd solid 1px;
 }
 #navbar ul#nav li#share a { background: #ed7b5f; color: #fff; border-bottom: 2px solid #d66549; width: 70px; }
 #navbar ul#nav li#twitter a:hover { background: #55acee; color: #fff; }
@@ -159,15 +155,18 @@ background-image: linear-gradient(to bottom, #549FB8 0%, #CAF7F7 100%);
 	border-right: 10px solid transparent;
 	border-bottom: 10px solid #242B31;
 }
-#search {
+#search, #search2 {
 	position: absolute;
 	left: 360px;
 	top: 15px;
 	z-index: 99999;
 	height: 70px;
+	display:block;
+}
+#search2 {
 	display:none;
 }
-#searchForm label {
+#search #searchForm label, #search2 #searchForm label  {
 	color: #999;
 	font-size: 18px;
 }
@@ -185,7 +184,7 @@ background-image: linear-gradient(to bottom, #549FB8 0%, #CAF7F7 100%);
 :-moz-placeholder { color: #999; }
 ::-moz-placeholder { color: #999; }
 :-ms-input-placeholder { color: #999; }
-#searchForm input#searchBox {
+#search #searchForm input#searchBox, #search2 #searchForm input#searchBox {
 	padding: 7px 5px;
 	font-size: 16px;
 	border: none;
@@ -644,7 +643,8 @@ canvas {
 	margin: 0 2px;
 }
 #controls button:hover {
-	color: #fff;
+	color: #629ad1;
+	background: #f6f6f6;
 }
 .unchecked {
 	color: #6d7882;
@@ -991,6 +991,9 @@ button {
 	padding: 20px 20px;
 }
 #search {
+	display: none!important;
+}
+#search2 {
 	background: #f8f8f8;
 	width: 100%;
 	top: 60px;
@@ -999,19 +1002,18 @@ button {
 	height: 50px;
 	background: #eee;
 	border-bottom: #ddd solid 1px;
-	display: none;
 }
-#search form {
+#search2 form {
 	margin: 0;
 	padding: 0;
 }
-#searchForm input#searchBox {
+#search2 #searchForm input#searchBox {
 	margin: 0;
 	padding: 0;
 	font-size: 110%;
 	width: 200px;
 }
-#searchForm label {
+#search2 #searchForm label {
 	font-size: 110%;
 }
 #navbar ul#nav li#share a {

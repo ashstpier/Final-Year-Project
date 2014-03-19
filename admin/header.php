@@ -47,10 +47,6 @@
         $title = 'Admin - Save Subject Data'; 
 		$id = 'subjectdata';
         break;
-	case 'help.php': 
-        $title = 'Admin - Help'; 
-		$id = 'help';
-        break;
 	case 'faq.php': 
         $title = 'Admin - FAQ'; 
 		$id = 'faq';
@@ -85,7 +81,7 @@
     <h3>Help</h3>
     <ul>
     	<li><a href="faq.php" id="faq"><i class="fa fa-info"></i>FAQ</a></li>
-    	<li><a href="help.php" id="help"><i class="fa fa-info"></i>Help document</a></li>
+    	<li><a href="../pages/help.php"><i class="fa fa-info"></i>Map help pages</a></li>
    		<li><a href="https://github.com/ashstpier/Final-Year-Project" target="_blank"><i class="fa fa-github-alt"></i>Github repository</a></li>
       	<li><a href="http://www.kent.ac.uk/" target="_blank"><i class="fa fa-globe"></i>University of Kent</a></li>
     </ul>

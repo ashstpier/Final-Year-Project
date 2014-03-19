@@ -743,7 +743,7 @@
 		<description>The Registry is the main administration building for the University of Kent. it contains the Student Records and Examinations Office and the Finance Department.</description>
 	<type>Admin</type></building>
     <building label="Research_and_Development_Centre">
-		<description>this is the brief description.</description>
+		<description>The Kent Research and Development Centre helps to coordinate research projects at the university.</description>
 		<rooms>
 			<room value="RDC-101A">RDC 101A Video Conference Room</room>
 			<room value="RDC-101B">RDC 101B Mirror Lab</room>
@@ -896,7 +896,7 @@
 		<description>The Turing College development consists of the design, construction and operation of new student accommodation comprising of 801 student rooms and a 'Hub' building.</description>
 	<type>College</type></building>
 	<building label="Tyler_Court_A">
-		<description>this is the brief description.</description>
+		<description>Tyler Court A offers en-suite study bedrooms arranged in corridors sharing a fully equipped kitchen.</description>
 		<datalist>
 			<data type="roomprice">5353</data>
 			<data type="population">189</data>
@@ -909,7 +909,7 @@
 		</list>
 	<type>Accommodation</type></building>
 	<building label="Tyler_Court_B">
-		<description>this is the brief description.</description>
+		<description>Tyler Court B offers en-suite study bedrooms arranged in 8-9 bed flats sharing a large fully equipped kitchen. The accommodation is some of the largest on campus.</description>
 		<datalist>
 			<data type="roomprice">5872</data>
 			<data type="population">339</data>
@@ -922,7 +922,7 @@
 		</list>
 	<type>Accommodation</type></building>
 	<building label="Tyler_Court_C">
-		<description>this is the brief description.</description>
+		<description>Tyler Court B offers en-suite study bedrooms arranged in 8-9 bed flats sharing a large fully equipped kitchen. The accommodation is some of the largest on campus.</description>
 		<datalist>
 			<data type="roomprice">5872</data>
 			<data type="population">339</data>
@@ -935,16 +935,16 @@
 		</list>
 	<type>Accommodation</type></building>
 	<building label="UELT">
-		<description>this is the brief description.</description>
+		<description>The Unit for the Enhancement of Learning and Teaching (UELT) provides a range of services for staff and students that promote a high quality learning experience at Kent.</description>
 	<type>Admin</type></building>
 	<building label="University_Medical_Centre">
-		<description>this is the brief description.</description>
+		<description>The University Medical Centre is an NHS general practice based on the University of Kent Canterbury campus and welcome new patients. Appointments can be booked by telephone or in person.</description>
 	<type>Maintenance</type></building>
     <building label="Venue">
-		<description>test</description>
+		<description>The Venue, run by Kent Union, is a student nightclub located in the centre of campus which plays host to a variety of entertainment to suit every genre of music. Recently refurbished, The Venue has two floors of state-of-the-art design, sound and lighting.</description>
 	<type>Community</type></building>
     <building label="Willows_Court">
-		<description>this is the brief description.</description>
+		<description>Willows Court houses have shower and toilet facilities upstairs, with an additional downstairs toilet. The kitchen/diner has an oven and hob, fridge/freezer and microwave.</description>
 		<datalist>
 			<data type="roomprice">3955</data>
 			<data type="population">80</data>
@@ -957,13 +957,13 @@
 		</list>
 	<type>Accommodation</type></building>
     <building label="Woodlands">
-		<description>this is the brief description.</description>
+		<description>The Tizard Centre at Woodlands is one of the leading UK academic groups working in learning disability and community care.</description>
 	<type>Teaching</type></building>
     <building label="Woodys">
-		<description>this is the brief description.</description>
+		<description>Located just a minute away from the UKC Sports Pitches, Woody's is the best Venue for Live Music, Live Sport and Home Cooked Pub Grub!</description>
 	<type>Community</type></building>
     <building label="Woolf_Blocks">
-		<description>this is the brief description.</description>
+		<description>The accommodation at Woolf is arranged in flats, with six or eight students sharing a large, fully equipped kitchen. There are also some self-contained studio flats, which have their own cooking facilities.</description>
 		<datalist>
 			<data type="roomprice">5846</data>
 			<data type="population">503</data>
@@ -976,7 +976,7 @@
 		</list>
 	<type>Accommodation</type></building>
     <building label="Woolf_College">
-		<description>this is the brief description.</description>
+		<description>The Woolf College main academic building has a large lecture theatre, seminar rooms and a social area. The college is mostly used for Postgraduate study but is also used by various Undergraduate courses.</description>
 		<rooms>
 			<room value="W_L-FOYER">Woolf Lower Foyer</room>
 			<room value="W_U-FOYER">Woolf Upper Foyer</room>
@@ -991,10 +991,10 @@
 		</rooms>
 	<type>College</type></building>
 	<building label="Woolf_Pavillion">
-		<description>this is the brief description.</description>
+		<description>Woolf Reception is situated in the Pavilion where our dedicated Helpdesk, Maintenance and Housekeeping teams are on hand to assist with any queries you may have.</description>
 	<type>Community</type></building>
     <building label="Woolf_Residential">
-		<description>this is the brief description.</description>
+		<description>The accommodation at Woolf is arranged in flats, with six or eight students sharing a large, fully equipped kitchen. There are also some self-contained studio flats, which have their own cooking facilities.</description>
 		<datalist>
 			<data type="roomprice">6823</data>
 			<data type="population">41</data>
