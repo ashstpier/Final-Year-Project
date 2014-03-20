@@ -375,6 +375,10 @@ background-image: linear-gradient(to bottom, #549FB8 0%, #CAF7F7 100%);
 	color: #ff9900;
 	content: "\f068";
 }
+#footpaths.toggled:before {
+	color: #333;
+	content: "\f068";
+}
 #bikeracks.toggled:before {
 	content: "\f111";
 	color: #ff9900;

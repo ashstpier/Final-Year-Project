@@ -1,6 +1,6 @@
 var container, stats, camera, scene, renderer, composer, projector, controls, ground, particleSystem, group = new THREE.Object3D();
 var depthMaterial, depthTarget;
-var clickobjects = [], tweetobjects = [], zoomobjects = [], sprites = [], locationIcons = [], teachingIcons = [], communityIcons = [], tweetIcons = [], visitorParking = [], permitParking = [], cycleArray = [], busArray = [], maintenanceIcons = [], adminIcons = [], rotate = [], investmentArray = [], developmentArray = [], roompriceArray = [], populationArray = [], subjectscoreArray = [], subjectsatisfactionArray = [], entrypointsArray = [], sizeArray = [], buildings = [], roadArray = [], darwinRoute = [], keynesRoute = [], parkwoodRoute = [], cycleRoute = [], zoomArray = [], textlookat = [], busIcons = [];
+var clickobjects = [], tweetobjects = [], zoomobjects = [], sprites = [], locationIcons = [], teachingIcons = [], communityIcons = [], tweetIcons = [], visitorParking = [], permitParking = [], cycleArray = [], busArray = [], maintenanceIcons = [], adminIcons = [], rotate = [], investmentArray = [], developmentArray = [], roompriceArray = [], populationArray = [], subjectscoreArray = [], subjectsatisfactionArray = [], entrypointsArray = [], sizeArray = [], buildings = [], roadArray = [], darwinRoute = [], keynesRoute = [], parkwoodRoute = [], cycleRoute = [], footPath = [], zoomArray = [], textlookat = [], busIcons = [];
 var jsonFileNames = [
 	'assets/models/Aphra_and_Lumley_Theatre.js',
 	'assets/models/Becket_Court.js',

@@ -581,7 +581,7 @@ function busRoutes(){
 		{ x:-222, y:4.1, z:-219 }
     ];
     
-    var previous = new THREE.Vector3(-16, -33, 485)
+    var previous = new THREE.Vector3(-16, -33, 485);
     for (var pt = 0; pt < path.length; ++pt) {
         var o = path[pt];
 		drawCylinder(previous, new THREE.Vector3(o.x, o.y, o.z), parkwoodRoute, 0x0099cc);
@@ -602,7 +602,7 @@ function busRoutes(){
 		{ x:144, y:1, z:186 }
     ];
     
-    var previous = new THREE.Vector3(-18, -33, 484)
+    var previous = new THREE.Vector3(-18, -33, 484);
     for (var pt = 0; pt < path.length; ++pt) {
         var o = path[pt];
 		drawCylinder(previous, new THREE.Vector3(o.x, o.y, o.z), keynesRoute, 0x9367bf);
@@ -667,10 +667,22 @@ function busRoutes(){
 		{ x:-564, y:6, z:-176 },
     ];
     
-    var previous = new THREE.Vector3(490, -42, 425)
+    var previous = new THREE.Vector3(490, -42, 425);
     for (var pt = 0; pt < path.length; ++pt) {
         var o = path[pt];
 		drawCylinder(previous, new THREE.Vector3(o.x, o.y, o.z), cycleRoute, 0xff7b00);
+		previous = new THREE.Vector3(o.x, o.y, o.z);
+	}
+	
+	var path = [
+        { x:-147, y:4, z:-62 },
+		{ x:-142, y:1, z:-18 }
+    ];
+    
+    var previous = new THREE.Vector3( -147, 4, -62 );
+    for (var pt = 0; pt < path.length; ++pt) {
+        var o = path[pt];
+		drawCylinder(previous, new THREE.Vector3(o.x, o.y, o.z), footPath, 0x333333);
 		previous = new THREE.Vector3(o.x, o.y, o.z);
 	}
 }

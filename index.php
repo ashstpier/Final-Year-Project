@@ -100,6 +100,7 @@
             <li><a href="#" class="toggle" id="darwinbus">Darwin bus</a></li>
             <li><a href="#" class="toggle" id="parkwoodbus">Parkwood bus</a></li>
             <li><a href="#" class="toggle" id="cycleroutes">Cycle routes</a></li>
+            <li><a href="#" class="toggle" id="footpaths">Footpaths</a></li>
         </ul>
         <h3>Transport</h3>
         <ul>

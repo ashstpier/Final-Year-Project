@@ -30,7 +30,6 @@ function dragStart( event ) {
 		SELECTED = intersects[ 0 ].object.parent;
 		var intersects = raycaster.intersectObject( plane );
 		offset.copy( new THREE.Vector3( intersects[ 0 ].point.x - group.position.x, 0, intersects[ 0 ].point.z - group.position.z ) );
-		console.log(offset);
 		container.style.cursor = 'move';
 	}
 	
@@ -498,7 +497,6 @@ function onDocumentMouseMove( event ) {
 	mouse.x = ( event.clientX / window.innerWidth ) * 2 - 1;
 	mouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
 	var vector = new THREE.Vector3( mouse.x, mouse.y, 0.5 );
-	console.log(vector);
 	projector.unprojectVector( vector, camera );
 	var raycaster = new THREE.Raycaster( camera.position, vector.sub( camera.position ).normalize() );
 	
@@ -536,7 +534,7 @@ function onDocumentMouseMove( event ) {
 		container.style.cursor = 'pointer';	
 	}
 	
-	/*
+	
 	var vector = new THREE.Vector3(
     ( event.clientX / window.innerWidth ) * 2 - 1,
     - ( event.clientY / window.innerHeight ) * 2 + 1,
@@ -551,7 +549,7 @@ function onDocumentMouseMove( event ) {
 	var pos = camera.position.clone().add( dir.multiplyScalar( distance ) );
 	
 	console.log(pos);
-	*/
+	
 }
 function dragMove( event ) {
 	event.preventDefault();
@@ -988,6 +986,17 @@ $( "#cycleroutes" ).click(function() {
 		}
 	}
 });
+$( "#footpaths" ).click(function() {
+	if ($(this).hasClass( "toggle" )) {
+		for (var i=0, tot=footPath.length; i < tot; i++) {
+			footPath[i].visible = true;
+		}
+	} else {
+		for (var i=0, tot=footPath.length; i < tot; i++) {
+			footPath[i].visible = false;
+		}
+	}
+});
 $( "#bikeracks" ).click(function() {
 	if ($(this).hasClass( "toggle" )) {
 		for (var i=0, tot=cycleArray.length; i < tot; i++) {
@@ -999,17 +1008,6 @@ $( "#bikeracks" ).click(function() {
 		}
 	}
 });
-/*$( "#busstops" ).click(function() {
-	if ($(this).hasClass( "toggle" )) {
-		for (var i=0, tot=busArray.length; i < tot; i++) {
-			busArray[i].visible = true;
-		}
-	} else {
-		for (var i=0, tot=busArray.length; i < tot; i++) {
-			busArray[i].visible = false;
-		}
-	}
-});*/
 $( "#visitorparking" ).click(function() {
 	var parking = scene.getObjectByName( "Visitor_Parking", true );
 	if ($(this).hasClass( "toggle" )) {
