@@ -4,8 +4,7 @@ if(!file_exists('users/' . $_SESSION['username'] . '.xml')){
 	header('Location: login.php');
 	die;
 }
-require 'header.php'; ?>
-<?
+require 'header.php';
 $name = $_GET["building"];
 $xml=simplexml_load_file("../assets/buildings.xml");
 

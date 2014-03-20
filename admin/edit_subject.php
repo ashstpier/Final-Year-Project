@@ -4,8 +4,7 @@ if(!file_exists('users/' . $_SESSION['username'] . '.xml')){
 	header('Location: login.php');
 	die;
 }
-require 'header.php'; ?>
-<?
+require 'header.php';
 $name = $_GET["building"];
 $xml=simplexml_load_file("../assets/buildings.xml");
 
@@ -16,9 +15,9 @@ foreach ($query as $building) {
 	$titleraw = $building->attributes();
 	$title = str_replace('_', ' ', $titleraw);
 	
-	$subjectscore = $xml->xpath('/buildings/building[@label="'.$titleraw.'"]/datalist/data[@type="subjectscore"]');
-	$subjectsatisfaction = $xml->xpath('/buildings/building[@label="'.$titleraw.'"]/datalist/data[@type="subjectsatisfaction"]');
-	$entrypoints = $xml->xpath('/buildings/building[@label="'.$titleraw.'"]/datalist/data[@type="entrypoints"]');
+	$subjectscore = $xml->xpath('/buildings/building[@label="'.$name.'"]/datalist/data[@type="subjectscore"]');
+	$subjectsatisfaction = $xml->xpath('/buildings/building[@label="'.$name.'"]/datalist/data[@type="subjectsatisfaction"]');
+	$entrypoints = $xml->xpath('/buildings/building[@label="'.$name.'"]/datalist/data[@type="entrypoints"]');
 }
 ?>
 <div class="container">

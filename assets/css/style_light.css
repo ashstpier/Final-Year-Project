@@ -532,10 +532,10 @@ background-image: linear-gradient(to bottom, #549FB8 0%, #CAF7F7 100%);
 #modalpanel .footer {
 	width: 100%;
 	clear: both;
-	background: #eee;
+	background: #ddd;
 	position: relative;
 	padding: 15px 20px;
-	border-top: #ddd solid 1px;
+	border-top: #ccc solid 1px;
 }
 #modalpanel .footer ul {
 	list-style-type:none;
@@ -546,8 +546,8 @@ background-image: linear-gradient(to bottom, #549FB8 0%, #CAF7F7 100%);
 	display: inline-block;
 	width: 33%;
 	text-align: center;
-	color: #999;
-	border-right: 1px solid #ddd;
+	color: #666;
+	border-right: 1px solid #ccc;
 }
 #modalpanel .footer ul li:last-child {
 	border-right: none;
@@ -569,7 +569,7 @@ background-image: linear-gradient(to bottom, #549FB8 0%, #CAF7F7 100%);
 	border-top: 20px solid #f8f8f8;
 }
 .arrow-down.grey{
-	border-top: 20px solid #eee;
+	border-top: 20px solid #ddd;
 }
 .tweetpanel {
 	position: absolute;

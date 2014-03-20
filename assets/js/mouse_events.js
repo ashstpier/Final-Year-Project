@@ -1228,7 +1228,7 @@ $("#start").click(function() {
 		$('#controls').fadeIn(500);
 		var visited = $.cookie('visited')
 		if (visited == null) {
-			$('.controls-modal').slideDown(500);
+			$('#cookie').slideDown(500);
 			$('.modal-overlay').show();
 		}
 		$.cookie('visited', 'yes_visited', {
