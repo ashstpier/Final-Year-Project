@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 		<head>
-		<title>Final Year Project</title>
+		<title>Social</title>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 		<link href="assets/css/style_light.css" rel="stylesheet" type="text/css">
@@ -27,7 +27,7 @@
 <div id="navbar">
 	<div id="logo"><a href="http://www.kent.ac.uk/" target="_blank"><img src="assets/images/logo.png" alt="University of Kent logo" /></a><h1>Sharing your ideas!</h1></div>
     <ul id="nav">
-        <li><a href="index.php">Explore</a></li>
+        <li><a href="map.php">Explore</a></li>
         <li><a href="social.php" class="active">Social</a></li>
         <li id="share"><a href="#"><i class="fa fa-heart-o"></i></a></li>
     </ul>

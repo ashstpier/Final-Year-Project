@@ -22,28 +22,24 @@
 <body>
 <div id="preloader">
 	<div id="preloader-content">
-    	<h2>Loading the University of Kent<br/> campus map.</h2>
-        <img src="assets/images/splash.gif" alt="University of Kent logo" />
+        <img src="assets/images/splash.gif" alt="University of Kent loading" />
         <div id="percent">0%</div>
-        <nav class="cl-effect-2">
-            <a href="#" id="start"><span data-hover="Explore the campus now!" class="external">Explore the campus now!</span></a>
-        </nav>
     </div>
 </div>
 <div id="navbar" class="fold close">
 	<div id="logo"><a href="http://www.kent.ac.uk/" target="_blank"><img src="assets/images/logo.png" alt="University of Kent logo" /></a><h1>Explore the campus!</h1></div>
     <ul id="nav">
         <li id="search-toggle"><a href="#"><i class="fa fa-search"></i></a></li>
-        <li><a href="index.php" class="active">Explore</a></li>
+        <li><a href="map.php" class="active">Explore</a></li>
         <li><a href="social.php">Social</a></li>
-        <li id="share"><a href="#"><i class="fa fa-share"></i></a></li>
+        <li id="share"><a href="#"><i class="fa fa-heart-o"></i></a></li>
     </ul>
     <div id="sharebox">
     	<div class="arrow-down"></div>
     	<ul>
-        	<li><a href="http://twitter.com/home?status=Currently reading <?php echo $_SERVER['REQUEST_URI'] ?>" title="Share on Twitter" target="_blank"><i class="fa fa-twitter"></i></a></li>
-            <li><a href="http://www.facebook.com/sharer.php?u=<?php echo $_SERVER['REQUEST_URI'] ?>" title="Share on Facebook" target="blank"><i class="fa fa-facebook"></i></a></li>
-            <li><a href="https://plus.google.com/share?url=<?php echo $_SERVER['REQUEST_URI'] ?>" title="Share on Google Plus" target="blank"><i class="fa fa-google-plus"></i></a></li>
+        	<li><a href="http://twitter.com/home?status=Currently reading 3d.eda.kent.ac.uk" title="Share on Twitter" target="_blank"><i class="fa fa-twitter"></i></a></li>
+            <li><a href="http://www.facebook.com/sharer.php?u=3d.eda.kent.ac.uk" title="Share on Facebook" target="blank"><i class="fa fa-facebook"></i></a></li>
+            <li><a href="https://plus.google.com/share?url=3d.eda.kent.ac.uk" title="Share on Google Plus" target="blank"><i class="fa fa-google-plus"></i></a></li>
         </ul>
     </div>
 </div>
@@ -130,7 +126,7 @@
         	<li><a href="#" class="toggle" id="subjectsatisfaction">Subject satisfaction</a></li>
             <li><a href="#" class="toggle" id="entrypoints">Subject entry points</a></li>
         </ul>
-        <a href="http://www.thecompleteuniversityguide.co.uk/league-tables/rankings" class="external" target="_blank">More league scores</a>
+        <a href="http://www.thecompleteuniversityguide.co.uk/kent" class="external" target="_blank">More league scores</a>
     </div>
     <div id="event-panel" class="slidepanel">
         <h2>Events</h2>
@@ -166,21 +162,27 @@
     
     <div id="tweet_kentunion" class="tweetpanel animated">
 		<?php display_tweet('kentunion','time_since', 1, 30); ?>
+        <div class="arrow-down"></div>
     </div>
     <div id="tweet_unikent" class="tweetpanel animated">
 		<?php display_tweet('unikent','time_since', 1, 30); ?>
+        <div class="arrow-down"></div>
     </div>
     <div id="tweet_unikentemploy" class="tweetpanel animated">
 		<?php display_tweet('unikentemploy','time_since', 1, 30); ?>
+        <div class="arrow-down"></div>
     </div>
     <div id="tweet_unikent_music" class="tweetpanel animated">
 		<?php display_tweet('unikent_music','time_since', 1, 30); ?>
+        <div class="arrow-down"></div>
     </div>
     <div id="tweet_edakent" class="tweetpanel animated">
 		<?php display_tweet('edakent','time_since', 1, 30); ?>
+        <div class="arrow-down"></div>
     </div>
     <div id="tweet_parkwoodsc" class="tweetpanel animated">
 		<?php display_tweet('parkwoodsc','time_since', 1, 30); ?>
+        <div class="arrow-down"></div>
     </div>
     
     <div id="keynes_bus" class="busmodal animated">
@@ -212,6 +214,8 @@
         	<?php include_once 'assets/darwin_table.php' ?>
         </div>
         <div class="arrow-down"></div>
+    </div>
+    <div id="factmodal" class="animated">
     </div>
     <div id="controls">
         <button id="rotateleft" type="button"><i class="fa fa-chevron-left"></i></button>
@@ -284,13 +288,19 @@ Modernizr.addValueTest('transform-style','preserve-3d');
 
 $('#search').hide();
 
-var xml;
+var xml, factxml;
 
 $.ajax({
 	type: "GET",
 	url: "assets/buildings.xml",
 	dataType: "xml",
 	success: function(data) { xml = data;}
+});
+$.ajax({
+	type: "GET",
+	url: "assets/facts.xml",
+	dataType: "xml",
+	success: function(data) { factxml = data;}
 });
 </script>
 
@@ -323,7 +333,7 @@ if( Detector.webgl ){
      
 <script src="assets/js/functions.js"></script> 
 <script src="assets/js/mouse_events.js"></script>
-<script src="assets/js/helvetiker_regular.typeface.js"></script>
+<script src="assets/js/helvetiker_bold.typeface.js"></script>
 <script src="assets/js/core.js"></script>
 <script src="assets/js/universal.js"></script>
 

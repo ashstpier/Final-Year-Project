@@ -113,7 +113,7 @@ function init() {
 	controls.addEventListener( 'change', render );
 	controls.maxPolarAngle = Math.PI/2.25; 
 	controls.minDistance = 200;
-	controls.maxDistance = 700;
+	controls.maxDistance = 800;
 	controls.enabled = true;
 	controls.center.set(0,-10,0);
 	
@@ -134,17 +134,38 @@ function init() {
 		$('#preloader #percent').html(Math.round(percent)+'%');
 	}
 	function handleComplete() {
-		$('#percent').css('display','none');
-		$('#start').css('display','inline-block');
-		$('.spinner').fadeOut(1000);
+		$('#status').fadeOut(500);
+		$('#preloader').fadeOut(500);
+		$('body').css({'overflow':'visible'});
+		$('#mapwrapper').show();
+		new TWEEN.Tween( camera.position ).to( { x: 0, y: 350, z: 500 }, 3000 ).easing( TWEEN.Easing.Quadratic.InOut).start();
+		setTimeout(function(){
+			$('#navbar').toggleClass("open close");
+		},3000);
+		setTimeout(function(){
+			$('#leftnav').toggleClass("openleft closeleft");
+			if($(window).width() > 676){
+				$('#search').fadeIn(500);
+			}
+			$('#controls').fadeIn(500);
+			var visited = $.cookie('visited')
+			if (visited == null) {
+				$('#cookie').slideDown(500);
+				$('.modal-overlay').show();
+			}
+			$.cookie('visited', 'yes_visited', {
+				expires: 1,
+				path: '/'
+			});
+		},3300);
 	}
 
 	scene = new THREE.Scene();
-	scene.fog = new THREE.Fog( 0xffffff, 100, 1800 );
+	scene.fog = new THREE.Fog( 0xf7f3e6, 100, 1800 );
 	
 	/////////// LIGHTS ////////////
 	
-	var directionalLight = new THREE.DirectionalLight( 0xcccccc ,0.5 );
+	var directionalLight = new THREE.DirectionalLight( 0xeeeeee ,0.5 );
 	directionalLight.position.set( 700, 1600, 200 )
 	directionalLight.castShadow = true;
 	directionalLight.shadowDarkness = 0.4;
@@ -168,7 +189,7 @@ function init() {
 	makeDevelopments();
 	makeZoom();
 	makeBusstops();
-	//makeClouds();
+	makeFacts();
 	
 	var sprite = makeZoomSprite("assets/images/icons/ico_keynestock.png");
 	sprite.position.set(136,11,29);
@@ -369,7 +390,7 @@ function init() {
 	
 }
 
-var modal, tweetmodal, busmodal;
+var modal, tweetmodal, busmodal, factmodal;
 
 function positionTrackingOverlay()
 {
@@ -396,15 +417,15 @@ function positionTrackingOverlay()
 		top = percY * HEIGHT;
 		
 		if($(window).height() < 600){
-			widthPercentage = (left - $("#modalpanel").width() / 2) / WIDTH * 100;
-			heightPercentage = (top - $("#modalpanel").height()) / HEIGHT * 120;
+			widthPercentage = (left - $("#modalpanel").innerWidth() / 2) / WIDTH * 100;
+			heightPercentage = (top - $("#modalpanel").innerHeight()) / HEIGHT * 120;
 			
 			$("#modalpanel")
 					.css('left', widthPercentage + '%')
 					.css('top', heightPercentage + '%');	
 		}else{
-			widthPercentage = (left - $("#modalpanel").width() / 2) / WIDTH * 100;
-			heightPercentage = (top - $("#modalpanel").height()) / HEIGHT * 100;
+			widthPercentage = (left - $("#modalpanel").innerWidth() / 2) / WIDTH * 100;
+			heightPercentage = (top - $("#modalpanel").innerHeight()) / HEIGHT * 100;
 			
 			$("#modalpanel")
 					.css('left', widthPercentage + '%')
@@ -431,10 +452,10 @@ function positionTrackingOverlay()
 		left = percX * WIDTH;
 		top = percY * HEIGHT;
 				
-		widthPercentage = (left - $(".tweetpanel").width() / 2) / WIDTH * 100;
-		heightPercentage = (top - $(".tweetpanel").height()) / HEIGHT * 100;
+		widthPercentage = (left - $(tweetcontainer).innerWidth() / 2) / WIDTH * 100;
+		heightPercentage = (top - $(tweetcontainer).innerHeight()) / HEIGHT * 100;
 		
-		$(".tweetpanel")
+		$(tweetcontainer)
 				.css('left', widthPercentage + '%')
 				.css('top', heightPercentage + '%');
 					
@@ -450,7 +471,7 @@ function positionTrackingOverlay()
 		position.add( boundingBox.min );
 		position.applyMatrix4( busmodal.matrixWorld );
 		
-		p = position.clone();
+		p = new THREE.Vector3(position.x,position.y - 7,position.z);
 		v = projector.projectVector(p, camera);
 		percX = (v.x + 1) / 2;
 		percY = (-v.y + 1) / 2;
@@ -458,10 +479,37 @@ function positionTrackingOverlay()
 		left = percX * WIDTH;
 		top = percY * HEIGHT;
 				
-		widthPercentage = (left - $(".busmodal").width() / 2) / WIDTH * 100;
-		heightPercentage = (top - $(".busmodal").height()) / HEIGHT * 100;
+		widthPercentage = (left - $(".busmodal").innerWidth() / 2) / WIDTH * 100;
+		heightPercentage = (top - $(".busmodal").innerHeight()) / HEIGHT * 100;
 		
 		$(".busmodal")
+				.css('left', widthPercentage + '%')
+				.css('top', heightPercentage + '%');	
+	}
+	if(factmodal != null){
+		
+		var visibleWidth, visibleHeight, p, v, percX, percY, left, top;
+		
+		factmodal.geometry.computeBoundingBox();
+		var boundingBox = factmodal.geometry.boundingBox;
+		var position = new THREE.Vector3();
+		position.subVectors( boundingBox.max, boundingBox.min );
+		position.multiplyScalar( 0.5 );
+		position.add( boundingBox.min );
+		position.applyMatrix4( factmodal.matrixWorld );
+		
+		p = new THREE.Vector3(position.x,position.y - 7,position.z);
+		v = projector.projectVector(p, camera);
+		percX = (v.x + 1) / 2;
+		percY = (-v.y + 1) / 2;
+
+		left = percX * WIDTH;
+		top = percY * HEIGHT;
+				
+		widthPercentage = (left - $("#factmodal").innerWidth() / 2) / WIDTH * 100;
+		heightPercentage = (top - $("#factmodal").innerHeight()) / HEIGHT * 100;
+		
+		$("#factmodal")
 				.css('left', widthPercentage + '%')
 				.css('top', heightPercentage + '%');	
 	}

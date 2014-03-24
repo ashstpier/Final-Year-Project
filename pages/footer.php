@@ -1,5 +1,5 @@
 		<div id="footnav" class="unit one-of-four">
-        	<a href="../index.php" class="button"><i class="fa fa-compass fa-fw"></i> Explore</a>
+        	<a href="../map.php" class="button"><i class="fa fa-compass fa-fw"></i> Explore</a>
             <h3>More links:</h3>
             <ul class="nav nav-pills nav-stacked">
               <li><a href="help.php"><i class="fa fa-info fa-fw"></i> Help</a></li>

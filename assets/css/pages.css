@@ -14,7 +14,7 @@ html, body {
 body {
 	font-family: 'Open Sans', sans-serif;
 	font-weight: 400;
-	font-size: 16px;
+	font-size: 14px;
 	color: #555;
 	background: #f8f8f8;
 }
@@ -83,7 +83,7 @@ ul.nav li {
 ul.nav li a {
 	color: #555;
 	text-decoration:none;
-	font-size: 16px;
+	font-size: 14px;
 }
 ul.nav li a:hover {
 	color: #629ad1;
@@ -102,7 +102,6 @@ a.button {
 	margin: 0 0 20px;
 	text-decoration: none;
 	font-family: 'Open Sans', sans-serif;
-	font-size: 80%;
 	display: inline-block;
 }
 a.button:hover {

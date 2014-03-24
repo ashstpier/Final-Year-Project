@@ -82,14 +82,19 @@
 .tweet-modal {
 	width: 360px;
 	overflow: hidden;
-	background: #629ad1;
+	background: #55acee;
 	color: #fff;
-	padding: 10px;
+	box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.6);
+	-moz-box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.6);
+	-webkit-box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.6);
+}
+.tweetpanel .arrow-down {
+	border-top: 20px solid #55acee;
 }
 .closetweet {
 	position: absolute;
-	right: 10px;
-	top: 15px;
+	right: 20px;
+	top: 20px;
 }
 .tweet-modal header {
 	padding: 10px 20px;
@@ -99,6 +104,7 @@
 }
 .tweet-modal header h2 {
 	margin: 0;
+	padding: 0 10px;
 	color: #fff;
 	font-weight: bold;
 	letter-spacing: 0.1em;

@@ -74,8 +74,8 @@ background-image: linear-gradient(to bottom, #549FB8 0%, #CAF7F7 100%);
 	position: absolute;
 	left: 0;
 	top: 0;
-	background: #629ad1;
-	border-bottom: 2px solid #4c80b5;
+	background: #3ca4cf;
+	border-bottom: 2px solid #3495bf;
 }
 #navbar h1 {
 	padding: 23px;
@@ -264,7 +264,7 @@ background-image: linear-gradient(to bottom, #549FB8 0%, #CAF7F7 100%);
 	display: none;
 }
 .slide-drawer h2 {
-	color: #629ad1;
+	color: #3ca4cf;
 	height: 59px;
 	font-weight: 300;
 	letter-spacing: 1px;
@@ -354,10 +354,10 @@ background-image: linear-gradient(to bottom, #549FB8 0%, #CAF7F7 100%);
 	color: #e6be68;
 }
 #visitorparking.toggled:before {
-	color: #0099cc;
+	color: #1e3954;
 }
 #permitparking.toggled:before {
-	color: #5757b5;
+	color: #4d7ba8;
 }
 #keynesbus.toggled:before {
 	color: #ac5fcf;
@@ -378,6 +378,9 @@ background-image: linear-gradient(to bottom, #549FB8 0%, #CAF7F7 100%);
 #footpaths.toggled:before {
 	color: #333;
 	content: "\f068";
+}
+#roadnames.toggled:before {
+	color: #ed7b5f;
 }
 #bikeracks.toggled:before {
 	content: "\f111";
@@ -428,7 +431,7 @@ background-image: linear-gradient(to bottom, #549FB8 0%, #CAF7F7 100%);
 	padding: 0;
 	font-weight: normal;
 	text-transform:none;
-	color: #629ad1;
+	color: #3ca4cf;
 	text-decoration: underline;
 }
 #eventlist h3 a:hover {
@@ -485,6 +488,9 @@ background-image: linear-gradient(to bottom, #549FB8 0%, #CAF7F7 100%);
 	width: 100%;
 	background: #f8f8f8;
 	margin-bottom: 20px;
+	box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.5);
+	-moz-box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.5);
+	-webkit-box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.5);
 }
 #modalpanel .header {
 	padding: 20px;
@@ -496,7 +502,7 @@ background-image: linear-gradient(to bottom, #549FB8 0%, #CAF7F7 100%);
 	width: 120px;
 	height: 120px;
 	border-radius: 50%;
-	border: 5px solid #629ad1;
+	border: 5px solid #3ca4cf;
 	display: block;
 	margin: 0;
 }
@@ -509,7 +515,7 @@ background-image: linear-gradient(to bottom, #549FB8 0%, #CAF7F7 100%);
 	display: block;
 	padding: 10px 20px;
 	text-align:center;
-	background: #629ad1;
+	background: #3ca4cf;
 	color: #fff;
 	margin-top: 20px;
 	border-radius: 3px;
@@ -536,10 +542,10 @@ background-image: linear-gradient(to bottom, #549FB8 0%, #CAF7F7 100%);
 #modalpanel .footer {
 	width: 100%;
 	clear: both;
-	background: #ddd;
+	background: #eee;
 	position: relative;
 	padding: 15px 20px;
-	border-top: #ccc solid 1px;
+	border-top: #ddd solid 1px;
 }
 #modalpanel .footer ul {
 	list-style-type:none;
@@ -573,7 +579,7 @@ background-image: linear-gradient(to bottom, #549FB8 0%, #CAF7F7 100%);
 	border-top: 20px solid #f8f8f8;
 }
 .arrow-down.grey{
-	border-top: 20px solid #ddd;
+	border-top: 20px solid #eee;
 }
 .tweetpanel {
 	position: absolute;
@@ -587,9 +593,12 @@ background-image: linear-gradient(to bottom, #549FB8 0%, #CAF7F7 100%);
 	color:#555;
 	font-weight: 400;
 	width: 360px;
+	box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.5);
+	-moz-box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.5);
+	-webkit-box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.5);
 }
 .busmodal .header {
-	background: #629ad1;
+	background: #3ca4cf;
 	color: #fff;
 	padding: 10px 20px;
 }
@@ -623,6 +632,34 @@ background-image: linear-gradient(to bottom, #549FB8 0%, #CAF7F7 100%);
 	padding: 5px 10px;
 	text-align: center;
 }
+#factmodal {
+	position: absolute;
+	z-index: 99;
+	display: none;
+	color:#fff;
+	font-weight: 400;
+	width: 360px;
+	background: #ed7b5f;
+	padding: 20px;
+	text-align: center;
+	box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.6);
+	-moz-box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.6);
+	-webkit-box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.6);
+}
+.closefact {
+	position: absolute;
+	right: 20px;
+	top: 20px;
+}
+#factmodal h2 {
+	font-weight: bold;
+}
+#factmodal .arrow-down {
+	border-top: 20px solid #ed7b5f;
+}
+#factmodal a {
+	color: #fff;
+}
 canvas {
 	font-size: 16px;
 }
@@ -647,7 +684,7 @@ canvas {
 	margin: 0 2px;
 }
 #controls button:hover {
-	color: #629ad1;
+	color: #3ca4cf;
 	background: #f6f6f6;
 }
 .unchecked {
@@ -662,16 +699,12 @@ button {
 	margin: 0;
 	height: 60px;
 	width: 60px;
-	-moz-transition:background-color 0.2s ease-out;
-    -webkit-transition:background-color 0.2s ease-out;
-    -o-transition:background-color 0.2s ease-out;
-    transition:background-color 0.2s ease-out;
 	font-size: 1em;
 	color: #5b656e;
 	float: left;
 }
 button:hover, button.active {
-	color: #629ad1;
+	color: #3ca4cf;
 	background: #f6f6f6;
 }
 a {
@@ -864,6 +897,7 @@ a {
 	color: #fff;
 	margin-top: 0;
 	font-size: 90%;
+	font-weight: 300;
 }
 #roomform button:hover {
 	background: #d66549;
@@ -872,7 +906,7 @@ a {
 .controls-modal {
 	display: none;
 	padding: 25px 30px;
-	background: #629ad1;
+	background: #3ca4cf;
 	color: #eee;
 	border-radius: 5px;
 	position: absolute;
@@ -886,7 +920,7 @@ a {
 	margin: 0;
 }
 .controls-modal .arrow-down {
-	border-top: 20px solid #629ad1;
+	border-top: 20px solid #3ca4cf;
 }
 .controls-close {
 	position: absolute;
@@ -900,7 +934,7 @@ a {
 	-webkit-border-radius: 0!important;
 	-moz-border-radius: 0!important;
 	background: #f6f6f6!important;
-	color: #629ad1!important;
+	color: #3ca4cf!important;
 	border: none!important;
 	padding:0!important;
 	z-index: 99;

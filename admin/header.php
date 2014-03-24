@@ -51,7 +51,19 @@
         $title = 'Admin - FAQ'; 
 		$id = 'faq';
         break;
-    } 
+	case 'facts.php': 
+        $title = 'Admin - Facts'; 
+		$id = 'factdata';
+        break;
+	case 'edit_facts.php': 
+        $title = 'Admin - Edit Facts'; 
+		$id = 'factdata';
+        break;
+	case 'save_facts.php': 
+        $title = 'Admin - Save Facts'; 
+		$id = 'factdata';
+        break;
+	}
     echo '<title>'.$title.'</title>'; 
     ?>
     <meta charset="utf-8">
@@ -66,7 +78,7 @@
 <div id="navbar">
 	<a href="#" class="active" id="toggledrawer"><i class="fa fa-bars"></i></a>
     <ul id="nav">
-        <li><a href="../index.php"><i class="fa fa-compass"></i>&nbsp;&nbsp;Explore</a></li>
+        <li><a href="../map.php"><i class="fa fa-compass"></i>&nbsp;&nbsp;Explore</a></li>
         <li><a href="logout.php"><i class="fa fa-sign-out"></i>&nbsp;&nbsp;Logout</a></li>
     </ul>
 </div>
@@ -75,6 +87,7 @@
     <h3>Data</h3>
     <ul>
     	<li><a href="index.php" id="editbuilding"><i class="fa fa-pencil-square-o"></i>Edit buildings</a></li>
+        <li><a href="facts.php" id="factdata"><i class="fa fa-pencil-square-o"></i>Edit facts</a></li>
    		<li><a href="accommodation_data.php" id="accommodationdata"><i class="fa fa-bar-chart-o"></i>Accommodation data</a></li>
       	<li><a href="subject_data.php" id="subjectdata"><i class="fa fa-bar-chart-o"></i>Subject data</a></li>
     </ul>

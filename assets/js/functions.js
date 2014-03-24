@@ -460,13 +460,13 @@ function tweetIcon(mesh) {
 			position.applyMatrix4( mesh.matrixWorld );
 			
 			icon.name = "tweet-" + mesh.name;
-			icon.position.set( position.x, boundingBox.max.y + 20, position.z );
+			icon.position.set( position.x, boundingBox.max.y + 10, position.z );
 			group.add( icon);
 			clickobjects.push( icon );
 			tweetIcons.push( icon );
 			
-			var tweenOne = new TWEEN.Tween( icon.position ).to( { y: boundingBox.max.y + 17 }, 1000 ).easing( TWEEN.Easing.Sinusoidal.InOut);
-			var tweenTwo = new TWEEN.Tween( icon.position ).to( { y: boundingBox.max.y + 15 }, 1000 ).easing( TWEEN.Easing.Sinusoidal.InOut);
+			var tweenOne = new TWEEN.Tween( icon.position ).to( { y: boundingBox.max.y + 12 }, 1000 ).easing( TWEEN.Easing.Sinusoidal.InOut);
+			var tweenTwo = new TWEEN.Tween( icon.position ).to( { y: boundingBox.max.y + 10 }, 1000 ).easing( TWEEN.Easing.Sinusoidal.InOut);
 			
 			tweenOne.chain(tweenTwo);
 			tweenTwo.chain(tweenOne);
@@ -482,7 +482,11 @@ function drawCylinder(vstart, vend, name, colour){
     var position  = vend.clone().add(vstart).divideScalar(2);
 
     var material = new THREE.MeshBasicMaterial({ color: colour, transparent: true, opacity: 0.8 });
-    var cylinder = new THREE.CylinderGeometry(1,1,distance,6,6,false);
+	if(colour == 0x333333){
+    	var cylinder = new THREE.CylinderGeometry(0.5,0.5,distance,6,6,false);
+	}else{
+		var cylinder = new THREE.CylinderGeometry(1,1,distance,6,6,false);
+	}
 
     var orientation = new THREE.Matrix4();//a new orientation matrix to offset pivot
     var offsetRotation = new THREE.Matrix4();//a matrix to fix pivot rotation
@@ -630,7 +634,6 @@ function busRoutes(){
 	}
 	
 	var path = [
-		{ x:490, y:-42, z:425 },
 		{ x:482, y:-38, z:410 },
 		{ x:465, y:-32, z:390 },
 		{ x:460, y:-29.5, z:377 },
@@ -675,11 +678,265 @@ function busRoutes(){
 	}
 	
 	var path = [
-        { x:-147, y:4, z:-62 },
 		{ x:-142, y:1, z:-18 }
     ];
     
-    var previous = new THREE.Vector3( -147, 4, -62 );
+    var previous = new THREE.Vector3( -144, 5, -56 );
+    for (var pt = 0; pt < path.length; ++pt) {
+        var o = path[pt];
+		drawCylinder(previous, new THREE.Vector3(o.x, o.y, o.z), footPath, 0x333333);
+		previous = new THREE.Vector3(o.x, o.y, o.z);
+	}
+	
+	var path = [
+		{ x:-153, y:1, z:-10 },
+		{ x:-118, y:1, z:10 }
+    ];
+    
+    var previous = new THREE.Vector3( -201, 1, -25 );
+    for (var pt = 0; pt < path.length; ++pt) {
+        var o = path[pt];
+		drawCylinder(previous, new THREE.Vector3(o.x, o.y, o.z), footPath, 0x333333);
+		previous = new THREE.Vector3(o.x, o.y, o.z);
+	}
+	
+	var path = [
+		{ x:-142, y:1, z:-17 },
+		{ x:-80, y:9, z:-60 },
+		{ x:-11, y:1, z:-105 },
+		{ x:-14, y:1, z:-112 }
+    ];
+    
+    var previous = new THREE.Vector3( -153, 1, -10 );
+    for (var pt = 0; pt < path.length; ++pt) {
+        var o = path[pt];
+		drawCylinder(previous, new THREE.Vector3(o.x, o.y, o.z), footPath, 0x333333);
+		previous = new THREE.Vector3(o.x, o.y, o.z);
+	}
+	
+	var path = [
+		{ x:-201, y:1, z:-25 },
+		{ x:-144, y:5, z:-56 }
+    ];
+    
+    var previous = new THREE.Vector3( -222, 1, -6 );
+    for (var pt = 0; pt < path.length; ++pt) {
+        var o = path[pt];
+		drawCylinder(previous, new THREE.Vector3(o.x, o.y, o.z), footPath, 0x333333);
+		previous = new THREE.Vector3(o.x, o.y, o.z);
+	}
+	
+	var path = [
+		{ x:398, y:-15, z:124 },
+		{ x:401, y:-10, z:42 },
+		{ x:402, y:-6, z:2 },
+		{ x:398, y:-6, z:-27 },
+		{ x:373, y:-2, z:-38 },
+		{ x:365, y:-2, z:-59 },
+		{ x:354, y:1, z:-97 },
+		{ x:346, y:1, z:-100 }
+    ];
+    
+    var previous = new THREE.Vector3( 383, -15, 223 );
+    for (var pt = 0; pt < path.length; ++pt) {
+        var o = path[pt];
+		drawCylinder(previous, new THREE.Vector3(o.x, o.y, o.z), footPath, 0x333333);
+		previous = new THREE.Vector3(o.x, o.y, o.z);
+	}
+	
+	var path = [
+		{ x:424, y:-5, z:-32 },
+		{ x:481, y:-6, z:27 },
+		{ x:498, y:-10, z:-8 }
+    ];
+    
+    var previous = new THREE.Vector3( 398, -6, -27 );
+    for (var pt = 0; pt < path.length; ++pt) {
+        var o = path[pt];
+		drawCylinder(previous, new THREE.Vector3(o.x, o.y, o.z), footPath, 0x333333);
+		previous = new THREE.Vector3(o.x, o.y, o.z);
+	}
+	
+	var path = [
+		{ x:36, y:2, z:-56 },
+		{ x:7, y:1, z:-102 },
+		{ x:6, y:1, z:-110 }
+    ];
+    
+    var previous = new THREE.Vector3( 77, 1.5, 0 );
+    for (var pt = 0; pt < path.length; ++pt) {
+        var o = path[pt];
+		drawCylinder(previous, new THREE.Vector3(o.x, o.y, o.z), footPath, 0x333333);
+		previous = new THREE.Vector3(o.x, o.y, o.z);
+	}
+	
+	var path = [
+		{ x:185, y:1, z:84 },
+		{ x:196, y:1, z:81 },
+		{ x:208, y:1, z:69 },
+		{ x:245, y:1, z:77 },
+		{ x:254, y:-1, z:97 },
+		{ x:262, y:-2, z:96 }
+    ];
+    
+    var previous = new THREE.Vector3( 162, 1, 64 );
+    for (var pt = 0; pt < path.length; ++pt) {
+        var o = path[pt];
+		drawCylinder(previous, new THREE.Vector3(o.x, o.y, o.z), footPath, 0x333333);
+		previous = new THREE.Vector3(o.x, o.y, o.z);
+	}
+	
+	var path = [
+		{ x:210, y:1, z:152 },
+		{ x:254, y:4, z:206 },
+		{ x:280, y:-1, z:269 },
+		{ x:318, y:-20, z:306 }
+    ];
+    
+    var previous = new THREE.Vector3( 185, 1, 84 );
+    for (var pt = 0; pt < path.length; ++pt) {
+        var o = path[pt];
+		drawCylinder(previous, new THREE.Vector3(o.x, o.y, o.z), footPath, 0x333333);
+		previous = new THREE.Vector3(o.x, o.y, o.z);
+	}
+	
+	var path = [
+		{ x:77, y:1, z:-95 }
+    ];
+    
+    var previous = new THREE.Vector3( 128, 2, -22 );
+    for (var pt = 0; pt < path.length; ++pt) {
+        var o = path[pt];
+		drawCylinder(previous, new THREE.Vector3(o.x, o.y, o.z), footPath, 0x333333);
+		previous = new THREE.Vector3(o.x, o.y, o.z);
+	}
+	
+	var path = [
+		{ x:167, y:3, z:-122 }
+    ];
+    
+    var previous = new THREE.Vector3( 42, 1, -154 );
+    for (var pt = 0; pt < path.length; ++pt) {
+        var o = path[pt];
+		drawCylinder(previous, new THREE.Vector3(o.x, o.y, o.z), footPath, 0x333333);
+		previous = new THREE.Vector3(o.x, o.y, o.z);
+	}
+	
+	var path = [
+		{ x:209, y:1, z:-102 },
+		{ x:277, y:1, z:-141 }
+    ];
+    
+    var previous = new THREE.Vector3( 174, 2.5, -120 );
+    for (var pt = 0; pt < path.length; ++pt) {
+        var o = path[pt];
+		drawCylinder(previous, new THREE.Vector3(o.x, o.y, o.z), footPath, 0x333333);
+		previous = new THREE.Vector3(o.x, o.y, o.z);
+	}
+	
+	var path = [
+		{ x:249, y:1, z:-28 },
+		{ x:169, y:1, z:14 }
+    ];
+    
+    var previous = new THREE.Vector3( 209, 1, -102 );
+    for (var pt = 0; pt < path.length; ++pt) {
+        var o = path[pt];
+		drawCylinder(previous, new THREE.Vector3(o.x, o.y, o.z), footPath, 0x333333);
+		previous = new THREE.Vector3(o.x, o.y, o.z);
+	}
+	
+	var path = [
+		{ x:334, y:1, z:-74 },
+		{ x:359, y:1, z:-127 },
+		{ x:472, y:1, z:-186 }
+    ];
+    
+    var previous = new THREE.Vector3( 249, 1, -28 );
+    for (var pt = 0; pt < path.length; ++pt) {
+        var o = path[pt];
+		drawCylinder(previous, new THREE.Vector3(o.x, o.y, o.z), footPath, 0x333333);
+		previous = new THREE.Vector3(o.x, o.y, o.z);
+	}
+	
+	var path = [
+		{ x:298, y:1, z:-99 },
+		{ x:361, y:1, z:-134 },
+		{ x:380, y:1, z:-183 },
+		{ x:399, y:1, z:-150 }
+    ];
+    
+    var previous = new THREE.Vector3( 249, 1, -28 );
+    for (var pt = 0; pt < path.length; ++pt) {
+        var o = path[pt];
+		drawCylinder(previous, new THREE.Vector3(o.x, o.y, o.z), footPath, 0x333333);
+		previous = new THREE.Vector3(o.x, o.y, o.z);
+	}
+	
+	var path = [
+		{ x:299, y:1, z:-251 }
+    ];
+    
+    var previous = new THREE.Vector3( 360, 1, -128 );
+    for (var pt = 0; pt < path.length; ++pt) {
+        var o = path[pt];
+		drawCylinder(previous, new THREE.Vector3(o.x, o.y, o.z), footPath, 0x333333);
+		previous = new THREE.Vector3(o.x, o.y, o.z);
+	}
+	
+	var path = [
+		{ x:-318, y:1, z:-110 },
+		{ x:-371, y:1, z:-202 }
+    ];
+    
+    var previous = new THREE.Vector3( -317, 1, -82 );
+    for (var pt = 0; pt < path.length; ++pt) {
+        var o = path[pt];
+		drawCylinder(previous, new THREE.Vector3(o.x, o.y, o.z), footPath, 0x333333);
+		previous = new THREE.Vector3(o.x, o.y, o.z);
+	}
+	
+	var path = [
+		{ x:484, y:-38, z:410 },
+		{ x:467, y:-32, z:390 },
+		{ x:462, y:-29.5, z:377 },
+		{ x:410, y:-35, z:300 },
+		{ x:387, y:-23, z:264 },
+		{ x:383, y:-15, z:223 },
+		{ x:342, y:-13, z:141 },
+        { x:283, y:-2, z:72 },
+		{ x:265, y:-3, z:51 },
+		{ x:248, y:-2, z:41 },
+		{ x:236, y:-1, z:32 },
+		{ x:191, y:2, z:19 },
+		{ x:171, y:2, z:20 },
+    ];
+    
+    var previous = new THREE.Vector3(492, -42, 425);
+    for (var pt = 0; pt < path.length; ++pt) {
+        var o = path[pt];
+		drawCylinder(previous, new THREE.Vector3(o.x, o.y, o.z), footPath, 0x333333);
+		previous = new THREE.Vector3(o.x, o.y, o.z);
+	}
+	
+	var path = [
+        { x:26, y:1, z:-122 },
+		{ x:0, y:1, z:-107 },
+        { x:-31, y:1, z:-117 },
+		{ x:-87, y:9, z:-86 },
+		{ x:-123, y:9, z:-67 },
+		{ x:-145, y:6, z:-55 },
+		{ x:-183, y:7, z:-64 },
+		{ x:-200, y:6, z:-62 },
+		{ x:-217, y:2, z:-61 },
+		{ x:-254, y:2, z:-76 },
+		{ x:-266, y:1, z:-81 },
+		{ x:-358, y:1, z:-83 },
+		{ x:-517, y:2, z:-77 },
+		{ x:-539, y:3, z:-72 },
+    ];
+    
+    var previous = new THREE.Vector3( 36, 1, -137)
     for (var pt = 0; pt < path.length; ++pt) {
         var o = path[pt];
 		drawCylinder(previous, new THREE.Vector3(o.x, o.y, o.z), footPath, 0x333333);
@@ -689,14 +946,14 @@ function busRoutes(){
 function makeParkingOverlay(){
 	var loader = new THREE.JSONLoader();
 	loader.load( "assets/models/Permit_Parking.js", function( geometry, materials ) {
-        mesh = new THREE.Mesh( geometry, new THREE.MeshBasicMaterial({color: 0x5757b5, transparent: true, opacity: 0.8}) );
+        mesh = new THREE.Mesh( geometry, new THREE.MeshBasicMaterial({color: 0x4d7ba8, transparent: true, opacity: 0.8}) );
         mesh.scale.set( 1, 1, 1 );
 		group.add( mesh );
 		mesh.name = "Permit_Parking";
 		mesh.visible = false;
     } );
 	loader.load( "assets/models/Visitor_Parking.js", function( geometry, materials ) {
-        mesh = new THREE.Mesh( geometry, new THREE.MeshBasicMaterial({color: 0x0099cc, transparent: true, opacity: 0.8}) );
+        mesh = new THREE.Mesh( geometry, new THREE.MeshBasicMaterial({color: 0x1e3954, transparent: true, opacity: 0.8}) );
         mesh.scale.set( 1, 1, 1 );
 		group.add( mesh );
 		mesh.name = "Visitor_Parking";
@@ -724,49 +981,6 @@ function makeDevelopments(){
 		mesh.visible = false;
     } );
 }
-function makeClouds(){
-	var material = new THREE.MeshBasicMaterial( { color: 0xffffff, wrapAround: true, transparent: true, opacity: 0.3 } )
-	var loader = new THREE.JSONLoader();
-	loader.load( "assets/models/cloud.js", function( geometry, materials ) {
-        mesh = new THREE.Mesh( geometry, material);
-        mesh.scale.set( 1, 1, 1 );
-		mesh.position.set(0,70,200);
-		group.add( mesh );
-		mesh = new THREE.Mesh( geometry, material);
-        mesh.scale.set( 1, 1, 1 );
-		mesh.position.set(-250,80,-200);
-		group.add( mesh );
-		mesh = new THREE.Mesh( geometry, material);
-        mesh.scale.set( 1, 1, 1 );
-		mesh.position.set(500,70,-150);
-		group.add( mesh );
-    } );
-	loader.load( "assets/models/cloud_2.js", function( geometry, materials ) {
-        mesh = new THREE.Mesh( geometry, material);
-        mesh.scale.set( 1, 1, 1 );
-		mesh.position.set(0,90,0);
-		group.add( mesh );
-		mesh = new THREE.Mesh( geometry, material);
-        mesh.scale.set( 1, 1, 1 );
-		mesh.position.set(-200,70,-50);
-		group.add( mesh );
-    } );
-	loader.load( "assets/models/cloud_3.js", function( geometry, materials ) {
-        mesh = new THREE.Mesh( geometry, material);
-        mesh.scale.set( 1, 1, 1 );
-		mesh.position.set(0,90,-200);
-		group.add( mesh );
-		mesh = new THREE.Mesh( geometry, material);
-        mesh.scale.set( 1, 1, 1 );
-		mesh.position.set(-400,80,300);
-		group.add( mesh );
-		mesh = new THREE.Mesh( geometry, material);
-        mesh.scale.set( 1, 1, 1 );
-		mesh.position.set(200,70,100);
-		group.add( mesh );
-    } );
-}
-
 function cycleIcon(iconArray, size){
 	var color;
 	if (iconArray == cycleArray){
@@ -826,7 +1040,8 @@ function make3DText(message, color, mesh){
 		size: 7,
 		height: 1,
 		curveSegments: 2,
-		font: "helvetiker"
+		font: "helvetiker",
+		weight: "bold"
 	});	
 	THREE.GeometryUtils.center( text3d );
 	
@@ -936,8 +1151,8 @@ function makeRoadName( message ){
 	context.font = "Normal " + fontsize + "px " + fontface;
 	var metrics = context.measureText( message );
 	var textWidth = metrics.width;
-	context.fillStyle   = "#666666";
-	context.strokeStyle = "#666666";
+	context.fillStyle   = "#ed7b5f";
+	context.strokeStyle = "#ed7b5f";
 
 	context.lineWidth = 5;
 	roundRect(context, 5/2, 5/2, textWidth + 5, fontsize * 1.4 + 5, 1);
@@ -1020,7 +1235,7 @@ function makeZoom(){
 function makeBusstops(){
 	var loader = new THREE.JSONLoader();
 	loader.load( "assets/models/bus.js", function( geometry, materials ) {
-		var material = new THREE.MeshLambertMaterial({ color: 0xa34129, wrapAround: true });
+		var material = new THREE.MeshLambertMaterial({ color: 0x663399, wrapAround: true });
 		
 		// keynes
         bus = new THREE.Mesh( geometry, material );
@@ -1068,6 +1283,119 @@ function makeBusstops(){
 	cube.position.set(423,10,-261);
 	cube.name = "darwin_bus"
 	cube.visible = false;
+	clickobjects.push(cube);
+	group.add(cube);
+}
+function makeFacts(){
+		
+	var geometry = new THREE.TextGeometry( "?", {
+		size: 12,
+		height: 1,
+		curveSegments: 2,
+		font: "helvetiker",
+		weight: "bold"
+	});	
+	THREE.GeometryUtils.center( geometry );
+	var material = new THREE.MeshLambertMaterial({ color: 0xa34129, wrapAround: true });
+	
+	// Fact 1
+	fact = new THREE.Mesh( geometry, material );
+	fact.position.set(295,10,-84);
+	textlookat.push(fact);
+	zoomobjects.push(fact);
+	group.add(fact);
+	
+	// Fact 2
+	fact = new THREE.Mesh( geometry, material );
+	fact.position.set(200,10,-120);
+	textlookat.push(fact);
+	zoomobjects.push(fact);
+	group.add(fact);
+	
+	// Fact 3
+	fact = new THREE.Mesh( geometry, material );
+	fact.position.set(278,10,-202);
+	textlookat.push(fact);
+	zoomobjects.push(fact);
+	group.add(fact);
+	
+	// Fact 4
+	fact = new THREE.Mesh( geometry, material );
+	fact.position.set(-342,10,-29);
+	textlookat.push(fact);
+	zoomobjects.push(fact);
+	group.add(fact);
+	
+	// Fact 5
+	fact = new THREE.Mesh( geometry, material );
+	fact.position.set(-298,10,-256);
+	textlookat.push(fact);
+	zoomobjects.push(fact);
+	group.add(fact);
+	
+	// Fact 6
+	fact = new THREE.Mesh( geometry, material );
+	fact.position.set(-57,10,-196);
+	textlookat.push(fact);
+	zoomobjects.push(fact);
+	group.add(fact);
+	
+	// Fact 7
+	fact = new THREE.Mesh( geometry, material );
+	fact.position.set(56,15,95);
+	textlookat.push(fact);
+	zoomobjects.push(fact);
+	group.add(fact);
+	
+	
+	
+	var material = new THREE.MeshBasicMaterial({ color: 0xed7b5f, wrapAround: true });
+	var cube = new THREE.Mesh( new THREE.CubeGeometry( 12, 12, 6 ), material );
+	cube.position.set(295,10,-84);
+	cube.visible = false;
+	cube.name = "fact_1"
+	clickobjects.push(cube);
+	group.add(cube);
+	
+	var cube = new THREE.Mesh( new THREE.CubeGeometry( 12, 12, 6 ), material );
+	cube.position.set(200,10,-127);
+	cube.visible = false;
+	cube.name = "fact_2"
+	clickobjects.push(cube);
+	group.add(cube);
+	
+	var cube = new THREE.Mesh( new THREE.CubeGeometry( 12, 12, 6 ), material );
+	cube.position.set(278,10,-202);
+	cube.visible = false;
+	cube.name = "fact_3"
+	clickobjects.push(cube);
+	group.add(cube);
+	
+	var cube = new THREE.Mesh( new THREE.CubeGeometry( 12, 12, 6 ), material );
+	cube.position.set(-342,10,-29);
+	cube.visible = false;
+	cube.name = "fact_4"
+	clickobjects.push(cube);
+	group.add(cube);
+	
+	var cube = new THREE.Mesh( new THREE.CubeGeometry( 12, 12, 6 ), material );
+	cube.position.set(-298,10,-256);
+	cube.visible = false;
+	cube.name = "fact_5"
+	clickobjects.push(cube);
+	group.add(cube);
+	
+	var cube = new THREE.Mesh( new THREE.CubeGeometry( 12, 12, 6 ), material );
+	cube.position.set(-57,10,-196);
+	cube.visible = false;
+	cube.name = "fact_6"
+	clickobjects.push(cube);
+	group.add(cube);
+	
+	var cube = new THREE.Mesh( new THREE.CubeGeometry( 12, 12, 6 ), material );
+	cube.position.set(56,15,95);
+	cube.visible = false;
+	cube.name = "fact_7"
 	clickobjects.push(cube);
 	group.add(cube);
 }
