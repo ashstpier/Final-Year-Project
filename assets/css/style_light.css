@@ -42,7 +42,7 @@ body {
 	height: 100%;
 	position: relative;
 	overflow: hidden;
-	background-color: #aaf7f7;
+	background-color: #549FB8;
 	background-image: -webkit-gradient(
 	linear,
 	left top,
@@ -272,7 +272,7 @@ background-image: linear-gradient(to bottom, #549FB8 0%, #CAF7F7 100%);
 	font-size: 22px;
 	letter-spacing: 1px;
 	padding: 15px 30px;
-	margin:0 0 5px;
+	margin:0;
 	
 }
 .slide-drawer h3 {
@@ -318,7 +318,7 @@ background-image: linear-gradient(to bottom, #549FB8 0%, #CAF7F7 100%);
 	padding-top: 3px;
 }
 .slide-drawer ul li a:hover, .checked {
-	background: #f3f3f3;
+	background: #eee;
 }
 #labelall.toggled:before  {
 	color: #ddd;

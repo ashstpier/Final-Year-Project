@@ -50,23 +50,22 @@
 <div class="slide-drawer">
     <div id="twitter-panel" class="slidepanel">
         <h2>Filters</h2>
-        <ul id="filters">
-        	<li><a href="#" data-filter="*" class="checked"><i class="fa fa-th-large"></i>Show all</a></li>
-      		<li><a href="#" data-filter=".twitter"><i class="fa fa-twitter"></i>Twitter</a></li>
-      		<li><a href="#" data-filter=".instagram"><i class="fa fa-instagram"></i>Instagram</a></li>
+        <ul class="filters">
+        	<li><a id="all" href="#" data-filter="*" class="checked"><i class="fa fa-th-large"></i>Show all</a></li>
+      		<li><a href="#" data-filter=".twitter"><i class="fa fa-twitter"></i>Twitter all</a></li>
+      		<li><a href="#" data-filter=".instagram"><i class="fa fa-instagram"></i>Instagram all</a></li>
         </ul>
         <h3>Twitter feed</h3>
-        <ul id="filters">
-          <li><a href="#" data-filter=".UniKent">@UniKent</a></li>
-          <li><a href="#" data-filter=".KentUnion">@KentUnion</a></li>
-          <li><a href="#" data-filter=".UniKentNews">@UniKentNews</a></li>
-          <li><a href="#" data-filter=".UniKentEmploy">@UniKentEmploy</a></li>
-          <li><a href="#" data-filter=".UniKent_Music">@UniKent_Music</a></li>
+        <ul class="filters">
+          <li><a class="twitter-filter" href="#" data-filter=".UniKent">@UniKent</a></li>
+          <li><a class="twitter-filter" href="#" data-filter=".KentUnion">@KentUnion</a></li>
+          <li><a class="twitter-filter" href="#" data-filter=".UniKentNews">@UniKentNews</a></li>
+          <li><a class="twitter-filter" href="#" data-filter=".UniKentEmploy">@UniKentEmploy</a></li>
+          <li><a class="twitter-filter" href="#" data-filter=".UniKent_Music">@UniKent_Music</a></li>
         </ul>
         <h3>Instagram feed</h3>
-        <ul id="filters">
-          <li><a href="#" data-filter=".kentuni">#KentUni</a></li>
-          <li><a href="#" data-filter=".kentunion">#KentUnion</a></li>
+        <ul class="filters">
+          <li><a class="instagram-filter" href="#" data-filter=".kentuni">#KentUni</a></li>
         </ul>
     </div>
     <div id="social-panel" class="slidepanel">
@@ -95,28 +94,6 @@
         </ul>
     </div>
 </div>
-<!--<div id="leftdrawer">
-	<h2>Filters</h2>
-	<ul id="filters">
-      <li><a href="#" data-filter="*"><i class="fa fa-th-large"></i>Show all</a></li>
-      <li><a href="#" data-filter=".twitter"><i class="fa fa-twitter"></i>Twitter</a></li>
-      <li><a href="#" data-filter=".instagram"><i class="fa fa-instagram"></i>Instagram</a></li>
-    </ul>
-    <h2>Twitter</h2>
-    <ul id="filters">
-      <li><a href="#" data-filter=".UniKent"><i class="fa fa-twitter"></i>University of Kent</a></li>
-      <li><a href="#" data-filter=".KentUnion"><i class="fa fa-twitter"></i>Kent Union</a></li>
-      <li><a href="#" data-filter=".UniKentNews"><i class="fa fa-twitter"></i>Uni Kent News</a></li>
-      <li><a href="#" data-filter=".UniKentEmploy"><i class="fa fa-twitter"></i>Uni Kent Employ</a></li>
-      <li><a href="#" data-filter=".UniKent_Music"><i class="fa fa-twitter"></i>Uni Kent Music</a></li>
-      <li><a href="#" data-filter=".edakent"><i class="fa fa-twitter"></i>EDA Kent</a></li>
-    </ul>
-    <h2>Instagram</h2>
-    <ul id="filters">
-      <li><a href="#" data-filter=".kentuni"><i class="fa fa-instagram"></i>#KentUni</a></li>
-      <li><a href="#" data-filter=".kentunion"><i class="fa fa-instagram"></i>#KentUnion</a></li>
-    </ul>
-</div>-->
 <div id="wrapper">
     <section id="stream">
 	<?php include_once 'twitter/display-tweets.php';
@@ -218,51 +195,7 @@ $(window).load(function(){
 	});
 	
 	$(window).resize(function(){ $container.isotope('reLayout'); });
-	
-	$( "#social-button" ).click(function() {
-		if($("#social-panel").is(":visible")){
-			$(".slide-drawer").toggle("slide", {direction:'left', duration: 300, easing: "linear"}, function(){
-				$(".slide-drawer div").hide();
-				$container.isotope('reLayout');
-			});
-			$("#leftnav button").removeClass( "active" );
-			$("#wrapper").toggleClass( "slide-margin" );
-		}else if($("#twitter-panel, #info-panel").is(":visible")){
-			$(".slide-drawer div").hide();
-			$("#social-panel").fadeIn();
-			$("#leftnav button").removeClass( "active" );
-			$("#social-button").addClass( "active" );
-		}else{
-			$("#social-panel").fadeIn();
-			$(".slide-drawer").toggle("slide", {direction:'left', duration: 300, easing: "linear"}, function(){
-				$container.isotope('reLayout');
-			});
-			$("#social-button").addClass( "active" );
-			$("#wrapper").toggleClass( "slide-margin" );
-		}
-	});
-	$( "#twitter-button" ).click(function() {
-		if($("#twitter-panel").is(":visible")){
-			$(".slide-drawer").toggle("slide", {direction:'left', duration: 300, easing: "linear"}, function(){
-				$(".slide-drawer div").hide();
-				$container.isotope('reLayout');
-			});
-			$("#leftnav button").removeClass( "active" );
-			$("#wrapper").toggleClass( "slide-margin" );
-		}else if($("#social-panel, #info-panel").is(":visible")){
-			$(".slide-drawer div").hide();
-			$("#twitter-panel").fadeIn();
-			$("#leftnav button").removeClass( "active" );
-			$("#twitter-button").addClass( "active" );
-		}else{
-			$("#twitter-panel").fadeIn();
-			$(".slide-drawer").toggle("slide", {direction:'left', duration: 300, easing: "linear"}, function(){
-				$container.isotope('reLayout');
-			});
-			$("#twitter-button").addClass( "active" );
-			$("#wrapper").toggleClass( "slide-margin" );
-		}
-	});
+
 	$( "#info-button" ).click(function() {
 		if($("#info-panel").is(":visible")){
 			$(".slide-drawer").toggle("slide", {direction:'left', duration: 300, easing: "linear"}, function(){
@@ -286,14 +219,35 @@ $(window).load(function(){
 		}
 	});
 	
-	$('#filters a, .instagram a').click(function(){
-	  var selector = $(this).attr('data-filter');
-	  $container.isotope({ filter: selector });
-	  $("html, body").animate({ scrollTop: 0 }, "slow");
-	  $("#filters a").removeClass("checked");
-	  $(this).addClass("checked");
-	  return false;
-	});
+	var filters = [];
+	
+	$('.filters a').click(function(){
+      var $this = $(this);
+
+	  var foo = $(this).attr('data-filter');
+      if ( $this.hasClass('checked') ) {
+		var index = jQuery.inArray( foo, filters )
+		filters.splice( index, 1 );
+		var selector = filters.join(',');
+		console.log(selector);
+		$container.isotope({ filter: selector });
+		$(this).toggleClass("checked");
+      }else{
+		  if ( foo == "*" ) {
+			$('.filters a').removeClass("checked");
+			$(this).toggleClass("checked");
+			filters.length = 0;
+		  }else{
+			$('#all').removeClass("checked");
+			$(this).toggleClass("checked");
+		  }
+		filters.push(foo);
+		var selector = filters.join(',');
+		$container.isotope({ filter: selector });
+	  }
+
+      return false;
+    });
 	
 	$('a#list-toggle').click(function(){
 	  event.preventDefault();

@@ -81,6 +81,14 @@
 .three-of-five { width: 57%; }
 .four-of-five { width: 77%; }
 
+.desktop {
+	display: inline-block;
+}
+.mobile {
+	display: none;
+}
+.extra-margin { margin-bottom: 100px; }
+
 @media screen and (max-width: 650px) {
 	.grid {
 		margin-left: 0;
@@ -92,6 +100,20 @@
 		margin-left: 0;
 		display: block;
 	}
+	.desktop {
+		display: none;
+	}
+	.mobile {
+		display: block;
+	}
+	#content .grid {
+		margin-bottom: 50px;
+	}
+	.icon {
+		margin-bottom: 50px;
+	}
+	.margin-bottom { margin-bottom: 50px; }
+	.extra-margin { margin-bottom: 0; }
 }
 
 /*-----------------------------------*\

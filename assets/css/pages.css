@@ -38,7 +38,7 @@ h1, .alpha {
 	font-size: 56px;
 	font-weight: 700;
 	margin-bottom: 0;
-	color: #629ad1;
+	color: #3ca4cf;
 }
 
 .header h2, .beta {
@@ -50,7 +50,7 @@ h1, .alpha {
 	margin-bottom: 40px;
 }
 h2 {
-	color: #629ad1;
+	color: #3ca4cf;
 	margin-bottom: 25px;
 }
 h3, .gamma {
@@ -62,6 +62,7 @@ h3, .gamma {
 h4 { margin-bottom: 10px; }
 
 a {
+	color: #ed7b5f;
 	-moz-transition:color 0.2s ease;
     -webkit-transition:color 0.2s ease;
     -o-transition:color 0.2s ease;
@@ -86,7 +87,7 @@ ul.nav li a {
 	font-size: 14px;
 }
 ul.nav li a:hover {
-	color: #629ad1;
+	color: #3ca4cf;
 }
 ul.nav li i {
 	margin-right: 10px;

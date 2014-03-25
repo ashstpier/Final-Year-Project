@@ -290,7 +290,7 @@ function init() {
 	var canvas = document.getElementById("canvas");
 	renderer = new THREE.WebGLRenderer({canvas:canvas, alpha: true, antialiasing: true});
 	renderer.setSize( window.innerWidth, window.innerHeight );
-	//renderer.setClearColor( 0x9acbfc, 1);
+	renderer.setClearColor( 0x549FB8, 1);
 	renderer.shadowMapEnabled = false;
 	renderer.shadowMapSoft = true;
 	renderer.shadowMapType = THREE.PCFSoftShadowMap;
@@ -315,7 +315,7 @@ function init() {
 
 	window.addEventListener( 'resize', onWindowResize, false );
 
-/*
+
 	
 	///////////// DEPTH //////////////
 	
@@ -335,16 +335,16 @@ function init() {
 	var tiltH = new THREE.ShaderPass( THREE.HorizontalTiltShiftShader );
 	tiltH.uniforms[ 'h' ].value = 1 / window.innerWidth;
 	tiltH.uniforms[ 'r' ].value = 0.5;
-	composer.addPass( tiltH );
+	//composer.addPass( tiltH );
 	
 	var tiltV = new THREE.ShaderPass( THREE.VerticalTiltShiftShader );
 	tiltV.uniforms[ 'v' ].value = 1 / window.innerHeight;
 	tiltV.uniforms[ 'r' ].value = 0.5;
-	composer.addPass( tiltV );
+	//composer.addPass( tiltV );
 	
 	var vignette = new THREE.ShaderPass( THREE.VignetteShader );
 	vignette.uniforms[ 'darkness' ].value = 0;
-	vignette.uniforms[ 'offset' ].value = 1;
+	vignette.uniforms[ 'offset' ].value = 1.3;
 	composer.addPass( vignette );
 	
 	var effect = new THREE.ShaderPass( THREE.SSAOShader );
@@ -354,7 +354,7 @@ function init() {
 	effect.uniforms[ 'cameraFar' ].value = camera.far;
 	effect.renderToScreen = true;
 	composer.addPass( effect );
-*/
+
 	
 	
 	/*
@@ -413,24 +413,15 @@ function positionTrackingOverlay()
 		percX = (v.x + 1) / 2;
 		percY = (-v.y + 1) / 2;
 
-		left = percX * WIDTH;
-		top = percY * HEIGHT;
+		left = percX * $(window).innerWidth();
+		top = percY * $(window).innerHeight();
+				
+		leftoffset = (left - $("#modalpanel").innerWidth() / 2);
+		topoffset = (top - $("#modalpanel").innerHeight());
 		
-		if($(window).height() < 600){
-			widthPercentage = (left - $("#modalpanel").innerWidth() / 2) / WIDTH * 100;
-			heightPercentage = (top - $("#modalpanel").innerHeight()) / HEIGHT * 120;
-			
-			$("#modalpanel")
-					.css('left', widthPercentage + '%')
-					.css('top', heightPercentage + '%');	
-		}else{
-			widthPercentage = (left - $("#modalpanel").innerWidth() / 2) / WIDTH * 100;
-			heightPercentage = (top - $("#modalpanel").innerHeight()) / HEIGHT * 100;
-			
-			$("#modalpanel")
-					.css('left', widthPercentage + '%')
-					.css('top', heightPercentage + '%');
-		}
+		$("#modalpanel")
+				.css('left', leftoffset + 'px')
+				.css('top', topoffset + 'px');
 				
 	}if(tweetmodal != null){
 		
@@ -449,15 +440,15 @@ function positionTrackingOverlay()
 		percX = (v.x + 1) / 2;
 		percY = (-v.y + 1) / 2;
 
-		left = percX * WIDTH;
-		top = percY * HEIGHT;
+		left = percX * $(window).innerWidth();
+		top = percY * $(window).innerHeight();
 				
-		widthPercentage = (left - $(tweetcontainer).innerWidth() / 2) / WIDTH * 100;
-		heightPercentage = (top - $(tweetcontainer).innerHeight()) / HEIGHT * 100;
+		leftoffset = (left - $(tweetcontainer).innerWidth() / 2);
+		topoffset = (top - $(tweetcontainer).innerHeight());
 		
 		$(tweetcontainer)
-				.css('left', widthPercentage + '%')
-				.css('top', heightPercentage + '%');
+				.css('left', leftoffset + 'px')
+				.css('top', topoffset + 'px');	
 					
 	}if(busmodal != null){
 		
@@ -476,15 +467,15 @@ function positionTrackingOverlay()
 		percX = (v.x + 1) / 2;
 		percY = (-v.y + 1) / 2;
 
-		left = percX * WIDTH;
-		top = percY * HEIGHT;
+		left = percX * $(window).innerWidth();
+		top = percY * $(window).innerHeight();
 				
-		widthPercentage = (left - $(".busmodal").innerWidth() / 2) / WIDTH * 100;
-		heightPercentage = (top - $(".busmodal").innerHeight()) / HEIGHT * 100;
+		leftoffset = (left - $(".busmodal").innerWidth() / 2);
+		topoffset = (top - $(".busmodal").innerHeight());
 		
 		$(".busmodal")
-				.css('left', widthPercentage + '%')
-				.css('top', heightPercentage + '%');	
+				.css('left', leftoffset + 'px')
+				.css('top', topoffset + 'px');	
 	}
 	if(factmodal != null){
 		
@@ -503,15 +494,15 @@ function positionTrackingOverlay()
 		percX = (v.x + 1) / 2;
 		percY = (-v.y + 1) / 2;
 
-		left = percX * WIDTH;
-		top = percY * HEIGHT;
+		left = percX * $(window).innerWidth();
+		top = percY * $(window).innerHeight();
 				
-		widthPercentage = (left - $("#factmodal").innerWidth() / 2) / WIDTH * 100;
-		heightPercentage = (top - $("#factmodal").innerHeight()) / HEIGHT * 100;
+		leftoffset = (left - $("#factmodal").innerWidth() / 2);
+		topoffset = (top - $("#factmodal").innerHeight());
 		
 		$("#factmodal")
-				.css('left', widthPercentage + '%')
-				.css('top', heightPercentage + '%');	
+				.css('left', leftoffset + 'px')
+				.css('top', topoffset + 'px');	
 	}
 }
 
@@ -520,7 +511,7 @@ function animate() {
 	TWEEN.update();
 	controls.update();
 	positionTrackingOverlay();
-	//scene.overrideMaterial = depthMaterial;
+	scene.overrideMaterial = depthMaterial;
 	//particleSystem.rotation.y += 0.001;
 	for (var i=0, tot=textlookat.length; i < tot; i++) {
 		textlookat[i].lookAt(new THREE.Vector3(camera.position.x - group.position.x,camera.position.y,camera.position.z - group.position.z));
@@ -536,9 +527,9 @@ function animate() {
 		$('.search-error').hide();
 	}
 	render();
-	//scene.overrideMaterial = null;
-	//composer.render();
+	scene.overrideMaterial = null;
+	composer.render();
 }
 function render() {
-	renderer.render(scene, camera/*, depthTarget*/);
+	renderer.render(scene, camera, depthTarget);
 }
