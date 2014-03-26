@@ -1289,7 +1289,7 @@ function makeBusstops(){
 function makeFacts(){
 		
 	var geometry = new THREE.TextGeometry( "?", {
-		size: 12,
+		size: 10,
 		height: 1,
 		curveSegments: 2,
 		font: "helvetiker",
@@ -1303,6 +1303,7 @@ function makeFacts(){
 	fact.position.set(295,10,-84);
 	textlookat.push(fact);
 	zoomobjects.push(fact);
+	factIcons.push(fact);
 	group.add(fact);
 	
 	// Fact 2
@@ -1310,6 +1311,7 @@ function makeFacts(){
 	fact.position.set(200,10,-120);
 	textlookat.push(fact);
 	zoomobjects.push(fact);
+	factIcons.push(fact);
 	group.add(fact);
 	
 	// Fact 3
@@ -1317,6 +1319,7 @@ function makeFacts(){
 	fact.position.set(278,10,-202);
 	textlookat.push(fact);
 	zoomobjects.push(fact);
+	factIcons.push(fact);
 	group.add(fact);
 	
 	// Fact 4
@@ -1324,6 +1327,7 @@ function makeFacts(){
 	fact.position.set(-342,10,-29);
 	textlookat.push(fact);
 	zoomobjects.push(fact);
+	factIcons.push(fact);
 	group.add(fact);
 	
 	// Fact 5
@@ -1331,6 +1335,7 @@ function makeFacts(){
 	fact.position.set(-298,10,-256);
 	textlookat.push(fact);
 	zoomobjects.push(fact);
+	factIcons.push(fact);
 	group.add(fact);
 	
 	// Fact 6
@@ -1338,13 +1343,7 @@ function makeFacts(){
 	fact.position.set(-57,10,-196);
 	textlookat.push(fact);
 	zoomobjects.push(fact);
-	group.add(fact);
-	
-	// Fact 7
-	fact = new THREE.Mesh( geometry, material );
-	fact.position.set(56,15,95);
-	textlookat.push(fact);
-	zoomobjects.push(fact);
+	factIcons.push(fact);
 	group.add(fact);
 	
 	
@@ -1391,11 +1390,79 @@ function makeFacts(){
 	cube.name = "fact_6"
 	clickobjects.push(cube);
 	group.add(cube);
+}
+function makeFood(){
+	var loader = new THREE.JSONLoader();
+	loader.load( "assets/models/food.js", function( geometry, materials ) {
+		var material = new THREE.MeshLambertMaterial({ color: 0x3d806b, wrapAround: true });
+		THREE.GeometryUtils.center( geometry );
+		
+		// Mungos
+		food = new THREE.Mesh( geometry, material );
+		food.position.set(318,16,36);
+		food.scale.set(0.7,0.7,0.7);
+		textlookat.push(food);
+		zoomobjects.push(food);
+		foodIcons.push(food);
+		group.add(food);
+		
+		// Rutherford
+		food = new THREE.Mesh( geometry, material );
+		food.position.set(425,16,-60);
+		food.scale.set(0.7,0.7,0.7);
+		textlookat.push(food);
+		zoomobjects.push(food);
+		foodIcons.push(food);
+		group.add(food);
+		
+		// Dolche Vita
+		food = new THREE.Mesh( geometry, material );
+		food.position.set(55,16,100);
+		food.scale.set(0.7,0.7,0.7);
+		textlookat.push(food);
+		zoomobjects.push(food);
+		foodIcons.push(food);
+		group.add(food);
+		
+		// Origins
+		food = new THREE.Mesh( geometry, material );
+		food.position.set(512,16,-215);
+		food.scale.set(0.7,0.7,0.7);
+		textlookat.push(food);
+		zoomobjects.push(food);
+		foodIcons.push(food);
+		group.add(food);
+	});
 	
+	var material = new THREE.MeshBasicMaterial({ color: 0xed7b5f, wrapAround: true });
 	var cube = new THREE.Mesh( new THREE.CubeGeometry( 12, 12, 6 ), material );
-	cube.position.set(56,15,95);
+	cube.position.set(318,16,36);
 	cube.visible = false;
-	cube.name = "fact_7"
+	cube.name = "food_1"
+	clickobjects.push(cube);
+	group.add(cube);
+	
+	var material = new THREE.MeshBasicMaterial({ color: 0xed7b5f, wrapAround: true });
+	var cube = new THREE.Mesh( new THREE.CubeGeometry( 12, 12, 6 ), material );
+	cube.position.set(425,16,-60);
+	cube.visible = false;
+	cube.name = "food_2"
+	clickobjects.push(cube);
+	group.add(cube);
+	
+	var material = new THREE.MeshBasicMaterial({ color: 0xed7b5f, wrapAround: true });
+	var cube = new THREE.Mesh( new THREE.CubeGeometry( 12, 12, 6 ), material );
+	cube.position.set(55,16,100);
+	cube.visible = false;
+	cube.name = "food_3"
+	clickobjects.push(cube);
+	group.add(cube);
+	
+	var material = new THREE.MeshBasicMaterial({ color: 0xed7b5f, wrapAround: true });
+	var cube = new THREE.Mesh( new THREE.CubeGeometry( 12, 12, 6 ), material );
+	cube.position.set(512,16,-215);
+	cube.visible = false;
+	cube.name = "food_4"
 	clickobjects.push(cube);
 	group.add(cube);
 }

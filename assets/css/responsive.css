@@ -87,7 +87,7 @@
 .mobile {
 	display: none;
 }
-.extra-margin { margin-bottom: 100px; }
+.extra-margin { margin-bottom: 100px!important; }
 
 @media screen and (max-width: 650px) {
 	.grid {
@@ -113,7 +113,15 @@
 		margin-bottom: 50px;
 	}
 	.margin-bottom { margin-bottom: 50px; }
-	.extra-margin { margin-bottom: 0; }
+	.extra-margin { margin-bottom: 50px!important; }
+	#header h1 {
+		font-size: 250%;
+	}
+	#header h2 {
+		font-size: 100%;
+		padding: 0;
+	}
+	p { font-size: 13px; }
 }
 
 /*-----------------------------------*\

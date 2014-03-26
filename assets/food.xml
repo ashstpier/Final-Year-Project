@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<foods>
+    <food id="1">
+		<title>Mungos Bistro</title>
+		<content>Situated in the heart of Eliot College, Mungo's has a bright and vibrant atmosphere offering a selection of made-to-order dishes.</content>
+	</food>
+	<food id="2">
+		<title>Rutherford Bar</title>
+		<content>This traditional cafeteria-style outlet offers a wide range of meals, including vegetarian dishes and an extensive salad bar.</content>
+	</food>
+	<food id="3">
+		<title>Dolche Vita</title>
+		<content>Dolche Vita boasts an extensive selection of flavours and fusion dishes from across the world, which are freshly prepared to order.</content>
+	</food>
+	<food id="4">
+		<title>Origins Bistro</title>
+		<content>Origins bistro is the only Tex-Mex style outlet on campus and is famous for its Mexican inspired fajitas and Texan style burgers.</content>
+	</food>
+</foods>

@@ -111,9 +111,8 @@
 <script src="assets/js/universal.js"></script>
 
 <script>
-// code found on this page: http://isotope.metafizzy.co/custom-layout-modes/masonry-gutters.html
+var $container
 
-// modified Isotope methods for gutters in masonry
 $(window).load(function(){
 	$( '#leftnav button' ).tooltip({ position: { my: "right top", at: "left top" }, show: { effect: "slide", duration: 200 }, hide: { effect: "slide", duration: 200 }, easing: "easeInOutQuad" });	
 	
@@ -177,7 +176,7 @@ $(window).load(function(){
 	
 	
 	
-	var $container = $('#stream');
+	$container = $('#stream');
 	$container.isotope({
 		itemSelector: '.item',
 		animationEngine: 'best-available',
@@ -196,27 +195,30 @@ $(window).load(function(){
 	
 	$(window).resize(function(){ $container.isotope('reLayout'); });
 
-	$( "#info-button" ).click(function() {
-		if($("#info-panel").is(":visible")){
-			$(".slide-drawer").toggle("slide", {direction:'left', duration: 300, easing: "linear"}, function(){
-				$(".slide-drawer div").hide();
-				$container.isotope('reLayout');
-			});
+	function primaryOpen(button, panel){
+		if($($('.slidepanel').not(panel)).is(":visible")){
+			$(".slide-drawer .slidepanel").hide();
+			$(panel).fadeIn();
 			$("#leftnav button").removeClass( "active" );
-			$("#wrapper").toggleClass( "slide-margin" );
-		}else if($("#social-panel, #twitter-panel").is(":visible")){
-			$(".slide-drawer div").hide();
-			$("#info-panel").fadeIn();
-			$("#leftnav button").removeClass( "active" );
-			$("#info-button").addClass( "active" );
+			$(button).addClass( "active" );
 		}else{
-			$("#info-panel").fadeIn();
-			$(".slide-drawer").toggle("slide", {direction:'left', duration: 300, easing: "linear"}, function(){
+			$(".slide-drawer .slidepanel").hide();
+			$(panel).show();
+			$(".slide-drawer").toggle("slide", {direction:'left', easing:'easeInOutQuint'}, function(){
 				$container.isotope('reLayout');
 			});
-			$("#info-button").addClass( "active" );
+			$(button).toggleClass( "active" );
 			$("#wrapper").toggleClass( "slide-margin" );
 		}
+	}
+	$( "#info-button" ).click(function() {
+		primaryOpen(this, "#info-panel");
+	});
+	$( "#social-button" ).click(function() {
+		primaryOpen(this, "#social-panel");
+	});
+	$( "#twitter-button" ).click(function() {
+		primaryOpen(this, "#twitter-panel");
 	});
 	
 	var filters = [];

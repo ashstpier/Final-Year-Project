@@ -6,7 +6,7 @@
 	box-sizing: border-box;
 }
 
-html, body {
+html {
 	margin: 0;
 	height: 100%;
 	width: 100%;
@@ -18,7 +18,6 @@ body {
 	color: #555;
 	font-size: 14px;
 	background: #f8f8f8;
-	height: 100%;
 }
 body.login {
 	background: #242B31;
@@ -114,7 +113,7 @@ p { margin-bottom: 20px; }
 	height: 70px;
 	position: absolute;
 	z-index: 999999;
-	background: #f6f6f6;
+	background: #f3f3f3;
 	left: 0px;
 	text-decoration: none;
 	font-size: 100%;
@@ -126,7 +125,7 @@ p { margin-bottom: 20px; }
     -webkit-transition:all 0.2s ease;
     -o-transition:all 0.2s ease;
     transition:all 0.2s ease;
-	border-bottom: 1px #eee solid;
+	border-bottom: 1px #ddd solid;
 }
 #toggledrawer.slide {
 	margin-left: 280px;

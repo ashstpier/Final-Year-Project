@@ -23,6 +23,7 @@
               <li><a href="disclaimer.php"><i class="fa fa-legal fa-fw"></i> Disclaimer</a></li>
               <li><a href="credits.php"><i class="fa fa-align-left fa-fw"></i> Credits</a></li>
               <li><a href="../admin/"><i class="fa fa-cogs fa-fw"></i> Admin</a></li>
+              <li><a href="../index.html"><i class="fa fa-home fa-fw"></i> Home page</a></li>
               <li><a href="https://github.com/ashstpier/Final-Year-Project" target="_blank"><i class="fa fa-github-alt fa-fw"></i> Github repository</a></li>
               <li><a href="http://www.kent.ac.uk/" target="_blank"><i class="fa fa-globe fa-fw"></i> UKC website</a></li>
             </ul>

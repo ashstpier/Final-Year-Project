@@ -22,7 +22,7 @@ foreach ($query as $fact) {
         </div>
         <div class="unit two-of-three">
             <form action='save_facts.php?id=<?php echo $factid ?>' method='post'>
-                <h2><i class='fa fa-pencil-square-o'></i> Building description <a href="#" class="clear" name="content"><i class='fa fa-times'></i> Clear</a></h2>
+                <h2><i class='fa fa-pencil-square-o'></i> Fact text <a href="#" class="clear" name="content"><i class='fa fa-times'></i> Clear</a></h2>
                 <textarea name="content" class="description" maxlength="250" id="content"><?php echo $content ?></textarea>
                 <button class="modal-save"><i class='fa fa-floppy-o'></i> Save fact</button>
              </form>

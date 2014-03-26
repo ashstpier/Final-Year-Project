@@ -27,7 +27,7 @@
     </div>
 </div>
 <div id="navbar" class="fold close">
-	<div id="logo"><a href="http://www.kent.ac.uk/" target="_blank"><img src="assets/images/logo.png" alt="University of Kent logo" /></a><h1>Explore the campus!</h1></div>
+	<div id="logo"><a href="index.html"><img src="assets/images/logo.png" alt="University of Kent logo" /></a><h1>Explore the campus!</h1></div>
     <ul id="nav">
         <li id="search-toggle"><a href="#"><i class="fa fa-search"></i></a></li>
         <li><a href="map.php" class="active">Explore</a></li>
@@ -37,7 +37,7 @@
     <div id="sharebox">
     	<div class="arrow-down"></div>
     	<ul>
-        	<li><a href="http://twitter.com/home?status=Currently reading 3d.eda.kent.ac.uk" title="Share on Twitter" target="_blank"><i class="fa fa-twitter"></i></a></li>
+        	<li><a href="http://twitter.com/home?status=Currently viewing the University of Kent campus map at http://3d.eda.kent.ac.uk" title="Share on Twitter" target="_blank"><i class="fa fa-twitter"></i></a></li>
             <li><a href="http://www.facebook.com/sharer.php?u=3d.eda.kent.ac.uk" title="Share on Facebook" target="blank"><i class="fa fa-facebook"></i></a></li>
             <li><a href="https://plus.google.com/share?url=3d.eda.kent.ac.uk" title="Share on Google Plus" target="blank"><i class="fa fa-google-plus"></i></a></li>
         </ul>
@@ -74,7 +74,9 @@
         <ul>
         	<li><a href="#" class="toggle" id="labeltoggle">Names</a></li>
             <li><a href="#" class="toggled" id="tweettoggle">Tweets</a></li>
+            <li><a href="#" class="toggled" id="facttoggle">Facts</a></li>
             <li><a href="#" class="toggled" id="bustoggle">Bus stops</a></li>
+            <li><a href="#" class="toggled" id="foodtoggle">Restaurants</a></li>
         </ul>
         <h3>Buildings</h3>
         <ul>
@@ -147,7 +149,7 @@
         </ul>
     </div>
 </div>
-<div id="cookie" class="controls-modal"><a href="#" class="controls-close"><i class="fa-times fa fa-lg"></i></a><h2>Welcome to the University of Kent Campus map!</h2><p>You can control the map by clicking and dragging with your mouse. Click on individual buildings to reveal information about them.</p><br/><p>Use the buttons below to rotate the map and change perspective.</p><div class="arrow-down"></div></div>
+<div id="cookie" class="controls-modal"><a href="#" class="controls-close"><i class="fa-times fa fa-lg"></i></a><h2>Welcome to the University of Kent Campus map!</h2><p>You can control the map by clicking and dragging with your mouse. Click on individual buildings to reveal information about them.</p><br/><p>Use the buttons below to rotate the map and change perspective, the button at the bottom right will switch between satellite and map modes.</p><div class="arrow-down"></div></div>
 <div id="zoom" class="controls-modal"><a href="#" class="controls-close"><i class="fa-times fa fa-lg"></i></a><h2>UKC points of interest</h2><p>Click and drag to rotate the camera to view some of the University of Kent's most popular events and places.</p><br/><p>Click the button below to exit back to the map view.</p><div class="arrow-down"></div></div>
 <div id="mapwrapper">
     <div id="modalpanel" class="animated flipcard">
@@ -215,13 +217,14 @@
         </div>
         <div class="arrow-down"></div>
     </div>
-    <div id="factmodal" class="animated">
-    </div>
+    <div id="factmodal" class="animated"></div>
+    <div id="foodmodal" class="animated"></div>
     <div id="controls">
-        <button id="rotateleft" type="button"><i class="fa fa-chevron-left"></i></button>
-        <button id="twod" type="button" onclick="tiltView()"><i class="fa fa-th-large"></i></button>
-        <button id="rotateright" type="button"><i class="fa fa-chevron-right"></i></button>
+        <button id="rotateleft" type="button" title="Rotate Left"><i class="fa fa-chevron-left"></i></button>
+        <button id="twod" type="button" onclick="tiltView()" title="Tilt View"><i class="fa fa-th-large"></i></button>
+        <button id="rotateright" type="button" title="Rotate Right"><i class="fa fa-chevron-right"></i></button>
     </div>
+    <button id="switchmap" type="button" title="Switch Map">Satellite</button>
     <div id="app">
     	<canvas id="canvas" width="100%" height="100%">
     </div>
@@ -288,7 +291,7 @@ Modernizr.addValueTest('transform-style','preserve-3d');
 
 $('#search').hide();
 
-var xml, factxml;
+var xml, factxml, foodxml;
 
 $.ajax({
 	type: "GET",
@@ -301,6 +304,12 @@ $.ajax({
 	url: "assets/facts.xml",
 	dataType: "xml",
 	success: function(data) { factxml = data;}
+});
+$.ajax({
+	type: "GET",
+	url: "assets/food.xml",
+	dataType: "xml",
+	success: function(data) { foodxml = data;}
 });
 </script>
 
@@ -391,6 +400,19 @@ if( Detector.webgl ){
 			});
 		}	
 	});
+</script>
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-41428597-2']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
 </script>
 
 </body>

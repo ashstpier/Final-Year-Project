@@ -1,6 +1,6 @@
-var container, stats, camera, scene, renderer, composer, projector, controls, ground, particleSystem, group = new THREE.Object3D();
+var container, stats, camera, scene, renderer, composer, projector, controls, ground, group = new THREE.Object3D(), satellite;
 var depthMaterial, depthTarget;
-var clickobjects = [], tweetobjects = [], zoomobjects = [], sprites = [], locationIcons = [], teachingIcons = [], communityIcons = [], tweetIcons = [], visitorParking = [], permitParking = [], cycleArray = [], busArray = [], maintenanceIcons = [], adminIcons = [], rotate = [], investmentArray = [], developmentArray = [], roompriceArray = [], populationArray = [], subjectscoreArray = [], subjectsatisfactionArray = [], entrypointsArray = [], sizeArray = [], buildings = [], roadArray = [], darwinRoute = [], keynesRoute = [], parkwoodRoute = [], cycleRoute = [], footPath = [], zoomArray = [], textlookat = [], busIcons = [];
+var clickobjects = [], tweetobjects = [], zoomobjects = [], sprites = [], locationIcons = [], teachingIcons = [], communityIcons = [], tweetIcons = [], visitorParking = [], permitParking = [], cycleArray = [], busArray = [], maintenanceIcons = [], adminIcons = [], rotate = [], investmentArray = [], developmentArray = [], roompriceArray = [], populationArray = [], subjectscoreArray = [], subjectsatisfactionArray = [], entrypointsArray = [], sizeArray = [], buildings = [], roadArray = [], darwinRoute = [], keynesRoute = [], parkwoodRoute = [], cycleRoute = [], footPath = [], zoomArray = [], textlookat = [], busIcons = [], factIcons = [], foodIcons = [];
 var jsonFileNames = [
 	'assets/models/Aphra_and_Lumley_Theatre.js',
 	'assets/models/Becket_Court.js',
@@ -93,7 +93,7 @@ INTERSECTED, SELECTED;
 var WIDTH = $(window).width();
 var HEIGHT = $(window).height();
 
-var maincolour = 0xcccccc;
+var maincolour = 0xb7b7b6;
 var percent = 0;
 	
 init();
@@ -148,6 +148,7 @@ function init() {
 				$('#search').fadeIn(500);
 			}
 			$('#controls').fadeIn(500);
+			$('#switchmap').fadeIn(500);
 			var visited = $.cookie('visited')
 			if (visited == null) {
 				$('#cookie').slideDown(500);
@@ -165,7 +166,7 @@ function init() {
 	
 	/////////// LIGHTS ////////////
 	
-	var directionalLight = new THREE.DirectionalLight( 0xeeeeee ,0.5 );
+	var directionalLight = new THREE.DirectionalLight( 0xdddddd ,0.5 );
 	directionalLight.position.set( 700, 1600, 200 )
 	directionalLight.castShadow = true;
 	directionalLight.shadowDarkness = 0.4;
@@ -187,9 +188,10 @@ function init() {
 	makeCycleRacks();
 	makeRoads();
 	makeDevelopments();
-	makeZoom();
+	//makeZoom();
 	makeBusstops();
 	makeFacts();
+	makeFood();
 	
 	var sprite = makeZoomSprite("assets/images/icons/ico_keynestock.png");
 	sprite.position.set(136,11,29);
@@ -226,6 +228,7 @@ function init() {
         mesh = new THREE.Mesh( geometry, new THREE.MeshFaceMaterial(materials) );
         mesh.scale.set( 1, 1, 1 );
 		mesh.castShadow = true;
+		mesh.name = "trees";
 		group.add( mesh );
     } );
 	
@@ -233,6 +236,7 @@ function init() {
         mesh = new THREE.Mesh( geometry, new THREE.MeshLambertMaterial({ color: 0x999999, wrapAround: true }) );
         mesh.position.set( 0, 0, 0 );
 		mesh.castShadow = true;
+		mesh.name = "walls";
 		group.add( mesh );
     } );
 	
@@ -241,6 +245,7 @@ function init() {
         mesh = new THREE.Mesh( geometry, new THREE.MeshFaceMaterial(materials) );
         mesh.scale.set( 1, 1, 1 );
 		mesh.castShadow = true;
+		mesh.name = "cars";
 		group.add( mesh );
     } );
 	
@@ -251,6 +256,7 @@ function init() {
 		mesh.position.set( 0, 0, 0);
 		mesh.material.needsUpdate = true;
 		mesh.receiveShadow = true;
+		mesh.name = "map";
 		group.add( mesh );
     } );
 	
@@ -258,6 +264,13 @@ function init() {
 		var meshName = jsonFileNames[i].split("/")[2].split(".")[0];
 		loader.load(jsonFileNames[i], makeHandler(meshName));
 	}
+	
+	satellite = THREE.ImageUtils.loadTexture('assets/models/textures/satellite.jpg', {}, function() {
+		renderer.render(scene, camera);
+	});
+	nosatellite = THREE.ImageUtils.loadTexture('assets/models/textures/map.jpg', {}, function() {
+		renderer.render(scene, camera);
+	});
 	
 	function makeHandler(meshName) {
 		return function(geometry, materials) {
@@ -290,7 +303,7 @@ function init() {
 	var canvas = document.getElementById("canvas");
 	renderer = new THREE.WebGLRenderer({canvas:canvas, alpha: true, antialiasing: true});
 	renderer.setSize( window.innerWidth, window.innerHeight );
-	renderer.setClearColor( 0x549FB8, 1);
+	//renderer.setClearColor( 0x549FB8, 1);
 	renderer.shadowMapEnabled = false;
 	renderer.shadowMapSoft = true;
 	renderer.shadowMapType = THREE.PCFSoftShadowMap;
@@ -344,7 +357,7 @@ function init() {
 	
 	var vignette = new THREE.ShaderPass( THREE.VignetteShader );
 	vignette.uniforms[ 'darkness' ].value = 0;
-	vignette.uniforms[ 'offset' ].value = 1.3;
+	vignette.uniforms[ 'offset' ].value = 0.8;
 	composer.addPass( vignette );
 	
 	var effect = new THREE.ShaderPass( THREE.SSAOShader );
@@ -354,43 +367,10 @@ function init() {
 	effect.uniforms[ 'cameraFar' ].value = camera.far;
 	effect.renderToScreen = true;
 	composer.addPass( effect );
-
-	
-	
-	/*
-	var particleCount = 10,
-    particles = new THREE.Geometry(),
-    pMaterial = new THREE.ParticleBasicMaterial({
-	  color: 0x666666,
-	  size: 20,
-	  map: THREE.ImageUtils.loadTexture(
-		"assets/images/particle.png"
-	  ),
-	  transparent: true,
-	  depthWrite: false
-	});
-	for (var p = 0; p < particleCount; p++) {
-	  var pX = Math.random() * 500 - 250,
-		  pY = Math.random() * 100,
-		  pZ = Math.random() * 500 - 250,
-		  particle = new THREE.Vertex(
-			new THREE.Vector3(pX, pY, pZ)
-		  );
-	  particles.vertices.push(particle);
-	}
-	particleSystem = new THREE.ParticleSystem(
-		particles,
-		pMaterial);
-		
-	particleSystem.sortParticles = true;
-	
-	particle.velocity = new THREE.Vector3(0,-Math.random(),0);
-	group.add(particleSystem);
-	*/
 	
 }
 
-var modal, tweetmodal, busmodal, factmodal;
+var modal, tweetmodal, busmodal, factmodal, foodmodal;
 
 function positionTrackingOverlay()
 {
@@ -476,8 +456,7 @@ function positionTrackingOverlay()
 		$(".busmodal")
 				.css('left', leftoffset + 'px')
 				.css('top', topoffset + 'px');	
-	}
-	if(factmodal != null){
+	}if(factmodal != null){
 		
 		var visibleWidth, visibleHeight, p, v, percX, percY, left, top;
 		
@@ -503,6 +482,32 @@ function positionTrackingOverlay()
 		$("#factmodal")
 				.css('left', leftoffset + 'px')
 				.css('top', topoffset + 'px');	
+	}if(foodmodal != null){
+		
+		var visibleWidth, visibleHeight, p, v, percX, percY, left, top;
+		
+		foodmodal.geometry.computeBoundingBox();
+		var boundingBox = foodmodal.geometry.boundingBox;
+		var position = new THREE.Vector3();
+		position.subVectors( boundingBox.max, boundingBox.min );
+		position.multiplyScalar( 0.5 );
+		position.add( boundingBox.min );
+		position.applyMatrix4( foodmodal.matrixWorld );
+		
+		p = new THREE.Vector3(position.x,position.y - 7,position.z);
+		v = projector.projectVector(p, camera);
+		percX = (v.x + 1) / 2;
+		percY = (-v.y + 1) / 2;
+
+		left = percX * $(window).innerWidth();
+		top = percY * $(window).innerHeight();
+				
+		leftoffset = (left - $("#foodmodal").innerWidth() / 2);
+		topoffset = (top - $("#foodmodal").innerHeight());
+		
+		$("#foodmodal")
+				.css('left', leftoffset + 'px')
+				.css('top', topoffset + 'px');	
 	}
 }
 
@@ -511,8 +516,7 @@ function animate() {
 	TWEEN.update();
 	controls.update();
 	positionTrackingOverlay();
-	scene.overrideMaterial = depthMaterial;
-	//particleSystem.rotation.y += 0.001;
+	//scene.overrideMaterial = depthMaterial;
 	for (var i=0, tot=textlookat.length; i < tot; i++) {
 		textlookat[i].lookAt(new THREE.Vector3(camera.position.x - group.position.x,camera.position.y,camera.position.z - group.position.z));
 		textlookat[i].rotation.x = camera.rotation.x; 
@@ -527,9 +531,9 @@ function animate() {
 		$('.search-error').hide();
 	}
 	render();
-	scene.overrideMaterial = null;
-	composer.render();
+	//scene.overrideMaterial = null;
+	//composer.render();
 }
 function render() {
-	renderer.render(scene, camera, depthTarget);
+	renderer.render(scene, camera/*, depthTarget*/);
 }

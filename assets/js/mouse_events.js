@@ -63,9 +63,8 @@ if ( intersects.length > 0 ) {
 	var name = intersects[0].object.name;
 	var splitname = name.split("_");
 	var fact = splitname[0];
-	
-	var splitbus = name.split("_");
-	var bus = splitbus[1];
+	var bus = splitname[1];
+	var food = splitname[0];
 	
 	if ( name == "zoom_venue" ) {
 		var object = intersects[0].object;
@@ -111,6 +110,7 @@ if ( intersects.length > 0 ) {
 		closeTweet();
 		closeBus();
 		closeFact();
+		closeFood();
 		
 		modal = intersects[0].object;
 		placeMarker(modal);
@@ -123,6 +123,10 @@ if ( intersects.length > 0 ) {
 	if ( bus == "bus" ) {
 		var object = intersects[0].object;
 		busFunction(object);
+	}
+	if ( food == "food" ) {
+		var object = intersects[0].object;
+		foodFunction(object);
 	}
 	
 }
@@ -141,6 +145,7 @@ function busFunction(modal){
 	$(".card").removeClass('flipped');
 	closeTweet();
 	closeFact();
+	closeFood();
 	busmodal = modal;
 	var time = 1000;
 	
@@ -176,6 +181,7 @@ function factFunction(modal){
 	$(".card").removeClass('flipped');
 	closeTweet();
 	closeBus();
+	closeFood();
 	factmodal = modal;
 	var time = 1000;
 	modal.geometry.computeBoundingBox();
@@ -197,18 +203,63 @@ function factFunction(modal){
 		
 	if (camera.position.z >= position.z && controls.center.z <= camera.position.z){
 		new TWEEN.Tween( camera.position ).to( { x: 0, y: 150, z: 250 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {$("#factmodal").addClass('fadeInDown opaque');}).start();
-		new TWEEN.Tween( group.position ).to( { x: group.position.x - position.x, y: 0, z: group.position.z - position.z +75 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).start();
+		new TWEEN.Tween( group.position ).to( { x: group.position.x - position.x, y: 0, z: group.position.z - position.z +50 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).start();
 	}else if (camera.position.z >= position.z && controls.center.z >= camera.position.z) {
 		new TWEEN.Tween( camera.position ).to( { x: 0, y: 150, z: - 250 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {$("#factmodal").addClass('fadeInDown opaque');}).start();
-		new TWEEN.Tween( group.position ).to( { x: group.position.x - position.x, y: 0, z: group.position.z - position.z -75 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).start();
+		new TWEEN.Tween( group.position ).to( { x: group.position.x - position.x, y: 0, z: group.position.z - position.z -50 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).start();
 	}
 	else if (camera.position.z <= position.z && controls.center.z <= camera.position.z) {
 		new TWEEN.Tween( camera.position ).to( { x: 0, y: 150, z: 250 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {$("#factmodal").addClass('fadeInDown opaque');}).start();
-		new TWEEN.Tween( group.position ).to( { x: group.position.x - position.x, y: 0, z: group.position.z - position.z +75 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).start();
+		new TWEEN.Tween( group.position ).to( { x: group.position.x - position.x, y: 0, z: group.position.z - position.z +50 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).start();
 	}
 	else {
 		new TWEEN.Tween( camera.position ).to( { x: 0, y: 150, z: - 250 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {$("#factmodal").addClass('fadeInDown opaque');}).start();
-		new TWEEN.Tween( group.position ).to( { x: group.position.x - position.x, y: 0, z: group.position.z - position.z -75 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).start();
+		new TWEEN.Tween( group.position ).to( { x: group.position.x - position.x, y: 0, z: group.position.z - position.z -50 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).start();
+	}
+}
+
+function foodFunction(modal){
+	$('#foodmodal').empty();
+	$("#foodmodal").removeClass('fadeOutUp fadeInDown opaque');
+	$("#modalpanel").removeClass('fadeOutUp fadeInDown opaque');
+	$(".card").removeClass('flipped');
+	closeTweet();
+	closeBus();
+	closeFact();
+	foodmodal = modal;
+	var time = 1000;
+	modal.geometry.computeBoundingBox();
+	var boundingBox = modal.geometry.boundingBox;
+	var position = new THREE.Vector3();
+	position.subVectors( boundingBox.max, boundingBox.min );
+	position.multiplyScalar( 0.5 );
+	position.add( boundingBox.min );
+	position.applyMatrix4( modal.matrixWorld );
+	
+	var name = modal.name;
+	var splitname = name.split("_");
+	var id = splitname[1];
+	$(foodxml).find("food[id='"+id+"']").each(function(){
+		var content = $(this).find('content').text();
+		var title = $(this).find('title').text();
+		$('<div class="content"></div>').html('<a href="#" class="closefact" onclick="closeFood()"><i class="fa fa-times fa-lg"></i></a><h2>'+title+'</h2><p>'+content+'</p>').appendTo('#foodmodal');
+		$('<div class="arrow-down grey"></div>').appendTo('#foodmodal');
+	});
+		
+	if (camera.position.z >= position.z && controls.center.z <= camera.position.z){
+		new TWEEN.Tween( camera.position ).to( { x: 0, y: 150, z: 250 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {$("#foodmodal").addClass('fadeInDown opaque');}).start();
+		new TWEEN.Tween( group.position ).to( { x: group.position.x - position.x, y: 0, z: group.position.z - position.z +50 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).start();
+	}else if (camera.position.z >= position.z && controls.center.z >= camera.position.z) {
+		new TWEEN.Tween( camera.position ).to( { x: 0, y: 150, z: - 250 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {$("#foodmodal").addClass('fadeInDown opaque');}).start();
+		new TWEEN.Tween( group.position ).to( { x: group.position.x - position.x, y: 0, z: group.position.z - position.z -50 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).start();
+	}
+	else if (camera.position.z <= position.z && controls.center.z <= camera.position.z) {
+		new TWEEN.Tween( camera.position ).to( { x: 0, y: 150, z: 250 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {$("#foodmodal").addClass('fadeInDown opaque');}).start();
+		new TWEEN.Tween( group.position ).to( { x: group.position.x - position.x, y: 0, z: group.position.z - position.z +50 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).start();
+	}
+	else {
+		new TWEEN.Tween( camera.position ).to( { x: 0, y: 150, z: - 250 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {$("#foodmodal").addClass('fadeInDown opaque');}).start();
+		new TWEEN.Tween( group.position ).to( { x: group.position.x - position.x, y: 0, z: group.position.z - position.z -50 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).start();
 	}
 }
 
@@ -390,9 +441,7 @@ function placeMarker(modal){
 				var attr = $(this).attr("value");
 				$('<option value="'+attr+'">'+room+'</option>').appendTo('#roomlist');
 			});
-			if($(window).height() > 600){
-				$('<div class="arrow-down grey"></div>').appendTo('#modalfront');
-			}
+			$('<div class="arrow-down grey"></div>').appendTo('#modalfront');
 		}else if(list != ""){
 			$('<div class="header"></div>').html('<img src="assets/images/buildings/'+img+'.jpg" />').appendTo('#modalfront');
 			$('<div class="content"></div>').html('<a href="#" onclick="closeModal()"><i class="fa-times fa fa-lg"></i></a><h2>'+header+'</h2><h3>'+typeicon+'</h3><p>'+description+'</p>').appendTo('#modalfront');
@@ -401,15 +450,11 @@ function placeMarker(modal){
 				var listitem = $(this).text();
 				$('<li>'+listitem+'</li>').appendTo('#modalfront .footer ul');
 			});
-			if($(window).height() > 600){
-				$('<div class="arrow-down grey"></div>').appendTo('#modalfront');
-			}
+			$('<div class="arrow-down grey"></div>').appendTo('#modalfront');
 		}else {
 			$('<div class="header"></div>').html('<img src="assets/images/buildings/'+img+'.jpg" />').appendTo('#modalfront');
 			$('<div class="content"></div>').html('<a href="#" onclick="closeModal()"><i class="fa-times fa fa-lg"></i></a><h2>'+header+'</h2><h3>'+typeicon+'</h3><p>'+description+'</p>').appendTo('#modalfront');
-			if($(window).height() > 600){
-				$('<div class="arrow-down"></div>').appendTo('#modalfront');
-			}
+			$('<div class="arrow-down"></div>').appendTo('#modalfront');
 			
 		}
 	});
@@ -446,6 +491,7 @@ function twitterMap(intersects, tweetcontainer){
 	$(".tweetpanel").removeClass('fadeInDown fadeOutUp opaque');
 	closeBus();
 	closeFact();
+	closeFood();
 	var time = 1000;
 			
 	var string = intersects[0].object.name;
@@ -523,7 +569,7 @@ function onDocumentMouseMove( event ) {
 		container.style.cursor = 'pointer';	
 	}
 	
-	/*
+	
 	var vector = new THREE.Vector3(
     ( event.clientX / window.innerWidth ) * 2 - 1,
     - ( event.clientY / window.innerHeight ) * 2 + 1,
@@ -538,7 +584,7 @@ function onDocumentMouseMove( event ) {
 	var pos = camera.position.clone().add( dir.multiplyScalar( distance ) );
 	
 	console.log(pos);
-	*/
+	
 }
 function dragMove( event ) {
 	event.preventDefault();
@@ -625,6 +671,32 @@ $('#rotateright').click(function() {
 		}).start();
 	}
 });
+var toggle = 0;
+$('#switchmap').click(function() {
+	var map = scene.getObjectByName( "map", true );
+	var trees = scene.getObjectByName( "trees", true );
+	var walls = scene.getObjectByName( "walls", true );
+	var cars = scene.getObjectByName( "cars", true );
+	if (toggle == 0){
+		map.material.materials[0].map = satellite;
+		map.material.materials[0].needsUpdate = true;
+		trees.visible = false;
+		walls.visible = false;
+		cars.visible = false;
+		$(this).css('background-image','url("assets/images/drawing.jpg")');
+		$(this).text("map");
+		toggle = 1;
+	}else{
+		map.material.materials[0].map = nosatellite;
+		map.material.materials[0].needsUpdate = true;
+		trees.visible = true;
+		walls.visible = true;
+		cars.visible = true;
+		$(this).css('background-image','url("assets/images/satellite.jpg")');
+		$(this).text("satellite");
+		toggle = 0;
+	}
+});
 
 function closeModal() {
 	$("#modalpanel").addClass('fadeOutUp');
@@ -655,6 +727,13 @@ function closeFact() {
 	$("#factmodal").removeClass('fadeInDown');
 	setTimeout(function() {
         $("#factmodal").removeClass('opaque'); // alternative to menu.style.display = 'none';
+    }, 500)
+}
+function closeFood() {
+	$("#foodmodal").addClass('fadeOutUp');
+	$("#foodmodal").removeClass('fadeInDown');
+	setTimeout(function() {
+        $("#foodmodal").removeClass('opaque'); // alternative to menu.style.display = 'none';
     }, 500)
 }
 
@@ -888,6 +967,36 @@ $( "#bustoggle" ).click(function() {
 	} else {
 		for (var i=0, tot=busIcons.length; i < tot; i++) {
 			busIcons[i].visible = true;
+		}
+		$(this).removeClass( "toggle" );
+		$(this).addClass( "toggled" );
+	}
+});
+$( "#facttoggle" ).click(function() {
+	if ($(this).hasClass( "toggled" )) {
+		for (var i=0, tot=factIcons.length; i < tot; i++) {
+			factIcons[i].visible = false;
+		}
+		$(this).removeClass( "toggled" );
+		$(this).addClass( "toggle" );
+	} else {
+		for (var i=0, tot=factIcons.length; i < tot; i++) {
+			factIcons[i].visible = true;
+		}
+		$(this).removeClass( "toggle" );
+		$(this).addClass( "toggled" );
+	}
+});
+$( "#foodtoggle" ).click(function() {
+	if ($(this).hasClass( "toggled" )) {
+		for (var i=0, tot=foodIcons.length; i < tot; i++) {
+			foodIcons[i].visible = false;
+		}
+		$(this).removeClass( "toggled" );
+		$(this).addClass( "toggle" );
+	} else {
+		for (var i=0, tot=foodIcons.length; i < tot; i++) {
+			foodIcons[i].visible = true;
 		}
 		$(this).removeClass( "toggle" );
 		$(this).addClass( "toggled" );

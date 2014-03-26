@@ -9,6 +9,7 @@ include 'header.php';
     <ul>
     	<li>University of Kent &ndash; <a href="http://www.kent.ac.uk/" target="_blank">http://www.kent.ac.uk/</a></li>
         <li>Open Street Map &ndash; <a href="http://www.openstreetmap.org/" target="_blank">http://www.openstreetmap.org/</a></li>
+        <li>Google Maps &ndash; <a href="https://www.google.co.uk/maps/" target="_blank">https://www.google.co.uk/maps/</a></li>
         <li>Kent Union &ndash; <a href="http://www.kentunion.co.uk" target="_blank">http://www.kentunion.co.uk/</a></li>
         <li>The Complete University Guide &ndash; <a href="http://www.thecompleteuniversityguide.co.uk/" target="_blank">http://www.thecompleteuniversityguide.co.uk/</a></li>
         <li>Stagecoach Bus &ndash; <a href="http://www.stagecoachbus.com/" target="_blank">http://www.stagecoachbus.com/</a></li>

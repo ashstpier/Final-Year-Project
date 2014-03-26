@@ -63,6 +63,18 @@
         $title = 'Admin - Save Facts'; 
 		$id = 'factdata';
         break;
+	case 'food.php': 
+        $title = 'Admin - Restaurants'; 
+		$id = 'fooddata';
+        break;
+	case 'edit_food.php': 
+        $title = 'Admin - Edit Restaurants'; 
+		$id = 'fooddata';
+        break;
+	case 'save_food.php': 
+        $title = 'Admin - Save Restaurants'; 
+		$id = 'fooddata';
+        break;
 	}
     echo '<title>'.$title.'</title>'; 
     ?>
@@ -88,6 +100,7 @@
     <ul>
     	<li><a href="index.php" id="editbuilding"><i class="fa fa-pencil-square-o"></i>Edit buildings</a></li>
         <li><a href="facts.php" id="factdata"><i class="fa fa-pencil-square-o"></i>Edit facts</a></li>
+        <li><a href="food.php" id="fooddata"><i class="fa fa-pencil-square-o"></i>Edit restaurants</a></li>
    		<li><a href="accommodation_data.php" id="accommodationdata"><i class="fa fa-bar-chart-o"></i>Accommodation data</a></li>
       	<li><a href="subject_data.php" id="subjectdata"><i class="fa fa-bar-chart-o"></i>Subject data</a></li>
     </ul>

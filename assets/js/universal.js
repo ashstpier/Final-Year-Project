@@ -9,7 +9,6 @@ function primaryOpen(button, panel){
 		$(panel).show();
 		$(".slide-drawer").toggle("slide", {direction:'left', easing:'easeInOutQuint'});
 		$(button).toggleClass( "active" );
-		$("#wrapper").toggleClass( "slide-margin" );
 	}
 }
 
@@ -30,12 +29,6 @@ $( "#search-button" ).click(function() {
 });
 $( "#info-button" ).click(function() {
 	primaryOpen(this, "#info-panel");
-});
-$( "#social-button" ).click(function() {
-	primaryOpen(this, "#social-panel");
-});
-$( "#twitter-button" ).click(function() {
-	primaryOpen(this, "#twitter-panel");
 });
 
 $( "#share a" ).click(function() {
