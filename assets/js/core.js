@@ -1,6 +1,6 @@
-var container, stats, camera, scene, renderer, composer, projector, controls, ground, group = new THREE.Object3D(), satellite;
+var container, stats, camera, scene, scene2, renderer, composer, projector, controls, ground, group = new THREE.Object3D(), group2 = new THREE.Object3D(), satellite;
 var depthMaterial, depthTarget;
-var clickobjects = [], tweetobjects = [], zoomobjects = [], sprites = [], locationIcons = [], teachingIcons = [], communityIcons = [], tweetIcons = [], visitorParking = [], permitParking = [], cycleArray = [], busArray = [], maintenanceIcons = [], adminIcons = [], rotate = [], investmentArray = [], developmentArray = [], roompriceArray = [], populationArray = [], subjectscoreArray = [], subjectsatisfactionArray = [], entrypointsArray = [], sizeArray = [], buildings = [], roadArray = [], darwinRoute = [], keynesRoute = [], parkwoodRoute = [], cycleRoute = [], footPath = [], zoomArray = [], textlookat = [], busIcons = [], factIcons = [], foodIcons = [];
+var clickobjects = [], tweetobjects = [], zoomobjects = [], sprites = [], locationIcons = [], teachingIcons = [], communityIcons = [], tweetIcons = [], visitorParking = [], permitParking = [], cycleArray = [], busArray = [], maintenanceIcons = [], adminIcons = [], rotate = [], investmentArray = [], developmentArray = [], roompriceArray = [], populationArray = [], subjectscoreArray = [], subjectsatisfactionArray = [], entrypointsArray = [], sizeArray = [], buildings = [], roadArray = [], darwinRoute = [], keynesRoute = [], parkwoodRoute = [], cycleRoute = [], footPath = [], zoomArray = [], textlookat = [], busIcons = [], factIcons = [], foodIcons = [], iconHide = [];
 var jsonFileNames = [
 	'assets/models/Aphra_and_Lumley_Theatre.js',
 	'assets/models/Becket_Court.js',
@@ -93,7 +93,7 @@ INTERSECTED, SELECTED;
 var WIDTH = $(window).width();
 var HEIGHT = $(window).height();
 
-var maincolour = 0xb7b7b6;
+var maincolour = 0xaaaaaa;
 var percent = 0;
 	
 init();
@@ -104,8 +104,9 @@ function init() {
 	container = document.getElementById("app");
 	
 	camera = new THREE.PerspectiveCamera( 40, window.innerWidth / window.innerHeight, 10, 2000 );
-	camera.position.z = 0;
-	camera.position.y = 700;
+	camera.position.z = 600;
+	camera.position.y = 1200;
+	camera.position.x = -600;
 	
 	//////// ORBIT CONTROLS /////////
 
@@ -113,7 +114,7 @@ function init() {
 	controls.addEventListener( 'change', render );
 	controls.maxPolarAngle = Math.PI/2.25; 
 	controls.minDistance = 200;
-	controls.maxDistance = 800;
+	controls.maxDistance = 900;
 	controls.enabled = true;
 	controls.center.set(0,-10,0);
 	
@@ -125,7 +126,7 @@ function init() {
 	preload.loadManifest(jsonFileNames);
 	preload.loadManifest([
 		"assets/models/textures/map.jpg",
-		"assets/models/trees.js",
+		"assets/models/trees2.js",
 		"assets/models/cars.js"
 	]);
 	
@@ -138,7 +139,7 @@ function init() {
 		$('#preloader').fadeOut(500);
 		$('body').css({'overflow':'visible'});
 		$('#mapwrapper').show();
-		new TWEEN.Tween( camera.position ).to( { x: 0, y: 350, z: 500 }, 3000 ).easing( TWEEN.Easing.Quadratic.InOut).start();
+		new TWEEN.Tween( camera.position ).to( { x: 0, y: 500, z: 750 }, 3000 ).easing( TWEEN.Easing.Quadratic.InOut).start();
 		setTimeout(function(){
 			$('#navbar').toggleClass("open close");
 		},3000);
@@ -162,12 +163,13 @@ function init() {
 	}
 
 	scene = new THREE.Scene();
-	scene.fog = new THREE.Fog( 0xf7f3e6, 100, 1800 );
+	scene2 = new THREE.Scene();
+	scene.fog = new THREE.Fog( 0xf0eacc, 500, 1600 );
 	
 	/////////// LIGHTS ////////////
 	
-	var directionalLight = new THREE.DirectionalLight( 0xdddddd ,0.5 );
-	directionalLight.position.set( 700, 1600, 200 )
+	var directionalLight = new THREE.DirectionalLight( 0xffffff ,0.5 );
+	directionalLight.position.set( 500, 800, 300 )
 	directionalLight.castShadow = true;
 	directionalLight.shadowDarkness = 0.4;
 	directionalLight.shadowMapWidth = 2048;
@@ -176,10 +178,72 @@ function init() {
 	directionalLight.shadowCameraNear = 1200;
 	directionalLight.shadowCameraFar = 2500;
 	directionalLight.shadowCameraFov = 50;
-	scene.add( directionalLight );
+	group.add( directionalLight );
 	
-	var hemiLight = new THREE.HemisphereLight( 0xffffff, 0x999999, 1 ); 
+	var hemiLight = new THREE.HemisphereLight( 0xffffff, 0xcccccc, 1 );
 	scene.add( hemiLight );
+	
+	// lens flares
+
+	var textureFlare0 = THREE.ImageUtils.loadTexture( "assets/models/textures/lensflare0.png" );
+	var textureFlare2 = THREE.ImageUtils.loadTexture( "assets/models/textures/lensflare2.png" );
+	var textureFlare3 = THREE.ImageUtils.loadTexture( "assets/models/textures/lensflare3.png" );
+	
+	addLight( 0.55, 0.9, 0.5, 5000, 300, 0 );
+	addLight( 0.08, 0.8, 0.5, 400, 300, 0 );
+	addLight( 0.995, 0.5, 0.9, 5000, 5000, 0 );
+
+	function addLight( h, s, l, x, y, z ) {
+
+		var light = new THREE.PointLight( 0xffffff, 0.1, 2000 );
+		light.color.setHSL( h, s, l );
+		light.position.set( x, y, z );
+		group.add( light );
+
+		var flareColor = new THREE.Color( 0xffffff );
+		flareColor.setHSL( h, s, l + 0.3 );
+
+		var lensFlare = new THREE.LensFlare( textureFlare0, 1000, 0.0, THREE.AdditiveBlending, flareColor );
+
+		
+
+		lensFlare.add( textureFlare3, 60, 0.6, THREE.AdditiveBlending );
+		lensFlare.add( textureFlare3, 70, 0.7, THREE.AdditiveBlending );
+		lensFlare.add( textureFlare3, 120, 0.9, THREE.AdditiveBlending );
+		lensFlare.add( textureFlare3, 70, 1.0, THREE.AdditiveBlending );
+
+		lensFlare.customUpdateCallback = lensFlareUpdateCallback;
+		lensFlare.position = light.position;
+
+		group.add( lensFlare );
+
+	}
+	
+	var cloudtexture = THREE.ImageUtils.loadTexture('assets/models/textures/clouds.png', {}, function() {
+		renderer.render(scene, camera);
+	});
+	cloudtexture.wrapS = THREE.RepeatWrapping;
+	cloudtexture.wrapT = THREE.RepeatWrapping;
+	cloudtexture.repeat.set( 8, 8 );
+	
+	var planeGeometry = new THREE.PlaneGeometry(8000,8000,1,1);
+	var planeMaterial = new THREE.MeshBasicMaterial({map: cloudtexture, transparent: true, opacity: 0.15, blending: THREE.AdditiveBlending, });
+	planeMaterial.depthWrite = false;
+	planeMaterial.depthTest = false;
+	var clouds = new THREE.Mesh(planeGeometry,planeMaterial);
+	clouds.position.set(0,200,0);
+	clouds.rotation.x = - Math.PI/2;
+	clouds.overdraw = true;
+	group.add(clouds);
+	
+	var tweenOne = new TWEEN.Tween( clouds.position ).to( { x: 1000 }, 60000 ).easing( TWEEN.Easing.Linear.None);
+	var tweenTwo = new TWEEN.Tween( clouds.position ).to( { x: 0 }, 0 ).easing( TWEEN.Easing.Linear.None);
+			
+	tweenOne.chain(tweenTwo);
+	tweenTwo.chain(tweenOne);
+			
+	tweenOne.start();
+			
 	
 	/////////// GEOMETRY /////////////
 	
@@ -249,9 +313,19 @@ function init() {
 		group.add( mesh );
     } );
 	
+	satellite = THREE.ImageUtils.loadTexture('assets/models/textures/satellite.jpg', {}, function() {
+		renderer.render(scene, camera);
+	});
+	nosatellite = THREE.ImageUtils.loadTexture('assets/models/textures/map.jpg', {}, function() {
+		renderer.render(scene, camera);
+	});
+	/*var normalmap = THREE.ImageUtils.loadTexture('assets/models/textures/normalmap.jpg', {}, function() {
+		renderer.render(scene, camera);
+	});*/
 	
 	loader.load( "assets/models/map.js", function( geometry, materials ) {
         mesh = new THREE.Mesh( geometry, new THREE.MeshFaceMaterial(materials) );
+		//mesh.material.materials[0].normalMap = normalmap;
         mesh.scale.set( 1, 1, 1 );
 		mesh.position.set( 0, 0, 0);
 		mesh.material.needsUpdate = true;
@@ -265,16 +339,9 @@ function init() {
 		loader.load(jsonFileNames[i], makeHandler(meshName));
 	}
 	
-	satellite = THREE.ImageUtils.loadTexture('assets/models/textures/satellite.jpg', {}, function() {
-		renderer.render(scene, camera);
-	});
-	nosatellite = THREE.ImageUtils.loadTexture('assets/models/textures/map.jpg', {}, function() {
-		renderer.render(scene, camera);
-	});
-	
 	function makeHandler(meshName) {
 		return function(geometry, materials) {
-			var material = new THREE.MeshPhongMaterial( { color: maincolour, specular: 0x3333333, ambient: 0x222222, wrapAround: true, transparent: true } );
+			var material = new THREE.MeshPhongMaterial( { color: maincolour, specular: 0x3333333, ambient: 0x222222, wrapAround: true, transparent: true, shading: THREE.FlatShading } );
 			mesh = new THREE.Mesh( geometry, material );
 			mesh.scale.set( 1, 1, 1 );
 			mesh.position.set( 0, -0.001, 0 );
@@ -297,13 +364,14 @@ function init() {
 	//////////// RENDERER ////////////
 	
 	scene.add( group );
+	scene2.add( group2 );
 	
 	projector = new THREE.Projector();
 	
 	var canvas = document.getElementById("canvas");
 	renderer = new THREE.WebGLRenderer({canvas:canvas, alpha: true, antialiasing: true});
 	renderer.setSize( window.innerWidth, window.innerHeight );
-	//renderer.setClearColor( 0x549FB8, 1);
+	renderer.setClearColor( 0x6fabbf, 1);
 	renderer.shadowMapEnabled = false;
 	renderer.shadowMapSoft = true;
 	renderer.shadowMapType = THREE.PCFSoftShadowMap;
@@ -314,6 +382,7 @@ function init() {
 	document.getElementById("mapwrapper").addEventListener( 'mousemove', onDocumentMouseMove, false );
 	document.getElementById("app").addEventListener( 'mousedown', onDocumentMouseDown, false );
 	document.getElementById("app").addEventListener( 'mouseup', onDocumentMouseUp, false );
+	document.getElementById("mapwrapper").addEventListener( 'mouseup', stopdrag, false );
 	document.getElementById("app").addEventListener( 'touchstart', dragStart, false );
 	document.getElementById("app").addEventListener( 'touchend', dragEnd, false );
 	document.getElementById("mapwrapper").addEventListener( 'touchmove', dragMove, false );
@@ -328,6 +397,30 @@ function init() {
 
 	window.addEventListener( 'resize', onWindowResize, false );
 
+	
+	function lensFlareUpdateCallback( object ) {
+
+		var f, fl = object.lensFlares.length;
+		var flare;
+		var vecX = -object.positionScreen.x * 2;
+		var vecY = -object.positionScreen.y * 2;
+
+
+		for( f = 0; f < fl; f++ ) {
+
+			   flare = object.lensFlares[ f ];
+
+			   flare.x = object.positionScreen.x + vecX * flare.distance;
+			   flare.y = object.positionScreen.y + vecY * flare.distance;
+
+			   flare.rotation = 0;
+
+		}
+
+		object.lensFlares[ 2 ].y += 0.025;
+		object.lensFlares[ 3 ].rotation = object.positionScreen.x * 0.5 + THREE.Math.degToRad( 45 );
+
+	}
 
 	
 	///////////// DEPTH //////////////
@@ -346,18 +439,18 @@ function init() {
 	depthTarget = new THREE.WebGLRenderTarget( window.innerWidth, window.innerHeight, { minFilter: THREE.NearestFilter, magFilter: THREE.NearestFilter, format: THREE.RGBAFormat } );
 	
 	var tiltH = new THREE.ShaderPass( THREE.HorizontalTiltShiftShader );
-	tiltH.uniforms[ 'h' ].value = 1 / window.innerWidth;
+	tiltH.uniforms[ 'h' ].value = 2 / window.innerWidth;
 	tiltH.uniforms[ 'r' ].value = 0.5;
 	//composer.addPass( tiltH );
 	
 	var tiltV = new THREE.ShaderPass( THREE.VerticalTiltShiftShader );
-	tiltV.uniforms[ 'v' ].value = 1 / window.innerHeight;
+	tiltV.uniforms[ 'v' ].value = 2 / window.innerHeight;
 	tiltV.uniforms[ 'r' ].value = 0.5;
 	//composer.addPass( tiltV );
 	
 	var vignette = new THREE.ShaderPass( THREE.VignetteShader );
 	vignette.uniforms[ 'darkness' ].value = 0;
-	vignette.uniforms[ 'offset' ].value = 0.8;
+	vignette.uniforms[ 'offset' ].value = 1;
 	composer.addPass( vignette );
 	
 	var effect = new THREE.ShaderPass( THREE.SSAOShader );
@@ -513,6 +606,7 @@ function positionTrackingOverlay()
 
 function animate() {
 	requestAnimationFrame( animate );
+	group2.position.copy(group.position);
 	TWEEN.update();
 	controls.update();
 	positionTrackingOverlay();
@@ -536,4 +630,5 @@ function animate() {
 }
 function render() {
 	renderer.render(scene, camera/*, depthTarget*/);
+	
 }

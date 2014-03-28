@@ -42,7 +42,7 @@ body {
 	height: 100%;
 	position: relative;
 	overflow: hidden;
-	background-color: #549FB8;
+	background-color: #6fabbf;
 	background-image: -webkit-gradient(
 	linear,
 	left top,
@@ -50,11 +50,11 @@ body {
 	color-stop(0, #549FB8),
 	color-stop(1, #CAF7F7)
 );
-background-image: -o-linear-gradient(bottom, #549FB8 0%, #CAF7F7 100%);
-background-image: -moz-linear-gradient(bottom, #549FB8 0%, #CAF7F7 100%);
-background-image: -webkit-linear-gradient(bottom, #549FB8 0%, #CAF7F7 100%);
-background-image: -ms-linear-gradient(bottom, #549FB8 0%, #CAF7F7 100%);
-background-image: linear-gradient(to bottom, #549FB8 0%, #CAF7F7 100%);
+background-image: -o-linear-gradient(bottom, #6fabbf 0%, #CAF7F7 100%);
+background-image: -moz-linear-gradient(bottom, #6fabbf 0%, #CAF7F7 100%);
+background-image: -webkit-linear-gradient(bottom, #6fabbf 0%, #CAF7F7 100%);
+background-image: -ms-linear-gradient(bottom, #6fabbf 0%, #CAF7F7 100%);
+background-image: linear-gradient(to bottom, #6fabbf 0%, #CAF7F7 100%);
 }
 #navbar {
 	position: fixed;
@@ -64,7 +64,9 @@ background-image: linear-gradient(to bottom, #549FB8 0%, #CAF7F7 100%);
 	background: #f6f6f6;
 	height: 70px;
   	width: 100%;
-	border-bottom: #ddd solid 1px;
+	box-shadow: 0px 2px 20px rgba(0, 0, 0, 0.3);
+	-moz-box-shadow: 0px 2px 20px rgba(0, 0, 0, 0.3);
+	-webkit-box-shadow: 0px 2px 20px rgba(0, 0, 0, 0.3);
 }
 #navbar #logo {
 	padding: 0 20px;
@@ -115,7 +117,6 @@ background-image: linear-gradient(to bottom, #549FB8 0%, #CAF7F7 100%);
 }
 #navbar ul#nav li a:hover, #navbar ul#nav li a:focus, #navbar ul#nav li a.active {
 	background: #eee;
-	border-bottom: #ddd solid 1px;
 }
 #navbar ul#nav li#share a { background: #ed7b5f; color: #fff; border-bottom: 2px solid #d66549; width: 70px; }
 #navbar ul#nav li#twitter a:hover { background: #55acee; color: #fff; }
@@ -234,7 +235,7 @@ background-image: linear-gradient(to bottom, #549FB8 0%, #CAF7F7 100%);
 	background: #242B31;
 	width: 60px;
 	position: fixed;
-	z-index: 999999;
+	z-index: 9999999;
 	top: 70px;
 	left: 0;
 }
@@ -250,7 +251,7 @@ background-image: linear-gradient(to bottom, #549FB8 0%, #CAF7F7 100%);
 	background: #f6f6f6;
 	width: 280px;
 	position: fixed;
-	z-index: 9999;
+	z-index: 999999;
 	top: 70px;
 	left: 60px;
 	bottom:0;
@@ -749,10 +750,20 @@ a {
 	vertical-align: bottom;
 	display: none;
 }
+#googlecopy {
+	position:absolute;
+	bottom: 0;
+	right: 0;
+	padding: 3px 5px;
+	background: #242B31;
+	color: #5b656e;
+	font-size: 70%;
+	display: none;
+}
 .ui-tooltip {
 	padding: 8px;
 	position: absolute;
-	z-index: 9999;
+	z-index: 99999!important;
 	max-width: 300px;
 	background: #21262e;
 	color: #fff;

@@ -25,7 +25,7 @@
     </div>
 </div>
 <div id="navbar">
-	<div id="logo"><a href="http://www.kent.ac.uk/" target="_blank"><img src="assets/images/logo.png" alt="University of Kent logo" /></a><h1>Sharing your ideas!</h1></div>
+	<div id="logo"><a href="http://www.kent.ac.uk/" target="_blank"><img src="assets/images/logo.png" alt="University of Kent logo" /></a><h1>Social Network Feed</h1></div>
     <ul id="nav">
         <li><a href="map.php">Explore</a></li>
         <li><a href="social.php" class="active">Social</a></li>

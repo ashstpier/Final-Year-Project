@@ -1270,6 +1270,7 @@ function makeBusstops(){
 	cube.visible = false;
 	cube.name = "keynes_bus"
 	clickobjects.push(cube);
+	iconHide.push(cube);
 	group.add(cube);
 	
 	cube = new THREE.Mesh( new THREE.CubeGeometry( 12, 12, 6 ), material );
@@ -1277,6 +1278,7 @@ function makeBusstops(){
 	cube.name = "parkwood_bus"
 	cube.visible = false;
 	clickobjects.push(cube);
+	iconHide.push(cube);
 	group.add(cube);
 	
 	cube = new THREE.Mesh( new THREE.CubeGeometry( 12, 12, 6 ), material );
@@ -1284,6 +1286,7 @@ function makeBusstops(){
 	cube.name = "darwin_bus"
 	cube.visible = false;
 	clickobjects.push(cube);
+	iconHide.push(cube);
 	group.add(cube);
 }
 function makeFacts(){
@@ -1300,7 +1303,7 @@ function makeFacts(){
 	
 	// Fact 1
 	fact = new THREE.Mesh( geometry, material );
-	fact.position.set(295,10,-84);
+	fact.position.set(310,10,-84);
 	textlookat.push(fact);
 	zoomobjects.push(fact);
 	factIcons.push(fact);
@@ -1350,10 +1353,11 @@ function makeFacts(){
 	
 	var material = new THREE.MeshBasicMaterial({ color: 0xed7b5f, wrapAround: true });
 	var cube = new THREE.Mesh( new THREE.CubeGeometry( 12, 12, 6 ), material );
-	cube.position.set(295,10,-84);
+	cube.position.set(310,10,-84);
 	cube.visible = false;
 	cube.name = "fact_1"
 	clickobjects.push(cube);
+	iconHide.push(cube);
 	group.add(cube);
 	
 	var cube = new THREE.Mesh( new THREE.CubeGeometry( 12, 12, 6 ), material );
@@ -1361,6 +1365,7 @@ function makeFacts(){
 	cube.visible = false;
 	cube.name = "fact_2"
 	clickobjects.push(cube);
+	iconHide.push(cube);
 	group.add(cube);
 	
 	var cube = new THREE.Mesh( new THREE.CubeGeometry( 12, 12, 6 ), material );
@@ -1368,6 +1373,7 @@ function makeFacts(){
 	cube.visible = false;
 	cube.name = "fact_3"
 	clickobjects.push(cube);
+	iconHide.push(cube);
 	group.add(cube);
 	
 	var cube = new THREE.Mesh( new THREE.CubeGeometry( 12, 12, 6 ), material );
@@ -1375,6 +1381,7 @@ function makeFacts(){
 	cube.visible = false;
 	cube.name = "fact_4"
 	clickobjects.push(cube);
+	iconHide.push(cube);
 	group.add(cube);
 	
 	var cube = new THREE.Mesh( new THREE.CubeGeometry( 12, 12, 6 ), material );
@@ -1382,6 +1389,7 @@ function makeFacts(){
 	cube.visible = false;
 	cube.name = "fact_5"
 	clickobjects.push(cube);
+	iconHide.push(cube);
 	group.add(cube);
 	
 	var cube = new THREE.Mesh( new THREE.CubeGeometry( 12, 12, 6 ), material );
@@ -1389,6 +1397,7 @@ function makeFacts(){
 	cube.visible = false;
 	cube.name = "fact_6"
 	clickobjects.push(cube);
+	iconHide.push(cube);
 	group.add(cube);
 }
 function makeFood(){
@@ -1440,6 +1449,7 @@ function makeFood(){
 	cube.visible = false;
 	cube.name = "food_1"
 	clickobjects.push(cube);
+	iconHide.push(cube);
 	group.add(cube);
 	
 	var material = new THREE.MeshBasicMaterial({ color: 0xed7b5f, wrapAround: true });
@@ -1448,6 +1458,7 @@ function makeFood(){
 	cube.visible = false;
 	cube.name = "food_2"
 	clickobjects.push(cube);
+	iconHide.push(cube);
 	group.add(cube);
 	
 	var material = new THREE.MeshBasicMaterial({ color: 0xed7b5f, wrapAround: true });
@@ -1456,6 +1467,7 @@ function makeFood(){
 	cube.visible = false;
 	cube.name = "food_3"
 	clickobjects.push(cube);
+	iconHide.push(cube);
 	group.add(cube);
 	
 	var material = new THREE.MeshBasicMaterial({ color: 0xed7b5f, wrapAround: true });
@@ -1464,6 +1476,7 @@ function makeFood(){
 	cube.visible = false;
 	cube.name = "food_4"
 	clickobjects.push(cube);
+	iconHide.push(cube);
 	group.add(cube);
 }
 function onWindowResize() {

@@ -138,6 +138,14 @@ if ( INTERSECTED ) {
 container.style.cursor = 'move';
 controls.enabled = true;
 }
+function stopdrag( event ) {
+	if ( INTERSECTED ) {
+		plane.position.copy( INTERSECTED.position );
+		SELECTED = null;
+	}
+	container.style.cursor = 'move';
+	controls.enabled = true;
+}
 
 function busFunction(modal){
 	$(".busmodal").removeClass('fadeOutUp fadeInDown opaque');
@@ -569,7 +577,7 @@ function onDocumentMouseMove( event ) {
 		container.style.cursor = 'pointer';	
 	}
 	
-	
+	/*
 	var vector = new THREE.Vector3(
     ( event.clientX / window.innerWidth ) * 2 - 1,
     - ( event.clientY / window.innerHeight ) * 2 + 1,
@@ -584,7 +592,7 @@ function onDocumentMouseMove( event ) {
 	var pos = camera.position.clone().add( dir.multiplyScalar( distance ) );
 	
 	console.log(pos);
-	
+	*/
 }
 function dragMove( event ) {
 	event.preventDefault();
@@ -619,16 +627,16 @@ function tiltView() {
 		clicked = 1;
 		if (tilt == 0){
 			if (camera.position.z >= controls.center.z){
-				new TWEEN.Tween( camera.position ).to( { y: 60, z: controls.center.z + 200 }, 1000 ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {
+				new TWEEN.Tween( camera.position ).to( { y: 100, z: controls.center.z + 400 }, 1000 ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {
 				clicked = 0;
 			}).start();
 			}else {
-				new TWEEN.Tween( camera.position ).to( { y: 60, z: controls.center.z - 200 }, 1000 ).easing( TWEEN.Easing.Sinusoidal.InOut).start();
+				new TWEEN.Tween( camera.position ).to( { y: 100, z: controls.center.z - 400 }, 1000 ).easing( TWEEN.Easing.Sinusoidal.InOut).start();
 			}
 			tilt = 1;
 		} else if (tilt == 1){
 			if (camera.position.z >= controls.center.z){
-				new TWEEN.Tween( camera.position ).to( { x: controls.center.x, y: 600, z: controls.center.z + 1, }, 1000 ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {
+				new TWEEN.Tween( camera.position ).to( { x: controls.center.x, y: 700, z: controls.center.z + 1, }, 1000 ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {
 				clicked = 0;
 			}).start();
 			}else {
@@ -637,7 +645,7 @@ function tiltView() {
 			tilt = 2;
 		} else {
 			if (camera.position.z >= controls.center.z){
-				new TWEEN.Tween( camera.position ).to( { y: 250, z: controls.center.z + 400 }, 1000 ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {
+				new TWEEN.Tween( camera.position ).to( { y: 500, z: controls.center.z + 750 }, 1000 ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {
 				clicked = 0;
 			}).start();
 			}else {
@@ -685,6 +693,7 @@ $('#switchmap').click(function() {
 		cars.visible = false;
 		$(this).css('background-image','url("assets/images/drawing.jpg")');
 		$(this).text("map");
+		$('#googlecopy').show();
 		toggle = 1;
 	}else{
 		map.material.materials[0].map = nosatellite;
@@ -694,6 +703,7 @@ $('#switchmap').click(function() {
 		cars.visible = true;
 		$(this).css('background-image','url("assets/images/satellite.jpg")');
 		$(this).text("satellite");
+		$('#googlecopy').hide();
 		toggle = 0;
 	}
 });
@@ -946,12 +956,14 @@ $( "#tweettoggle" ).click(function() {
 	if ($(this).hasClass( "toggled" )) {
 		for (var i=0, tot=tweetIcons.length; i < tot; i++) {
 			tweetIcons[i].visible = false;
+			tweetIcons[i].position.y -= 100;
 		}
 		$(this).removeClass( "toggled" );
 		$(this).addClass( "toggle" );
 	} else {
 		for (var i=0, tot=tweetIcons.length; i < tot; i++) {
 			tweetIcons[i].visible = true;
+			tweetIcons[i].position.y += 100;
 		}
 		$(this).removeClass( "toggle" );
 		$(this).addClass( "toggled" );
@@ -961,12 +973,14 @@ $( "#bustoggle" ).click(function() {
 	if ($(this).hasClass( "toggled" )) {
 		for (var i=0, tot=busIcons.length; i < tot; i++) {
 			busIcons[i].visible = false;
+			iconHide[i].position.y -=100;
 		}
 		$(this).removeClass( "toggled" );
 		$(this).addClass( "toggle" );
 	} else {
 		for (var i=0, tot=busIcons.length; i < tot; i++) {
 			busIcons[i].visible = true;
+			iconHide[i].position.y += 100;
 		}
 		$(this).removeClass( "toggle" );
 		$(this).addClass( "toggled" );
@@ -976,12 +990,14 @@ $( "#facttoggle" ).click(function() {
 	if ($(this).hasClass( "toggled" )) {
 		for (var i=0, tot=factIcons.length; i < tot; i++) {
 			factIcons[i].visible = false;
+			iconHide[i].position.y -=100;
 		}
 		$(this).removeClass( "toggled" );
 		$(this).addClass( "toggle" );
 	} else {
 		for (var i=0, tot=factIcons.length; i < tot; i++) {
 			factIcons[i].visible = true;
+			iconHide[i].position.y += 100;
 		}
 		$(this).removeClass( "toggle" );
 		$(this).addClass( "toggled" );
@@ -991,12 +1007,14 @@ $( "#foodtoggle" ).click(function() {
 	if ($(this).hasClass( "toggled" )) {
 		for (var i=0, tot=foodIcons.length; i < tot; i++) {
 			foodIcons[i].visible = false;
+			iconHide[i].position.y -= 100;
 		}
 		$(this).removeClass( "toggled" );
 		$(this).addClass( "toggle" );
 	} else {
 		for (var i=0, tot=foodIcons.length; i < tot; i++) {
 			foodIcons[i].visible = true;
+			iconHide[i].position.y += 100;
 		}
 		$(this).removeClass( "toggle" );
 		$(this).addClass( "toggled" );

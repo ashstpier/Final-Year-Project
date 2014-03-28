@@ -27,7 +27,7 @@
     </div>
 </div>
 <div id="navbar" class="fold close">
-	<div id="logo"><a href="index.html"><img src="assets/images/logo.png" alt="University of Kent logo" /></a><h1>Explore the campus!</h1></div>
+	<div id="logo"><a href="index.html"><img src="assets/images/logo.png" alt="University of Kent logo" /></a><h1>Interactive 3D Campus</h1></div>
     <ul id="nav">
         <li id="search-toggle"><a href="#"><i class="fa fa-search"></i></a></li>
         <li><a href="map.php" class="active">Explore</a></li>
@@ -225,6 +225,7 @@
         <button id="rotateright" type="button" title="Rotate Right"><i class="fa fa-chevron-right"></i></button>
     </div>
     <button id="switchmap" type="button" title="Switch Map">Satellite</button>
+    <div id="googlecopy">Imagery ©2014 Bluesky, Map data ©2014 Google</div>
     <div id="app">
     	<canvas id="canvas" width="100%" height="100%">
     </div>

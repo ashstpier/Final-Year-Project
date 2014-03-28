@@ -12,6 +12,22 @@
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,700,400,300' rel='stylesheet' type='text/css'>
 </head>
 <body>
+<div id="nav">
+	<div class="container">
+        <div class="grid">
+            <div class="unit span-grid">
+            	<img id="logo" src="assets/images/logo_blue.png" alt="University of Kent logo" />
+                <ul>
+                	<li><a href="#header">Welcome</a></li>
+                    <li><a href="#content">Buildings</a></li>
+                    <li><a href="#social">Social</a></li>
+                    <li><a href="#facts">Facts</a></li>
+                    <li><a href="#mobile">Mobile</a></li>
+                </ul>
+            </div>
+       	</div>
+   	</div>
+</div>
 <div id="header">
     <div class="container">
         <div class="grid">
@@ -26,8 +42,8 @@
 <div id="intro">
 	<div class="container">
         <div class="grid">
-            <div class="unit span-grid center">
-            	<p class="bottom">Welcome the University of Kent 3D Campus map! The whole of the Canterbury campus has been recreated as a fully interactive 3D model that you can view in your web browser without any plugins or extensions. Just make sure you are running a modern browser such as the current version of <a href="https://www.google.com/intl/en/chrome/browser/" target="_blank">Google Chrome</a>, <a href="http://www.mozilla.org/en-US/firefox/new/" target="_blank">Firefox</a> or <a href="https://www.apple.com/uk/safari/" target="_blank">Safari</a> for Mac. Unfortunately Internet Explorer 10 or below does not support the technology used on this website and therefore the site will be unable to run on those browsers.</p><br/>
+            <div class="unit span-grid">
+            	<p class="bottom">Welcome the University of Kent 3D Campus map! The whole of the Canterbury campus has been recreated as a fully interactive 3D model that you can view in your web browser. Just make sure you are running a modern browser such as the current version of <a href="https://www.google.com/intl/en/chrome/browser/" target="_blank">Google Chrome</a>, <a href="http://www.mozilla.org/en-US/firefox/new/" target="_blank">Firefox</a> or <a href="https://www.apple.com/uk/safari/" target="_blank">Safari</a> for Mac. Unfortunately Internet Explorer 10 or below does not support the technology used on this website and therefore the site will be unable to run on those browsers.</p><br/>
                 <p>Below you will find an explanation of some of the main features of the campus map which will help you get the most out of the experience. Remember to click on the 'Explore' button above to start the application.</p>
             </div>
         </div>
@@ -43,7 +59,7 @@
                 <p>Each building has a category such as: Teaching, Community or Admin. This helps to quickly differentiate between them without having to read the description.</p>
             </div>
             <div class="unit one-of-two" data-scroll-reveal="enter from the right">
-            	<img src="assets/images/illustration1.png"/ alt="Screenshot of building information">
+            	<img src="assets/images/illustration1.png" alt="Screenshot of building information">
             </div>
         </div>
         <div class="grid">
@@ -219,6 +235,8 @@
     </div>
 </div>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src='assets/js/jquery.scrollTo-1.4.3.1-min.js'></script>
+<script src='assets/js/jquery.localscroll-1.2.7-min.js'></script>
 <script src='assets/js/scrollReveal.js'></script>
 <script>
 $( document ).ready(function() {
@@ -229,10 +247,13 @@ $( document ).ready(function() {
 		var scrollAmount = $(window).scrollTop();
 	 
 		if(scrollAmount >= $('#header').innerHeight()){
-			console.log(scrollAmount);
+			$('#nav').fadeIn();
+		}else{
+			$('#nav').fadeOut();
 		}
 	 
 	});
+	$('#nav').localScroll();
 });
 </script>
 </body>
