@@ -300,9 +300,6 @@ $(window).load(function(){
 	);
 	
 });
-$( "#share a" ).click(function() {
-	$('#sharebox').slideToggle( 300, "easeInOutQuint" );
-});
 </script>
 
 <script type="text/javascript">

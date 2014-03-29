@@ -155,7 +155,7 @@ function busFunction(modal){
 	closeFact();
 	closeFood();
 	busmodal = modal;
-	var time = 1000;
+	var time = 500;
 	
 	modal.geometry.computeBoundingBox();
 	var boundingBox = modal.geometry.boundingBox;
@@ -166,18 +166,18 @@ function busFunction(modal){
 	position.applyMatrix4( modal.matrixWorld );
 		
 	if (camera.position.z >= position.z && controls.center.z <= camera.position.z){
-		new TWEEN.Tween( camera.position ).to( { x: 0, y: 150, z: 250 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {$("#"+modal.name).addClass('fadeInDown opaque');}).start();
+		new TWEEN.Tween( camera.position ).to( { x: 0, y: 200, z: 340 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {$("#"+modal.name).addClass('fadeInDown opaque');}).start();
 		new TWEEN.Tween( group.position ).to( { x: group.position.x - position.x, y: 0, z: group.position.z - position.z +75 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).start();
 	}else if (camera.position.z >= position.z && controls.center.z >= camera.position.z) {
-		new TWEEN.Tween( camera.position ).to( { x: 0, y: 150, z: - 250 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {$("#"+modal.name).addClass('fadeInDown opaque');}).start();
+		new TWEEN.Tween( camera.position ).to( { x: 0, y: 200, z: - 340 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {$("#"+modal.name).addClass('fadeInDown opaque');}).start();
 		new TWEEN.Tween( group.position ).to( { x: group.position.x - position.x, y: 0, z: group.position.z - position.z -75 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).start();
 	}
 	else if (camera.position.z <= position.z && controls.center.z <= camera.position.z) {
-		new TWEEN.Tween( camera.position ).to( { x: 0, y: 150, z: 250 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {$("#"+modal.name).addClass('fadeInDown opaque');}).start();
+		new TWEEN.Tween( camera.position ).to( { x: 0, y: 200, z: 340 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {$("#"+modal.name).addClass('fadeInDown opaque');}).start();
 		new TWEEN.Tween( group.position ).to( { x: group.position.x - position.x, y: 0, z: group.position.z - position.z +75 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).start();
 	}
 	else {
-		new TWEEN.Tween( camera.position ).to( { x: 0, y: 150, z: - 250 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {$("#"+modal.name).addClass('fadeInDown opaque');}).start();
+		new TWEEN.Tween( camera.position ).to( { x: 0, y: 200, z: - 340 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {$("#"+modal.name).addClass('fadeInDown opaque');}).start();
 		new TWEEN.Tween( group.position ).to( { x: group.position.x - position.x, y: 0, z: group.position.z - position.z -75 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).start();
 	}
 }
@@ -191,7 +191,7 @@ function factFunction(modal){
 	closeBus();
 	closeFood();
 	factmodal = modal;
-	var time = 1000;
+	var time = 500;
 	modal.geometry.computeBoundingBox();
 	var boundingBox = modal.geometry.boundingBox;
 	var position = new THREE.Vector3();
@@ -210,18 +210,18 @@ function factFunction(modal){
 	});
 		
 	if (camera.position.z >= position.z && controls.center.z <= camera.position.z){
-		new TWEEN.Tween( camera.position ).to( { x: 0, y: 150, z: 250 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {$("#factmodal").addClass('fadeInDown opaque');}).start();
+		new TWEEN.Tween( camera.position ).to( { x: 0, y: 200, z: 340 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {$("#factmodal").addClass('fadeInDown opaque');}).start();
 		new TWEEN.Tween( group.position ).to( { x: group.position.x - position.x, y: 0, z: group.position.z - position.z +50 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).start();
 	}else if (camera.position.z >= position.z && controls.center.z >= camera.position.z) {
-		new TWEEN.Tween( camera.position ).to( { x: 0, y: 150, z: - 250 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {$("#factmodal").addClass('fadeInDown opaque');}).start();
+		new TWEEN.Tween( camera.position ).to( { x: 0, y: 200, z: - 340 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {$("#factmodal").addClass('fadeInDown opaque');}).start();
 		new TWEEN.Tween( group.position ).to( { x: group.position.x - position.x, y: 0, z: group.position.z - position.z -50 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).start();
 	}
 	else if (camera.position.z <= position.z && controls.center.z <= camera.position.z) {
-		new TWEEN.Tween( camera.position ).to( { x: 0, y: 150, z: 250 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {$("#factmodal").addClass('fadeInDown opaque');}).start();
+		new TWEEN.Tween( camera.position ).to( { x: 0, y: 200, z: 340 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {$("#factmodal").addClass('fadeInDown opaque');}).start();
 		new TWEEN.Tween( group.position ).to( { x: group.position.x - position.x, y: 0, z: group.position.z - position.z +50 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).start();
 	}
 	else {
-		new TWEEN.Tween( camera.position ).to( { x: 0, y: 150, z: - 250 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {$("#factmodal").addClass('fadeInDown opaque');}).start();
+		new TWEEN.Tween( camera.position ).to( { x: 0, y: 200, z: - 340 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {$("#factmodal").addClass('fadeInDown opaque');}).start();
 		new TWEEN.Tween( group.position ).to( { x: group.position.x - position.x, y: 0, z: group.position.z - position.z -50 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).start();
 	}
 }
@@ -235,7 +235,7 @@ function foodFunction(modal){
 	closeBus();
 	closeFact();
 	foodmodal = modal;
-	var time = 1000;
+	var time = 500;
 	modal.geometry.computeBoundingBox();
 	var boundingBox = modal.geometry.boundingBox;
 	var position = new THREE.Vector3();
@@ -255,18 +255,18 @@ function foodFunction(modal){
 	});
 		
 	if (camera.position.z >= position.z && controls.center.z <= camera.position.z){
-		new TWEEN.Tween( camera.position ).to( { x: 0, y: 150, z: 250 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {$("#foodmodal").addClass('fadeInDown opaque');}).start();
+		new TWEEN.Tween( camera.position ).to( { x: 0, y: 200, z: 340 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {$("#foodmodal").addClass('fadeInDown opaque');}).start();
 		new TWEEN.Tween( group.position ).to( { x: group.position.x - position.x, y: 0, z: group.position.z - position.z +50 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).start();
 	}else if (camera.position.z >= position.z && controls.center.z >= camera.position.z) {
-		new TWEEN.Tween( camera.position ).to( { x: 0, y: 150, z: - 250 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {$("#foodmodal").addClass('fadeInDown opaque');}).start();
+		new TWEEN.Tween( camera.position ).to( { x: 0, y: 200, z: - 340 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {$("#foodmodal").addClass('fadeInDown opaque');}).start();
 		new TWEEN.Tween( group.position ).to( { x: group.position.x - position.x, y: 0, z: group.position.z - position.z -50 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).start();
 	}
 	else if (camera.position.z <= position.z && controls.center.z <= camera.position.z) {
-		new TWEEN.Tween( camera.position ).to( { x: 0, y: 150, z: 250 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {$("#foodmodal").addClass('fadeInDown opaque');}).start();
+		new TWEEN.Tween( camera.position ).to( { x: 0, y: 200, z: 340 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {$("#foodmodal").addClass('fadeInDown opaque');}).start();
 		new TWEEN.Tween( group.position ).to( { x: group.position.x - position.x, y: 0, z: group.position.z - position.z +50 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).start();
 	}
 	else {
-		new TWEEN.Tween( camera.position ).to( { x: 0, y: 150, z: - 250 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {$("#foodmodal").addClass('fadeInDown opaque');}).start();
+		new TWEEN.Tween( camera.position ).to( { x: 0, y: 200, z: - 340 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {$("#foodmodal").addClass('fadeInDown opaque');}).start();
 		new TWEEN.Tween( group.position ).to( { x: group.position.x - position.x, y: 0, z: group.position.z - position.z -50 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).start();
 	}
 }
@@ -467,7 +467,7 @@ function placeMarker(modal){
 		}
 	});
 
-	var time = 1000;
+	var time = 500;
 	modal.geometry.computeBoundingBox();
 	var boundingBox = modal.geometry.boundingBox;
 	var position = new THREE.Vector3();
@@ -477,18 +477,18 @@ function placeMarker(modal){
 	position.applyMatrix4( modal.matrixWorld );
 		
 	if (camera.position.z >= position.z && controls.center.z <= camera.position.z){
-		new TWEEN.Tween( camera.position ).to( { x: 0, y: 150, z: 250 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {$("#modalpanel").addClass('fadeInDown opaque');}).start();
+		new TWEEN.Tween( camera.position ).to( { x: 0, y: 200, z: 340 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {$("#modalpanel").addClass('fadeInDown opaque');}).start();
 		new TWEEN.Tween( group.position ).to( { x: group.position.x - position.x, y: 0, z: group.position.z - position.z +75 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).start();
 	}else if (camera.position.z >= position.z && controls.center.z >= camera.position.z) {
-		new TWEEN.Tween( camera.position ).to( { x: 0, y: 150, z: - 250 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {$("#modalpanel").addClass('fadeInDown opaque');}).start();
+		new TWEEN.Tween( camera.position ).to( { x: 0, y: 200, z: - 340 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {$("#modalpanel").addClass('fadeInDown opaque');}).start();
 		new TWEEN.Tween( group.position ).to( { x: group.position.x - position.x, y: 0, z: group.position.z - position.z -75 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).start();
 	}
 	else if (camera.position.z <= position.z && controls.center.z <= camera.position.z) {
-		new TWEEN.Tween( camera.position ).to( { x: 0, y: 150, z: 250 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {$("#modalpanel").addClass('fadeInDown opaque');}).start();
+		new TWEEN.Tween( camera.position ).to( { x: 0, y: 200, z: 340 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {$("#modalpanel").addClass('fadeInDown opaque');}).start();
 		new TWEEN.Tween( group.position ).to( { x: group.position.x - position.x, y: 0, z: group.position.z - position.z +75 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).start();
 	}
 	else {
-		new TWEEN.Tween( camera.position ).to( { x: 0, y: 150, z: - 250 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {$("#modalpanel").addClass('fadeInDown opaque');}).start();
+		new TWEEN.Tween( camera.position ).to( { x: 0, y: 200, z: - 340 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {$("#modalpanel").addClass('fadeInDown opaque');}).start();
 		new TWEEN.Tween( group.position ).to( { x: group.position.x - position.x, y: 0, z: group.position.z - position.z -75 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).start();
 	}
 }
@@ -500,7 +500,7 @@ function twitterMap(intersects, tweetcontainer){
 	closeBus();
 	closeFact();
 	closeFood();
-	var time = 1000;
+	var time = 500;
 			
 	var string = intersects[0].object.name;
 	var splitstring = string.split("-");
@@ -517,18 +517,18 @@ function twitterMap(intersects, tweetcontainer){
 	position.applyMatrix4( tweetmodal.matrixWorld );
 		
 	if (camera.position.z >= position.z && controls.center.z <= camera.position.z){
-		new TWEEN.Tween( camera.position ).to( { x: 0, y: 150, z: 250 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {$(tweetcontainer).addClass('fadeInDown opaque');}).start();
+		new TWEEN.Tween( camera.position ).to( { x: 0, y: 200, z: 340 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {$(tweetcontainer).addClass('fadeInDown opaque');}).start();
 		new TWEEN.Tween( group.position ).to( { x: group.position.x - position.x, z: group.position.z - position.z +50 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).start();
 	}else if (camera.position.z >= position.z && controls.center.z >= camera.position.z) {
-		new TWEEN.Tween( camera.position ).to( { x: 0, y: 150, z: -250 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {$(tweetcontainer).addClass('fadeInDown opaque');}).start();
+		new TWEEN.Tween( camera.position ).to( { x: 0, y: 200, z: -340 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {$(tweetcontainer).addClass('fadeInDown opaque');}).start();
 		new TWEEN.Tween( group.position ).to( { x: group.position.x - position.x, z: group.position.z - position.z -50 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).start();
 	}
 	else if (camera.position.z <= position.z && controls.center.z <= camera.position.z) {
-		new TWEEN.Tween( camera.position ).to( { x: 0, y: 150, z: 250 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {$(tweetcontainer).addClass('fadeInDown opaque');}).start();
+		new TWEEN.Tween( camera.position ).to( { x: 0, y: 200, z: 340 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {$(tweetcontainer).addClass('fadeInDown opaque');}).start();
 		new TWEEN.Tween( group.position ).to( { x: group.position.x - position.x, z: group.position.z - position.z +50 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).start();
 	}
 	else {
-		new TWEEN.Tween( camera.position ).to( { x: 0, y: 150, z: -250 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {$(tweetcontainer).addClass('fadeInDown opaque');}).start();
+		new TWEEN.Tween( camera.position ).to( { x: 0, y: 200, z: -340 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {$(tweetcontainer).addClass('fadeInDown opaque');}).start();
 		new TWEEN.Tween( group.position ).to( { x: group.position.x - position.x, z: group.position.z - position.z +50 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).start();
 	}
 }
@@ -690,7 +690,10 @@ $('#switchmap').click(function() {
 		map.material.materials[0].needsUpdate = true;
 		trees.visible = false;
 		walls.visible = false;
-		cars.visible = false;
+		if (Modernizr.touch) {
+		} else {
+			cars.visible = false;
+		}
 		$(this).css('background-image','url("assets/images/drawing.jpg")');
 		$(this).text("map");
 		$('#googlecopy').show();
@@ -700,7 +703,10 @@ $('#switchmap').click(function() {
 		map.material.materials[0].needsUpdate = true;
 		trees.visible = true;
 		walls.visible = true;
-		cars.visible = true;
+		if (Modernizr.touch) {
+		} else {
+			cars.visible = true;
+		}
 		$(this).css('background-image','url("assets/images/satellite.jpg")');
 		$(this).text("satellite");
 		$('#googlecopy').hide();

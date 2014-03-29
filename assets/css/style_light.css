@@ -115,6 +115,9 @@ background-image: linear-gradient(to bottom, #6fabbf 0%, #CAF7F7 100%);
 #navbar ul#nav li a i {
 	padding-right: 10px;
 }
+#navbar ul#nav li#share a i {
+	padding-right: 0;
+}
 #navbar ul#nav li a:hover, #navbar ul#nav li a:focus, #navbar ul#nav li a.active {
 	background: #eee;
 }
@@ -1023,7 +1026,10 @@ body {
 }
 #navbar ul#nav li#share a {
 	width: 60px;
-	padding-right: 23px; 
+	text-align: center;
+}
+#navbar ul#nav li#share a i {
+	padding: 0;
 }
 #navbar ul#nav li a {
 	padding: 20px 20px 0;

@@ -1,4 +1,4 @@
-var container, stats, camera, scene, scene2, renderer, composer, projector, controls, ground, group = new THREE.Object3D(), group2 = new THREE.Object3D(), satellite;
+var container, stats, camera, scene, renderer, composer, projector, controls, ground, group = new THREE.Object3D(), group2 = new THREE.Object3D(), satellite;
 var depthMaterial, depthTarget;
 var clickobjects = [], tweetobjects = [], zoomobjects = [], sprites = [], locationIcons = [], teachingIcons = [], communityIcons = [], tweetIcons = [], visitorParking = [], permitParking = [], cycleArray = [], busArray = [], maintenanceIcons = [], adminIcons = [], rotate = [], investmentArray = [], developmentArray = [], roompriceArray = [], populationArray = [], subjectscoreArray = [], subjectsatisfactionArray = [], entrypointsArray = [], sizeArray = [], buildings = [], roadArray = [], darwinRoute = [], keynesRoute = [], parkwoodRoute = [], cycleRoute = [], footPath = [], zoomArray = [], textlookat = [], busIcons = [], factIcons = [], foodIcons = [], iconHide = [];
 var jsonFileNames = [
@@ -113,7 +113,7 @@ function init() {
 	controls = new THREE.OrbitControls( camera );
 	controls.addEventListener( 'change', render );
 	controls.maxPolarAngle = Math.PI/2.25; 
-	controls.minDistance = 200;
+	controls.minDistance = 400;
 	controls.maxDistance = 900;
 	controls.enabled = true;
 	controls.center.set(0,-10,0);
@@ -164,11 +164,11 @@ function init() {
 
 	scene = new THREE.Scene();
 	scene2 = new THREE.Scene();
-	scene.fog = new THREE.Fog( 0xf0eacc, 500, 1600 );
+	scene.fog = new THREE.Fog( 0x7aafbf, 600, 1600 );
 	
 	/////////// LIGHTS ////////////
 	
-	var directionalLight = new THREE.DirectionalLight( 0xffffff ,0.5 );
+	var directionalLight = new THREE.DirectionalLight( 0xf2edd5 ,0.5 );
 	directionalLight.position.set( 500, 800, 300 )
 	directionalLight.castShadow = true;
 	directionalLight.shadowDarkness = 0.4;
@@ -178,71 +178,74 @@ function init() {
 	directionalLight.shadowCameraNear = 1200;
 	directionalLight.shadowCameraFar = 2500;
 	directionalLight.shadowCameraFov = 50;
-	group.add( directionalLight );
+	scene.add( directionalLight );
 	
-	var hemiLight = new THREE.HemisphereLight( 0xffffff, 0xcccccc, 1 );
+	var hemiLight = new THREE.HemisphereLight( 0xffffff, 0xc3d8de, 1 );
 	scene.add( hemiLight );
 	
-	// lens flares
-
-	var textureFlare0 = THREE.ImageUtils.loadTexture( "assets/models/textures/lensflare0.png" );
-	var textureFlare2 = THREE.ImageUtils.loadTexture( "assets/models/textures/lensflare2.png" );
-	var textureFlare3 = THREE.ImageUtils.loadTexture( "assets/models/textures/lensflare3.png" );
+	if (Modernizr.touch) {   
+	} else {   
+		// lens flares
 	
-	addLight( 0.55, 0.9, 0.5, 5000, 300, 0 );
-	addLight( 0.08, 0.8, 0.5, 400, 300, 0 );
-	addLight( 0.995, 0.5, 0.9, 5000, 5000, 0 );
-
-	function addLight( h, s, l, x, y, z ) {
-
-		var light = new THREE.PointLight( 0xffffff, 0.1, 2000 );
-		light.color.setHSL( h, s, l );
-		light.position.set( x, y, z );
-		group.add( light );
-
-		var flareColor = new THREE.Color( 0xffffff );
-		flareColor.setHSL( h, s, l + 0.3 );
-
-		var lensFlare = new THREE.LensFlare( textureFlare0, 1000, 0.0, THREE.AdditiveBlending, flareColor );
-
+		var textureFlare0 = THREE.ImageUtils.loadTexture( "assets/models/textures/lensflare0.png" );
+		var textureFlare2 = THREE.ImageUtils.loadTexture( "assets/models/textures/lensflare2.png" );
+		var textureFlare3 = THREE.ImageUtils.loadTexture( "assets/models/textures/lensflare3.png" );
 		
-
-		lensFlare.add( textureFlare3, 60, 0.6, THREE.AdditiveBlending );
-		lensFlare.add( textureFlare3, 70, 0.7, THREE.AdditiveBlending );
-		lensFlare.add( textureFlare3, 120, 0.9, THREE.AdditiveBlending );
-		lensFlare.add( textureFlare3, 70, 1.0, THREE.AdditiveBlending );
-
-		lensFlare.customUpdateCallback = lensFlareUpdateCallback;
-		lensFlare.position = light.position;
-
-		group.add( lensFlare );
-
+		addLight( 0.55, 0.9, 0.5, 5000, 300, 0 );
+		addLight( 0.08, 0.8, 0.5, 400, 300, 0 );
+		addLight( 0.995, 0.5, 0.9, 5000, 5000, 0 );
+	
+		function addLight( h, s, l, x, y, z ) {
+	
+			var light = new THREE.PointLight( 0xffffff, 0.15, 2000 );
+			light.color.setHSL( h, s, l );
+			light.position.set( x, y, z );
+			group.add( light );
+	
+			var flareColor = new THREE.Color( 0xffffff );
+			flareColor.setHSL( h, s, l + 0.5 );
+	
+			var lensFlare = new THREE.LensFlare( textureFlare0, 1000, 0.0, THREE.AdditiveBlending, flareColor );
+	
+			
+	
+			lensFlare.add( textureFlare3, 60, 0.6, THREE.AdditiveBlending );
+			lensFlare.add( textureFlare3, 70, 0.7, THREE.AdditiveBlending );
+			lensFlare.add( textureFlare3, 120, 0.9, THREE.AdditiveBlending );
+			lensFlare.add( textureFlare3, 70, 1.0, THREE.AdditiveBlending );
+	
+			lensFlare.customUpdateCallback = lensFlareUpdateCallback;
+			lensFlare.position = light.position;
+	
+			group.add( lensFlare );
+	
+		}
+	
+		var cloudtexture = THREE.ImageUtils.loadTexture('assets/models/textures/clouds.png', {}, function() {
+			renderer.render(scene, camera);
+		});
+		cloudtexture.wrapS = THREE.RepeatWrapping;
+		cloudtexture.wrapT = THREE.RepeatWrapping;
+		cloudtexture.repeat.set( 8, 8 );
+		
+		var planeGeometry = new THREE.PlaneGeometry(8000,8000,1,1);
+		var planeMaterial = new THREE.MeshBasicMaterial({map: cloudtexture, transparent: true, opacity: 0.25 });
+		planeMaterial.depthWrite = false;
+		planeMaterial.depthTest = false;
+		var clouds = new THREE.Mesh(planeGeometry,planeMaterial);
+		clouds.position.set(0,250,0);
+		clouds.rotation.x = - Math.PI/2;
+		clouds.overdraw = true;
+		group.add(clouds);
+		
+		var tweenOne = new TWEEN.Tween( clouds.position ).to( { x: 1000 }, 70000 ).easing( TWEEN.Easing.Linear.None);
+		var tweenTwo = new TWEEN.Tween( clouds.position ).to( { x: 0 }, 0 ).easing( TWEEN.Easing.Linear.None);
+				
+		tweenOne.chain(tweenTwo);
+		tweenTwo.chain(tweenOne);
+				
+		tweenOne.start();
 	}
-	
-	var cloudtexture = THREE.ImageUtils.loadTexture('assets/models/textures/clouds.png', {}, function() {
-		renderer.render(scene, camera);
-	});
-	cloudtexture.wrapS = THREE.RepeatWrapping;
-	cloudtexture.wrapT = THREE.RepeatWrapping;
-	cloudtexture.repeat.set( 8, 8 );
-	
-	var planeGeometry = new THREE.PlaneGeometry(8000,8000,1,1);
-	var planeMaterial = new THREE.MeshBasicMaterial({map: cloudtexture, transparent: true, opacity: 0.15, blending: THREE.AdditiveBlending, });
-	planeMaterial.depthWrite = false;
-	planeMaterial.depthTest = false;
-	var clouds = new THREE.Mesh(planeGeometry,planeMaterial);
-	clouds.position.set(0,200,0);
-	clouds.rotation.x = - Math.PI/2;
-	clouds.overdraw = true;
-	group.add(clouds);
-	
-	var tweenOne = new TWEEN.Tween( clouds.position ).to( { x: 1000 }, 60000 ).easing( TWEEN.Easing.Linear.None);
-	var tweenTwo = new TWEEN.Tween( clouds.position ).to( { x: 0 }, 0 ).easing( TWEEN.Easing.Linear.None);
-			
-	tweenOne.chain(tweenTwo);
-	tweenTwo.chain(tweenOne);
-			
-	tweenOne.start();
 			
 	
 	/////////// GEOMETRY /////////////
@@ -257,6 +260,7 @@ function init() {
 	makeFacts();
 	makeFood();
 	
+	/*
 	var sprite = makeZoomSprite("assets/images/icons/ico_keynestock.png");
 	sprite.position.set(136,11,29);
 	var sprite = makeZoomSprite("assets/images/icons/ico_dolche.png");
@@ -279,6 +283,7 @@ function init() {
 	sprite.position.set(45,11,-139);
 	var sprite = makeZoomSprite("assets/images/icons/ico_hub.png");
 	sprite.position.set(57,11,-142);
+	*/
 	
 	plane = new THREE.Mesh( new THREE.PlaneGeometry( 1200, 960, 8, 8 ), new THREE.MeshBasicMaterial( { transparent: true, wireframe: true } ) );
 	plane.visible = false;
@@ -291,6 +296,8 @@ function init() {
 	loader.load( "assets/models/trees2.js", function( geometry, materials ) {
         mesh = new THREE.Mesh( geometry, new THREE.MeshFaceMaterial(materials) );
         mesh.scale.set( 1, 1, 1 );
+		mesh.material.materials[1].color.setHex(0x665239);
+		mesh.material.materials[2].color.setHex(0x628a50);
 		mesh.castShadow = true;
 		mesh.name = "trees";
 		group.add( mesh );
@@ -304,14 +311,16 @@ function init() {
 		group.add( mesh );
     } );
 	
-	
-	loader.load( "assets/models/cars.js", function( geometry, materials ) {
-        mesh = new THREE.Mesh( geometry, new THREE.MeshFaceMaterial(materials) );
-        mesh.scale.set( 1, 1, 1 );
-		mesh.castShadow = true;
-		mesh.name = "cars";
-		group.add( mesh );
-    } );
+	if (Modernizr.touch) {   
+	} else { 
+		loader.load( "assets/models/cars.js", function( geometry, materials ) {
+			mesh = new THREE.Mesh( geometry, new THREE.MeshFaceMaterial(materials) );
+			mesh.scale.set( 1, 1, 1 );
+			mesh.castShadow = true;
+			mesh.name = "cars";
+			group.add( mesh );
+		} );
+	}
 	
 	satellite = THREE.ImageUtils.loadTexture('assets/models/textures/satellite.jpg', {}, function() {
 		renderer.render(scene, camera);
@@ -319,13 +328,12 @@ function init() {
 	nosatellite = THREE.ImageUtils.loadTexture('assets/models/textures/map.jpg', {}, function() {
 		renderer.render(scene, camera);
 	});
-	/*var normalmap = THREE.ImageUtils.loadTexture('assets/models/textures/normalmap.jpg', {}, function() {
+	var normalmap = THREE.ImageUtils.loadTexture('assets/models/textures/normalmap.jpg', {}, function() {
 		renderer.render(scene, camera);
-	});*/
+	});
 	
 	loader.load( "assets/models/map.js", function( geometry, materials ) {
         mesh = new THREE.Mesh( geometry, new THREE.MeshFaceMaterial(materials) );
-		//mesh.material.materials[0].normalMap = normalmap;
         mesh.scale.set( 1, 1, 1 );
 		mesh.position.set( 0, 0, 0);
 		mesh.material.needsUpdate = true;
@@ -341,7 +349,7 @@ function init() {
 	
 	function makeHandler(meshName) {
 		return function(geometry, materials) {
-			var material = new THREE.MeshPhongMaterial( { color: maincolour, specular: 0x3333333, ambient: 0x222222, wrapAround: true, transparent: true, shading: THREE.FlatShading } );
+			var material = new THREE.MeshPhongMaterial( { color: maincolour, specular: 0x3333333, ambient: 0x222222, wrapAround: true } );
 			mesh = new THREE.Mesh( geometry, material );
 			mesh.scale.set( 1, 1, 1 );
 			mesh.position.set( 0, -0.001, 0 );
@@ -364,7 +372,6 @@ function init() {
 	//////////// RENDERER ////////////
 	
 	scene.add( group );
-	scene2.add( group2 );
 	
 	projector = new THREE.Projector();
 	
@@ -385,7 +392,7 @@ function init() {
 	document.getElementById("mapwrapper").addEventListener( 'mouseup', stopdrag, false );
 	document.getElementById("app").addEventListener( 'touchstart', dragStart, false );
 	document.getElementById("app").addEventListener( 'touchend', dragEnd, false );
-	document.getElementById("mapwrapper").addEventListener( 'touchmove', dragMove, false );
+	document.getElementById("app").addEventListener( 'touchmove', dragMove, false );
 	document.getElementById("canvas").addEventListener("webglcontextlost", function(event) {
 		event.preventDefault();
 		alert("WebGL has crashed because of a hardware problem. Please reload WebGL and refresh the page.");
@@ -398,69 +405,71 @@ function init() {
 	window.addEventListener( 'resize', onWindowResize, false );
 
 	
-	function lensFlareUpdateCallback( object ) {
-
-		var f, fl = object.lensFlares.length;
-		var flare;
-		var vecX = -object.positionScreen.x * 2;
-		var vecY = -object.positionScreen.y * 2;
-
-
-		for( f = 0; f < fl; f++ ) {
-
-			   flare = object.lensFlares[ f ];
-
-			   flare.x = object.positionScreen.x + vecX * flare.distance;
-			   flare.y = object.positionScreen.y + vecY * flare.distance;
-
-			   flare.rotation = 0;
-
+	if (Modernizr.touch) {   
+	} else {
+		function lensFlareUpdateCallback( object ) {
+	
+			var f, fl = object.lensFlares.length;
+			var flare;
+			var vecX = -object.positionScreen.x * 2;
+			var vecY = -object.positionScreen.y * 2;
+	
+	
+			for( f = 0; f < fl; f++ ) {
+	
+				   flare = object.lensFlares[ f ];
+	
+				   flare.x = object.positionScreen.x + vecX * flare.distance;
+				   flare.y = object.positionScreen.y + vecY * flare.distance;
+	
+				   flare.rotation = 0;
+	
+			}
+	
+			object.lensFlares[ 2 ].y += 0.025;
+			object.lensFlares[ 3 ].rotation = object.positionScreen.x * 0.5 + THREE.Math.degToRad( 45 );
+	
 		}
-
-		object.lensFlares[ 2 ].y += 0.025;
-		object.lensFlares[ 3 ].rotation = object.positionScreen.x * 0.5 + THREE.Math.degToRad( 45 );
-
+	
+		
+		///////////// DEPTH //////////////
+		
+		var depthShader = THREE.ShaderLib[ "depthRGBA" ];
+		var depthUniforms = THREE.UniformsUtils.clone( depthShader.uniforms );
+	
+		depthMaterial = new THREE.ShaderMaterial( { fragmentShader: depthShader.fragmentShader, vertexShader: depthShader.vertexShader, uniforms: depthUniforms } );
+		depthMaterial.blending = THREE.NoBlending;
+	
+		////////////// SSAO //////////////
+		
+		composer = new THREE.EffectComposer( renderer );
+		composer.addPass( new THREE.RenderPass( scene, camera ) );
+	
+		depthTarget = new THREE.WebGLRenderTarget( window.innerWidth, window.innerHeight, { minFilter: THREE.NearestFilter, magFilter: THREE.NearestFilter, format: THREE.RGBAFormat } );
+		
+		var tiltH = new THREE.ShaderPass( THREE.HorizontalTiltShiftShader );
+		tiltH.uniforms[ 'h' ].value = 2 / window.innerWidth;
+		tiltH.uniforms[ 'r' ].value = 0.5;
+		//composer.addPass( tiltH );
+		
+		var tiltV = new THREE.ShaderPass( THREE.VerticalTiltShiftShader );
+		tiltV.uniforms[ 'v' ].value = 2 / window.innerHeight;
+		tiltV.uniforms[ 'r' ].value = 0.5;
+		//composer.addPass( tiltV );
+		
+		var vignette = new THREE.ShaderPass( THREE.VignetteShader );
+		vignette.uniforms[ 'darkness' ].value = 0;
+		vignette.uniforms[ 'offset' ].value = 1;
+		composer.addPass( vignette );
+		
+		var effect = new THREE.ShaderPass( THREE.SSAOShader );
+		effect.uniforms[ 'tDepth' ].value = depthTarget;
+		effect.uniforms[ 'size' ].value.set( window.innerWidth * 1, window.innerHeight * 1 );
+		effect.uniforms[ 'cameraNear' ].value = camera.near;
+		effect.uniforms[ 'cameraFar' ].value = camera.far;
+		effect.renderToScreen = true;
+		composer.addPass( effect );
 	}
-
-	
-	///////////// DEPTH //////////////
-	
-	var depthShader = THREE.ShaderLib[ "depthRGBA" ];
-	var depthUniforms = THREE.UniformsUtils.clone( depthShader.uniforms );
-
-	depthMaterial = new THREE.ShaderMaterial( { fragmentShader: depthShader.fragmentShader, vertexShader: depthShader.vertexShader, uniforms: depthUniforms } );
-	depthMaterial.blending = THREE.NoBlending;
-
-	////////////// SSAO //////////////
-	
-	composer = new THREE.EffectComposer( renderer );
-	composer.addPass( new THREE.RenderPass( scene, camera ) );
-
-	depthTarget = new THREE.WebGLRenderTarget( window.innerWidth, window.innerHeight, { minFilter: THREE.NearestFilter, magFilter: THREE.NearestFilter, format: THREE.RGBAFormat } );
-	
-	var tiltH = new THREE.ShaderPass( THREE.HorizontalTiltShiftShader );
-	tiltH.uniforms[ 'h' ].value = 2 / window.innerWidth;
-	tiltH.uniforms[ 'r' ].value = 0.5;
-	//composer.addPass( tiltH );
-	
-	var tiltV = new THREE.ShaderPass( THREE.VerticalTiltShiftShader );
-	tiltV.uniforms[ 'v' ].value = 2 / window.innerHeight;
-	tiltV.uniforms[ 'r' ].value = 0.5;
-	//composer.addPass( tiltV );
-	
-	var vignette = new THREE.ShaderPass( THREE.VignetteShader );
-	vignette.uniforms[ 'darkness' ].value = 0;
-	vignette.uniforms[ 'offset' ].value = 1;
-	composer.addPass( vignette );
-	
-	var effect = new THREE.ShaderPass( THREE.SSAOShader );
-	effect.uniforms[ 'tDepth' ].value = depthTarget;
-	effect.uniforms[ 'size' ].value.set( window.innerWidth * 1, window.innerHeight * 1 );
-	effect.uniforms[ 'cameraNear' ].value = camera.near;
-	effect.uniforms[ 'cameraFar' ].value = camera.far;
-	effect.renderToScreen = true;
-	composer.addPass( effect );
-	
 }
 
 var modal, tweetmodal, busmodal, factmodal, foodmodal;

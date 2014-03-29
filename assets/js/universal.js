@@ -77,10 +77,12 @@ $( "#search-toggle a" ).click(function() {
 	$('#search2').toggle( 300, "easeInOutQuint" );
 	$(this).toggleClass( "active" );
 });
-$( "#leftnav button" ).hover(
-  function() {
-	 $(this).tooltip( "option", "disabled", false );
-  }, function() {
-    $(this).tooltip( "option", "disabled", true );
-  }
-);
+if (Modernizr.touch) {
+} else {
+	$( "#leftnav button" ).hover(
+	  function() {
+		 $(this).tooltip( "option", "disabled", false );
+	  }, function() {
+		$(this).tooltip( "option", "disabled", true );
+	  });
+}
