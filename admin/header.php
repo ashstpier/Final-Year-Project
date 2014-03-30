@@ -80,6 +80,7 @@
     ?>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <link rel="icon" type="image/ico" href="../favicon.ico"/>
     <link href="../assets/css/toast.css" rel="stylesheet" type="text/css"/>
     <link href="../assets/css/admin.css" rel="stylesheet" type="text/css"/>
     <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">

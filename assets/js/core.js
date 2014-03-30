@@ -180,7 +180,7 @@ function init() {
 	directionalLight.shadowCameraFov = 50;
 	scene.add( directionalLight );
 	
-	var hemiLight = new THREE.HemisphereLight( 0xffffff, 0xc3d8de, 1 );
+	var hemiLight = new THREE.HemisphereLight( 0xffffff, 0xcedbde, 1 );
 	scene.add( hemiLight );
 	
 	if (Modernizr.touch) {   
@@ -349,7 +349,7 @@ function init() {
 	
 	function makeHandler(meshName) {
 		return function(geometry, materials) {
-			var material = new THREE.MeshPhongMaterial( { color: maincolour, specular: 0x3333333, ambient: 0x222222, wrapAround: true } );
+			var material = new THREE.MeshLambertMaterial( { color: maincolour, wrapAround: true } );
 			mesh = new THREE.Mesh( geometry, material );
 			mesh.scale.set( 1, 1, 1 );
 			mesh.position.set( 0, -0.001, 0 );

@@ -627,29 +627,29 @@ function tiltView() {
 		clicked = 1;
 		if (tilt == 0){
 			if (camera.position.z >= controls.center.z){
-				new TWEEN.Tween( camera.position ).to( { y: 100, z: controls.center.z + 400 }, 1000 ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {
+				new TWEEN.Tween( camera.position ).to( { y: 100, z: controls.center.z + 400 }, 500 ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {
 				clicked = 0;
 			}).start();
 			}else {
-				new TWEEN.Tween( camera.position ).to( { y: 100, z: controls.center.z - 400 }, 1000 ).easing( TWEEN.Easing.Sinusoidal.InOut).start();
+				new TWEEN.Tween( camera.position ).to( { y: 100, z: controls.center.z - 400 }, 500 ).easing( TWEEN.Easing.Sinusoidal.InOut).start();
 			}
 			tilt = 1;
 		} else if (tilt == 1){
 			if (camera.position.z >= controls.center.z){
-				new TWEEN.Tween( camera.position ).to( { x: controls.center.x, y: 700, z: controls.center.z + 1, }, 1000 ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {
+				new TWEEN.Tween( camera.position ).to( { x: controls.center.x, y: 700, z: controls.center.z + 1, }, 500 ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {
 				clicked = 0;
 			}).start();
 			}else {
-				new TWEEN.Tween( camera.position ).to( { x: controls.center.x, y: 600, z: controls.center.z - 1, }, 1000 ).easing( TWEEN.Easing.Sinusoidal.InOut).start();
+				new TWEEN.Tween( camera.position ).to( { x: controls.center.x, y: 600, z: controls.center.z - 1, }, 500 ).easing( TWEEN.Easing.Sinusoidal.InOut).start();
 			}
 			tilt = 2;
 		} else {
 			if (camera.position.z >= controls.center.z){
-				new TWEEN.Tween( camera.position ).to( { y: 500, z: controls.center.z + 750 }, 1000 ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {
+				new TWEEN.Tween( camera.position ).to( { y: 500, z: controls.center.z + 750 }, 500 ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {
 				clicked = 0;
 			}).start();
 			}else {
-				new TWEEN.Tween( camera.position ).to( { y: 250, z: controls.center.z - 400 }, 1000 ).easing( TWEEN.Easing.Sinusoidal.InOut).start();
+				new TWEEN.Tween( camera.position ).to( { y: 250, z: controls.center.z - 400 }, 500 ).easing( TWEEN.Easing.Sinusoidal.InOut).start();
 			}
 			tilt = 0;
 		}
@@ -663,7 +663,7 @@ $('#rotateleft').click(function() {
 	var z = camera.position.z;
 	if(clicked == 0){
 		clicked = 1;
-		new TWEEN.Tween( camera.position ).to( { x: x * Math.cos(theta) - z * Math.sin(theta), z: z * Math.cos(theta) + x * Math.sin(theta) }, 1000 ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {
+		new TWEEN.Tween( camera.position ).to( { x: x * Math.cos(theta) - z * Math.sin(theta), z: z * Math.cos(theta) + x * Math.sin(theta) }, 500 ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {
 			clicked = 0;
 		}).start();
 	}
@@ -674,7 +674,7 @@ $('#rotateright').click(function() {
 	var z = camera.position.z;
 	if(clicked == 0){
 		clicked = 1;
-		new TWEEN.Tween( camera.position ).to( { x: x * Math.cos(theta) + z * Math.sin(theta), z: z * Math.cos(theta) - x * Math.sin(theta) }, 1000 ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {
+		new TWEEN.Tween( camera.position ).to( { x: x * Math.cos(theta) + z * Math.sin(theta), z: z * Math.cos(theta) - x * Math.sin(theta) }, 500 ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {
 			clicked = 0;
 		}).start();
 	}
@@ -1068,8 +1068,8 @@ $( "#overlay-panel a" ).click(function() {
 		development.position.y = -99999;
 		development2.visible = false;
 		development2.position.y = -99999;
-		$("#label-panel a, #investment-panel a").not("#tweettoggle, #bustoggle, #labeltoggle").removeClass( "toggled" );
-		$("#label-panel a, #investment-panel a").not("#tweettoggle, #bustoggle, #labeltoggle").addClass( "toggle" );
+		$("#label-panel a, #investment-panel a").not("#tweettoggle, #bustoggle, #labeltoggle, #foodtoggle, #facttoggle").removeClass( "toggled" );
+		$("#label-panel a, #investment-panel a").not("#tweettoggle, #bustoggle, #labeltoggle, #foodtoggle, #facttoggle").addClass( "toggle" );
 	} else {
 	
 	}
@@ -1243,8 +1243,8 @@ $( "#investment-panel a" ).click(function() {
 		for (var i=0, tot=sizeArray.length; i < tot; i++) {
 			sizeArray[i].visible = false;
 		}
-		$("#label-panel a, #overlay-panel a, #investment-panel a").not("#tweettoggle, #bustoggle, #labeltoggle").removeClass( "toggled" );
-		$("#label-panel a, #overlay-panel a, #investment-panel a").not("#tweettoggle, #bustoggle, #labeltoggle").addClass( "toggle" );
+		$("#label-panel a, #overlay-panel a, #investment-panel a").not("#tweettoggle, #bustoggle, #labeltoggle, #foodtoggle, #facttoggle").removeClass( "toggled" );
+		$("#label-panel a, #overlay-panel a, #investment-panel a").not("#tweettoggle, #bustoggle, #labeltoggle, #foodtoggle, #facttoggle").addClass( "toggle" );
 	} else {
 	
 	}

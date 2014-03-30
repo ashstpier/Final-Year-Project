@@ -6,16 +6,17 @@
 <html lang="en">
     <head>
     <title>Explore UKC</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
-    <link href="assets/css/style_light.css" rel="stylesheet" type="text/css">
-    <link href="assets/css/typography.css" rel="stylesheet" type="text/css">
-    <link href="assets/css/preloader.css" rel="stylesheet" type="text/css">
-    <link href="assets/css/social.css" rel="stylesheet" type="text/css">
-    <link href="assets/css/3dbuttons.css" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" href="assets/css/animate.css">
-    <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,700,400,300' rel='stylesheet' type='text/css'>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"/>
+    <link rel="icon" type="image/ico" href="favicon.ico"/>
+    <link href="assets/css/style_light.css" rel="stylesheet" type="text/css"/>
+    <link href="assets/css/typography.css" rel="stylesheet" type="text/css"/>
+    <link href="assets/css/preloader.css" rel="stylesheet" type="text/css"/>
+    <link href="assets/css/social.css" rel="stylesheet" type="text/css"/>
+    <link href="assets/css/3dbuttons.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="assets/css/animate.css"/>
+    <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet"/>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,700,400,300' rel='stylesheet' type='text/css'/>
     <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>
     <script src="assets/js/utils/modernizr.js"></script>
 </head>
@@ -220,9 +221,9 @@
     <div id="factmodal" class="animated"></div>
     <div id="foodmodal" class="animated"></div>
     <div id="controls">
-        <button id="rotateleft" type="button" title="Rotate Left"><i class="fa fa-chevron-left"></i></button>
+        <button id="rotateleft" type="button" title="Rotate Left"><i class="fa fa-caret-left fa-2x"></i></button>
         <button id="twod" type="button" onclick="tiltView()" title="Tilt View"><i class="fa fa-th-large"></i></button>
-        <button id="rotateright" type="button" title="Rotate Right"><i class="fa fa-chevron-right"></i></button>
+        <button id="rotateright" type="button" title="Rotate Right"><i class="fa fa-caret-right fa-2x"></i></button>
     </div>
     <button id="switchmap" type="button" title="Switch Map">Satellite</button>
     <div id="googlecopy">Imagery ©2014 Bluesky, Map data ©2014 Google</div>

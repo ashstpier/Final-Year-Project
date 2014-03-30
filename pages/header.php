@@ -4,6 +4,7 @@
 		<title>Explore UKC - <?php echo $pageTitle ?></title>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+        <link rel="icon" type="image/ico" href="../favicon.ico"/>
 		<link href="../assets/css/pages.css" rel="stylesheet" type="text/css">
         <link rel="stylesheet" href="../assets/css/animate.css">
         <link href="toast.css" rel="stylesheet" type="text/css">
