@@ -1145,7 +1145,6 @@ function makeData(mesh, height, dataArray)
 function makeRoadName( message ){
 	var fontface = "Arial";
 	var fontsize = 16;
-	var spriteAlignment = THREE.SpriteAlignment.topLeft;
 	var canvas = document.createElement('canvas');
 	var context = canvas.getContext('2d');
 	context.font = "Normal " + fontsize + "px " + fontface;
@@ -1163,7 +1162,7 @@ function makeRoadName( message ){
 	texture.needsUpdate = true;
 
 	var spriteMaterial = new THREE.SpriteMaterial( 
-		{ map: texture, useScreenCoordinates: false, alignment: spriteAlignment, transparent: true, opacity: 0 } );
+		{ map: texture, useScreenCoordinates: false, transparent: true, opacity: 0 } );
 	var sprite = new THREE.Sprite( spriteMaterial );
 	
 	sprite.scale.set(60,30,1.0);

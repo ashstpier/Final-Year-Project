@@ -388,13 +388,7 @@ function init() {
 	renderer = new THREE.WebGLRenderer({canvas:canvas, alpha: true, antialiasing: true});
 	renderer.setSize( window.innerWidth, window.innerHeight );
 	renderer.setClearColor( 0x6fabbf, 1);
-	if (Modernizr.touch) {   
-	}else{
-		try {
-			renderer.shadowMapEnabled = true;
-		}catch(err)
-		{}
-	}
+	renderer.shadowMapEnabled = false;
 	renderer.shadowMapSoft = true;
 	renderer.shadowMapType = THREE.PCFSoftShadowMap;
 
