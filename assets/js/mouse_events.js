@@ -7,7 +7,6 @@ function onDocumentMouseDown( event ) {
 	var intersects = raycaster.intersectObjects( objects, true );
 
 	if ( intersects.length > 0 ) {
-		controls.enabled = false;
 		SELECTED = intersects[ 0 ].object.parent;
 		var intersects = raycaster.intersectObject( plane );
 		offset.copy( intersects[ 0 ].point ).sub( plane.position );
@@ -16,44 +15,56 @@ function onDocumentMouseDown( event ) {
 }
 function dragStart( event ) {
 	event.preventDefault();
-	mouse.x = ( event.changedTouches[0].pageX / window.innerWidth ) * 2 - 1;
-	mouse.y = - ( event.changedTouches[0].pageY / window.innerHeight ) * 2 + 1;
-	var vector = new THREE.Vector3( mouse.x, mouse.y, 0.5 );
+	if(event.touches.length == 1){
+		mouse.x = ( event.changedTouches[0].pageX / window.innerWidth ) * 2 - 1;
+		mouse.y = - ( event.changedTouches[0].pageY / window.innerHeight ) * 2 + 1;
+		var vector = new THREE.Vector3( mouse.x, mouse.y, 0.5 );
+		
+		projector.unprojectVector( vector, camera );
+		var raycaster = new THREE.Raycaster( camera.position, vector.sub( camera.position ).normalize() );
 	
-	projector.unprojectVector( vector, camera );
-	var raycaster = new THREE.Raycaster( camera.position, vector.sub( camera.position ).normalize() );
-
-	var intersects = raycaster.intersectObjects( objects, true );
-
-	if ( intersects.length > 0 ) {
-		controls.enabled = false;
-		SELECTED = intersects[ 0 ].object.parent;
-		var intersects = raycaster.intersectObject( plane );
-		offset.copy( new THREE.Vector3( intersects[ 0 ].point.x - group.position.x, 0, intersects[ 0 ].point.z - group.position.z ) );
-		container.style.cursor = 'move';
+		var intersects = raycaster.intersectObjects( objects, true );
+	
+		if ( intersects.length > 0 ) {
+			SELECTED = intersects[ 0 ].object.parent;
+			var intersects = raycaster.intersectObject( plane );
+			offset.copy( new THREE.Vector3( intersects[ 0 ].point.x - group.position.x, 0, intersects[ 0 ].point.z - group.position.z ) );
+			container.style.cursor = 'move';
+		}
+	}else{
+		SELECTED = null;
 	}
-	
 }
 
 ////////// CLICK EVENT ///////////
 function onDocumentMouseUp( event ) {
 	event.preventDefault();
-	var vector = new THREE.Vector3( ( event.clientX / window.innerWidth ) * 2 - 1, - ( event.clientY / window.innerHeight ) * 2 + 1, 0.5 );
-	projector.unprojectVector( vector, camera );
-	var raycaster = new THREE.Raycaster( camera.position, vector.sub( camera.position ).normalize() );
-	
-	var intersects = raycaster.intersectObjects( clickobjects, true );
-	clickEvent( intersects );
-
+	if(MOVED <= 5){
+		var vector = new THREE.Vector3( ( event.clientX / window.innerWidth ) * 2 - 1, - ( event.clientY / window.innerHeight ) * 2 + 1, 0.5 );
+		projector.unprojectVector( vector, camera );
+		var raycaster = new THREE.Raycaster( camera.position, vector.sub( camera.position ).normalize() );
+		
+		var intersects = raycaster.intersectObjects( clickobjects, true );
+		clickEvent( intersects );
+	}else{MOVED = 0;}
 }
 function dragEnd( event ) {
 	event.preventDefault();
-	var vector = new THREE.Vector3( ( event.changedTouches[0].pageX / window.innerWidth ) * 2 - 1, - ( event.changedTouches[0].pageY / window.innerHeight ) * 2 + 1, 0.5 );
-	projector.unprojectVector( vector, camera );
-	var raycaster = new THREE.Raycaster( camera.position, vector.sub( camera.position ).normalize() );
 	
-	var intersects = raycaster.intersectObjects( clickobjects, true );
-	clickEvent( intersects );
+	if(MOVED <= 5){
+		var vector = new THREE.Vector3( ( event.changedTouches[0].pageX / window.innerWidth ) * 2 - 1, - ( event.changedTouches[0].pageY / window.innerHeight ) * 2 + 1, 0.5 );
+		projector.unprojectVector( vector, camera );
+		var raycaster = new THREE.Raycaster( camera.position, vector.sub( camera.position ).normalize() );
+		
+		var intersects = raycaster.intersectObjects( clickobjects, true );
+		clickEvent( intersects );
+	}else{MOVED = 0;}
+}
+function stopdrag( event ) {
+	if ( INTERSECTED ) {
+		SELECTED = null;
+	}
+	container.style.cursor = 'move';
 }
 var tweetcontainer;
 function clickEvent( intersects ) {
@@ -66,6 +77,7 @@ if ( intersects.length > 0 ) {
 	var bus = splitname[1];
 	var food = splitname[0];
 	
+	/*
 	if ( name == "zoom_venue" ) {
 		var object = intersects[0].object;
 		zoomFunction(object, -1, 0.5);
@@ -78,7 +90,9 @@ if ( intersects.length > 0 ) {
 		var object = intersects[0].object;
 		zoomFunction(object, -0.3, -1);
 	}
-	else if ( name == "tweet-Jennison" ) {
+	*/
+	
+	if ( name == "tweet-Jennison" ) {
 		tweetcontainer = "#tweet_edakent";
 		twitterMap(intersects, tweetcontainer);
 	} 
@@ -102,6 +116,18 @@ if ( intersects.length > 0 ) {
 		tweetcontainer = "#tweet_parkwoodsc";
 		twitterMap(intersects, tweetcontainer);
 	} 
+	else if ( fact == "fact" ) {
+		var object = intersects[0].object;
+		factFunction(object);
+	}
+	else if ( bus == "bus" ) {
+		var object = intersects[0].object;
+		busFunction(object);
+	}
+	else if ( food == "food" ) {
+		var object = intersects[0].object;
+		foodFunction(object);
+	}
 	else {
 	
 		$('#modalfront, #modalback').empty();
@@ -115,20 +141,6 @@ if ( intersects.length > 0 ) {
 		modal = intersects[0].object;
 		placeMarker(modal);
 	}
-	
-	if ( fact == "fact" ) {
-		var object = intersects[0].object;
-		factFunction(object);
-	}
-	if ( bus == "bus" ) {
-		var object = intersects[0].object;
-		busFunction(object);
-	}
-	if ( food == "food" ) {
-		var object = intersects[0].object;
-		foodFunction(object);
-	}
-	
 }
 
 if ( INTERSECTED ) {
@@ -136,15 +148,12 @@ if ( INTERSECTED ) {
 	SELECTED = null;
 }
 container.style.cursor = 'move';
-controls.enabled = true;
 }
 function stopdrag( event ) {
 	if ( INTERSECTED ) {
-		plane.position.copy( INTERSECTED.position );
 		SELECTED = null;
 	}
 	container.style.cursor = 'move';
-	controls.enabled = true;
 }
 
 function busFunction(modal){
@@ -546,6 +555,7 @@ function onDocumentMouseMove( event ) {
 	if ( SELECTED ) {
 		var intersects = raycaster.intersectObject( plane );
 		SELECTED.position.copy( intersects[ 0 ].point.sub( offset ) );
+		MOVED += 1;
 		return;
 	}
 
@@ -596,6 +606,7 @@ function onDocumentMouseMove( event ) {
 }
 function dragMove( event ) {
 	event.preventDefault();
+
 	mouse.x = ( event.changedTouches[0].pageX / window.innerWidth ) * 2 - 1;
 	mouse.y = - ( event.changedTouches[0].pageY / window.innerHeight ) * 2 + 1;
 	var vector = new THREE.Vector3( mouse.x, mouse.y, 0.5 );
@@ -605,6 +616,7 @@ function dragMove( event ) {
 	if ( SELECTED ) {
 		var intersects = raycaster.intersectObject( plane );
 		SELECTED.position.copy( intersects[ 0 ].point.sub( offset ) );
+		MOVED += 1;
 		return;
 	}
 

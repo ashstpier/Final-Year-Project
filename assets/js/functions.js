@@ -1303,7 +1303,7 @@ function makeFacts(){
 	
 	// Fact 1
 	fact = new THREE.Mesh( geometry, material );
-	fact.position.set(310,10,-84);
+	fact.position.set(250,15,-60);
 	textlookat.push(fact);
 	zoomobjects.push(fact);
 	factIcons.push(fact);
@@ -1311,7 +1311,7 @@ function makeFacts(){
 	
 	// Fact 2
 	fact = new THREE.Mesh( geometry, material );
-	fact.position.set(200,10,-120);
+	fact.position.set(180,15,-140);
 	textlookat.push(fact);
 	zoomobjects.push(fact);
 	factIcons.push(fact);
@@ -1319,7 +1319,7 @@ function makeFacts(){
 	
 	// Fact 3
 	fact = new THREE.Mesh( geometry, material );
-	fact.position.set(278,10,-202);
+	fact.position.set(260,15,-210);
 	textlookat.push(fact);
 	zoomobjects.push(fact);
 	factIcons.push(fact);
@@ -1327,7 +1327,7 @@ function makeFacts(){
 	
 	// Fact 4
 	fact = new THREE.Mesh( geometry, material );
-	fact.position.set(-342,10,-29);
+	fact.position.set(-330,15,-15);
 	textlookat.push(fact);
 	zoomobjects.push(fact);
 	factIcons.push(fact);
@@ -1335,7 +1335,7 @@ function makeFacts(){
 	
 	// Fact 5
 	fact = new THREE.Mesh( geometry, material );
-	fact.position.set(-298,10,-256);
+	fact.position.set(-298,15,-256);
 	textlookat.push(fact);
 	zoomobjects.push(fact);
 	factIcons.push(fact);
@@ -1343,7 +1343,7 @@ function makeFacts(){
 	
 	// Fact 6
 	fact = new THREE.Mesh( geometry, material );
-	fact.position.set(-57,10,-196);
+	fact.position.set(-57,15,-196);
 	textlookat.push(fact);
 	zoomobjects.push(fact);
 	factIcons.push(fact);
@@ -1353,7 +1353,7 @@ function makeFacts(){
 	
 	var material = new THREE.MeshBasicMaterial({ color: 0xed7b5f, wrapAround: true });
 	var cube = new THREE.Mesh( new THREE.CubeGeometry( 12, 12, 6 ), material );
-	cube.position.set(310,10,-84);
+	cube.position.set(250,15,-60);
 	cube.visible = false;
 	cube.name = "fact_1"
 	clickobjects.push(cube);
@@ -1361,7 +1361,7 @@ function makeFacts(){
 	group.add(cube);
 	
 	var cube = new THREE.Mesh( new THREE.CubeGeometry( 12, 12, 6 ), material );
-	cube.position.set(200,10,-127);
+	cube.position.set(180,15,-140);
 	cube.visible = false;
 	cube.name = "fact_2"
 	clickobjects.push(cube);
@@ -1369,7 +1369,7 @@ function makeFacts(){
 	group.add(cube);
 	
 	var cube = new THREE.Mesh( new THREE.CubeGeometry( 12, 12, 6 ), material );
-	cube.position.set(278,10,-202);
+	cube.position.set(260,15,-210);
 	cube.visible = false;
 	cube.name = "fact_3"
 	clickobjects.push(cube);

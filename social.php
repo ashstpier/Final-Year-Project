@@ -115,7 +115,11 @@
 var $container
 
 $(window).load(function(){
-	$( '#leftnav button' ).tooltip({ position: { my: "right top", at: "left top" }, show: { effect: "slide", duration: 200 }, hide: { effect: "slide", duration: 200 }, easing: "easeInOutQuad" });	
+	if (Modernizr.touch) {   
+    		
+		}else{
+			$( '#leftnav button' ).tooltip({ position: { my: "right top", at: "left top" }, show: { effect: "slide", duration: 200 }, hide: { effect: "slide", duration: 200 }, easing: "easeInOutQuad" });	
+		}
 	
 	$.Isotope.prototype._getCenteredMasonryColumns = function() {
     this.width = this.element.width();
@@ -212,9 +216,6 @@ $(window).load(function(){
 			$("#wrapper").toggleClass( "slide-margin" );
 		}
 	}
-	$( "#info-button" ).click(function() {
-		primaryOpen(this, "#info-panel");
-	});
 	$( "#social-button" ).click(function() {
 		primaryOpen(this, "#social-panel");
 	});

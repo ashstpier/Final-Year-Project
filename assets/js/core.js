@@ -1,5 +1,4 @@
-var container, stats, camera, scene, renderer, composer, projector, controls, ground, group = new THREE.Object3D(), group2 = new THREE.Object3D(), satellite;
-var depthMaterial, depthTarget;
+var container, stats, camera, scene, renderer, projector, controls, ground, group = new THREE.Object3D(), group2 = new THREE.Object3D(), satellite;
 var clickobjects = [], tweetobjects = [], zoomobjects = [], sprites = [], locationIcons = [], teachingIcons = [], communityIcons = [], tweetIcons = [], visitorParking = [], permitParking = [], cycleArray = [], busArray = [], maintenanceIcons = [], adminIcons = [], rotate = [], investmentArray = [], developmentArray = [], roompriceArray = [], populationArray = [], subjectscoreArray = [], subjectsatisfactionArray = [], entrypointsArray = [], sizeArray = [], buildings = [], roadArray = [], darwinRoute = [], keynesRoute = [], parkwoodRoute = [], cycleRoute = [], footPath = [], zoomArray = [], textlookat = [], busIcons = [], factIcons = [], foodIcons = [], iconHide = [];
 var jsonFileNames = [
 	'assets/models/Aphra_and_Lumley_Theatre.js',
@@ -88,7 +87,7 @@ var jsonFileNames = [
 var objects = [], plane;
 var mouse = new THREE.Vector2(),
 offset = new THREE.Vector3(),
-INTERSECTED, SELECTED;
+INTERSECTED, SELECTED, MOVED = 0;
 
 var WIDTH = $(window).width();
 var HEIGHT = $(window).height();
@@ -152,8 +151,11 @@ function init() {
 			$('#switchmap').fadeIn(500);
 			var visited = $.cookie('visited')
 			if (visited == null) {
-				$('#cookie').slideDown(500);
-				$('.modal-overlay').show();
+				if (Modernizr.touch) {   
+    				$('#touch_cookie').slideDown(500);
+				}else{
+					$('#cookie').slideDown(500);
+				}
 			}
 			$.cookie('visited', 'yes_visited', {
 				expires: 1,
@@ -168,59 +170,69 @@ function init() {
 	
 	/////////// LIGHTS ////////////
 	
-	var directionalLight = new THREE.DirectionalLight( 0xf2edd5 ,0.5 );
-	directionalLight.position.set( 500, 800, 300 )
+	var directionalLight = new THREE.DirectionalLight( 0xf2edd5 ,0.7 );
+	directionalLight.position.set( 800, 1200, 100 )
 	directionalLight.castShadow = true;
-	directionalLight.shadowDarkness = 0.4;
+	directionalLight.shadowDarkness = 0.6;
 	directionalLight.shadowMapWidth = 2048;
 	directionalLight.shadowMapHeight = 2048;
 	
-	directionalLight.shadowCameraNear = 1200;
-	directionalLight.shadowCameraFar = 2500;
-	directionalLight.shadowCameraFov = 50;
-	scene.add( directionalLight );
+	directionalLight.shadowCameraNear = 800;
+	directionalLight.shadowCameraFar = 2000;
+	directionalLight.shadowCameraFov = 40;
+	directionalLight.shadowCameraLeft = -800;
+	directionalLight.shadowCameraRight = 800;
+	directionalLight.shadowCameraTop = 800;
+	directionalLight.shadowCameraBottom = -800;
+	group.add( directionalLight );
 	
-	var hemiLight = new THREE.HemisphereLight( 0xffffff, 0xcedbde, 1 );
+	var hemiLight = new THREE.HemisphereLight( 0xf2edd5, 0xcedbde, 1 );
 	scene.add( hemiLight );
 	
 	if (Modernizr.touch) {   
-	} else {   
-		// lens flares
+	} else {  
 	
-		var textureFlare0 = THREE.ImageUtils.loadTexture( "assets/models/textures/lensflare0.png" );
-		var textureFlare2 = THREE.ImageUtils.loadTexture( "assets/models/textures/lensflare2.png" );
-		var textureFlare3 = THREE.ImageUtils.loadTexture( "assets/models/textures/lensflare3.png" );
-		
-		addLight( 0.55, 0.9, 0.5, 5000, 300, 0 );
-		addLight( 0.08, 0.8, 0.5, 400, 300, 0 );
-		addLight( 0.995, 0.5, 0.9, 5000, 5000, 0 );
-	
-		function addLight( h, s, l, x, y, z ) {
-	
-			var light = new THREE.PointLight( 0xffffff, 0.15, 2000 );
-			light.color.setHSL( h, s, l );
-			light.position.set( x, y, z );
-			group.add( light );
-	
-			var flareColor = new THREE.Color( 0xffffff );
-			flareColor.setHSL( h, s, l + 0.5 );
-	
-			var lensFlare = new THREE.LensFlare( textureFlare0, 1000, 0.0, THREE.AdditiveBlending, flareColor );
-	
+		try { 
+		  var textureFlare0 = THREE.ImageUtils.loadTexture( "assets/models/textures/lensflare0.png" );
+		  var textureFlare2 = THREE.ImageUtils.loadTexture( "assets/models/textures/lensflare2.png" );
+		  var textureFlare3 = THREE.ImageUtils.loadTexture( "assets/models/textures/lensflare3.png" );
+		  
+		  addLight( 0.55, 0.9, 0.5, 5000, 300, 0 );
+		  addLight( 0.08, 0.8, 0.5, 400, 300, 0 );
+		  addLight( 0.995, 0.5, 0.9, 5000, 5000, 0 );
 			
-	
-			lensFlare.add( textureFlare3, 60, 0.6, THREE.AdditiveBlending );
-			lensFlare.add( textureFlare3, 70, 0.7, THREE.AdditiveBlending );
-			lensFlare.add( textureFlare3, 120, 0.9, THREE.AdditiveBlending );
-			lensFlare.add( textureFlare3, 70, 1.0, THREE.AdditiveBlending );
-	
-			lensFlare.customUpdateCallback = lensFlareUpdateCallback;
-			lensFlare.position = light.position;
-	
-			group.add( lensFlare );
-	
+			function addLight( h, s, l, x, y, z ) {
+		
+				var light = new THREE.PointLight( 0xffffff, 0.15, 2000 );
+				light.color.setHSL( h, s, l );
+				light.position.set( x, y, z );
+				group.add( light );
+		
+				var flareColor = new THREE.Color( 0xffffff );
+				flareColor.setHSL( h, s, l + 0.5 );
+		
+				var lensFlare = new THREE.LensFlare( textureFlare0, 1000, 0.0, THREE.AdditiveBlending, flareColor );
+		
+				
+		
+				lensFlare.add( textureFlare3, 60, 0.6, THREE.AdditiveBlending );
+				lensFlare.add( textureFlare3, 70, 0.7, THREE.AdditiveBlending );
+				lensFlare.add( textureFlare3, 120, 0.9, THREE.AdditiveBlending );
+				lensFlare.add( textureFlare3, 70, 1.0, THREE.AdditiveBlending );
+		
+				lensFlare.customUpdateCallback = lensFlareUpdateCallback;
+				lensFlare.position = light.position;
+		
+				group.add( lensFlare );
+		
+			}
 		}
+		catch(err)
+		  {}
+	}
 	
+	if (Modernizr.touch) {   
+	} else { 
 		var cloudtexture = THREE.ImageUtils.loadTexture('assets/models/textures/clouds.png', {}, function() {
 			renderer.render(scene, camera);
 		});
@@ -328,9 +340,6 @@ function init() {
 	nosatellite = THREE.ImageUtils.loadTexture('assets/models/textures/map.jpg', {}, function() {
 		renderer.render(scene, camera);
 	});
-	var normalmap = THREE.ImageUtils.loadTexture('assets/models/textures/normalmap.jpg', {}, function() {
-		renderer.render(scene, camera);
-	});
 	
 	loader.load( "assets/models/map.js", function( geometry, materials ) {
         mesh = new THREE.Mesh( geometry, new THREE.MeshFaceMaterial(materials) );
@@ -379,7 +388,13 @@ function init() {
 	renderer = new THREE.WebGLRenderer({canvas:canvas, alpha: true, antialiasing: true});
 	renderer.setSize( window.innerWidth, window.innerHeight );
 	renderer.setClearColor( 0x6fabbf, 1);
-	renderer.shadowMapEnabled = false;
+	if (Modernizr.touch) {   
+	}else{
+		try {
+			renderer.shadowMapEnabled = true;
+		}catch(err)
+		{}
+	}
 	renderer.shadowMapSoft = true;
 	renderer.shadowMapType = THREE.PCFSoftShadowMap;
 
@@ -430,45 +445,6 @@ function init() {
 			object.lensFlares[ 3 ].rotation = object.positionScreen.x * 0.5 + THREE.Math.degToRad( 45 );
 	
 		}
-	
-		
-		///////////// DEPTH //////////////
-		
-		var depthShader = THREE.ShaderLib[ "depthRGBA" ];
-		var depthUniforms = THREE.UniformsUtils.clone( depthShader.uniforms );
-	
-		depthMaterial = new THREE.ShaderMaterial( { fragmentShader: depthShader.fragmentShader, vertexShader: depthShader.vertexShader, uniforms: depthUniforms } );
-		depthMaterial.blending = THREE.NoBlending;
-	
-		////////////// SSAO //////////////
-		
-		composer = new THREE.EffectComposer( renderer );
-		composer.addPass( new THREE.RenderPass( scene, camera ) );
-	
-		depthTarget = new THREE.WebGLRenderTarget( window.innerWidth, window.innerHeight, { minFilter: THREE.NearestFilter, magFilter: THREE.NearestFilter, format: THREE.RGBAFormat } );
-		
-		var tiltH = new THREE.ShaderPass( THREE.HorizontalTiltShiftShader );
-		tiltH.uniforms[ 'h' ].value = 2 / window.innerWidth;
-		tiltH.uniforms[ 'r' ].value = 0.5;
-		//composer.addPass( tiltH );
-		
-		var tiltV = new THREE.ShaderPass( THREE.VerticalTiltShiftShader );
-		tiltV.uniforms[ 'v' ].value = 2 / window.innerHeight;
-		tiltV.uniforms[ 'r' ].value = 0.5;
-		//composer.addPass( tiltV );
-		
-		var vignette = new THREE.ShaderPass( THREE.VignetteShader );
-		vignette.uniforms[ 'darkness' ].value = 0;
-		vignette.uniforms[ 'offset' ].value = 1;
-		composer.addPass( vignette );
-		
-		var effect = new THREE.ShaderPass( THREE.SSAOShader );
-		effect.uniforms[ 'tDepth' ].value = depthTarget;
-		effect.uniforms[ 'size' ].value.set( window.innerWidth * 1, window.innerHeight * 1 );
-		effect.uniforms[ 'cameraNear' ].value = camera.near;
-		effect.uniforms[ 'cameraFar' ].value = camera.far;
-		effect.renderToScreen = true;
-		composer.addPass( effect );
 	}
 }
 

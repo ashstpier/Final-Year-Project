@@ -93,13 +93,14 @@
 }
 .closetweet {
 	position: absolute;
-	right: 20px;
-	top: 20px;
+	right: 0;
+	top: 0;
+	padding: 20px;
 }
 .tweet-modal header {
 	padding: 10px 20px;
 }
-.tweet-modal i {
+.tweet-modal section i {
 	padding-right: 10px;
 }
 .tweet-modal header h2 {

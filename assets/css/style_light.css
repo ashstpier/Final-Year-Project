@@ -183,11 +183,11 @@ background-image: linear-gradient(to bottom, #6fabbf 0%, #CAF7F7 100%);
 	z-index: 9999999;
 	display: none;
 }
-.search-error a { color: #999; }
-::-webkit-input-placeholder { color: #999; }
-:-moz-placeholder { color: #999; }
-::-moz-placeholder { color: #999; }
-:-ms-input-placeholder { color: #999; }
+.search-error a { color: #666; }
+::-webkit-input-placeholder { color: #666; }
+:-moz-placeholder { color: #666; }
+::-moz-placeholder { color: #666; }
+:-ms-input-placeholder { color: #666; }
 #search #searchForm input#searchBox, #search2 #searchForm input#searchBox {
 	padding: 7px 5px;
 	font-size: 16px;
@@ -248,7 +248,6 @@ background-image: linear-gradient(to bottom, #6fabbf 0%, #CAF7F7 100%);
 	border-top: 1px solid #1f262b;
 	z-index: 999999;
 }
-
 .slide-drawer {
 	height: auto;
 	background: #f6f6f6;
@@ -353,6 +352,7 @@ background-image: linear-gradient(to bottom, #6fabbf 0%, #CAF7F7 100%);
 	padding: 0 2px 0 0;
 	font-size: 120%;
 	color: #ed7b5f;
+	font-family: 'Open Snas', sans-serif;
 }
 #accommodationtoggle.toggled:before {
 	color: #57b1cf;
@@ -541,9 +541,10 @@ background-image: linear-gradient(to bottom, #6fabbf 0%, #CAF7F7 100%);
 }
 #modalpanel .content a {
 	position: absolute;
-	right: 20px;
-	top: 20px;
+	right: 0;
+	top: 0;
 	color: #ccc;
+	padding: 20px;
 }
 
 #modalpanel .content {
@@ -623,9 +624,10 @@ background-image: linear-gradient(to bottom, #6fabbf 0%, #CAF7F7 100%);
 }
 .busmodal .header .closebus {
 	position: absolute;
-	top: 10px;
+	top: 0;
 	right: 10px;
 	color: #fff;
+	padding: 10px;
 }
 .busmodal .header h2 {
 	margin: 0;
@@ -670,8 +672,9 @@ background-image: linear-gradient(to bottom, #6fabbf 0%, #CAF7F7 100%);
 }
 .closefact {
 	position: absolute;
-	right: 20px;
-	top: 20px;
+	right: 0;
+	top: 0;
+	padding: 20px;
 }
 #factmodal h2, #foodmodal h2 {
 	font-weight: bold;
@@ -695,9 +698,9 @@ canvas {
 	position: absolute;
 	bottom: 40px;
 	left: 50%;
-	margin-left:  -36px;
+	margin-left: -75px;
 	z-index: 990;
-	width: 132px;
+	width: 150px;
 	display: none;
 }
 #controls button:hover {
@@ -712,15 +715,19 @@ canvas {
 	background: #242B31;
 	border: none;
 }
+#twod img {
+	width: 24px;
+}
 #twod:hover {
 	color: #3ca4cf;
 	background: #242B31;
 }
 #rotateleft, #rotateright {
-	width: 30px;
+	width: 50px;
 	height: 50px;
 	background-color: transparent;
 	color: #242B31;
+	font-size: 150%;
 }
 #rotateleft:hover, #rotateright:hover {
 	background-color: transparent!important;
@@ -758,7 +765,7 @@ a {
 	position: absolute;
 	bottom: 30px;
 	right: 30px;
-	z-index: 990;
+	z-index: 989;
 	width: 80px;
 	height: 80px;
 	border: 3px #242B31 solid;
@@ -846,28 +853,6 @@ a {
 	-o-transform: perspective( 600px ) rotateY(90deg);
 	transform: perspective( 600px ) rotateY(90deg);
 }
-#footer {
-	width: 100%;
-	padding: 5px 20px;
-	position: absolute;
-	bottom: 0;
-	left: 0;
-	z-index:999;
-	background: #f3f3f3;
-	height: 30px;
-}
-#footer ul {
-	width: 100%;
-	list-style:none;
-	margin: 0;
-	padding: 0;
-	text-align: center;
-}
-#footer ul li {
-	display:inline-block;
-	margin: 0 1em;
-}
-
 .flipcard {
   -webkit-perspective: 800;
     position: relative;
@@ -917,29 +902,6 @@ a {
 	color: #fff;
 	padding: 15px 30px;
 }
-#factwrapper {
-	padding-top: 70px;
-	height: 100%;
-}
-.fact {
-	width: 100%;
-	height: 100%;
-	display:table;
-	padding: 100px 20px;
-}
-.fact h2 {
-	font-size: 800%;
-	color: #fff;
-	margin-bottom: 40px;
-}
-.fact p {
-	font-size: 200%;
-	color: #fff;
-}
-.fact.one { background: #40C6BB; }
-.fact.two { background: #5482b0; }
-.fact.three { background: #F44747; }
-
 #roomform {
 	margin: 0;
 	display: table;
@@ -990,9 +952,10 @@ a {
 }
 .controls-close {
 	position: absolute;
-	top:25px;
-	right:25px;
+	top:0;
+	right:0;
 	color: #4c80b5;
+	padding: 20px;
 }
 .ui-tooltip {
 	height: 60px;
@@ -1077,7 +1040,7 @@ button {
 	padding: 16px 18px 0!important;
 }
 #search {
-	top: 9px;
+	top: 10px;
 	left: 110px;
 }
 #modalpanel .header {
@@ -1088,8 +1051,8 @@ button {
 	padding: 15px;
 	width: 340px;
 }
-#controls {
-	margin-left:  -31px;
+.slide-drawer {
+	border-top: 1px solid #eee;
 }
 }
 @media all and (max-width: 690px){
@@ -1138,5 +1101,10 @@ button {
 }
 #navbar ul#nav li a {
 	padding: 20px 20px 0;
+}
+#switchmap {
+	position: absolute;
+	top: 900px;
+	right: 30px;
 }
 }

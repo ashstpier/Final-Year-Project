@@ -150,7 +150,8 @@
         </ul>
     </div>
 </div>
-<div id="cookie" class="controls-modal"><a href="#" class="controls-close"><i class="fa-times fa fa-lg"></i></a><h2>Welcome to the University of Kent Campus map!</h2><p>You can control the map by clicking and dragging with your mouse. Click on individual buildings to reveal information about them.</p><br/><p>Use the buttons below to rotate the map and change perspective, the button at the bottom right will switch between satellite and map modes.</p><div class="arrow-down"></div></div>
+<div id="cookie" class="controls-modal"><a href="#" class="controls-close"><i class="fa-times fa fa-lg"></i></a><h2>Welcome to the University of Kent Campus map!</h2><p>You can control the map by clicking and dragging with your mouse. Click on individual buildings to reveal information about them.</p><br/><p>Use the buttons below to rotate the map and change perspective.</p><div class="arrow-down"></div></div>
+<div id="touch_cookie" class="controls-modal"><a href="#" class="controls-close"><i class="fa-times fa fa-lg"></i></a><h2>Welcome to the University of Kent Campus map!</h2><p>You can control the map by clicking and dragging with your mouse. Click on individual buildings to reveal information about them.</p><br/><p>Use the buttons below to rotate the map and change perspective.</p><div class="arrow-down"></div></div>
 <div id="zoom" class="controls-modal"><a href="#" class="controls-close"><i class="fa-times fa fa-lg"></i></a><h2>UKC points of interest</h2><p>Click and drag to rotate the camera to view some of the University of Kent's most popular events and places.</p><br/><p>Click the button below to exit back to the map view.</p><div class="arrow-down"></div></div>
 <div id="mapwrapper">
     <div id="modalpanel" class="animated flipcard">
@@ -222,7 +223,7 @@
     <div id="foodmodal" class="animated"></div>
     <div id="controls">
         <button id="rotateleft" type="button" title="Rotate Left"><i class="fa fa-caret-left fa-2x"></i></button>
-        <button id="twod" type="button" onclick="tiltView()" title="Tilt View"><i class="fa fa-th-large"></i></button>
+        <button id="twod" type="button" onclick="tiltView()" title="Tilt View"><img src="assets/images/icons/tilt.png"/></button>
         <button id="rotateright" type="button" title="Rotate Right"><i class="fa fa-caret-right fa-2x"></i></button>
     </div>
     <button id="switchmap" type="button" title="Switch Map">Satellite</button>
@@ -326,21 +327,7 @@ if( Detector.webgl ){
 	 alert('Your browser or graphics card does not seem to support WebGL. Please switch to a modern browser like Google Chrome to be able to experience this application.');
 }
 </script> 
-<script src="assets/js/utils/stats.min.js"></script> 
 <script src="assets/js/utils/tween.min.js"></script> 
-
-<script src="assets/js/postprocessing/EffectComposer.js"></script>
-<script src="assets/js/postprocessing/RenderPass.js"></script>
-<script src="assets/js/postprocessing/MaskPass.js"></script>
-<script src="assets/js/postprocessing/ShaderPass.js"></script>
-
-<script src="http://mrdoob.github.com/three.js/examples/js/shaders/FXAAShader.js"></script>
-
-<script src="assets/js/shaders/CopyShader.js"></script>
-<script src="assets/js/shaders/SSAOShader.js"></script>
-<script src="assets/js/shaders/VignetteShader.js"></script>
-<script src="assets/js/shaders/VerticalTiltShiftShader.js"></script>
-<script src="assets/js/shaders/HorizontalTiltShiftShader.js"></script>
      
 <script src="assets/js/functions.js"></script> 
 <script src="assets/js/mouse_events.js"></script>
