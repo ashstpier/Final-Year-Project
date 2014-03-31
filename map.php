@@ -325,6 +325,7 @@ if( Detector.webgl ){
 		
 }else{
 	 alert('Your browser or graphics card does not seem to support WebGL. Please switch to a modern browser like Google Chrome to be able to experience this application.');
+	 window.location = 'index.html';
 }
 </script> 
 <script src="assets/js/utils/tween.min.js"></script> 
