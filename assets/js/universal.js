@@ -77,9 +77,19 @@ $( "#search-toggle a" ).click(function() {
 	$('#search2').toggle( 300, "easeInOutQuint" );
 	$(this).toggleClass( "active" );
 });
+if (Modernizr.touch) {   
+}else{
+	$( '#leftnav button' ).tooltip({ position: { my: "right top", at: "left top" }, show: { effect: "slide", duration: 200 }, hide: { effect: "slide", duration: 200 }, easing: "easeInOutQuad" });	
+}
 if (Modernizr.touch) {
 } else {
 	$( "#leftnav button" ).hover(
+	  function() {
+		 $(this).tooltip( "option", "disabled", false );
+	  }, function() {
+		$(this).tooltip( "option", "disabled", true );
+	  });
+	$( "#controls button" ).hover(
 	  function() {
 		 $(this).tooltip( "option", "disabled", false );
 	  }, function() {

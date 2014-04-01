@@ -1,6 +1,4 @@
 		<div id="footnav" class="unit one-of-four">
-        	<a href="../map.php" class="button"><i class="fa fa-compass fa-fw"></i> Explore</a>
-            <h3>More links:</h3>
             <ul class="nav nav-pills nav-stacked">
               <li><a href="help.php"><i class="fa fa-info fa-fw"></i> Help</a></li>
               <li><a href="about.php"><i class="fa fa-info fa-fw"></i> About</a></li>
@@ -16,6 +14,11 @@
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+<script>
+$( "#share a" ).click(function() {
+	$('#sharebox').slideToggle( 300, "easeInOutQuint" );
+});
+</script>
 
 </body>
 </html>

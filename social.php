@@ -26,18 +26,18 @@
     </div>
 </div>
 <div id="navbar">
-	<div id="logo"><a href="http://www.kent.ac.uk/" target="_blank"><img src="assets/images/logo.png" alt="University of Kent logo" /></a><h1>Social Network Feed</h1></div>
+	<div id="logo"><a href="index.html"><img src="assets/images/logo.png" alt="University of Kent logo" /></a><h1>Social Network Feed</h1></div>
     <ul id="nav">
-        <li><a href="map.php">Explore</a></li>
-        <li><a href="social.php" class="active">Social</a></li>
-        <li id="share"><a href="#"><i class="fa fa-heart-o"></i></a></li>
+        <li><a href="map.php"><i class="fa fa-compass"></i>Explore</a></li>
+        <li><a href="social.php" class="active"><i class="fa fa-comment-o"></i>Social</a></li>
+        <li id="share"><a href="#" title="Share this page"><i class="fa fa-share"></i></a></li>
     </ul>
     <div id="sharebox">
     	<div class="arrow-down"></div>
     	<ul>
-        	<li><button type="button"><i class="fa fa-twitter"></i></button></li>
-            <li><button type="button"><i class="fa fa-facebook"></i></button></li>
-            <li><button type="button"><i class="fa fa-google-plus"></i></button></li>
+        	<li><a href="http://twitter.com/home?status=Currently viewing the University of Kent campus map at http://3d.eda.kent.ac.uk" title="Share on Twitter" target="_blank"><i class="fa fa-twitter"></i></a></li>
+            <li><a href="http://www.facebook.com/sharer.php?u=3d.eda.kent.ac.uk" title="Share on Facebook" target="blank"><i class="fa fa-facebook"></i></a></li>
+            <li><a href="https://plus.google.com/share?url=3d.eda.kent.ac.uk" title="Share on Google Plus" target="blank"><i class="fa fa-google-plus"></i></a></li>
         </ul>
     </div>
 </div>
@@ -52,21 +52,19 @@
     <div id="twitter-panel" class="slidepanel">
         <h2>Filters</h2>
         <ul class="filters">
-        	<li><a id="all" href="#" data-filter="*" class="checked"><i class="fa fa-th-large"></i>Show all</a></li>
-      		<li><a href="#" data-filter=".twitter"><i class="fa fa-twitter"></i>Twitter all</a></li>
-      		<li><a href="#" data-filter=".instagram"><i class="fa fa-instagram"></i>Instagram all</a></li>
+        	<li><a id="all" href="#" data-filter="*" class="checked toggle">Show all</a></li>
         </ul>
         <h3>Twitter feed</h3>
         <ul class="filters">
-          <li><a class="twitter-filter" href="#" data-filter=".UniKent">@UniKent</a></li>
-          <li><a class="twitter-filter" href="#" data-filter=".KentUnion">@KentUnion</a></li>
-          <li><a class="twitter-filter" href="#" data-filter=".UniKentNews">@UniKentNews</a></li>
-          <li><a class="twitter-filter" href="#" data-filter=".UniKentEmploy">@UniKentEmploy</a></li>
-          <li><a class="twitter-filter" href="#" data-filter=".UniKent_Music">@UniKent_Music</a></li>
+          <li><a class="twitter-filter toggle" href="#" data-filter=".UniKent">@UniKent</a></li>
+          <li><a class="twitter-filter toggle" href="#" data-filter=".KentUnion">@KentUnion</a></li>
+          <li><a class="twitter-filter toggle" href="#" data-filter=".UniKentNews">@UniKentNews</a></li>
+          <li><a class="twitter-filter toggle" href="#" data-filter=".UniKentEmploy">@UniKentEmploy</a></li>
+          <li><a class="twitter-filter toggle" href="#" data-filter=".UniKent_Music">@UniKent_Music</a></li>
         </ul>
         <h3>Instagram feed</h3>
         <ul class="filters">
-          <li><a class="instagram-filter" href="#" data-filter=".kentuni">#KentUni</a></li>
+          <li><a class="instagram-filter toggle" href="#" data-filter=".kentuni">#KentUni</a></li>
         </ul>
     </div>
     <div id="social-panel" class="slidepanel">
@@ -115,11 +113,6 @@
 var $container
 
 $(window).load(function(){
-	if (Modernizr.touch) {   
-    		
-		}else{
-			$( '#leftnav button' ).tooltip({ position: { my: "right top", at: "left top" }, show: { effect: "slide", duration: 200 }, hide: { effect: "slide", duration: 200 }, easing: "easeInOutQuad" });	
-		}
 	
 	$.Isotope.prototype._getCenteredMasonryColumns = function() {
     this.width = this.element.width();
@@ -240,14 +233,17 @@ $(window).load(function(){
 		  if ( foo == "*" ) {
 			$('.filters a').removeClass("checked");
 			$(this).toggleClass("checked");
+			filters.push(foo);
+			var selector = filters.join(',');
+			$container.isotope({ filter: selector });
 			filters.length = 0;
 		  }else{
 			$('#all').removeClass("checked");
 			$(this).toggleClass("checked");
+			filters.push(foo);
+			var selector = filters.join(',');
+			$container.isotope({ filter: selector });
 		  }
-		filters.push(foo);
-		var selector = filters.join(',');
-		$container.isotope({ filter: selector });
 	  }
 
       return false;

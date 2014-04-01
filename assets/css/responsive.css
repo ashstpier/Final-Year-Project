@@ -137,6 +137,7 @@
 	#nav .container {
 		padding: 0 20px;
 	}
+	#explore { display: none; }
 }
 
 /*-----------------------------------*\

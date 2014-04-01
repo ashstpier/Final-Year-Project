@@ -37,7 +37,7 @@ body {
 }
 #nav ul {
 	margin: 0;
-	padding: 10px 0;
+	padding: 0;
 	float: right;
 }
 #nav ul li {
@@ -50,10 +50,31 @@ body {
 #nav ul li a {
 	color: #aaa;
 	letter-spacing: 1px;
+	margin-top: 5px;
 }
 #nav ul li a:hover, #nav ul li a:focus {
 	text-decoration: none;
 	color: #3ca4cf;
+}
+#explore {
+	text-decoration:none;
+	padding: 8px 20px;
+	font-weight: 400;
+	text-align: center;
+	font-style: normal;
+	margin: 0;
+	border-radius: 3px;
+	background: #ed7b5f;
+	border-bottom: 2px solid #d66549;
+	color: #fff!important;
+	font-size: 90%;
+	display: inline-block;
+}
+#explore:hover {
+	text-decoration:none;
+	background: #d66549;
+	border-bottom: 2px solid #d66549;
+	color: #fff;
 }
 #header {
 	min-height: 600px;

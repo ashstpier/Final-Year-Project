@@ -452,7 +452,7 @@ function placeMarker(modal){
 		if (rooms != ""){
 			$('<div class="header"></div>').html('<img src="assets/images/buildings/'+img+'.jpg" />').appendTo('#modalfront');
 			$('<div class="content"></div>').html('<a href="#" onclick="closeModal()"><i class="fa-times fa fa-lg"></i></a><h2>'+header+'</h2><h3>'+typeicon+'</h3><p>'+description+'</p>').appendTo('#modalfront');
-			$('<div class="footer"><form method="POST" target="_blank" id="roomform" action="http://www.kent.ac.uk/timetabling/rooms/room.html?room=" onsubmit="return SetData()"><select id="roomlist"><option value="default">select a room...</option></select><button type="submit">Find room</button></form></div>').appendTo('#modalfront');
+			$('<div class="footer"><form method="POST" target="_blank" id="roomform" action="http://www.kent.ac.uk/timetabling/rooms/room.html?room=" onsubmit="return SetData()"><select id="roomlist"><option value="default">select a room...</option></select><button type="submit">Room info</button></form></div>').appendTo('#modalfront');
 			$(this).find('rooms').children().each(function(){
 				var room = $(this).text();
 				var attr = $(this).attr("value");
@@ -543,7 +543,7 @@ function twitterMap(intersects, tweetcontainer){
 }
 
 //////// MOUSEMOVE EVENT /////////
-
+var hovered;
 function onDocumentMouseMove( event ) {
 	event.preventDefault();
 	mouse.x = ( event.clientX / window.innerWidth ) * 2 - 1;
@@ -569,23 +569,33 @@ function onDocumentMouseMove( event ) {
 		}
 	} else { INTERSECTED = null; }
 	
-	var intersects = raycaster.intersectObjects( clickobjects, true );
-
+	var intersects = raycaster.intersectObjects( clickobjects );
+	
 	if (intersects.length > 0 ) {
 		container.style.cursor = 'pointer';	
 	}
 	
-	var intersects = raycaster.intersectObjects( tweetobjects, true );
-
+	var intersects = raycaster.intersectObjects( hoverbuildings );
+	
 	if (intersects.length > 0 ) {
+		hovercolour = intersects[ 0 ].object.material.color;
+		console.log(hovercolour);
+		try{
+		if(hovered != intersects[ 0 ]){
+			hovered.object.material.opacity = 1;
+		}else{
+			}
+		}catch(err){}
+		intersects[ 0 ].object.material.opacity = 0.6;
+		hovered = intersects[ 0 ];
 		container.style.cursor = 'pointer';	
+		
+	}else{
+		if(hovered != null){
+			hovered.object.material.opacity = 1
+		}
 	}
 	
-	var intersects = raycaster.intersectObjects( zoomobjects, true );
-
-	if (intersects.length > 0 ) {
-		container.style.cursor = 'pointer';	
-	}
 	
 	/*
 	var vector = new THREE.Vector3(
@@ -645,6 +655,8 @@ function tiltView() {
 			}else {
 				new TWEEN.Tween( camera.position ).to( { y: 100, z: controls.center.z - 400 }, 500 ).easing( TWEEN.Easing.Sinusoidal.InOut).start();
 			}
+			$('#tilt_icon').hide();
+			$('#flat_icon').show();
 			tilt = 1;
 		} else if (tilt == 1){
 			if (camera.position.z >= controls.center.z){
@@ -654,6 +666,8 @@ function tiltView() {
 			}else {
 				new TWEEN.Tween( camera.position ).to( { x: controls.center.x, y: 600, z: controls.center.z - 1, }, 500 ).easing( TWEEN.Easing.Sinusoidal.InOut).start();
 			}
+			$('#flat_icon').hide();
+			$('#twod_icon').show();
 			tilt = 2;
 		} else {
 			if (camera.position.z >= controls.center.z){
@@ -663,6 +677,8 @@ function tiltView() {
 			}else {
 				new TWEEN.Tween( camera.position ).to( { y: 250, z: controls.center.z - 400 }, 500 ).easing( TWEEN.Easing.Sinusoidal.InOut).start();
 			}
+			$('#twod_icon').hide();
+			$('#tilt_icon').show();
 			tilt = 0;
 		}
 	}
@@ -1086,6 +1102,45 @@ $( "#overlay-panel a" ).click(function() {
 	
 	}
 });
+$( "#busall" ).click(function() {
+	if ($(this).hasClass( "toggle" )) {
+		for (var i=0, tot=keynesRoute.length; i < tot; i++) {
+			keynesRoute[i].visible = true;
+		}
+		for (var i=0, tot=darwinRoute.length; i < tot; i++) {
+			darwinRoute[i].visible = true;
+		}
+		for (var i=0, tot=parkwoodRoute.length; i < tot; i++) {
+			parkwoodRoute[i].visible = true;
+		}
+		for (var i=0, tot=cycleRoute.length; i < tot; i++) {
+			cycleRoute[i].visible = true;
+		}
+		for (var i=0, tot=footPath.length; i < tot; i++) {
+			footPath[i].visible = true;
+		}
+		$("#keynesbus, #darwinbus, #parkwoodbus, #cycleroutes, #footpaths").removeClass( "toggle" );
+		$("#keynesbus, #darwinbus, #parkwoodbus, #cycleroutes, #footpaths").addClass( "toggled" );
+	} else {
+		for (var i=0, tot=keynesRoute.length; i < tot; i++) {
+			keynesRoute[i].visible = false;
+		}
+		for (var i=0, tot=darwinRoute.length; i < tot; i++) {
+			darwinRoute[i].visible = false;
+		}
+		for (var i=0, tot=parkwoodRoute.length; i < tot; i++) {
+			parkwoodRoute[i].visible = false;
+		}
+		for (var i=0, tot=cycleRoute.length; i < tot; i++) {
+			cycleRoute[i].visible = false;
+		}
+		for (var i=0, tot=footPath.length; i < tot; i++) {
+			footPath[i].visible = false;
+		}
+		$("#keynesbus, #darwinbus, #parkwoodbus, #cycleroutes, #footpaths").removeClass( "toggled" );
+		$("#keynesbus, #darwinbus, #parkwoodbus, #cycleroutes, #footpaths").addClass( "toggle" );
+	}
+});
 $( "#keynesbus" ).click(function() {
 	if ($(this).hasClass( "toggle" )) {
 		for (var i=0, tot=keynesRoute.length; i < tot; i++) {
@@ -1095,6 +1150,8 @@ $( "#keynesbus" ).click(function() {
 		for (var i=0, tot=keynesRoute.length; i < tot; i++) {
 			keynesRoute[i].visible = false;
 		}
+		$("#busall").removeClass( "toggled" );
+		$("#busall").addClass( "toggle" );
 	}
 });
 $( "#darwinbus" ).click(function() {
@@ -1106,6 +1163,8 @@ $( "#darwinbus" ).click(function() {
 		for (var i=0, tot=darwinRoute.length; i < tot; i++) {
 			darwinRoute[i].visible = false;
 		}
+		$("#busall").removeClass( "toggled" );
+		$("#busall").addClass( "toggle" );
 	}
 });
 $( "#parkwoodbus" ).click(function() {
@@ -1117,6 +1176,8 @@ $( "#parkwoodbus" ).click(function() {
 		for (var i=0, tot=parkwoodRoute.length; i < tot; i++) {
 			parkwoodRoute[i].visible = false;
 		}
+		$("#busall").removeClass( "toggled" );
+		$("#busall").addClass( "toggle" );
 	}
 });
 $( "#cycleroutes" ).click(function() {
@@ -1128,6 +1189,8 @@ $( "#cycleroutes" ).click(function() {
 		for (var i=0, tot=cycleRoute.length; i < tot; i++) {
 			cycleRoute[i].visible = false;
 		}
+		$("#busall").removeClass( "toggled" );
+		$("#busall").addClass( "toggle" );
 	}
 });
 $( "#footpaths" ).click(function() {
@@ -1139,6 +1202,8 @@ $( "#footpaths" ).click(function() {
 		for (var i=0, tot=footPath.length; i < tot; i++) {
 			footPath[i].visible = false;
 		}
+		$("#busall").removeClass( "toggled" );
+		$("#busall").addClass( "toggle" );
 	}
 });
 $( "#bikeracks" ).click(function() {

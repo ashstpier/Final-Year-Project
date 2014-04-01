@@ -31,9 +31,9 @@
 	<div id="logo"><a href="index.html"><img src="assets/images/logo.png" alt="University of Kent logo" /></a><h1>Interactive 3D Campus</h1></div>
     <ul id="nav">
         <li id="search-toggle"><a href="#"><i class="fa fa-search"></i></a></li>
-        <li><a href="map.php" class="active">Explore</a></li>
-        <li><a href="social.php">Social</a></li>
-        <li id="share"><a href="#"><i class="fa fa-heart-o"></i></a></li>
+        <li><a href="map.php" class="active"><i class="fa fa-compass"></i>Explore</a></li>
+        <li><a href="social.php"><i class="fa fa-comment-o"></i>Social</a></li>
+        <li id="share"><a href="#" title="Share this page"><i class="fa fa-share"></i></a></li>
     </ul>
     <div id="sharebox">
     	<div class="arrow-down"></div>
@@ -48,10 +48,10 @@
     <button id="label-button" class="slide" type="button" title="Markers"><i class="fa fa-map-marker"></i></button>
     <button id="overlay-button" class="slide" type="button" title="Transport"><i class="fa fa-location-arrow"></i></button>
     <button id="investment-button" class="slide" type="button" title="Data"><i class="fa fa-bar-chart-o"></i></button>
-    <button id="event-button" class="slide" type="button" title="Events"><i class="fa fa-calendar"></i></button>
-    <div id="leftnav-footer">
-    	<button id="info-button" class="slide" type="button" title="Info"><i class="fa fa-cogs"></i></button>
-    </div>
+    <?php if($event_string != "") : ?>
+    	<button id="event-button" class="slide" type="button" title="Events"><i class="fa fa-calendar"></i></button>
+    <?php endif; ?>
+    <button id="info-button" class="slide" type="button" title="Info"><i class="fa fa-cogs"></i></button>
 </div>
 <div id="search">
     <form name="search_form" id="searchForm" method="GET" onsubmit="return searchResult(this);">
@@ -70,7 +70,7 @@
 <div class="slide-drawer">
 	<div id="label-panel" class="slidepanel">
     	<h2>Markers</h2>
-        <p>Use the controls below to display labels and buildings by category:</p>
+        <p><em>Use the option below to highlight labels and buildings by category:</em></p>
         <h3>Labels</h3>
         <ul>
         	<li><a href="#" class="toggle" id="labeltoggle">Names</a></li>
@@ -79,7 +79,7 @@
             <li><a href="#" class="toggled" id="bustoggle">Bus stops</a></li>
             <li><a href="#" class="toggled" id="foodtoggle">Restaurants</a></li>
         </ul>
-        <h3>Buildings</h3>
+        <h3>Building categories</h3>
         <ul>
         	<li><a href="#" class="toggle" id="labelall">Show all</a></li>
             <li><a href="#" class="toggle" id="accommodationtoggle">Accomodation</a></li>
@@ -92,9 +92,10 @@
     </div>
     <div id="overlay-panel" class="slidepanel">
     	<h2>Travel</h2>
-        <p>Use the controls below to display transport information and bus routes:</p>
+        <p><em>Use the options below to display transport information and bus routes:</em></p>
         <h3>Routes</h3>
         <ul>
+        	<li><a href="#" class="toggle" id="busall">Show all</a></li>
             <li><a href="#" class="toggle" id="keynesbus">Keynes bus</a></li>
             <li><a href="#" class="toggle" id="darwinbus">Darwin bus</a></li>
             <li><a href="#" class="toggle" id="parkwoodbus">Parkwood bus</a></li>
@@ -106,24 +107,21 @@
         	<li><a href="#" class="toggle" id="roadnames">Road Names</a></li>
         	<li><a href="#" class="toggle" id="visitorparking">Visitor parking</a></li>
             <li><a href="#" class="toggle" id="permitparking">Permit holder parking</a></li>
-            <!--<li><a href="#" class="toggle" id="busstops">Bus stops</a></li>-->
             <li><a href="#" class="toggle" id="bikeracks">Bike racks</a></li>
         </ul>
         <a href="http://www.stagecoachbus.com/uploads/unibus_wef220913.pdf" class="external" target="_blank">Bus timetables</a>
     </div>
     <div id="investment-panel" class="slidepanel">
         <h2>Data</h2>
-        <p>Show various data as a 3D bar graph on top of the campus map:</p>
+        <p><em>Show various data as a 3D bar graph on top of the campus map:</em></p>
         <h3>Accommodation</h3>
         <ul>
-            <!--<li><a href="#" class="toggle" id="investmenttoggle">Show latest investments</a></li>
-            <li><a href="#" class="toggle" id="developmenttoggle">Show recent developments</a></li>-->
             <li><a href="#" class="toggle" id="population">Population density</a></li>
             <li><a href="#" class="toggle" id="roomprice">Accommodation price</a></li>
             <li><a href="#" class="toggle" id="roomsize">Room size</a></li>
-            <!--<li><a href="#" class="toggle" id="spending">Spending</a></li>-->
         </ul>
         <h3>University league scores</h3>
+        <p><em>The data displayed on these graphs is taken from the Complete University Guide website.</em></p>
         <ul>
         	<li><a href="#" class="toggle" id="subjectscore">Subject score</a></li>
         	<li><a href="#" class="toggle" id="subjectsatisfaction">Subject satisfaction</a></li>
@@ -223,7 +221,7 @@
     <div id="foodmodal" class="animated"></div>
     <div id="controls">
         <button id="rotateleft" type="button" title="Rotate Left"><i class="fa fa-caret-left fa-2x"></i></button>
-        <button id="twod" type="button" onclick="tiltView()" title="Tilt View"><img src="assets/images/icons/tilt.png"/></button>
+        <button id="twod" type="button" onclick="tiltView()" title="Tilt View"><img src="assets/images/icons/tilt.png" id="tilt_icon"/><img src="assets/images/icons/flat.png" id="flat_icon"/><img src="assets/images/icons/2d.png" id="twod_icon"/></button>
         <button id="rotateright" type="button" title="Rotate Right"><i class="fa fa-caret-right fa-2x"></i></button>
     </div>
     <button id="switchmap" type="button" title="Switch Map">Satellite</button>
@@ -340,11 +338,10 @@ if( Detector.webgl ){
 	/////// EVENTS ///////
 	$(document).ready(function() {
 		
-		if (Modernizr.touch) {   
-    		
-		}else{
-			$( '#leftnav button' ).tooltip({ position: { my: "right top", at: "left top" }, show: { effect: "slide", duration: 200 }, hide: { effect: "slide", duration: 200 }, easing: "easeInOutQuad" });	
-		}
+	if (Modernizr.touch) {   
+	}else{
+		$( '#controls button' ).tooltip({ position: { my: "center bottom-20", at: "center+8 top" },  show: { effect: "fade", duration: 0 }, hide: { effect: "fade", duration: 0 }, easing: "easeInOutQuad" });	
+	}
 	
 
 	/////// SEARCH ///////

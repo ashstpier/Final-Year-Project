@@ -1,7 +1,7 @@
 var container, stats, camera, scene, renderer, projector, controls, ground, group = new THREE.Object3D(), group2 = new THREE.Object3D(), satellite;
-var clickobjects = [], tweetobjects = [], zoomobjects = [], sprites = [], locationIcons = [], teachingIcons = [], communityIcons = [], tweetIcons = [], visitorParking = [], permitParking = [], cycleArray = [], busArray = [], maintenanceIcons = [], adminIcons = [], rotate = [], investmentArray = [], developmentArray = [], roompriceArray = [], populationArray = [], subjectscoreArray = [], subjectsatisfactionArray = [], entrypointsArray = [], sizeArray = [], buildings = [], roadArray = [], darwinRoute = [], keynesRoute = [], parkwoodRoute = [], cycleRoute = [], footPath = [], zoomArray = [], textlookat = [], busIcons = [], factIcons = [], foodIcons = [], iconHide = [];
+var clickobjects = [], tweetobjects = [], zoomobjects = [], sprites = [], locationIcons = [], teachingIcons = [], communityIcons = [], tweetIcons = [], visitorParking = [], permitParking = [], cycleArray = [], busArray = [], maintenanceIcons = [], adminIcons = [], rotate = [], investmentArray = [], developmentArray = [], roompriceArray = [], populationArray = [], subjectscoreArray = [], subjectsatisfactionArray = [], entrypointsArray = [], sizeArray = [], buildings = [], roadArray = [], darwinRoute = [], keynesRoute = [], parkwoodRoute = [], cycleRoute = [], footPath = [], zoomArray = [], textlookat = [], busIcons = [], factIcons = [], foodIcons = [], iconHide = [], hoverbuildings = [];
 var jsonFileNames = [
-	'assets/models/Aphra_and_Lumley_Theatre.js',
+    'assets/models/Aphra_and_Lumley_Theatre.js',
 	'assets/models/Becket_Court.js',
 	'assets/models/Bishopden_Court.js',
 	'assets/models/Boiler_House.js',
@@ -358,11 +358,12 @@ function init() {
 	
 	function makeHandler(meshName) {
 		return function(geometry, materials) {
-			var material = new THREE.MeshLambertMaterial( { color: maincolour, wrapAround: true } );
+			var material = new THREE.MeshLambertMaterial( { color: maincolour, wrapAround: true, transparent: true } );
 			mesh = new THREE.Mesh( geometry, material );
 			mesh.scale.set( 1, 1, 1 );
 			mesh.position.set( 0, -0.001, 0 );
 			clickobjects.push( mesh );
+			hoverbuildings.push( mesh);
 			mesh.castShadow = true;
 			group.add( mesh );
 			mesh.name = meshName;
@@ -376,6 +377,7 @@ function init() {
 	}
 	
 	objects.push( group );
+	group.name = "group";
 
 
 	//////////// RENDERER ////////////

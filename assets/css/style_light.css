@@ -16,12 +16,12 @@ body {
 	font-weight: 400;
 	color: #555;
 	font-size: 14px;
-	background: #374047;
+	background: #2b353b;
 }
 #wrapper {
 	margin-top: 70px;
 	margin-left: 60px;
-	padding: 20px 10px;
+	padding: 30px 10px;
 	-moz-transition:all 0.3s linear;
     -webkit-transition:all 0.3s linear;
     -o-transition:all 0.3s linear;
@@ -311,7 +311,7 @@ background-image: linear-gradient(to bottom, #6fabbf 0%, #CAF7F7 100%);
 	content: "\f096";
 	float: right;
 	padding-top: 3px;
-	color: #ddd;
+	color: #ccc;
 }
 
 .slide-drawer ul li a.toggled:before {
@@ -323,7 +323,14 @@ background-image: linear-gradient(to bottom, #6fabbf 0%, #CAF7F7 100%);
 .slide-drawer ul li a:hover, .checked {
 	background: #eee;
 }
+ul.filters li a.checked:before {
+	content: "\f111";
+	color:#3ca4cf;
+}
 #labelall.toggled:before  {
+	color: #ddd;
+}
+#busall.toggled:before  {
 	color: #ddd;
 }
 #labeltoggle.toggled:before  {
@@ -698,14 +705,14 @@ canvas {
 	position: absolute;
 	bottom: 40px;
 	left: 50%;
-	margin-left: -75px;
+	margin-left: -65px;
 	z-index: 990;
-	width: 150px;
+	width: 130px;
 	display: none;
+	padding: 0;
 }
 #controls button:hover {
 	color: #3ca4cf;
-	background: #f6f6f6;
 }
 #twod {
 	height: 50px;
@@ -715,15 +722,17 @@ canvas {
 	background: #242B31;
 	border: none;
 }
-#twod img {
-	width: 24px;
-}
 #twod:hover {
-	color: #3ca4cf;
 	background: #242B31;
 }
+#twod_icon {
+	display: none;
+}
+#flat_icon {
+	display: none;
+}
 #rotateleft, #rotateright {
-	width: 50px;
+	width: 40px;
 	height: 50px;
 	background-color: transparent;
 	color: #242B31;
@@ -731,7 +740,7 @@ canvas {
 }
 #rotateleft:hover, #rotateright:hover {
 	background-color: transparent!important;
-	color: #3ca4cf;
+	color: #f6f6f6;
 }
 .unchecked {
 	color: #6d7882;
@@ -972,7 +981,7 @@ a {
 .ui-tooltip-content {
 	font-family: 'Open Sans', sans-serif;
 	padding: 20px 20px 0 20px!important;
-	font-weight: 300!important;
+	font-weight: 400!important;
 	margin:0!important;
 	font-size: 15px!important;
 }
@@ -1104,7 +1113,7 @@ button {
 }
 #switchmap {
 	position: absolute;
-	top: 900px;
+	top: 90px;
 	right: 30px;
 }
 }

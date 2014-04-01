@@ -4,7 +4,6 @@ include 'header.php';
 ?>
 <div class="unit three-of-four">
 	<h2>Credits</h2>
-    <h3>This project was designed and built by Ashley St Pier as his Final Year Project for the Multimedia Technology and Design course at the University of Kent.</h3>
     <h4>Content data</h4>
     <ul>
     	<li>University of Kent &ndash; <a href="http://www.kent.ac.uk/" target="_blank">http://www.kent.ac.uk/</a></li>

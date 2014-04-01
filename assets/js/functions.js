@@ -1,6 +1,6 @@
 function makeTextSprite( message, name ){
 	var fontface = "Arial";
-	var fontsize = 14;
+	var fontsize = 15;
 	var spriteAlignment = THREE.SpriteAlignment.topLeft;
 	var canvas = document.createElement('canvas');
 	var context = canvas.getContext('2d');
@@ -30,7 +30,7 @@ function makeTextSprite( message, name ){
 	position.add( boundingBox.min );
 	position.applyMatrix4( name.matrixWorld );
 	
-	sprite.position.set( position.x - 10, boundingBox.max.y + 10, position.z );
+	sprite.position.set( position.x - 10, boundingBox.max.y + 12, position.z );
 	sprite.scale.set(60,30,1.0);
 	sprite.material.opacity = 0;
 	sprites.push( sprite );
@@ -969,6 +969,7 @@ function makeDevelopments(){
 		clickobjects.push( mesh );
 		mesh.castShadow = true;
 		mesh.name = "Templeman_Extension";
+		hoverbuildings.push( mesh);
 		mesh.visible = false;
     } );
 	loader.load( "assets/models/Turing_College.js", function( geometry, materials ) {
@@ -978,6 +979,7 @@ function makeDevelopments(){
 		clickobjects.push( mesh );
 		mesh.castShadow = true;
 		mesh.name = "Turing_College";
+		hoverbuildings.push( mesh);
 		mesh.visible = false;
     } );
 }

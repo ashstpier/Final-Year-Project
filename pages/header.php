@@ -13,11 +13,25 @@
  
 </head>
 <body>
+<div id="navbar" class="fold close">
+	<div id="logo"><a href="index.html"><img src="../assets/images/logo.png" alt="University of Kent logo" /></a><h1>Interactive 3D Campus</h1></div>
+    <ul id="nav">
+        <li><a href="../map.php"><i class="fa fa-compass"></i>Explore</a></li>
+        <li><a href="../social.php"><i class="fa fa-comment-o"></i>Social</a></li>
+        <li id="share"><a href="#" title="Share this page"><i class="fa fa-share"></i></a></li>
+    </ul>
+    <div id="sharebox">
+    	<div class="arrow-down"></div>
+    	<ul>
+        	<li><a href="http://twitter.com/home?status=Currently viewing the University of Kent campus map at http://3d.eda.kent.ac.uk" title="Share on Twitter" target="_blank"><i class="fa fa-twitter"></i></a></li>
+            <li><a href="http://www.facebook.com/sharer.php?u=3d.eda.kent.ac.uk" title="Share on Facebook" target="blank"><i class="fa fa-facebook"></i></a></li>
+            <li><a href="https://plus.google.com/share?url=3d.eda.kent.ac.uk" title="Share on Google Plus" target="blank"><i class="fa fa-google-plus"></i></a></li>
+        </ul>
+    </div>
+</div>
 <div class="container">
     <div class="grid">
     	<div id="headnav" class="unit one-of-four">
-        	<a href="../map.php" class="button"><i class="fa fa-compass fa-fw"></i> Explore UKC</a>
-            <h3>More links</h3>
             <ul class="nav nav-pills nav-stacked">
               <li><a href="help.php"><i class="fa fa-info fa-fw"></i> Help</a></li>
               <li><a href="about.php"><i class="fa fa-user fa-fw"></i> About</a></li>

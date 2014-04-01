@@ -15,11 +15,125 @@ body {
 	font-family: 'Open Sans', sans-serif;
 	font-weight: 400;
 	font-size: 14px;
-	color: #555;
-	background: #f8f8f8;
+	color: #eee;
+	background: #2b353b;
+}
+#navbar {
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index:9999;
+	background: #f6f6f6;
+	height: 70px;
+  	width: 100%;
+	box-shadow: 0px 2px 20px rgba(0, 0, 0, 0.3);
+	-moz-box-shadow: 0px 2px 20px rgba(0, 0, 0, 0.3);
+	-webkit-box-shadow: 0px 2px 20px rgba(0, 0, 0, 0.3);
+}
+#navbar #logo {
+	padding: 0 20px;
+	width: 340px;
+	color: #fff;
+	height: 70px;
+	position: absolute;
+	left: 0;
+	top: 0;
+	background: #3ca4cf;
+	border-bottom: 2px solid #3495bf;
+}
+.arrow-down {
+	position: absolute;
+	bottom: -20px;
+	left: 50%;
+	margin-left: -20px;
+	width: 0; 
+	height: 0; 
+	border-left: 20px solid transparent;
+	border-right: 20px solid transparent;
+	border-top: 20px solid #f8f8f8;
+}
+#navbar h1 {
+	padding: 23px;
+	font-weight: 300;
+	color: #fff;
+	height: 70px;
+	position: absolute;
+	left: 80px;
+	top: 0;
+	font-size: 18px;
+}
+#navbar ul#nav {
+	list-style:none;
+	margin: 0 0 0 90px;
+	padding: 0;
+	text-align: right;
+}
+#navbar ul#nav li {
+	display: inline-block;
+	margin: 0 0 0 -4px;
+}
+#navbar ul#nav li#search-toggle {
+	display: none;
+}
+#navbar ul#nav li a {
+	display:block;
+	padding: 25px 30px 0;
+	height: 70px;
+	text-decoration: none;
+	font-size: 100%;
+	color: #666;
+	font-weight: 400;
+	text-transform: none;
+}
+#navbar ul#nav li a i {
+	padding-right: 10px;
+}
+#navbar ul#nav li#share a i {
+	padding-right: 0;
+}
+#navbar ul#nav li a:hover, #navbar ul#nav li a:focus, #navbar ul#nav li a.active {
+	background: #eee;
+}
+#navbar ul#nav li#share a { background: #ed7b5f; color: #fff; border-bottom: 2px solid #d66549; width: 70px; }
+#navbar ul#nav li#twitter a:hover { background: #55acee; color: #fff; }
+#navbar ul#nav li#facebook a:hover { background: #4c66a4; color: #fff; }
+#navbar ul#nav li#github a:hover { background: #333; color: #fff; }
+#navbar ul#nav li#share a:hover { background: #d66549; border-bottom: 2px solid #d66549; }
+#navbar #sharebox { 
+	display: none;
+	position: absolute;
+	top: 70px;
+	right: 5px;
+}
+#navbar #sharebox ul { 
+	margin: 0;
+	margin-top: 10px;
+	padding: 0;
+	list-style: none;
+}
+#navbar #sharebox ul li a {
+	padding: 20px;
+	display: block;
+	text-align: center;
+	width: 60px;
+	height: 60px;
+	background: #242B31;
+	color: #5b656e;
+}
+#navbar #sharebox ul li a:hover {
+	color: #fff;
+}
+#navbar #sharebox .arrow-down {
+	top: -10px;
+	left: 50%;
+	margin-left: -11px;
+	border-top: 10px solid transparent;
+	border-left: 10px solid transparent;
+	border-right: 10px solid transparent;
+	border-bottom: 10px solid #242B31;
 }
 .container {
-	padding: 50px 30px!important;
+	padding: 130px 30px!important;
 }
 #headnav { display: inline-block; }
 #footnav { display: none; }
@@ -52,14 +166,14 @@ h1, .alpha {
 h2 {
 	color: #3ca4cf;
 	margin-bottom: 25px;
+	font-weight: 400;
 }
 h3, .gamma {
 	font-size: 16px;
 	font-weight: 400;
-	color: #aaa;
-	font-style: italic;
+	color: #3ca4cf;
 }
-h4 { margin-bottom: 10px; }
+h4 { margin-bottom: 10px; color: #758894; }
 
 a {
 	color: #ed7b5f;
@@ -73,7 +187,7 @@ a:hover, a:focus {
 	text-decoration: underline;
 }
 ul {
-	padding-left: 50px;
+	padding-left: 30px;
 	list-style-type: disc;
 }
 ul.nav {
@@ -86,7 +200,7 @@ ul.nav li {
 	list-style: none;
 }
 ul.nav li a {
-	color: #555;
+	color: #ccc;
 	text-decoration:none;
 	font-size: 14px;
 }
@@ -113,6 +227,60 @@ a.button:hover {
 	background: #d66549;
 	border-bottom: 2px solid #d66549;
 	color: #fff;
+}
+@media all and (max-width: 1020px){
+body {
+	font-size: 13px;
+}
+#navbar, #navbar #logo, #navbar ul#nav li a, #navbar ul#nav li#share a {
+	height: 60px;
+}
+#navbar #logo {
+	width: 90px;
+	padding: 0 15px;
+}
+#navbar #logo img {
+	height: 60px;
+}
+#navbar ul#nav li#share a {
+	width: 60px;
+	text-align: center;
+}
+#navbar ul#nav li#share a i {
+	padding: 0;
+}
+#navbar ul#nav li a {
+	padding: 20px 20px 0;
+}
+#navbar h1 {
+	display: none;
+}
+#navbar #sharebox { 
+	top: 60px;
+	right: 0px;
+}
+}
+@media all and (max-width: 690px){
+#navbar ul#nav li#search-toggle {
+	display: inline-block;
+	float: left;
+}
+#navbar ul#nav li#search-toggle a {
+	padding: 20px 20px;
+}
+#navbar ul#nav li#share a {
+	display: none;
+}
+#navbar ul#nav li i {
+	display: none;
+}
+#navbar ul#nav li#search-toggle i {
+	display: inline-block;
+	padding: 0;
+}
+#navbar ul#nav li a {
+	padding: 20px 20px 0;
+}
 }
 
 @media screen and (max-width: 650px) {
