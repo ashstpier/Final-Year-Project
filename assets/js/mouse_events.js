@@ -654,6 +654,7 @@ function tiltView() {
 			}).start();
 			}else {
 				new TWEEN.Tween( camera.position ).to( { y: 100, z: controls.center.z - 400 }, 500 ).easing( TWEEN.Easing.Sinusoidal.InOut).start();
+				clicked = 0;
 			}
 			$('#tilt_icon').hide();
 			$('#flat_icon').show();
@@ -665,6 +666,7 @@ function tiltView() {
 			}).start();
 			}else {
 				new TWEEN.Tween( camera.position ).to( { x: controls.center.x, y: 600, z: controls.center.z - 1, }, 500 ).easing( TWEEN.Easing.Sinusoidal.InOut).start();
+				clicked = 0;
 			}
 			$('#flat_icon').hide();
 			$('#twod_icon').show();
@@ -676,6 +678,7 @@ function tiltView() {
 			}).start();
 			}else {
 				new TWEEN.Tween( camera.position ).to( { y: 250, z: controls.center.z - 400 }, 500 ).easing( TWEEN.Easing.Sinusoidal.InOut).start();
+				clicked = 0;
 			}
 			$('#twod_icon').hide();
 			$('#tilt_icon').show();
