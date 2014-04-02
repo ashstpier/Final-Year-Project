@@ -113,7 +113,7 @@ function init() {
 	controls.addEventListener( 'change', render );
 	controls.maxPolarAngle = Math.PI/2.25; 
 	controls.minDistance = 300;
-	controls.maxDistance = 1200;
+	controls.maxDistance = 900;
 	controls.enabled = true;
 	controls.center.set(0,-10,0);
 	
