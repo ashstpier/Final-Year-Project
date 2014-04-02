@@ -538,7 +538,7 @@ function twitterMap(intersects, tweetcontainer){
 	}
 	else {
 		new TWEEN.Tween( camera.position ).to( { x: 0, y: 200, z: -340 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {$(tweetcontainer).addClass('fadeInDown opaque');}).start();
-		new TWEEN.Tween( group.position ).to( { x: group.position.x - position.x, z: group.position.z - position.z +50 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).start();
+		new TWEEN.Tween( group.position ).to( { x: group.position.x - position.x, z: group.position.z - position.z -50 }, time ).easing( TWEEN.Easing.Sinusoidal.InOut).start();
 	}
 }
 
