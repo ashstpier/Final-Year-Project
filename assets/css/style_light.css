@@ -939,7 +939,7 @@ a {
 #roomform button:hover {
 	background: #d66549;
 }
-.controls-modal h2 { padding-right: 20px; }
+.controls-modal h2 { padding-right: 15px; }
 .controls-modal {
 	display: none;
 	padding: 25px 30px;
@@ -950,7 +950,7 @@ a {
 	bottom: 110px;
 	left: 50%;
 	width: 360px;
-	margin-left: -180px;
+	margin-left: -155px;
 	z-index: 9999;
 }
 .controls-modal p {
@@ -1121,5 +1121,10 @@ button {
 #controls {
 	width: 180px;
 	margin-left: -65px;
+}
+.controls-modal {
+	margin-left: -125px;
+	width: 300px;
+	bottom: 120px;
 }
 }
