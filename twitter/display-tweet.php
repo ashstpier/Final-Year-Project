@@ -189,7 +189,7 @@ function display_tweet($usr_1, $style ='', $max_tweets = 1, $time = 60 ) {
 			$tweet = preg_replace("/@([0-9a-zA-Z_-]+)/", "<a target='blank' title='$1' href=\"http://twitter.com/$1\">@$1</a>", $tweet);
 
 
-			$twitter .= "<div class='tweet-modal " . $username . "'><a href='#' class='closetweet' onclick='closeTweet()'><i class='fa fa-times fa-lg'></i></a><section><h2><a href='https://twitter.com/" . $username . "'><i class='fa fa-twitter'></i>" . $username . "</a></h2><div class='tweet-content'><p>" . $tweet;
+			$twitter .= "<div class='tweet-modal " . $username . "'><a href='#' class='closetweet' onclick='closeTweet()'><i class='fa fa-times fa-lg'></i></a><section><h2><a href='https://twitter.com/" . $username . "' target='_blank'><i class='fa fa-twitter'></i>" . $username . "</a></h2><div class='tweet-content'><p>" . $tweet;
 
 			if (isset($style)) {
 				if (!empty($style)) {

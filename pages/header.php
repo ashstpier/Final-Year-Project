@@ -14,7 +14,7 @@
 </head>
 <body>
 <div id="navbar" class="fold close">
-	<div id="logo"><a href="index.html"><img src="../assets/images/logo.png" alt="University of Kent logo" /></a><h1>Interactive 3D Campus</h1></div>
+	<div id="logo"><a href="../index.html"><img src="../assets/images/logo.png" alt="University of Kent logo" /></a><h1>Help and information</h1></div>
     <ul id="nav">
         <li><a href="../map.php"><i class="fa fa-compass"></i>Explore</a></li>
         <li><a href="../social.php"><i class="fa fa-comment-o"></i>Social</a></li>

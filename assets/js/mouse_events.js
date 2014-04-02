@@ -595,24 +595,6 @@ function onDocumentMouseMove( event ) {
 			hovered.object.material.opacity = 1
 		}
 	}
-	
-	
-	/*
-	var vector = new THREE.Vector3(
-    ( event.clientX / window.innerWidth ) * 2 - 1,
-    - ( event.clientY / window.innerHeight ) * 2 + 1,
-    0.5 );
-
-	projector.unprojectVector( vector, camera );
-	
-	var dir = vector.sub( camera.position ).normalize();
-	
-	var distance = - camera.position.y / dir.y;
-	
-	var pos = camera.position.clone().add( dir.multiplyScalar( distance ) );
-	
-	console.log(pos);
-	*/
 }
 function dragMove( event ) {
 	event.preventDefault();

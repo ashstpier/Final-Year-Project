@@ -7,7 +7,7 @@ include 'header.php';
     <h4>Why does the map not load on my computer?</h4>
     <p>If the map does not load and all you can see is a blue background then it is likely that your browser or graphics card does not support WebGL. You should see a popup which will notify you of this fact. Updating your browser to the newest version of <a href="https://www.google.com/intl/en/chrome/browser/" target="_blank">Google Chrome</a> will usually solve the problem.
     <h4>How do I rotate the map?</h4>
-    <p>To rotate the campus map simply click the left <i class="fa fa-chevron-left"></i> or right <i class="fa fa-chevron-right"></i> buttons towards the bottom of the screen. This will rotate the map by a small amount in your chosen direction.</p>
+    <p>To rotate the campus map simply click the left <i class="fa fa-caret-left"></i> or right <i class="fa fa-caret-right"></i> buttons towards the bottom of the screen. This will rotate the map by a small amount in your chosen direction.</p>
     <h4>How do I change perspective?</h4>
     <p>The button to change perspective is found between the two rotation buttons at the bottom of the screen <i class="fa fa-th-large"></i>. This button will switch between three perspective types: the standard perspective view, a low perspective view and a birds-eye view.</p>
     <h4>How do I switch to satellite mode?</h4>
@@ -27,7 +27,7 @@ include 'header.php';
     <h4>Where can I find the Social Feed?</h4>
     <p>The social feed can be found by clicking the 'Social' link at the top right of the screen from the map view.</p>
     <h4>How do I switch between different social streams in the Social Feed?</h4>
-    <p>Clicking the <i class="fa fa-bars"></i> icon will reveal options that allow you to filter which results are shown in the social stream.</p>
+    <p>Clicking the <i class="fa fa-bars"></i> icon will reveal options that allow you to filter which results are shown in the Social Feed.</p>
     <h4>How do I sort the Social Feed?</h4>
     <p>Clicking the <i class="fa fa-sort-amount-desc"></i> icon will reveal options that allow you to sort the results by time and arrange them as a grid or list.</p>
 </div>

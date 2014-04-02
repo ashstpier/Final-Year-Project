@@ -70,15 +70,7 @@
 <div class="slide-drawer">
 	<div id="label-panel" class="slidepanel">
     	<h2>Markers</h2>
-        <p><em>Use the options below to hide/show labels and highlight buildings by category:</em></p>
-        <h3>Labels</h3>
-        <ul>
-        	<li><a href="#" class="toggle" id="labeltoggle">Names</a></li>
-            <li><a href="#" class="toggled" id="tweettoggle">Tweets</a></li>
-            <li><a href="#" class="toggled" id="facttoggle">Facts</a></li>
-            <li><a href="#" class="toggled" id="bustoggle">Bus stops</a></li>
-            <li><a href="#" class="toggled" id="foodtoggle">Restaurants</a></li>
-        </ul>
+        <p><em>Use the options below to highlight buildings by category and hide/show labels:</em></p>
         <h3>Building categories</h3>
         <ul>
         	<li><a href="#" class="toggle" id="labelall">Show all</a></li>
@@ -88,6 +80,14 @@
             <li><a href="#" class="toggle" id="communitytoggle">Community</a></li>
             <li><a href="#" class="toggle" id="maintenancetoggle">Other services</a></li>
             <li><a href="#" class="toggle" id="developmenttoggle">New developments</a></li>
+        </ul>
+        <h3>Labels</h3>
+        <ul>
+        	<li><a href="#" class="toggle" id="labeltoggle">Names</a></li>
+            <li><a href="#" class="toggled" id="tweettoggle">Tweets</a></li>
+            <li><a href="#" class="toggled" id="facttoggle">Facts</a></li>
+            <li><a href="#" class="toggled" id="bustoggle">Bus stops</a></li>
+            <li><a href="#" class="toggled" id="foodtoggle">Restaurants</a></li>
         </ul>
     </div>
     <div id="overlay-panel" class="slidepanel">
@@ -137,14 +137,15 @@
     </div>
     <div id="info-panel" class="slidepanel">
         <h2>Info</h2>
+        <p>The various pages below provide further information about this application.</p>
         <ul>
-         	<li><a href="pages/help.php">Help</a></li>
-            <li><a href="pages/about.php">About</a></li>
-            <li><a href="pages/disclaimer.php">Disclaimer</a></li>
-            <li><a href="pages/credits.php">Credits</a></li>
-            <li><a href="admin/">Admin</a></li>
-            <li><a href="http://www.kent.ac.uk/">UKC website</a></li>
-            <li><a href="https://github.com/ashstpier/Final-Year-Project">GitHub Repository</a></li>
+         	<li><a href="pages/help.php" target="_blank">Help</a></li>
+            <li><a href="pages/about.php" target="_blank">About</a></li>
+            <li><a href="pages/disclaimer.php" target="_blank">Disclaimer</a></li>
+            <li><a href="pages/credits.php" target="_blank">Credits</a></li>
+            <li><a href="admin/" target="_blank">Admin</a></li>
+            <li><a href="http://www.kent.ac.uk/" target="_blank">UKC website</a></li>
+            <li><a href="https://github.com/ashstpier/Final-Year-Project" target="_blank">GitHub Repository</a></li>
         </ul>
     </div>
 </div>

@@ -96,7 +96,7 @@
     </ul>
 </div>
 <div id="leftcolumn">
-	<div id="logo"><a href="http://www.kent.ac.uk/" target="_blank"><img src="../assets/images/logo.png" alt="University of Kent logo" /></a><h1>Admin panel</h1></div>
+	<div id="logo"><a href="../index.html"><img src="../assets/images/logo.png" alt="University of Kent logo" /></a><h1>Admin panel</h1></div>
     <h3>Data</h3>
     <ul>
     	<li><a href="index.php" id="editbuilding"><i class="fa fa-pencil-square-o"></i>Edit buildings</a></li>

@@ -1378,7 +1378,7 @@ function makeFacts(){
 	group.add(cube);
 	
 	var cube = new THREE.Mesh( new THREE.CubeGeometry( 12, 12, 6 ), material );
-	cube.position.set(-342,10,-29);
+	cube.position.set(-330,15,-15)
 	cube.visible = false;
 	cube.name = "fact_4"
 	clickobjects.push(cube);
@@ -1386,7 +1386,7 @@ function makeFacts(){
 	group.add(cube);
 	
 	var cube = new THREE.Mesh( new THREE.CubeGeometry( 12, 12, 6 ), material );
-	cube.position.set(-298,10,-256);
+	cube.position.set(-298,15,-256);
 	cube.visible = false;
 	cube.name = "fact_5"
 	clickobjects.push(cube);
@@ -1394,7 +1394,7 @@ function makeFacts(){
 	group.add(cube);
 	
 	var cube = new THREE.Mesh( new THREE.CubeGeometry( 12, 12, 6 ), material );
-	cube.position.set(-57,10,-196);
+	cube.position.set(-57,15,-196);
 	cube.visible = false;
 	cube.name = "fact_6"
 	clickobjects.push(cube);

@@ -248,12 +248,12 @@ function display_tweets($usr_1, $usr_2, $usr_3, $usr_4, $usr_5, $style ='', $max
 			$tweet = preg_replace("/@([0-9a-zA-Z_-]+)/", "<a target='blank' title='$1' href=\"http://twitter.com/$1\">@$1</a>", $tweet);
 
 
-			$twitter .= "<article class='item twitter " . $username . "'><a href='https://twitter.com/" . $username . "'><img class='tweet_img' src='" . $profile_image . "' alt='" . $username . "' /></a><div class='tweet-content'>" . $tweet;
+			$twitter .= "<article class='item twitter " . $username . "'><a href='https://twitter.com/" . $username . "' target='_blank'><img class='tweet_img' src='" . $profile_image . "' alt='" . $username . "' /></a><div class='tweet-content'>" . $tweet;
 
 			if (isset($style)) {
 				if (!empty($style)) {
 					$when  = ($style == 'time_since' ? 'about' : 'on');
-					$twitter.="<div class='tweet-footer'><i class='fa fa-twitter'></i>&nbsp; by <a href='https://twitter.com/" . $username . "'>" . $username . "</a> <span>" . $when;
+					$twitter.="<div class='tweet-footer'><i class='fa fa-twitter'></i>&nbsp; by <a href='https://twitter.com/" . $username . "' target='_blank'>" . $username . "</a> <span>" . $when;
 
 					switch ($style) {
 					case 'eng_suff': {
