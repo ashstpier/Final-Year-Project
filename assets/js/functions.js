@@ -1164,7 +1164,7 @@ function makeRoadName( message ){
 	texture.needsUpdate = true;
 
 	var spriteMaterial = new THREE.SpriteMaterial( 
-		{ map: texture, useScreenCoordinates: false, transparent: true, opacity: 0 } );
+		{ map: texture, useScreenCoordinates: false, alignment: THREE.SpriteAlignment.topLeft, transparent: true, opacity: 0 } );
 	var sprite = new THREE.Sprite( spriteMaterial );
 	
 	sprite.scale.set(60,30,1.0);

@@ -297,6 +297,11 @@ $(window).load(function(){
 	  }
 	);
 	
+	if (Modernizr.touch) {   
+	}else{
+		$( '#leftnav button' ).tooltip({ position: { my: "right top", at: "left top" }, show: { effect: "slide", duration: 200 }, hide: { effect: "slide", duration: 200 }, easing: "easeInOutQuad" });	
+	}
+	
 });
 </script>
 

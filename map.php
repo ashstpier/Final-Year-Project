@@ -70,7 +70,7 @@
 <div class="slide-drawer">
 	<div id="label-panel" class="slidepanel">
     	<h2>Markers</h2>
-        <p><em>Use the option below to highlight labels and buildings by category:</em></p>
+        <p><em>Use the options below to hide/show labels and highlight buildings by category:</em></p>
         <h3>Labels</h3>
         <ul>
         	<li><a href="#" class="toggle" id="labeltoggle">Names</a></li>
@@ -149,7 +149,7 @@
     </div>
 </div>
 <div id="cookie" class="controls-modal"><a href="#" class="controls-close"><i class="fa-times fa fa-lg"></i></a><h2>Welcome to the University of Kent Campus map!</h2><p>You can control the map by clicking and dragging with your mouse. Click on individual buildings to reveal information about them.</p><br/><p>Use the buttons below to rotate the map and change perspective.</p><div class="arrow-down"></div></div>
-<div id="touch_cookie" class="controls-modal"><a href="#" class="controls-close"><i class="fa-times fa fa-lg"></i></a><h2>Welcome to the University of Kent Campus map!</h2><p>You can control the map by clicking and dragging with your mouse. Click on individual buildings to reveal information about them.</p><br/><p>Use the buttons below to rotate the map and change perspective.</p><div class="arrow-down"></div></div>
+<div id="touch_cookie" class="controls-modal"><a href="#" class="controls-close"><i class="fa-times fa fa-lg"></i></a><h2>Welcome to the University of Kent Campus map!</h2><p>You can control the map by touching and dragging with your finger. Tap on individual buildings to reveal information about them.</p><br/><p>Use the buttons below to rotate the map and change perspective.</p><div class="arrow-down"></div></div>
 <div id="zoom" class="controls-modal"><a href="#" class="controls-close"><i class="fa-times fa fa-lg"></i></a><h2>UKC points of interest</h2><p>Click and drag to rotate the camera to view some of the University of Kent's most popular events and places.</p><br/><p>Click the button below to exit back to the map view.</p><div class="arrow-down"></div></div>
 <div id="mapwrapper">
     <div id="modalpanel" class="animated flipcard">
@@ -340,6 +340,7 @@ if( Detector.webgl ){
 		
 	if (Modernizr.touch) {   
 	}else{
+		$( '#leftnav button' ).tooltip({ position: { my: "right top", at: "left top" }, show: { effect: "slide", duration: 200 }, hide: { effect: "slide", duration: 200 }, easing: "easeInOutQuad" });	
 		$( '#controls button' ).tooltip({ position: { my: "center bottom-20", at: "center+8 top" },  show: { effect: "fade", duration: 0 }, hide: { effect: "fade", duration: 0 }, easing: "easeInOutQuad" });	
 	}
 	
