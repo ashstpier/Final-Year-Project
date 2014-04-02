@@ -51,7 +51,7 @@ function onDocumentMouseUp( event ) {
 function dragEnd( event ) {
 	event.preventDefault();
 	
-	if(MOVED <= 5){
+	if(MOVED <= 2){
 		var vector = new THREE.Vector3( ( event.changedTouches[0].pageX / window.innerWidth ) * 2 - 1, - ( event.changedTouches[0].pageY / window.innerHeight ) * 2 + 1, 0.5 );
 		projector.unprojectVector( vector, camera );
 		var raycaster = new THREE.Raycaster( camera.position, vector.sub( camera.position ).normalize() );
@@ -578,21 +578,18 @@ function onDocumentMouseMove( event ) {
 	var intersects = raycaster.intersectObjects( hoverbuildings );
 	
 	if (intersects.length > 0 ) {
-		hovercolour = intersects[ 0 ].object.material.color;
-		console.log(hovercolour);
 		try{
 		if(hovered != intersects[ 0 ]){
 			hovered.object.material.opacity = 1;
 		}else{
 			}
 		}catch(err){}
-		intersects[ 0 ].object.material.opacity = 0.6;
+		intersects[ 0 ].object.material.opacity = 0.7;
 		hovered = intersects[ 0 ];
-		container.style.cursor = 'pointer';	
-		
+		container.style.cursor = 'pointer';
 	}else{
 		if(hovered != null){
-			hovered.object.material.opacity = 1
+			hovered.object.material.opacity = 1;
 		}
 	}
 }
@@ -631,11 +628,11 @@ function tiltView() {
 		clicked = 1;
 		if (tilt == 0){
 			if (camera.position.z >= controls.center.z){
-				new TWEEN.Tween( camera.position ).to( { y: 100, z: controls.center.z + 400 }, 500 ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {
+				new TWEEN.Tween( camera.position ).to( { y: 100, z: 400 }, 500 ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {
 				clicked = 0;
 			}).start();
 			}else {
-				new TWEEN.Tween( camera.position ).to( { y: 100, z: controls.center.z - 400 }, 500 ).easing( TWEEN.Easing.Sinusoidal.InOut).start();
+				new TWEEN.Tween( camera.position ).to( { y: 100, z: -400 }, 500 ).easing( TWEEN.Easing.Sinusoidal.InOut).start();
 				clicked = 0;
 			}
 			$('#tilt_icon').hide();
@@ -643,11 +640,11 @@ function tiltView() {
 			tilt = 1;
 		} else if (tilt == 1){
 			if (camera.position.z >= controls.center.z){
-				new TWEEN.Tween( camera.position ).to( { x: controls.center.x, y: 700, z: controls.center.z + 1, }, 500 ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {
+				new TWEEN.Tween( camera.position ).to( { x: 0, y: 700, z: 1, }, 500 ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {
 				clicked = 0;
 			}).start();
 			}else {
-				new TWEEN.Tween( camera.position ).to( { x: controls.center.x, y: 600, z: controls.center.z - 1, }, 500 ).easing( TWEEN.Easing.Sinusoidal.InOut).start();
+				new TWEEN.Tween( camera.position ).to( { x: 0, y: 600, z: - 1, }, 500 ).easing( TWEEN.Easing.Sinusoidal.InOut).start();
 				clicked = 0;
 			}
 			$('#flat_icon').hide();
@@ -655,11 +652,11 @@ function tiltView() {
 			tilt = 2;
 		} else {
 			if (camera.position.z >= controls.center.z){
-				new TWEEN.Tween( camera.position ).to( { y: 500, z: controls.center.z + 750 }, 500 ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {
+				new TWEEN.Tween( camera.position ).to( { y: 500, z: 750 }, 500 ).easing( TWEEN.Easing.Sinusoidal.InOut).onComplete(function () {
 				clicked = 0;
 			}).start();
 			}else {
-				new TWEEN.Tween( camera.position ).to( { y: 250, z: controls.center.z - 400 }, 500 ).easing( TWEEN.Easing.Sinusoidal.InOut).start();
+				new TWEEN.Tween( camera.position ).to( { y: 500, z: - 750 }, 500 ).easing( TWEEN.Easing.Sinusoidal.InOut).start();
 				clicked = 0;
 			}
 			$('#twod_icon').hide();

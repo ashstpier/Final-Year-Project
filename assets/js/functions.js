@@ -1242,6 +1242,7 @@ function makeBusstops(){
         bus = new THREE.Mesh( geometry, material );
 		bus.position.set(125,10,150);
 		bus.scale.set(0.12,0.12,0.05);
+		bus.castShadow = true;
 		textlookat.push(bus);
 		zoomobjects.push(bus);
 		busIcons.push(bus);
@@ -1251,6 +1252,7 @@ function makeBusstops(){
 		bus = new THREE.Mesh( geometry, material );
 		bus.position.set(-331,10,-161);
 		bus.scale.set(0.12,0.12,0.05);
+		bus.castShadow = true;
 		textlookat.push(bus);
 		zoomobjects.push(bus);
 		busIcons.push(bus);
@@ -1260,6 +1262,7 @@ function makeBusstops(){
 		bus = new THREE.Mesh( geometry, material );
 		bus.position.set(423,10,-261);
 		bus.scale.set(0.12,0.12,0.05);
+		bus.castShadow = true;
 		textlookat.push(bus);
 		zoomobjects.push(bus);
 		busIcons.push(bus);
@@ -1305,6 +1308,7 @@ function makeFacts(){
 	// Fact 1
 	fact = new THREE.Mesh( geometry, material );
 	fact.position.set(250,15,-60);
+	fact.castShadow = true;
 	textlookat.push(fact);
 	zoomobjects.push(fact);
 	factIcons.push(fact);
@@ -1313,6 +1317,7 @@ function makeFacts(){
 	// Fact 2
 	fact = new THREE.Mesh( geometry, material );
 	fact.position.set(180,15,-140);
+	fact.castShadow = true;
 	textlookat.push(fact);
 	zoomobjects.push(fact);
 	factIcons.push(fact);
@@ -1321,6 +1326,7 @@ function makeFacts(){
 	// Fact 3
 	fact = new THREE.Mesh( geometry, material );
 	fact.position.set(260,15,-210);
+	fact.castShadow = true;
 	textlookat.push(fact);
 	zoomobjects.push(fact);
 	factIcons.push(fact);
@@ -1329,6 +1335,7 @@ function makeFacts(){
 	// Fact 4
 	fact = new THREE.Mesh( geometry, material );
 	fact.position.set(-330,15,-15);
+	fact.castShadow = true;
 	textlookat.push(fact);
 	zoomobjects.push(fact);
 	factIcons.push(fact);
@@ -1337,6 +1344,7 @@ function makeFacts(){
 	// Fact 5
 	fact = new THREE.Mesh( geometry, material );
 	fact.position.set(-298,15,-256);
+	fact.castShadow = true;
 	textlookat.push(fact);
 	zoomobjects.push(fact);
 	factIcons.push(fact);
@@ -1345,6 +1353,7 @@ function makeFacts(){
 	// Fact 6
 	fact = new THREE.Mesh( geometry, material );
 	fact.position.set(-57,15,-196);
+	fact.castShadow = true;
 	textlookat.push(fact);
 	zoomobjects.push(fact);
 	factIcons.push(fact);

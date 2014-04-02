@@ -173,7 +173,7 @@ function init() {
 	var directionalLight = new THREE.DirectionalLight( 0xf2edd5 ,0.7 );
 	directionalLight.position.set( 800, 1200, 100 )
 	directionalLight.castShadow = true;
-	directionalLight.shadowDarkness = 0.6;
+	directionalLight.shadowDarkness = 0.5;
 	directionalLight.shadowMapWidth = 2048;
 	directionalLight.shadowMapHeight = 2048;
 	
@@ -309,7 +309,7 @@ function init() {
         mesh = new THREE.Mesh( geometry, new THREE.MeshFaceMaterial(materials) );
         mesh.scale.set( 1, 1, 1 );
 		mesh.material.materials[1].color.setHex(0x665239);
-		mesh.material.materials[2].color.setHex(0x628a50);
+		mesh.material.materials[0].color.setHex(0x628a50);
 		mesh.castShadow = true;
 		mesh.name = "trees";
 		group.add( mesh );
@@ -348,6 +348,12 @@ function init() {
 		mesh.material.needsUpdate = true;
 		mesh.receiveShadow = true;
 		mesh.name = "map";
+		group.add( mesh );
+    } );
+	loader.load( "assets/models/map_bottom.js", function( geometry, materials ) {
+        mesh = new THREE.Mesh( geometry, new THREE.MeshFaceMaterial(materials) );
+        mesh.scale.set( 1, 1, 1 );
+		mesh.position.set( 0, 0, 0);
 		group.add( mesh );
     } );
 	
@@ -390,8 +396,11 @@ function init() {
 	renderer = new THREE.WebGLRenderer({canvas:canvas, alpha: true, antialiasing: true});
 	renderer.setSize( window.innerWidth, window.innerHeight );
 	renderer.setClearColor( 0x6fabbf, 1);
-	renderer.shadowMapEnabled = false;
-	renderer.shadowMapSoft = true;
+	if (Modernizr.touch) {   
+	} else { 
+		renderer.shadowMapEnabled = true;
+	}
+	renderer.shadowMapSoft = false;
 	renderer.shadowMapType = THREE.PCFSoftShadowMap;
 
 	container.appendChild( renderer.domElement );
